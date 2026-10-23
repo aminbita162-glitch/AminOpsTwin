@@ -1,0 +1,2039 @@
+AMINOPSTWIN
+MASTER DEVELOPMENT DIRECTIVE
+Project start: October 2026 | Directive date: October 23, 2026
+Operational Cognitive Digital Twin for Clinical Research Operations
+Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
+
+Authoritative directive: directive.txt (project root)
+This file is the single authoritative directive.
+
+STATUS: EXECUTION CANDIDATE
+
+THE SOLE ACTIVE PHASE SEQUENCE IS P1 THROUGH P10.
+All earlier six-phase references are historical only and carry no active obligations.
+
+P1 Foundation and Governance
+P2 Runtime Core and Evidence
+P3 Twin and Operational Simulation
+P4 Governed Knowledge and Deterministic Memory
+P5 Operational Intelligence Capabilities
+P6 Assurance Interface and Weekly Checks
+P7 Responsive Dashboard and User Interface
+P8 Enterprise Hardening and Evaluation
+P9 Integration, Exports and Pre-Release
+P10 Final Verification, README, Release Notes and Project Close
+
+P10 performs full regression, README and release-notes finalization, final commit and push, and project close. No new feature development occurs in P10.
+
+
+======================================================================
+COMPLETE PHASE RECORDS (P4–P10)
+======================================================================
+
+P4 — GOVERNED KNOWLEDGE AND DETERMINISTIC MEMORY
+Entry: P1–P3 independently verified.
+Responsible: A1, A3, S1, S2.
+Required: source rights/provenance, bounded ingestion, four memory classes, immutable snapshots, retention options, controlled experience reuse.
+Exit: all applicable memory and source gates pass; evidence in test_home/P4/.
+Hard Stop.
+
+P5 — OPERATIONAL INTELLIGENCE CAPABILITIES
+Entry: P4 verified.
+Responsible: A2, A3, A5, S1, S2.
+Required: bounded experiment designer, evidence-change impact tracking, budgeted next-experiment selection.
+Exit: all intelligence gates pass; evidence in test_home/P5/.
+Hard Stop.
+
+P6 — ASSURANCE INTERFACE AND WEEKLY CHECKS
+Entry: P5 verified.
+Responsible: A4, S1, S2.
+Required: deterministic weekly scheduler, zero-model assurance, backend report interface, missed-run handling.
+Exit: all assurance gates pass; evidence in test_home/P6/.
+Hard Stop.
+
+P7 — RESPONSIVE DASHBOARD AND USER INTERFACE
+Entry: P6 verified.
+Responsible: A5 and approved frontend components (no new agent).
+Required: responsive browser interface (Chrome, Firefox, Safari, Edge), required views, wallboard mode, accessibility baseline.
+Exit: all dashboard gates pass; evidence in test_home/P7/.
+Hard Stop.
+
+P8 — ENTERPRISE HARDENING AND EVALUATION
+Entry: P7 verified.
+Responsible: all agents under existing contracts.
+Required: expanded adversarial corpus, tenant isolation, evaluation harness, API fuzzing, load smoke, transparency contract.
+Exit: all enterprise gates pass; evidence in test_home/P8/.
+Hard Stop.
+
+P9 — INTEGRATION, EXPORTS AND PRE-RELEASE
+Entry: P8 verified.
+Responsible: S2 and relevant agents.
+Required: signed exports, cross-component integration, deployment preparation, backup/restore drill preparation.
+Exit: all integration and pre-release gates pass; evidence in test_home/P9/.
+Hard Stop.
+
+P10 — FINAL VERIFICATION, README, RELEASE NOTES AND PROJECT CLOSE
+Entry: P9 verified.
+Required: full regression of P1–P9, final README with STATUS: CANDIDATE heading and honesty sentence, release notes, final evidence pack, meaningful final commits.
+Exit: owner accepts handover. No new development.
+Hard Stop. Project complete.
+
+
+AMINOPSTWIN
+MASTER DEVELOPMENT DIRECTIVE
+Project start: October 2026 | Directive date: October 23, 2026
+Operational Cognitive Digital Twin for Clinical Research Operations
+Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
+
+Authoritative directive: directive.txt (project root)
+This file is the single authoritative directive.
+
+STATUS: EXECUTION CANDIDATE.
+
+
+======================================================================
+GATE MIGRATION TABLE (OLD TO NEW PHASES)
+======================================================================
+Old G1.* / G2.* / G3.*          -> remain in P1 / P2 / P3
+Old G4.2–G4.6                   -> primarily P4 (memory/source)
+Old G4.7–G4.9                   -> primarily P5 (intelligence)
+Old G4.10–G4.11                 -> primarily P6 (assurance)
+Old G4.12                       -> primarily P7 (dashboard)
+Old G4.1, G4.13–G4.16           -> cross-cutting across P4–P7
+Old G5.1–G5.2, G5.4–G5.8        -> P8 (enterprise)
+Old G5.3                        -> P9 (exports)
+Old G6.*                        -> distributed to P9 (preparation) and P10 (final verification)
+Thresholds and conditions are unchanged.
+HISTORICAL NOTE: Previous phase lists are superseded. Active sequence is P1–P10 above.
+P1 Foundation and Governance
+P2 Runtime Core and Evidence
+P3 Twin and Operational Simulation
+P4 Governed Knowledge and Deterministic Memory
+P5 Operational Intelligence Capabilities
+P6 Assurance Interface and Weekly Checks
+P7 Responsive Dashboard and User Interface
+P8 Enterprise Hardening and Evaluation
+P9 Integration, Exports and Pre-Release
+P10 Final Verification, README, Release Notes and Project Close
+
+P10 performs full regression testing, README and release-notes update, final commit and push, and project completion declaration. No new development occurs in P10.
+
+
+[HISTORICAL] PHASE MAPPING FROM PREVIOUS SIX-PHASE STRUCTURE
+Original P1 -> P1
+Original P2 -> P2
+Original P3 -> P3
+Original new P4 (memory + intelligence + assurance + dashboard) split into:
+  P4 Governed Knowledge and Deterministic Memory
+  P5 Operational Intelligence Capabilities
+  P6 Assurance Interface and Weekly Checks
+  P7 Responsive Dashboard and User Interface
+Original P5 (Enterprise) -> P8
+Original P6 (Release) content distributed into P9 and P10
+P10 is the dedicated final verification and close phase.
+
+All original gates, requirements, and content are preserved and distributed across the new phases.
+Meaningful commits remain mandatory after each logical unit.
+
+AMINOPSTWIN
+MASTER DEVELOPMENT DIRECTIVE
+Project start: October 2026 | Directive date: October 23, 2026
+Operational Cognitive Digital Twin for Clinical Research Operations
+Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
+
+Authoritative directive: directive.txt (project root)
+This file (directive.txt) is the single authoritative directive.
+The owner confirms the version and entry arrangement before binding activation.
+
+STATUS: EXECUTION CANDIDATE. This document integrates the five original phases
+and the additional P4 into one nine-plus-one phase plan. It corrects identified contract
+defects while retaining original scope and acceptance obligations. It does not
+claim literal byte-for-byte preservation where approved corrections replace
+defective wording. Section 38 records the preservation and correction mapping.
+All missing owner inputs are disclosed in Section 37. No implementation, test
+execution, regulatory clearance, signature or future score is asserted here.
+
+MANDATORY EXECUTION DISCIPLINE
+Execute only the approved binding requirements. Do not delete capabilities,
+invent missing values, silently simplify, select unapproved technology, fabricate
+evidence or rewrite Git history. On material ambiguity, record the exact question
+and stop the affected work; do not proceed into a later phase. Meaningful commits
+are required after each complete logical unit, not micro-edits or phase-end-only
+commits. All authored project content is English. Project attribution is Amin
+Azimi / Azimi Innovation Lab; authentic third-party rights and scientific
+attribution must remain accurate. Do not fabricate sole authorship of third-party
+code, data or publications, endorsements, signatures or dates.
+
+There are no permanently unchangeable files: the owner may amend any requirement
+through the signed change process. This is not permission for an implementing
+agent to alter verification controls, policy or scope. Each phase must satisfy
+all of its applicable obligations and independent checks before advancement.
+After verification, the next phase starts only on explicit owner instruction.
+
+NINE-PLUS-ONE PHASE SEQUENCE
+P1 Foundation / Governance (original P1 retained)
+P2 Runtime / Evidence (original P2 retained)
+P3 Twin / Operations (original P3 retained)
+P4 Governed Knowledge, Deterministic Memory, Operational Intelligence and Interface (new)
+P5 Enterprise / Product (original P4 retained and renumbered)
+P6 Release / Deployment (original P5 retained and renumbered)
+
+[HISTORICAL] P6 is the final development/release phase. Completion means this directive's
+verified Candidate deliverables are finished, not that future maintenance,
+scheduled assurance, source review or applicable legal obligations cease.
+
+======================================================================
+ORIGINAL FIVE DEPTH-ELEVATING IDEAS - BINDING PHASE DISTRIBUTION
+(Original scopes retained; phase references migrated to the six-phase sequence)
+======================================================================
+
+The five ideas are fully incorporated below as owner-approved extensions. They do not create a sixth agent or weaken a hard boundary. The separate new P4 adds capabilities described in Sections 28-36. Each idea is mapped to existing phases, capabilities, and gates. The technical substance of both source documents is preserved in the sections that follow this integration layer.
+
+IDEA 1 - Operational Capability Marketplace with Signed Capability Packs
+Distribution:
+- P1: Extend schema_registry.yaml and policy_matrix.yaml to support pack-manifest schema_id. Add invariant for pack signature verification. Gateway purity remains intact.
+- P2: Executor records pack hash in durable state (compatible with state machine 3.6). Cache binding includes pack_hash.
+- P5: Tenant-context tests (G5.2) include pack isolation. Export manifests include pack provenance.
+- Gates affected (existing only): G1.3, G1.4, G1.7, G2.4, G5.1, C5. No new gate IDs.
+- Binding: Packs are data only. Loading is a Gateway-mediated action under 3.8.
+
+IDEA 2 - Deterministic Scenario Diff and What-If Provenance Ledger
+Distribution:
+- P2: Evidence registry (A3) stores scenario seed + policy_epoch + baseline snapshot hash.
+- P3: Twin (A2) produces ScenarioDiff as an Envelope payload (aggregate metrics only, vocabulary 2.7). Replay oracle (G3.1, G3.9) includes diff hash.
+- P5: Evaluation harness reports diff reproducibility.
+- Gates affected (existing only): G3.1, G3.4, G3.9, G2.4, G5.4.
+- Binding: Diffs contain only allowed aggregate fields. Schema field scan (24.3) enforces.
+
+IDEA 3 - Policy Epoch Simulation and Impact Preview Gate
+Distribution:
+- P1: Gateway pure function gains a read-only preview mode (no state mutation; import-linter still holds).
+- P2: Preview results stored as evidence with DecisionRecord format (3.9). Compatible with F10.
+- P3: Epoch-change tests (existing) include preview dry-run.
+- Gates affected (existing only): G1.2, G1.7, G2.3, G3.10.
+- Binding: Preview is advisory. Owner still explicitly bumps epoch (3.7).
+
+IDEA 4 - Aggregate Operational KPI Contract with Verifiable Export
+Distribution:
+- P3: Twin produces versioned approved KPI schemas (site utilization, protocol_milestone throughput, queue wait_time distribution, resource contention index) using only allowed vocabulary.
+- P5: Export workflow is Executor-mediated and interruptible (F11). Signed reports include evidence-pack manifest.
+- P6: Clean-room verification (25) includes KPI export offline check. Runbook covers export recovery.
+- Gates affected (existing only): G3.6, G5.3, G6.3, G6.8, F11.
+- Binding: No free-text interpretation in signed reports. Output validation L3 applies.
+
+IDEA 5 - Token-Budget Reservation Marketplace and Capability Pricing Hooks
+Distribution:
+- P2: Budget governor (4.3) gains optional owner-configured pricing/accounting layer. Atomic token reservation is mandatory (F09).
+- P3: Token benchmarks (G3.5) include reservation accounting.
+- P5: Transparency contract (4.5) reports reservation status. Multi-tenant path (OD01) prepared without enabling billing by default.
+- Gates affected (existing only): G2.5, G3.5, G5.5, F09.
+- Binding: Pricing hooks are configuration data. No floating-point in hashed accounting payloads (N-15). Fallback paths unchanged.
+
+Recommended introduction order (non-binding, for owner scheduling only): Idea 4 -> Idea 2 -> Idea 3 -> Idea 1 -> Idea 5.
+All ideas remain Candidate until owner-verified evidence. No production-ready or clinical-validity claims.
+
+
+======================================================================
+0. DOCUMENT CONTROL
+======================================================================
+0.1 STATUS: OWNER REVIEW CANDIDATE. Execution begins only after the applicable
+Section 20 inputs are complete, binding controls are verified and the owner signs
+the active binding manifest and instructs P1. This drafting authorization is not
+implementation authorization. Preparatory document editing is owner-authorized;
+no agent may manufacture missing owner decisions or signatures.
+0.2 LANGUAGE: All authored code, comments, docs, README, tests, UI, reports and
+commit messages are English. This does not mean ASCII-only. Exact identifiers,
+source author names, URLs and required Unicode conformance vectors are preserved
+without falsification. Prefer English publications; non-English narrative is not
+imported. A source requiring non-English attribution prose needs owner resolution
+before use. The README honesty sentence is the English text defined in section 17.2. All project content is English.
+0.3 HONESTY RULE: All titles remain "Candidate" until independently proven by owner-approved evidence. No production-ready
+    claim. No clinical validity claim. No endorsement claim by any third party.
+0.4 SUPERSESSION: Once approved and signed, this integrated version supersedes
+the original V4.3/V4.2 execution text and the independent P4 handoff supplement.
+Earlier sources are retained as historical evidence, not active competing rules.
+Version numbers are not reused. This candidate is not signed or binding yet.
+0.5 BINDING SET (exact paths; only these are binding; anything not in them is NOT binding):
+  OWNER-PREPARED OR EXPLICITLY OWNER-APPROVED BEFORE P1:
+      directive.txt               this file
+      /docs/capability_catalog.yaml          the defined capabilities                         [OWNER-FILL]
+      /docs/owner_decisions.md               OD01-OD07 full approved text                                 [OWNER-FILL]
+      /docs/gates.yaml                       machine-readable mirror of Section 8 gates (schema in 8.4)
+      /docs/source_allowlist.yaml            licensed public sources register (fields in 23.3)
+      /docs/license_template.txt             Ailora-style notice text                                     [OWNER-FILL]
+      /docs/readme_honesty_sentence.txt      fixed README honesty sentence                                [OWNER-FILL]
+      /docs/binding_manifest.sha256          hashes of designated binding content; detached owner signature
+      /scripts/verify_phase.sh               owner-run verification (13.1)
+      /scripts/check_commits.py              owner-run commit-discipline checker (21.5)
+      /fixtures/canonical_vectors.json       >= 30 canonical-serialization test vectors (24.5)
+  AGENT PROPOSES IN P1; OWNER APPROVES AND SIGNS AT THE P1 HARD STOP:
+      /docs/invariant_catalog.yaml           >= 15 invariants (5.1)
+      /docs/reason_code_registry.yaml        seeded from 6.4
+      /docs/schema_registry.yaml             schema_id -> model, envelope_type, version (3.5)
+      /docs/policy_matrix.yaml               principal x envelope_type x capability allow-list, least privilege (3.8)
+      /docs/forbidden_terms.yaml             terms and structures with expected reason codes (2.6)
+      /docs/schema_scan_exceptions.yaml      owner-approved scan exceptions, each with justification (24.3)
+      /docs/threat_model.md                  expanded from Section 11
+  AGENT-MAINTAINED LOGS (not binding content; every entry is reviewed by the owner at Hard Stops):
+      /docs/open_questions.md   /docs/dependency_requests.md   /docs/test_exceptions.md
+0.5.1 MANIFEST LIFECYCLE: The initial manifest covers required pre-existing
+binding content only. P1 proposed catalogs are explicitly pending, not missing
+active binding files. At P1 completion the owner approves them, regenerates and
+signs the manifest, then independently verifies the final P1 binding set before
+advancement. Later approved changes use the same controlled process.
+The manifest excludes itself and its detached signature. Its membership list is
+explicit; absence of a required active file fails verification.
+Capability definitions are binding; generated capability status is stored in
+test_home/<PHASE>/capability_status.json, never written into signed definitions.
+New phase-specific policy/assurance/UI contracts are approved and manifest-bound
+before their implementing phase. Candidate files may be prepared at an authorized
+boundary; this is specification work, not unauthorized later-phase implementation.
+Exception policies used by scans or verification must themselves be approved and
+hash-bound; an unreviewed log entry cannot become a valid exception.
+
+0.6 PRECEDENCE (highest first): signed owner amendment > this file > other binding-set files > anything else.
+    If two binding files conflict, the agent HARD STOPs and records the conflict in /docs/open_questions.md.
+0.7 PLACEHOLDER MARKERS:
+      [OWNER-FILL]    content only the owner has. Empty at its declared due boundary => HARD STOP (Section 37).
+      [OWNER-CONFIRM] value proposed in this file. The owner confirms or edits it before the
+                      affected phase's binding activation, then removes the marker.
+                      Pre-P1 markers remaining at P1 start => HARD STOP. Later-phase
+                      decisions follow the explicit due boundaries in Section 37.
+0.8 SESSION START PROTOCOL: at the start of every session, and after any context loss, the agent must (1) re-read all binding
+    files, (2) recompute and compare hashes with the signed manifest, (3) print the result, (4) state the current phase,
+    (5) state the last Hard Stop tag found in git. Mismatch or missing file => HARD STOP.
+0.9 AMENDMENTS: Only the owner authorizes changes. Each amendment records id,
+date, affected section, old text, new text, reason and owner approval/signature.
+An expressly authorized preparer may draft changes; no change becomes active
+until owner approval and re-signing. Implementing agents never alter active
+gates.yaml, verify_phase.sh, check_commits.py, canonical_vectors.json or the
+binding manifest without that explicit authorization. They never hold signing
+keys. Evidence-pack manifests are generated by the agent and signed by the owner.
+
+SECURITY BASELINE - FROM P1
+- gitleaks: zero findings; no committed credentials, keys or tokens.
+- Hash-locked dependencies and verified installation as defined in 6.2/25.
+- Owner-held private signing keys; only public verification material in runtime.
+- Secrets supplied by approved deployment configuration, never fixtures or logs.
+- Enforce and independently verify this baseline at every phase stop.
+
+
+======================================================================
+1. MISSION AND GOALS
+======================================================================
+PRIMARY GOAL: a real-world usable operational system for clinical research OPERATIONS (strictly non-clinical): capacity,
+queues, scheduling, bottlenecks, operational "what-if" scenarios, and evidence-grounded operational intelligence, using
+synthetic operational data and licensed public research material only.
+PROJECT LEVEL AT COMPLETION: "Advanced Operational Cognitive Digital Twin Candidate".
+Default Profile A uses synthetic operational data. Profile B is the approved
+commercial target of non-medical aggregate operations planning, but real
+organizational ingestion remains disabled until its data contract and deployment
+scope are separately approved. The term digital twin does not assert live
+synchronization with a real organization. See Section 29.
+
+======================================================================
+2. HARD BOUNDARY - NON-MEDICAL SCOPE
+======================================================================
+2.1 The intended purpose is non-medical operational planning and simulation.
+    Amin Azimi does not intend to build a medical decision system. This purpose
+    is enforced through functions, data, interfaces and claims, not a percentage
+    assurance or the professional qualification of the owner. Section 29 defines
+    the scope dossier and pre-commercial independent review.
+2.2 FORBIDDEN FOREVER: any patient physiology, pharmacokinetics, diagnosis, prognosis, individual risk scoring, treatment or
+    dose recommendation, eligibility decision for identifiable individuals, clinical triage, or output presented as medical advice.
+2.3 Use unambiguous operational terminology in runtime outputs. Scientific
+    metadata and boundary documentation use controlled evidence/documentation
+    schemas; clinical interpretation never becomes an operational capability.
+2.4 Enforcement is technical, never by disclaimer. Layers (all mandatory):
+      L1 Typed schemas with no field capable of carrying individual patient state (schema field scan, 24.3).
+      L2 Independent deterministic Policy Gateway (deny-by-default).
+      L3 Output validation on every outbound response (structure + forbidden-term check).
+      L4 Negative tests and the versioned adversarial corpus.
+      L5 Human escalation: any request touching 2.2 is denied and logged with an exact reason code; it is never "answered with caution".
+2.5 Data: only synthetic operational data and licensed public research material (Section 23). Real patient or participant
+    data is forbidden in the repository, fixtures, logs, recordings, and examples.
+2.6 /docs/forbidden_terms.yaml lists forbidden terms and forbidden structures; each entry has an expected reason code and at
+    least one negative test. The forbidden-pattern scan (13.6) and the schema field scan (24.3) use this list.
+2.7 AGGREGATE-ONLY RULE AND OPERATIONAL VOCABULARY [OWNER-CONFIRM]:
+    The twin models only: sites, rooms, equipment, staff ROLES (not named persons), time slots, schedules, queues, capacities,
+    protocol-level operational milestones, and anonymous aggregate counts. It never models a person, a person's attribute, or
+    a per-person record. ALLOWED vocabulary (initial): site, slot, capacity, queue, resource, schedule, milestone, throughput,
+    wait_time, utilization, staffing_role, protocol_milestone, aggregate_count, scenario. Any term outside the allowed list
+    that also appears in forbidden_terms.yaml is denied. Unregistered operational field names are escalated to /docs/open_questions.md;
+    this vocabulary rule applies to operational model fields, not every word in
+    a source title, policy document or provenance record. Those use separately
+    approved typed schemas. Do not expand the vocabulary silently.
+
+======================================================================
+3. ARCHITECTURE
+======================================================================
+3.1 EXACTLY FIVE RUNTIME AGENTS (no sixth):
+      A1 Research Data & Interoperability
+      A2 Cognitive Digital Twin & Simulation
+      A3 Evidence & Trial Intelligence
+      A4 Governance, Quality & Safety
+      A5 Chief Orchestrator & Workflow
+3.2 TWO DETERMINISTIC SHARED SERVICES (never agents; never a sixth or seventh agent):
+      S1 Policy Gateway: evaluates policy independently of any LLM or agent suggestion; cannot be bypassed; pure function;
+         deny-by-default; ZERO imports of any LLM client library (import-linter).
+      S2 Durable Executor: owns authoritative persisted workflow state, transitions, commit intent, deduplication, reconciliation.
+3.3 No agent holds a direct handle to the database or the Executor store. Every action passes through S1, then S2.
+3.4 Agent responsibilities (bounded; each agent performs bounded REAL work by P2) [OWNER-CONFIRM]:
+      A1: ingest and normalize synthetic operational data and licensed public material into typed entities; interoperability adapters.
+      A2: operational entities, temporal state, discrete-event/queueing simulation, scenarios, uncertainty reporting.
+      A3: evidence registry, claim-to-source binding, evidence retrieval for operational questions, operations analytics (non-clinical).
+      A4: governance checks, quality checks, boundary (safety) review, invariant monitoring, escalation to a human.
+      A5: workflow orchestration, routing, budget-aware planning, delegating to A1-A4 through the Gateway.
+3.5 ENVELOPE CONTRACT (typed, versioned; exact and versioned) [OWNER-CONFIRM]. Every inter-component message is an Envelope.
+    The model below is normative; names, types, and constraints are exact.
+
+      class Envelope(BaseModel):
+          model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+          envelope_version: Literal["1.0"]
+          schema_id:        str   # pattern ^[a-z0-9_.]{1,64}@[0-9]{1,4}$ ; must exist in schema_registry.yaml
+          envelope_type:    str   # pattern ^[a-z0-9_.]{1,64}$ ; must be the type bound to schema_id in the registry
+          correlation_id:   UUID
+          causation_id:     UUID | None   # None only for envelope_types listed as ROOT in schema_registry.yaml
+          tenant_id:        str   # pattern ^[a-z0-9-]{1,64}$ ; single-tenant constant "tenant-default" until P5 (OD01)
+          policy_epoch:     int   # ge=0
+          idempotency_key:  str   # pattern ^[A-Za-z0-9_-]{16,128}$
+          payload:          dict[str, JsonValue]   # validated against the schema_id model, extra="forbid"
+          payload_hash:     str   # pattern ^[0-9a-f]{64}$ ; SHA-256 of the canonical payload bytes (3.5.2)
+          created_at:       AwareDatetime   # UTC only; produced by the injected Clock only
+
+    3.5.1 NO issuer FIELD. The identity of the caller is NOT a message field (a message could claim any identity). The caller's
+          principal (A1..A5, S1, S2) is assigned by the runtime: every component receives a Gateway client object constructed at
+          startup and bound to exactly one principal. There is no API to set a principal from message data. The Gateway attaches
+          the bound principal to its DecisionRecord (3.9). A message that carries an "issuer" key anywhere fails the schema stage.
+    3.5.2 CANONICAL PAYLOAD BYTES - AMINOPS-C14N-1.
+          Values: Unicode scalar strings in NFC, integers within +/-(2^53-1),
+          bool, null, lists and dictionaries with string keys. All keys are NFC.
+          Reject non-NFC input instead of silently normalizing it; reject lone
+          surrogates, duplicate raw JSON keys, non-string keys, floats, NaN and
+          Infinity. Integer validation must not misclassify bool. Use integer
+          fixed-point or schema-constrained decimal strings for fractional data.
+          Bytes = json.dumps(payload, sort_keys=True, separators=(',', ':'),
+          ensure_ascii=False, allow_nan=False).encode('utf-8'), after validation.
+          This is the project's deterministic serialization contract, NOT a
+          general RFC 8785/JCS implementation: Unicode property sorting differs.
+          Hash = SHA-256 hex of these bytes. S1 recomputes it; mismatch denies
+          with GW-SCHEMA-002. No implicit key normalization/collision repair.
+          Tests include supplementary-plane versus BMP keys and invalid cases.
+          A later JCS migration requires a new canonical contract version, an
+          owner amendment and cross-version fixtures, never an in-place change.
+
+    3.5.3 TIME. created_at is timezone-aware UTC, serialized RFC 3339 with microseconds and a literal "Z"
+          (YYYY-MM-DDTHH:MM:SS.ffffffZ). Naive datetimes fail validation. Produced only by the injected Clock.
+    3.5.4 IDENTIFIERS. correlation_id and causation_id are produced only by the injected IdFactory: UUID version 4 layout built
+          from 128 bits of the injected seeded RNG (tests: fixed seed; runtime: seeded from OS entropy). uuid4() is never called
+          directly in the core (6.3).
+    3.5.5 IDEMPOTENCY. The uniqueness scope is (tenant_id, principal, idempotency_key). Reuse with the same payload_hash returns
+          the stored result (no second effect). Reuse with a different payload_hash => DENY GW-IDEM-001.
+    3.5.6 VERSIONING. envelope_version other than "1.0" => DENY GW-SCHEMA-003. A new version requires an amendment, a new model
+          class, and migration tests; versions are never edited in place.
+    3.5.7 STAGE ORDER AND CODES. Envelope/schema validation is stage 1 of the pre-filter (4.1). Its denials use the SAME versioned
+          reason-code registry as the Gateway (shared package contracts.reasons); the DecisionRecord field `stage` identifies
+          where the denial occurred. Unknown schema_id or envelope_type => DENY GW-DEFAULT-001.
+3.6 EXECUTOR STATE MACHINE (authoritative) [OWNER-CONFIRM]:
+      PENDING -> RUNNING -> CHECKPOINTED -> COMMIT_INTENT -> COMMITTED -> COMPLETED
+      PENDING/RUNNING/CHECKPOINTED -> DENIED before a committed effect, or FAILED
+      when a definite failure is established. Terminal outcomes are not rewritten.
+      After COMMIT_INTENT, uncertain effects take UNKNOWN/reconciliation first.
+      A policy denial blocks the next action; it never erases a committed effect.
+      Any compensation is a separate authorized, evidenced operation.
+      Any in-flight state with uncertain effect -> UNKNOWN (timeout, crash, partial write)
+      UNKNOWN -> RECONCILING -> {COMMITTED | FAILED} ONLY with evidence from the authoritative source of truth.
+      A timeout alone never moves UNKNOWN to success. No silent overwrite: every state write uses compare-and-swap on a version
+      column; state history is append-only. Event streams carry a per-stream monotonically increasing sequence_no in their payload.
+3.7 POLICY EPOCH (single rule; replaces earlier conflicting wording): a monotonically increasing integer, bumped on any policy
+      change. The Gateway evaluates every envelope against the CURRENT epoch.
+      - envelope epoch < current => DENY GW-EPOCH-001. The Executor re-validates and RE-SUBMITS affected in-flight steps under the
+        new epoch automatically; a step in COMMIT_INTENT must be re-validated before it may become COMMITTED.
+      - envelope epoch > current => DENY GW-EPOCH-002.
+      - Cache entries bound to an older epoch are invalid and are re-derived (5.3).
+3.8 POLICY MATRIX: /docs/policy_matrix.yaml is a deny-by-default allow-list of (principal, envelope_type, capability). Least
+    privilege: each principal may emit only the envelope types required by its responsibilities in 3.4. A combination not
+    listed => DENY GW-AUTH-001.
+3.9 DECISION RECORD (exact):
+      DecisionRecord: decision (ALLOW|DENY), stage (SCHEMA|GATEWAY|CACHE|INVARIANT|BUDGET|OUTPUT), reason_code (str|None),
+      secondary_codes (list[str]), policy_epoch (int), rule_ids (list[str]), correlation_id, principal, payload_hash,
+      decided_at (trusted injected Clock input). A DENY always has a reason_code; an ALLOW never has one.
+    Pure evaluation receives the current policy/epoch, runtime-bound principal,
+    decided_at and verification material as explicit trusted inputs. Repeated
+    complete inputs produce identical DecisionRecords. S1 does not query time,
+    the network or mutable storage internally. Preview results are advisory and
+    cannot be used as runtime execution permits.
+
+======================================================================
+4. RUNTIME TOKEN EFFICIENCY - MANDATORY FOR END USERS
+======================================================================
+The running system itself must consume minimal tokens for future users.
+4.1 MANDATORY NON-BYPASSABLE PRE-FILTER (order fixed and tested):
+      schema validation -> Policy Gateway -> cryptographically bound evidence cache lookup -> invariant check -> budget check.
+    Only survivors reach an LLM. Every LLM output then passes the OUTPUT stage (L3) before it leaves the system.
+4.2 HIERARCHICAL RESPONSE TEMPLATES with limited slot filling. Slots are typed and bounded. LLM only for truly free-text, and
+    only after budget approval.
+4.3 ADAPTIVE RUNTIME BUDGET GOVERNOR inside the Durable Executor, three levels: session, workflow, capability. Default limits
+    [OWNER-FILL]. Automatic deterministic fallback when any level is exhausted. Spending is reserved atomically before an LLM
+    call and reconciled after it, so concurrent requests can never exceed a limit (fault F09).
+4.4 EVIDENCE AND STATE DELTA COMPRESSION: hash-bound and replayable (reconstructed state hash equals the original).
+4.5 USER-FACING TOKEN TRANSPARENCY AND FALLBACK CONTRACT. Every response includes:
+      correlation_id, path (deterministic | template | cache | llm), tokens_used, tokens_budget_remaining,
+      cache_hit (bool), policy_decision, policy_epoch, fallback_reason (enum or null),
+      reservation_status (NOT_REQUIRED | RESERVED | RECONCILED | RELEASED | DENIED).
+    tokens_used records actual incurred tokens, including a rejected prior call;
+    the response being a template does not imply zero previous model expenditure.
+    fallback_reason enum: BUDGET_SESSION_EXHAUSTED, BUDGET_WORKFLOW_EXHAUSTED, BUDGET_CAPABILITY_EXHAUSTED,
+      LLM_UNAVAILABLE, POLICY_DENIED_FREE_TEXT, CACHE_STALE, OUTPUT_VALIDATION_FAILED.
+    Exact fallback response schema: 24.4. On budget exhaustion the system returns a deterministic, limited, honest response.
+    The deterministic fallback contains no generated model text. This is not a
+    universal guarantee about every possible model output. Validate every path.
+4.6 Every mechanism above has positive and negative fixtures, metrics stored in test_home/, and numeric acceptance criteria (Section 8).
+4.7 MANDATORY BENCHMARKS: tokens-per-capability, cache-hit-rate, tokens-avoided (versus a naive always-LLM baseline).
+
+4.8 Cache lookup alone never short-circuits required invariant, budget, current
+    authorization or output checks. A cache hit may avoid a model call, not those
+    checks. A pure preview uses an explicit candidate policy snapshot and mode;
+    its DecisionRecord is stored as preview evidence only, never an execution grant.
+    Structured post-validation results, not unrestricted model text, enter state.
+
+======================================================================
+5. REQUIRED ENGINEERING DEPTH
+======================================================================
+5.1 FORMAL INVARIANT CATALOG with property-based tests (Hypothesis; contract in 24.1). Created by the agent in P1 (>= 15
+    invariants), approved by the owner at the P1 Hard Stop, then versioned; changes need owner approval. Record format in 9.4.
+    Any invariant failure blocks the phase.
+5.2 DETERMINISTIC REPLAY ORACLE + SNAPSHOT DIFF: same seed + same event stream => identical state hash. Boundary in Section 12.
+5.3 CRYPTOGRAPHICALLY BOUND EVIDENCE CACHE: key = SHA-256 over the canonical bytes (3.5.2 rules) of
+    {source_hash, claim_span, policy_epoch, retrieval_window}. Any change in any component invalidates the entry. Sources must
+    come from the owner-approved register (23.3). Preserve this inner evidence
+    key and bind it in a versioned outer cache key with tenant scope, pack_hash
+    (explicit null if absent), schema/retrieval version and snapshot id. Current
+    principal authorization and epoch checks precede returning any cached result.
+    Knowledge of a hash is not access authority; preview entries cannot authorize
+    effects. Changing any outer binding invalidates the derived cache result.
+5.4 VERSIONED LIVING ADVERSARIAL CORPUS with exact expected denial reason codes. Entry format:
+      id, corpus_version, category (CLIN | INJ | SCHEMA | AUTH | IDEM | TENANT | BUDGET | EVID | EPOCH), input,
+      expected_decision (DENY), expected_reason_code, rationale, added_in_phase.
+    The corpus only grows; entries are never deleted (retire with a flag).
+5.5 SANITIZED OBSERVABILITY CONTRACT. Allowed fields: correlation_id, causation_id, principal, stage, policy_decision,
+    reason_code, policy_epoch, cache hit/miss, budget remaining, state, duration, path. FORBIDDEN in logs/traces: raw prompts,
+    raw model outputs, secrets, keys, free-text user content (store only its SHA-256).
+5.6 EVIDENCE PACK AT EVERY PHASE GATE: owner-signed (Section 13).
+5.7 NUMBERED NON-GOALS AND FORBIDDEN ANTI-PATTERNS: Section 18.
+5.8 SCHEMA FIELD SCAN: automated, with a canary self-test (24.3). Fails the phase on any unlisted hit.
+5.9 CLEAN-ROOM INSTALLATION and OFFLINE SYNTHETIC-DEMO VERIFICATION in P6 (outline in Section 25).
+5.10 MANDATORY TOKEN-EFFICIENCY BENCHMARKS (4.7).
+5.11 All results from the first test onward are stored in test_home/<PHASE>/.
+5.12 FAULT-INJECTION CATALOG F01-F12 (Section 22) with exact expected outcomes.
+5.13 COMMIT DISCIPLINE (Section 21), verified by an owner-run script.
+5.14 MUTATION TESTING of the Gateway: mutation score is a gate (G1.10).
+
+======================================================================
+6. SELF-SUFFICIENCY, STACK LOCK, CODE RULES, REASON CODES
+======================================================================
+6.1 SELF-SUFFICIENCY. The agent uses only the binding set (0.5). AMBIGUITY PROTOCOL: if a requirement is ambiguous or two readings
+    are plausible, the agent does NOT choose. It writes an entry to /docs/open_questions.md (id, exact quote, the
+    interpretations, impact) and HARD STOPs.
+6.2 STACK CONTRACT [OWNER-CONFIRM]. Exact versions are pinned by a hash-locked lockfile (uv.lock or pip-compile --generate-hashes).
+      Language                    Python 3.12.x
+      API framework               FastAPI (owner-approved stable at P1 start, then version-pinned)
+      Schemas / envelopes         Pydantic v2
+      Persistence                 PostgreSQL 16 via SQLAlchemy 2.x + Alembic
+      Offline demo DB             SQLite behind the same persistence layer (demo mode only)
+      Graph / relations           NetworkX in-process (Neo4j is NOT used)
+      Discrete-event simulation   SimPy
+      Property-based testing      Hypothesis
+      Mutation testing            mutmut (Gateway package)
+      API fuzzing                 schemathesis (P5)
+      Tests                       pytest + pytest-cov (branch coverage on)
+      Lint / types                ruff + mypy --strict on core packages (gateway, contracts, executor, tokens, twin)
+      Import boundaries           import-linter
+      Secrets scanning            gitleaks in CI
+      Dependency audit            pip-audit in CI
+      SBOM                        CycloneDX
+      Deployment (P6)             Render only if supported; else local clean-room only
+      LLM access                  one adapter interface; provider and keys set by owner configuration, never hard-coded
+    No upgrade, replacement, or new dependency without a signed amendment. A new-dependency request goes to
+    /docs/dependency_requests.md followed by a HARD STOP.
+6.2.1 Hash installation: uv.lock requires the approved uv frozen/sync workflow
+    and verified locked artifacts. pip --require-hashes requires a compatible
+    exported hash-pinned requirements file; do not pass uv.lock to pip. Select
+    and test one owner-approved reproducible installation route before P1.
+    Cryptographic signature tooling and the frontend stack must be inventoried;
+    no library is silently added because a feature needs it.
+6.3 CODE-LEVEL RULES: in the deterministic core there are no direct calls to datetime.now(), time.time(), random.*, uuid.uuid4(),
+    os.urandom(), or secrets.* (injected Clock, injected IdFactory, and seeded RNG only; AST lint test). PYTHONHASHSEED is fixed
+    in tests. The Gateway package has zero LLM-library imports (import-linter test) and zero network imports.
+6.4 REASON CODE FORMAT (versioned, never reused): GW-<DOMAIN>-<NNN>. DOMAIN is one of:
+      CLIN, INJ, SCHEMA, AUTH, IDEM, TENANT, BUDGET, EVID, EPOCH, DEFAULT.
+    Every denial returns exactly one primary reason code and optional secondary codes. Codes are never reused or renumbered;
+    retired codes stay in the registry marked RETIRED. Seed registry [OWNER-CONFIRM]:
+      GW-DEFAULT-001 unknown/unlisted action, schema_id, or envelope_type (deny-by-default)
+      GW-SCHEMA-001  payload or envelope fails schema validation (including forbidden "issuer" key)
+      GW-SCHEMA-002  payload_hash does not match recomputed canonical hash
+      GW-SCHEMA-003  unsupported envelope_version
+      GW-SCHEMA-004  forbidden payload value type (float, NaN, Infinity, non-NFC string)
+      GW-SCHEMA-005  event out of sequence beyond the allowed window
+      GW-AUTH-001    (principal, envelope_type, capability) not in policy_matrix
+      GW-IDEM-001    idempotency_key reused with a different payload_hash
+      GW-CLIN-001    request or output touches a forbidden clinical category (2.2)
+      GW-CLIN-002    forbidden structure (field or value modeling individual patient state)
+      GW-INJ-001     direct instruction-override attempt
+      GW-INJ-002     instruction embedded in retrieved/source content (indirect injection)
+      GW-EVID-001    cache entry binding mismatch (tampered or stale source/claim/window)
+      GW-EVID-002    source not in the approved register
+      GW-EPOCH-001   envelope bound to an outdated policy_epoch
+      GW-EPOCH-002   envelope bound to a future policy_epoch
+      GW-BUDGET-001  budget exhausted (deterministic fallback path)
+      GW-TENANT-001  cross-tenant access attempt
+    Additional codes are proposed per phase by the agent and become binding only after owner approval.
+
+======================================================================
+7. LICENSE
+======================================================================
+7.1 A separate LICENSE file containing the proprietary notice:
+Copyright 2026 Amin Azimi
+AI Architect Amin Azimi — End-to-End System Development
+Azimi Innovation Lab
+
+All rights reserved.
+Publication of this work grants no license of any kind.
+Amin Azimi / Azimi Innovation Lab retains exclusive authority for further development, assignment, sale, licensing, gifting, or any other use of this work.
+Any grant of rights requires a separate written instrument signed by the rights holder.
+
+7.1b Original clause: A separate LICENSE file in the style of the Ailora Proprietary Rights Notice (text supplied by the owner in
+    /docs/license_template.txt; the agent adapts only names and dates).
+7.2 Required content: publication grants no license. The rights holder (Amin Azimi / Azimi Innovation Lab) retains exclusive
+    authority for further development, assignment, sale, licensing to companies, gifting, or any future use. Any grant requires
+    a separate written instrument. Third-party components remain under their own licenses. The notice is an engineering
+    reservation of rights, not legal advice.
+7.3 Gate G6.5 verifies presence and the required clauses.
+
+======================================================================
+8. PHASED EXECUTION WITH HARD STOPS AND NUMERIC GATES
+======================================================================
+8.1 The executing agent follows phases exactly, with no design decisions. After each phase: produce the evidence pack, update
+    the README honestly, commit, push, run tests, write the Hard-Stop Report (Section 14), then HARD STOP and wait for the owner.
+8.2 COMMON GATES (apply in EVERY phase, in addition to the phase gates):
+      C1 Binding files match the signed manifest.
+      C2 Commit-message format: 100% of commits of the phase match the regex in 21.3.
+      C3 Every ID referenced in a commit exists in capability_catalog.yaml, gates.yaml, or the section index.
+      C4 Every gate and every capability due in the phase is referenced by at least one commit of the phase.
+      C5 Schema field scan clean, canary detected (24.3); forbidden-pattern scan clean (13.6).
+      C6 No skipped/xfail test without an owner-approved entry in /docs/test_exceptions.md.
+      C7 Linear history: zero merge commits, no force-push evidence (21.4); tags present (21.6).
+      C8 Bisectability sample: min(total commits, max(5, ceiling(10% of total)))
+         deterministically selected phase commits each pass the smoke subset (21.5).
+         Never manufacture commits to satisfy a sample size.
+      C9 gitleaks 0 findings; pip-audit 0 high/critical findings (exceptions only via an owner-approved entry).
+8.3 GATES. All numbers are initial targets [OWNER-CONFIRM]. A phase passes only if EVERY gate passes, as measured by the
+    owner-run scripts/verify_phase.sh from /docs/gates.yaml. The agent may not lower, skip, or reinterpret a gate.
+    SCHEDULE GUARD: depth beats breadth. If time is short, complete P1-P3 with all gates passing rather than rushing P4-P6.
+    Never mark a phase complete with failing gates to meet a date. Only the owner may reduce P4/P5/P6 scope, by signed amendment.
+8.4 gates.yaml SCHEMA: each gate has id, phase, description, metric, operator (>=, <=, ==), threshold, source_command, raw_output_path.
+    verify_phase.sh evaluates only what gates.yaml states. Multi-condition gates
+    retain every original condition as a named subcheck in a raw JSON report.
+    The gate metric may be failed_subcheck_count == 0, provided each threshold
+    and observed value are included. Empty required inventories fail. This
+    avoids losing count, proportion or exact-code requirements in scalar storage.
+
+P1 - FOUNDATION / GOVERNANCE
+  Required: typed versioned envelopes (3.5) with canonical vectors passing; independent Policy Gateway (pure function,
+  deny-by-default); policy matrix; least-privilege access; secrets baseline; CI; initial adversarial corpus; invariant catalog
+  (with executable foundation properties and later-phase test specifications); token pre-filter skeleton; forbidden_terms proposal; schema registry; threat_model expansion;
+  reason code registry seed; synthetic-data generator skeleton (23.1).
+  Exit: contracts validated; gateway unit tests pass; negative clinical and injection tests deny with exact reason codes;
+  evidence pack in test_home/P1/; README status updated.
+  G1.1  Gateway branch coverage >= 95%.
+  G1.2  Gateway purity: 1,000 repeated calls on the same input give the same output.
+  G1.3  Adversarial corpus >= 60 cases (>= 25 CLIN, >= 15 INJ, >= 10 SCHEMA, >= 5 AUTH, >= 5 IDEM); 100% denied with EXACT reason codes.
+  G1.4  Deny-by-default: unknown action/schema_id/envelope_type => GW-DEFAULT-001.
+  G1.5  Zero gitleaks findings; secrets baseline committed.
+  G1.6  mypy --strict: 0 errors in core packages.
+  G1.7  import-linter: 0 LLM-library and 0 network imports in the Gateway package.
+  G1.8  Invariant catalog >= 15 invariants, each with a property test (24.1).
+  G1.9  Pre-filter order test (skeleton) passes.
+  At least 15 P1 invariant properties are executable for implemented foundation behavior;
+  future-component properties specify their contracts without claiming future
+  implementation. Due execution obligations are defined in the invariant catalog;
+  P3 executes the full category minima. Unapproved skipped/xfail tests remain forbidden.
+  G1.10 Mutation score on the Gateway package >= 80% [OWNER-CONFIRM].
+  G1.11 Canonical vectors: 100% of >= 30 vectors reproduce the exact bytes and hash (24.5).
+  G1.12 Principal-spoofing tests: 100% of attempts to assert an identity through message content are denied (T15).
+  HARD STOP.
+
+P2 - RUNTIME / EVIDENCE
+  Required: five agents demonstrably invoked with bounded real work; durable workflow with checkpoints; evidence registry basics;
+  cache binding; UNKNOWN recovery path; basic budget governor; observability traces; LLM adapter with record/replay (24.2);
+  fault injection F01-F08.
+  Exit: five independent traces; policy + recovery tests; token metrics baseline; evidence pack in test_home/P2/.
+  G2.1  Five agents each produce an independent trace with correlation_id (5/5).
+  G2.2  Durable workflow: kill/restart at >= 5 distinct checkpoints resumes to an identical final state hash.
+  G2.3  UNKNOWN recovery: 100% of injected timeout cases remain UNKNOWN until reconciliation; 0 converted by timeout alone.
+  G2.4  Cache binding: 100% of tampered entries (source_hash, claim_span, policy_epoch, window) rejected.
+  G2.5  Budget governor: at zero budget, 100% of requests get the deterministic honest fallback (24.4) with 0 LLM calls.
+  G2.6  Token baseline measured and stored: tokens-per-capability for every capability exercised so far.
+  G2.7  Poisoned-source fixtures >= 10; 0 successful indirect injections.
+  G2.8  All P1 gates still pass (regression).
+  G2.9  Fault injection F01-F08: 100% produce exactly the expected outcome in Section 22.
+  G2.10 LLM replay: a replay miss fails the test in 100% of tested cases; 0 live network calls in the test suite.
+  HARD STOP.
+
+P3 - TWIN / OPERATIONS
+  Required: typed operational entities; temporal state model; bounded discrete-event/queueing simulation with replay oracle;
+  scenarios; uncertainty reporting; delta compression; full token pipeline active; fault injection F09-F12.
+  Verify simulation correctness against analytical or independently implemented
+  reference cases with declared assumptions; deterministic repeatability alone
+  is not accuracy. Store expected/observed results and applicability limits.
+  F11 is tested on a minimal atomic export-write primitive in P3; the complete
+  product export workflow remains in P5. This is an explicit prerequisite, not
+  permission to pre-build all P5 product features.
+  Exit: stable replay; capacity/temporal invariant tests; synthetic fixtures; token-efficiency benchmark; evidence pack in test_home/P3/.
+  G3.1  Replay oracle: 100 seeds x 3 replays => identical state hash in 300/300 runs; tolerance = 0 on the deterministic core.
+  G3.2  Each invariant runs >= its minimum Hypothesis cases (24.1); 0 failures.
+  G3.3  Capacity/temporal invariants: 0 violations in >= 10,000 simulated events per scenario.
+  G3.4  Delta compression: reconstructed state hash equals the original in 100% of tested snapshots; size reduction reported.
+  G3.5  Token benchmark on a fixed 200-request synthetic suite stored in the repo: tokens-avoided, cache-hit-rate, and
+        tokens-per-capability reported; target >= 40% of requests resolved with 0 LLM tokens [OWNER-CONFIRM; calibrate from G2.6].
+  G3.6  Uncertainty reporting present in 100% of simulation outputs (interval or explicit "not estimable" reason).
+        All approved analytical/reference validation cases also meet their
+        predeclared accuracy criteria. Deterministic replay tolerance remains 0;
+        statistical/model accuracy criteria are a separate declared measurement.
+  G3.7  Pre-filter order enforced; bypass attempts = 0 successes.
+  G3.8  All P1-P2 gates still pass.
+  G3.9  Cross-environment determinism: the final state hash is identical in two independently built environments (two clean containers).
+  G3.10 Fault injection F09-F12: 100% produce exactly the expected outcome in Section 22.
+  HARD STOP.
+
+P4 - GOVERNED KNOWLEDGE / MEMORY / OPERATIONAL INTELLIGENCE / INTERFACE
+  Required: licensed operational evidence library; event-sourced memory; controlled
+  experience promotion; experiment design, evidence-change impact and next-
+  experiment selection; weekly zero-model assurance; responsive English dashboard.
+  Exact implementation contracts are in Sections 28-36. Preserve five agents and
+  two deterministic shared services. Default data remain synthetic.
+  Exit: all G4 gates, common gates and P1-P3 regression pass; evidence pack in
+  test_home/P4/; truthful README update; owner verification and hard stop.
+  G4.1 Scope completeness
+  100% of new/changed capabilities have the Section 29 scope record; all declared
+  boundary fixtures deny prohibited actions with an approved exact reason code.
+  
+  G4.2 Source rights and provenance
+  100% of active source versions have complete approval, provenance and rights
+  records. Every unapproved/unknown-license fixture is excluded from activation.
+  
+  G4.3 Ingestion security
+  All declared indirect-injection, redirect, oversized-input, unsupported-field and
+  non-English-content fixtures are rejected/quarantined as specified; zero source
+  instructions acquire runtime authority. Reason codes are registry-approved.
+  
+  G4.4 Memory isolation
+  All declared cross-tenant, cross-task and revoked-access fixtures are denied;
+  zero unauthorized memory reads or writes. Final P5 retains original >=40
+  cross-tenant attempts and its broader enterprise isolation gate.
+  
+  G4.5 Memory reconstruction
+  For every declared memory fixture, event replay and projection rebuild reproduce
+  the expected ordered ids and state hashes exactly, including crash/duplicate cases.
+  
+  G4.6 Experience promotion
+  Zero unauthorized promotions; every active experience record links to complete
+  evaluation and owner approval. Rejection and rollback paths pass their fixtures.
+  
+  G4.7 Experiment designer
+  All analytical small reference cases return the expected feasible candidates and
+  ranking; all prohibited specifications are denied; replay hashes match exactly.
+  
+  G4.8 Evidence impact
+  All fixture-defined affected artifacts are identified; unrelated fixtures remain
+  unflagged; historical signed bytes remain unchanged.
+  
+  G4.9 Next-experiment selection
+  Zero budget violations; identical inputs reproduce identical selection; held-out
+  baseline comparisons and NOT_ESTIMABLE cases are reported without omitted failures.
+  
+  G4.10 Zero-model assurance
+  Every weekly-job success, failure, retry and missed-run test has zero model calls
+  and zero model tokens. A deliberately injected model call causes test failure.
+  
+  G4.11 Assurance integrity
+  Every declared schedule/restart/duplicate fixture has the expected run state;
+  required NOT_RUN/FAIL can never produce overall PASS; evidence hashes verify.
+  
+  G4.12 Dashboard correctness
+  All declared UI acceptance flows pass on the approved browser/viewport matrix;
+  all attempted unauthorized UI/API actions deny; stale/UNKNOWN/demo indicators
+  match authoritative state. No untested platform is labeled verified.
+  
+  G4.13 Transparency and accounting
+  All response types, including fallback and cache paths, contain the unified
+  metadata fields; measured reservations reconcile; zero false zero-token claims.
+  
+  G4.14 Regression and token evaluation
+  All final P1-P3 gates pass; original token benchmark is rerun with new workflows
+  separately reported; zero silently relaxed or removed preserved thresholds.
+  
+  G4.15 Regulatory and release applicability
+  Every new/changed capability is covered by the dated applicability matrix.
+  Unresolved deployment/legal questions are explicitly listed and prevent claims
+  of commercial authorization; no unsupported conformity or MDR-exclusion claim.
+  P4 engineering verification is not the independent pre-release legal conclusion.
+  
+  G4.16 Preservation and references
+  Every original requirement maps to a retained final location or an explicitly
+  approved replacement; zero unexplained omissions, duplicate gate identifiers or
+  broken phase references. All still-unresolved decisions remain visible.
+  
+  HARD STOP. No P5 advancement without owner verification and instruction.
+
+P5 - ENTERPRISE / PRODUCT
+  Required: expanded adversarial corpus; evaluation harness; exports; tenant-context extensibility (N26 tests); professional
+  elements; full transparency contract; API fuzzing.
+  Exit: isolation negative tests; export manifests; measured evaluations; evidence pack in test_home/P5/.
+  G5.1  Adversarial corpus >= 200 cases; 100% denied with exact reason codes; corpus_version recorded in the pack.
+  G5.2  Tenant isolation: >= 40 cross-tenant attempts, 0 successes.
+  G5.3  Exports: 100% of files hash-verified against manifests.
+  G5.4  Evaluation harness: results for every implemented capability, pass/fail with measured values.
+  G5.5  Transparency contract (4.5) fields present in 100% of responses.
+  G5.6  Load smoke (not a performance claim): 50 concurrent synthetic requests, 0 state corruption (state-hash check).
+  G5.7  All P1-P4 gates still pass.
+  G5.8  API fuzz (schemathesis): >= 500 generated cases per endpoint group, 0 responses with status 5xx, 0 schema violations.
+  HARD STOP.
+
+P6 - RELEASE / DEPLOYMENT
+  Required: clean-room install (Section 25); offline synthetic demo; SBOM; LICENSE file; operational runbook (backup/restore,
+  key rotation, policy-denial storm handling); final cinematic README (Section 17); Render deployment (if supported); full audit.
+  Exit: reproducible smoke tests; backup/restore evidence; honest release notes; final evidence pack in test_home/P6/.
+  G6.1  Clean-room install on a fresh container/machine succeeds; step count recorded.
+  G6.2  Offline synthetic demo runs with network disabled; 0 outbound network calls.
+  G6.3  Backup/restore drill: restored state hash equals the source state hash.
+        Include authoritative PostgreSQL recovery, not SQLite-only evidence;
+        record actual RPO/RTO against owner-approved deployment objectives.
+  G6.4  SBOM generated; license report committed; 0 unreviewed licenses.
+  G6.5  LICENSE present with all clauses of 7.2.
+  G6.6  Full regression: all P1-P5 gates re-run and pass.
+  G6.7  Release notes list every capability with its REAL status; none marked VERIFIED_CANDIDATE without a passing evidence path.
+  G6.8  Runbook drill executed once from the written steps only; transcript stored.
+  G6.9  Readiness rubric (Section 26) filled from measured evidence; no dimension scored above what its linked gates support.
+  FINAL HARD STOP. When all six phases, full regression and owner verification
+  pass, this project's defined development scope is complete at "Advanced
+  Operational Cognitive Digital Twin Candidate" level. [HISTORICAL] There is no seventh
+  development phase. Scheduled assurance and maintenance continue as operations.
+  Commercial availability requires the separate deployment and legal applicability
+  conditions in Section 29; completing engineering gates is not legal clearance.
+
+======================================================================
+9. CAPABILITY CATALOG AND DEFINITION OF DONE
+======================================================================
+9.1 All defined capabilities are preserved with independent acceptance records in /docs/capability_catalog.yaml.
+    Shared engines are allowed but identities are never merged. Initial status SPECIFIED / NOT_RUN.
+    Record format (no empty field at the phase where it is due):
+      id, name, owner_agent (A1..A5 | S1 | S2), phase_due (P1..P6), input_schema (path), output_schema (path),
+      policy_rules (Gateway rule ids), fixture (path), positive_test (path::name), negative_test (path::name, asserting an
+      EXACT reason code or explicit failure type), invariants (ids), token_metric (from P2), evidence_path (test_home/<phase>/<id>/),
+      status.
+    Status values: SPECIFIED | NOT_RUN | IMPLEMENTED_UNVERIFIED | VERIFIED_CANDIDATE | FAILED | DEFERRED.
+9.2 VERIFIED_CANDIDATE is generated only by owner-run verify_phase.sh after the
+    positive test, negative test and evidence path all exist and pass. Write it
+    to test_home/<PHASE>/capability_status.json linked to the binding catalog hash.
+    Never mutate signed capability definitions or set this status by hand.
+    Additional P4 deliverables use gate-linked records without reusing R/N ids.
+9.3 Each capability has: fixture, positive test, negative test, evidence path in test_home/.
+9.4 Invariant record: id, statement (one sentence), scope (module), category (see 24.1), severity (BLOCKING),
+    property_test (path::name), min_generated_cases (from 24.1), counterexample_policy (store the failing seed in test_home/).
+
+======================================================================
+10. OWNER DECISIONS (CONTROLLED PRINCIPLES)
+======================================================================
+Full approved text lives in /docs/owner_decisions.md [OWNER-FILL]. Summary of what each decision covers:
+  OD01 Initial single-tenant; architecture extensible; N26 remains in P5.
+  OD02 Revocation semantics                                               [OWNER-FILL]
+  OD03 Idempotency (must be consistent with 3.5.5)                        [OWNER-FILL]
+  OD04 Audit anchoring                                                    [OWNER-FILL]
+  OD05 UNKNOWN handling (must be consistent with 3.6; no timeout-only success)   [OWNER-FILL]
+  OD06 Authority precedence                                               [OWNER-FILL]
+  OD07 Stack selection: SUPERSEDED by 6.2 (Stack Lock); the agent never selects technology.
+If the summary above and owner_decisions.md conflict, the agent HARD STOPs.
+
+======================================================================
+11. THREAT MODEL (BINDING; expanded in /docs/threat_model.md at P1)
+======================================================================
+Assets: AS1 authoritative workflow state; AS2 policy definitions and policy_epoch; AS3 evidence cache and registry;
+AS4 audit log and evidence packs; AS5 budget counters and transparency data; AS6 secrets and owner-held signing keys.
+Actors: TA1 malicious/malformed user input; TA2 malicious content inside licensed public material; TA3 misbehaving LLM output;
+TA4 executing-agent drift (simplification, silent skipping, false "done", history manipulation); TA5 supply-chain compromise;
+TA6 cross-tenant actor (P5+).
+
+  ID   Threat                                    Required control                                         Required test
+  T01  Direct prompt injection                   schema validation + Gateway deny + output validation     corpus INJ cases, exact codes
+  T02  Indirect injection via source documents   retrieved text is DATA never instruction; sanitization;  poisoned-source fixtures (>=10 by P2)
+                                                 evidence-span binding
+  T03  Clinical-boundary drift                   forbidden-term AND forbidden-structure checks in         corpus CLIN cases; schema field scan
+                                                 schemas and output validator
+  T04  Cache poisoning                           bound cache key; source register; quarantine on mismatch G2.4 tamper tests
+  T05  Cache staleness after policy change       policy_epoch bump invalidates entries (3.7)              epoch-change test
+  T06  Duplicate / replayed command              idempotency keys (3.5.5), deduplication, commit intent   duplicate-submit tests (F04)
+  T07  Silent state overwrite                    compare-and-swap on version; append-only history         concurrent-write tests
+  T08  LLM or agent bypass of the Gateway        Gateway in-path for every action; no direct DB/Executor  architecture test + import-linter
+                                                 handle for agents
+  T09  Budget exhaustion abuse or race           three-level limits; atomic reservation (4.3)             G2.5 tests; F09
+  T10  Tenant leakage                            tenant_id in every envelope and query; scoped access     G5.2 tests
+  T11  Secret leakage in logs, packs, recordings sanitized observability contract; secret scanning       gitleaks + log-scrub tests
+  T12  Dependency compromise                     hash-locked lockfile; SBOM; pip-audit; request rule      CI lock + audit check
+  T13  False completion claim by the agent       independent verification (Section 13)                    owner-run verify_phase.sh
+  T14  Timeout mistaken for success              UNKNOWN until reconciliation (3.6)                       G2.3 tests; F02, F03
+  T15  Principal spoofing                        no issuer field; runtime-bound principal (3.5.1);        G1.12 tests
+                                                 policy matrix (3.8)
+  T16  Hash/serialization ambiguity              restricted payload types; canonical bytes (3.5.2)        canonical vectors (G1.11)
+  T17  Commit-history manipulation               linear history, tags, owner-run commit checker (21)      check_commits.py, C2-C4, C7
+  T18  Real identifiers inside synthetic data    provenance markers; identifier-pattern scan (23.2)       identifier scan + canary
+
+Threat-model exclusions: nation-state attackers and physical compromise are not
+claimed covered by this engineering program; record residual risks. No regulated
+certification is promised. Applicable legal duties are NOT excluded by naming
+them out of scope. Section 29 requires a dated applicability assessment for the
+actual deployment, including personal account/telemetry data even when patient
+data are prohibited. Update threat assumptions at each phase.
+
+======================================================================
+12. REPLAY ORACLE vs LLM - EXACT BOUNDARY
+======================================================================
+12.1 The replay guarantee covers ONLY the deterministic core: Gateway, Executor, pre-filter, budget governor, simulation engine,
+     delta compression, cache logic.
+12.2 LLM output is non-deterministic and is never part of the replay guarantee. Exactly two permitted treatments:
+     (a) RECORD/REPLAY: each LLM call is recorded once and replayed exactly (format in 24.2);
+     (b) EXCLUDE: LLM free-text fields are excluded from the state hash; only the hash of the validated, structured,
+         post-Gateway result is included.
+12.3 Each test declares which treatment it uses. A test may not use "tolerance" to hide LLM variance.
+12.4 Replay tolerance for the deterministic core is ZERO. Any non-zero tolerance requires a signed amendment.
+12.5 Time, randomness, and identifiers: only the injected Clock, seeded RNG, and IdFactory in the core (6.3).
+
+======================================================================
+13. INDEPENDENT VERIFICATION AND EVIDENCE PACKS
+======================================================================
+13.1 scripts/verify_phase.sh <PHASE> is owner-approved, owner-run, and signed before the phase starts. It must:
+       1. verify binding files against the signed manifest;
+       2. run the full test suite from a clean checkout (fresh venv, hash-locked dependencies, PYTHONHASHSEED fixed);
+       3. compute every numeric gate for the phase (including the common gates of 8.2) from raw test outputs and print PASS/FAIL per gate;
+       4. verify the sealed evidence files against the pack manifest; the manifest
+          and detached signature exclude themselves from that file set;
+       5. run gitleaks, pip-audit, import-linter, mypy --strict, mutmut (when due), the schema field scan with canary,
+          the forbidden-pattern scan, and scripts/check_commits.py;
+       6. print one final line: "PHASE <X>: PASS" or "PHASE <X>: FAIL (<failed gates>)".
+13.2 Implementers can read active verification controls; changes follow 0.9 and
+     independent approval, never a self-approved alteration to make a phase pass.
+13.3 EVIDENCE PACK contents (test_home/<PHASE>/): raw test outputs; gate measurements; corpus version; token metrics; sanitized
+     traces; fault-injection results; capability status table (generated); commit report from check_commits.py; pack manifest
+     (SHA-256 of all explicitly designated sealed artifacts, excluding the manifest
+     itself and detached signature). Re-run outputs generated during independent
+     verification go to a separate attestation directory linked to the sealed
+     pack; do not overwrite signed evidence. Keep original and remeasured values.
+13.3.1 NEW P4 EVIDENCE: Include scope/applicability records, source rights and
+     provenance checks, memory isolation/rebuild tests, experience evaluation,
+     three operational-intelligence benchmarks, weekly-job zero-model traces,
+     dashboard acceptance results, token metrics and full prior-phase regression.
+     Link each gate to raw output and the exact fixture manifest; no empty suite
+     can satisfy a mandatory gate. Working outputs and independent attestations
+     are distinct from the finalized sealed pack.
+13.4 SIGNING: the agent builds the pack and manifest. The OWNER signs the manifest (detached signature, e.g. minisign or GPG)
+     after verify_phase.sh passes, and creates the signed tag P<n>-verified. The agent never holds the signing key.
+13.5 Any gate result that verify_phase.sh cannot reproduce is invalid and counts as FAIL.
+13.6 FORBIDDEN-PATTERN SCAN rejects unsupported maturity/medical claims and
+     forbidden operational structures. Literal phrases such as "production-ready",
+     "clinically validated" and "medical advice" may appear in boundary policies,
+     truthful negations and negative fixtures only under narrow owner-approved
+     path/field exceptions. No blanket repository exemption. Skipped/xfail tests
+     still require approved entries. Hashed payload fixtures reject floats;
+     negative rejection vectors are explicit scanner fixtures, not usable payloads.
+     Canary tests prove detection remains active under the exception policy.
+
+
+======================================================================
+14. STANDARD HARD-STOP REPORT
+======================================================================
+At the end of each phase the agent writes /test_home/<PHASE>/HARD_STOP_REPORT.md and prints the same content. Ten sections,
+in this order, none optional:
+  1. PHASE and the hash of the last CODE commit (tag P<n>-code). The report itself lives in the following commit (tag P<n>-hardstop).
+  2. DONE: deliverables completed, each with file path; and the number of commits in the phase with the list of capability/gate IDs referenced.
+  3. NOT DONE: every required item not completed ("none" only if truly none).
+  4. DEVIATIONS: any deviation from this directive, with reason ("none" only if truly none).
+  5. FAILED: every failing test or gate, with output excerpt.
+  6. MEASURED VALUES: each gate with the number the agent measured (the owner re-measures with verify_phase.sh).
+  7. OPEN QUESTIONS: pointers to /docs/open_questions.md entries created this phase.
+  8. README STATUS: confirmation that the Living Status panel was updated honestly.
+  9. STATEMENT: "I have not claimed any status that the evidence does not support." (only if true).
+ 10. HALTED: "HARD STOP. Awaiting owner instruction."
+After the report, stop implementation and wait for owner instruction. Do not
+start the next phase, rewrite published history or mutate the sealed pack. If
+verification fails, the owner may authorize corrective work in the same phase;
+use new commits and new uniquely versioned evidence/tags without deleting the
+earlier tag. Binding changes follow 0.9; no permanent lock prevents authorized repair.
+
+======================================================================
+15. EXECUTING-AGENT DISCIPLINE (ANTI-DRIFT)
+======================================================================
+15.1 No silent simplification: if a requirement is too large or unclear, report it in NOT DONE; never shrink scope quietly.
+15.2 No self-grading: only verify_phase.sh decides PASS/FAIL.
+15.3 One phase at a time. No pre-building later-phase code beyond stubs explicitly listed in the current phase.
+15.4 No new dependencies, no new agents, no merged capability identities, no relaxed gates.
+15.5 Commit rules are governed entirely by Section 21 (this clause only points there; there is no second rule).
+15.6 On context loss, run the session start protocol (0.8) before continuing.
+15.7 The agent makes no design decisions; where a value is needed and missing, it HARD STOPs (6.1).
+
+======================================================================
+16. REPOSITORY LAYOUT (FIXED) [OWNER-CONFIRM]
+======================================================================
+  /docs/                  binding set and agent-maintained logs (0.5)
+  /src/contracts/         envelopes, schemas, reasons (shared by pre-filter and Gateway), Clock, IdFactory
+  /src/gateway/           Policy Gateway (no LLM or network imports)
+  /src/executor/          Durable Executor
+  /src/agents/a1 .. a5/   five agents
+  /src/twin/              entities, temporal state, simulation
+  /src/evidence/          registry, cache binding
+  /src/tokens/            pre-filter, templates, budget governor, delta compression, fallback
+  /src/fixtures_gen/      synthetic data generator (23.1)
+  /fixtures/              synthetic data, corpus, canonical_vectors.json, llm_recordings
+  /tests/                 unit, property, adversarial, replay, fault
+  /test_home/P1..P6/      evidence packs
+  /scripts/               verify_phase.sh and check_commits.py (owner-owned), helper scripts
+  /assurance/             versioned scheduled-test policies and report schemas
+  /docs/regulatory_scope/ intended-use and applicability records
+  /docs/integration/      coverage and correction ledger
+  /LICENSE  /README.md
+  directive.txt           proposed root entry to the one active directive
+  UI source location is approved with the frontend selection before P4.
+  Runtime assurance reports use configured durable storage, not unbounded Git logs.
+
+======================================================================
+17. README REQUIREMENTS - CONCISE, EVIDENCE-LINKED PRODUCT OVERVIEW
+======================================================================
+17.1 Before P6 maintain a concise accurate status panel, what-it-is/what-it-is-not,
+     generated real capability matrix and evidence links. No decorative GIF or
+     ribbon before P3 passes. Dashboard screenshots may appear after the actual
+     P4 UI exists and passes its checks; never illustrate unimplemented features
+     as if deployed. Engineering contracts take priority over presentation.
+17.2 Final README
+     Prominent heading required: STATUS: CANDIDATE
+     Exact honesty sentence required: All claims remain Candidate until independently verified by owner-approved evidence. in P6 contains only reader-relevant material:
+  1. Product name and approximately 150-word introduction: non-medical operational
+     purpose, intended users, synthetic/default status and Candidate maturity.
+  2. English honesty sentence, mirrored exactly in readme_honesty_sentence.txt:
+     "Honesty is a person's greatest asset, regardless of their position or work."
+     This translation is part of this review candidate and requires owner approval
+     with the final binding text. It is the definitive honesty sentence for the project.
+  3. Living status generated from verified capability records, distinguishing
+     implemented, unverified, failed, deferred and verified Candidate states.
+  4. A compact architecture diagram: A1-A5, Gateway, Executor, deterministic
+     memory and governed evidence; show the authority and data boundaries.
+  5. Practical installation/quick start and reproducible offline synthetic demo,
+     supported environments and links to full configuration/deployment docs.
+  6. A concise generated capability matrix; if large, use an expandable section
+     and link the full evidence table. Never hide incomplete capabilities.
+  7. Authentic dashboard/scenario screenshots and the original 30-second demo GIF
+     placeholder, replaced by a real Swagger/product demonstration when recorded.
+     Keep GitHub-compatible Mermaid, badges and locally stored images; do not use
+     decorative elements to imply assurance, endorsements or live operation.
+  8. Measured results: key regression/replay, source provenance, isolation, recovery
+     and token-efficiency results with environment, version, date and evidence.
+     Weekly assurance status clearly distinguishes latest attempt and last success.
+  9. Short security/data/scope boundaries and meaningful limitations: no patient
+     data, no medical recommendations, LLM authority limit, Profile A/B status,
+     source licensing and unresolved readiness items. Link detailed analyses.
+ 10. License and third-party notices: publication grants no project license;
+     source rights and dependency licenses remain their owners' rights.
+ 11. Bottom author card, 100-150 words, containing the exact identity line:
+     "Amin Azimi | End-to-End System AI Architect | End-to-End System Development
+     | Business Challenge | Azimi Innovation Lab"
+     Include project start October 2026 and explain what the system is/is not,
+     does/does not do. Preserve the underlying "Amin Azimi | AI Architect |
+     End-to-End System Development | Azimi Innovation Lab" attribution in project
+     metadata. A reader of the card alone must understand the non-medical purpose.
+17.3 Every empirical capability or performance claim links to evidence. Purpose,
+     ownership and license statements link to their authoritative documents.
+     Omit unsupported claims; never remove material limitations to beautify README.
+17.4 Keep long directives, policy tables, legal analysis, full raw logs, transcripts,
+     every gate definition, internal discussions and speculative feature lists
+     outside README. Link them from short relevant sections instead. Preserve the
+     original cinematic narrative as a concise architecture-to-evidence story,
+     not a marketing wall of text or a substitute for measured results.
+
+
+======================================================================
+18. NON-GOALS AND FORBIDDEN ANTI-PATTERNS (NUMBERED)
+======================================================================
+  N-1  Never model individual patient state.
+  N-2  Never allow an LLM or agent to bypass the Policy Gateway.
+  N-3  Never silently overwrite authoritative state.
+  N-4  Never claim production-ready status or clinical validity.
+  N-5  Never convert UNKNOWN to success from timeout alone.
+  N-6  Never use a disclaimer instead of technical enforcement.
+  N-7  Never add a sixth or seventh agent; services are not agents.
+  N-8  Never merge capability identities or weaken a gate.
+  N-9  Never let the agent grade itself or hold the signing key.
+  N-10 Never put raw prompts, secrets, or free-text user content in logs.
+  N-11 Never use real patient or participant data.
+  N-12 Never hide LLM variance with replay tolerance.
+  N-13 Never trust identity asserted inside a message.
+  N-14 Never rewrite or fabricate Git history to change how the work appears.
+  N-15 Never use floating-point values in hashed payloads.
+
+======================================================================
+19. VERIFICATION BOUNDARY
+======================================================================
+This directive authorizes phased execution under the hard-stop and evidence rules, once Section 20 is complete.
+No external clinical claims. All titles remain Candidate until further owner-approved evidence.
+Every phase requires owner review after its Hard Stop before the next instruction.
+
+======================================================================
+20. OWNER PRE-START CHECKLIST (BEFORE ANY INSTRUCTION TO THE AGENT)
+======================================================================
+[ ] /docs/capability_catalog.yaml created with all 60 IDs in the 9.1 format
+[ ] /docs/owner_decisions.md with the full OD01-OD07 text (consistent with 3.5.5, 3.6, 3.7)
+[ ] Every pre-P1 [OWNER-CONFIRM] reviewed; later-phase decisions have an explicit
+    due phase and are resolved before that phase's signed activation. No silent defaults.
+[ ] Budget governor default limits filled (4.3)
+[ ] /docs/license_template.txt (Ailora notice) and /docs/readme_honesty_sentence.txt created
+[ ] /docs/gates.yaml written to mirror Section 8 (schema 8.4), including the common gates
+[ ] /scripts/verify_phase.sh written and tested on a dummy phase; /scripts/check_commits.py written and tested on a dummy repo
+[ ] /fixtures/canonical_vectors.json (>= 30 vectors) written and independently cross-checked (e.g. with a second JSON canonicalizer)
+[ ] /docs/source_allowlist.yaml written (23.3)
+[ ] Remote repository configured: branch protection on main (no force-push, no deletion), linear history required
+[ ] /docs/binding_manifest.sha256 created and signed
+[ ] Signing key generated and held by the owner only
+[ ] This file and all initial binding files committed at their declared paths
+[ ] Six-phase references, shared response contracts and scan exceptions reviewed
+[ ] Complete original 30+5 idea definitions supplied or explicitly resolved by owner;
+    their names alone are not implementation specifications
+[ ] Section 37 decision register reviewed; all P1 blockers resolved
+[ ] New phase-specific schemas, tools and UI decisions assigned a due boundary
+Only inputs needed by a later phase may be deferred to its boundary, with explicit
+owner scheduling. This does not permit bypassing existing P1 requirements.
+
+======================================================================
+21. COMMIT DISCIPLINE
+======================================================================
+21.1 PURPOSE. The Git history is part of the evidence. It must show the real, progressive, reviewable work: neither inflated by
+     micro-commits nor collapsed so far that the scale and intent of the work become invisible. Commit counts are a CONSEQUENCE
+     of real units of work, never a target.
+21.2 RULES.
+     1. One meaningful commit per logical unit of work that advances a capability, a gate, or a phase deliverable.
+     2. No commit per file change, comment edit, or debug step. No empty or whitespace-only commits.
+     3. Never collapse a phase into one or two commits; the phase must show progressive, reviewable steps.
+     4. A commit is made only when its unit is complete enough to be tested or reviewed in isolation.
+     5. Work happens on main with LINEAR history: no merge commits. The agent never force-pushes, never rewrites published
+        history, never amends or rebases after a Hard Stop, and never deletes tags.
+     6. Per-phase density guidance (WARNING only, not a gate; verify_phase.sh prints WARN when outside): P1 12-25, P2 15-30,
+        P3 18-35, P5 12-25, P6 10-20. New P4 has meaningful-unit guidance only;
+        no fabricated density quota. The earlier 67-135 estimate covered only the
+        five original phases and is not a six-phase total. Never chase counts.
+     7. At each Hard Stop the report lists the number of commits in the phase and the IDs they reference (14, section 2).
+
+COMMIT MESSAGE PHASE SUPPORT
+The commit checker accepts phases P1 through P10.
+Regex phase component: P(?:[1-9]|10)
+All other original commit rules remain unchanged.
+
+21.3 MESSAGE FORMAT (exact, machine-checked).
+        <PHASE>: <summary, 8-100 chars> (<REF>[, <REF>...])
+     PHASE is P1..P6. REF is one of: a capability id (R01-R30, N01-N30), a gate id (G1.1, G2.10, ...), a section reference written
+     with the section sign (§3.5, §21.3), or one of the tags INFRA (CI, tooling, repo plumbing) or DOC (documentation, README).
+     Regex used by check_commits.py:
+        ^P[1-6]: .{8,100} \((?:[RN](?:0[1-9]|[12][0-9]|30)|G[1-6]\.[1-9][0-9]?|§[0-9]+(?:\.[0-9]+)*|INFRA|DOC)(?:, (?:[RN](?:0[1-9]|[12][0-9]|30)|G[1-6]\.[1-9][0-9]?|§[0-9]+(?:\.[0-9]+)*|INFRA|DOC))*\)$
+     Example: "P1: implement Envelope model and GW-DEFAULT-001 deny path (G1.4, §3.5)".
+     Rules for REF use: a REF must be truthful (the commit actually advances it). INFRA and DOC may not be the only REF on a
+     commit that changes files under /src/.
+21.4 FORBIDDEN: sole messages like "WIP", "fix", "update", "changes"; commits touching unrelated capabilities in one change;
+     silent squashing of several logical units; splitting trivial formatting to raise the count; fabricated or back-dated
+     references; any history rewrite to change how the work appears (N-14).
+21.5 VERIFICATION. scripts/check_commits.py (owner-approved, signed) checks, per phase: regex match (C2); every referenced ID exists
+     (C3); every gate and capability due in the phase is referenced at least once (C4); zero merge commits and no history
+     rewrite (uses branch protection evidence and the owner's signed/pushed-tag
+     record; does not assume a provider exposes a remote reflog) (C7); and for the
+     C8 deterministic sample, checks out each commit in isolation and runs
+     `pytest -m smoke -x -q`. Record unavailable evidence honestly. The commit report
+     is stored in the evidence pack.
+21.6 TAGS. The agent creates annotated tag P<n>-code on the last code commit and P<n>-hardstop on the commit that adds the report.
+     The owner creates signed tag P<n>-verified after verify_phase.sh passes. The report references the P<n>-code hash (a commit
+     cannot contain its own hash).
+
+======================================================================
+22. FAULT-INJECTION CATALOG (EXACT EXPECTED OUTCOMES)
+======================================================================
+Each fault has a test in /tests/fault/, a fixture, and an evidence record. Expected outcomes are exact. P2 covers F01-F08, P3 covers F09-F12.
+  F01 Process killed during RUNNING.        => Resume from the last checkpoint; final state hash identical to the uninterrupted run.
+  F02 Kill between COMMIT_INTENT and COMMITTED. => State becomes UNKNOWN, then RECONCILING; exactly one commit effect results; never two.
+  F03 Database connection lost mid-transaction. => State becomes UNKNOWN; no partial state visible; reconciliation decides.
+  F04 Duplicate delivery of the same envelope. => Single effect; the second delivery returns the stored result (3.5.5).
+  F05 Out-of-order events within a stream.   => Reordered by sequence_no within the allowed window [OWNER-FILL window size]; beyond it DENY GW-SCHEMA-005.
+  F06 Corrupted checkpoint (hash mismatch).  => Checkpoint rejected; previous valid checkpoint used; incident record written; no silent repair.
+  F07 LLM call times out.                    => Deterministic fallback with fallback_reason LLM_UNAVAILABLE; no retry storm; business state unchanged. Budget and audit metadata still reconcile honestly.
+  F08 LLM returns malformed or schema-violating output. => Output rejected at the OUTPUT stage; fallback OUTPUT_VALIDATION_FAILED; nothing forwarded.
+  F09 Concurrent requests at the budget boundary. => Total reserved spend never exceeds the limit; excess requests get GW-BUDGET-001 fallback.
+  F10 Policy epoch bumped mid-workflow.      => In-flight steps re-validated and re-submitted (3.7); COMMIT blocked until re-validation passes.
+  F11 Export interrupted mid-write.          => No partial file is visible under the final name; the manifest is absent; a retry is clean.
+  F12 Disk full / write failure.             => Stop new writes; explicit FAILED
+      when no effect committed; UNKNOWN if the outcome cannot be established.
+      Use a bounded independent error channel when the primary store cannot write;
+      later persist reconciliation evidence. Never promise writing a durable
+      incident to the same unavailable/full disk. No silent loss or timeout success.
+
+======================================================================
+23. SYNTHETIC DATA AND SOURCE REGISTER
+======================================================================
+23.1 GENERATOR. Synthetic operational data comes from /src/fixtures_gen/ with
+     seed, parameters, schema and generator version. Every synthetic record or
+     fixture file has _provenance: {synthetic: true, generator_id,
+     generator_version, seed, created_at}. Source documents instead have licensed
+     source provenance; approved future Profile B data have a separate origin.
+     Never falsely label a published document or real observation synthetic.
+23.2 IDENTIFIER AND CONTENT SCAN. Scan fixtures, recordings, logs and examples for
+     personal identifiers and forbidden operational narrative. Operational fixtures
+     use approved typed/enumerated/numeric values. Source metadata and bounded
+     licensed English excerpts use dedicated evidence schemas; sanitized synthetic
+     LLM recordings use 24.2. Required policy prose is not an operational free-text
+     field. Email/phone/DOB patterns and long digit runs flag candidates, with
+     narrow approved typed-field exceptions for hashes, UUIDs, source ids and
+     timestamps. Do not exempt entire directories. A seeded fake personal record
+     must be detected. Retain only sanitized denial metadata, not rejected content.
+
+23.3 SOURCE REGISTER (/docs/source_allowlist.yaml). One entry per licensed public source with: source_id, title, publisher, license,
+     license_url, retrieved_at, content_sha256, permitted_use, owner_approval_date. A source not in the register is denied
+     (GW-EVID-002) and cannot enter the evidence cache.
+
+======================================================================
+24. TEST CONTRACTS
+======================================================================
+24.1 HYPOTHESIS CONTRACT. Settings profiles: `ci` (derandomize=True, fixed seed) and `explore` (random, database stored in
+     test_home/). deadline=None; suppress_health_check is forbidden except via an owner-approved exception. Every failing example
+     is saved as a fixture and becomes a permanent regression test. Minimum generated cases per invariant category:
+       envelope/canonicalization round-trip ................. 1,000  (generate nested JSON-subset payloads incl. Unicode edge cases)
+       Gateway purity and determinism ....................... 1,000
+       Executor state machine ............................... 500 runs of >= 20 steps (hypothesis RuleBasedStateMachine with
+                                                              crash, duplicate, and reorder rules)
+       simulation capacity/temporal invariants .............. 500 scenarios (random arrival streams, capacities, durations)
+       evidence cache binding ............................... 500  (mutate each key component independently)
+       budget governor ...................................... 500 (random interleavings of reserve/commit/release)
+       delta compression round-trip ......................... 500
+24.2 LLM RECORD/REPLAY FORMAT. JSONL under fixtures/llm_recordings/<capability_id>/. One record per line:
+       record_id, request_hash (SHA-256 of canonical bytes of {adapter_version, model_id, params, messages}),
+       response (text or structured), response_hash (SHA-256), model_id, adapter_version, expected_schema_id,
+       tokens {input, output}, recorded_at (injected Clock).
+     Rules: in tests the network is blocked; a replay miss FAILS the test and never falls through to a live call; recordings pass
+     the secret scan and the identifier scan; recording files are listed in the evidence-pack manifest; re-recording requires a
+     commit that states the reason and references the capability id.
+24.3 SCHEMA FIELD SCAN CONTRACT. Scanned: every Pydantic model (recursive model_fields introspection), field names, enum values,
+     field descriptions and docstrings, JSON/YAML fixture keys, the generated OpenAPI document, and doc examples. Matching:
+     names normalized (lowercase, split snake_case and camelCase) and compared with forbidden_terms.yaml. Any unlisted hit
+     FAILS the phase. Exceptions only through /docs/schema_scan_exceptions.yaml (owner-approved, each with a justification).
+     Output: a JSON report in test_home/<PHASE>/. CANARY: a deliberately forbidden fake model lives in the scan's own test and
+     must be detected; if it is not detected, the scan itself is broken and the phase FAILS.
+24.4 FALLBACK RESPONSE SCHEMA (exact shared metadata plus template body):
+       correlation_id (UUID), path = "deterministic", cache_hit (bool),
+       policy_decision (ALLOW|DENY), policy_epoch (int ge=0),
+       fallback_reason (enum in 4.5), reservation_status (enum in 4.5),
+       message_template_id (str from approved registry),
+       message (rendered ONLY from that template), tokens_used (int ge=0),
+       tokens_budget_remaining (int ge=0), suggested_next_actions (list of approved
+       template ids), honesty_statement (const):
+       "This is a limited deterministic response; its text was rendered from an approved template."
+     This sentence replaces the ambiguous original no-model-consulted wording:
+     a malformed/timed-out earlier model call may still have incurred tokens.
+     No model text is forwarded in the fallback. A zero-budget request makes zero
+     model calls and returns the appropriate exhaustion reason with the current
+     epoch, reservation_status=DENIED and a GW-BUDGET-001 denial record. Policy
+     status reflects the actual path; not every fallback is a policy denial.
+
+24.5 CANONICAL VECTORS. /fixtures/canonical_vectors.json holds >= 30 vectors (input payload, expected canonical bytes as hex,
+     expected SHA-256). Coverage: nested dicts and key ordering, Unicode (NFC vs NFD inputs), emoji, empty containers, large
+     integers at +/- (2^53-1), rejected cases (float, NaN, Infinity, non-NFC string, non-str key). The owner writes and
+     cross-checks them with an independent AMINOPS-C14N-1 implementation before
+     signing. Include surrogate rejection, duplicate keys and UTF-16-versus-code-
+     point ordering cases. The agent reproduces every accepted/rejected outcome.
+
+======================================================================
+25. CLEAN-ROOM VERIFICATION OUTLINE (owner approves/signs the real script before P6)
+======================================================================
+  1. Start a fresh container from a pinned base image digest [OWNER-FILL digest].
+  2. Clone the repository at the signed tag P5-verified plus the P6 commits; verify the signed tag.
+  3. Verify binding files against the signed manifest.
+  4. Create a virtual environment and install using the approved hash-verified route in 6.2.1;
+     package-index access is allowed only for this step [OWNER-CONFIRM mirror].
+  5. Disable the network (network namespace without interfaces).
+  6. Run migrations on the SQLite demo database.
+  7. Generate synthetic data with the documented fixed seed (23.1).
+  8. Run the smoke suite offline; run the offline demo script; capture the transcript.
+  9. Assert zero outbound connection attempts (test with a socket guard) (G6.2).
+ 10. Compare the final state hash with the golden hash stored in test_home/P6/ (G6.1, G3.9).
+ 11. Write the report with durations and step counts; exit non-zero on any deviation.
+
+======================================================================
+26. READINESS RUBRIC (EVIDENCE-DERIVED; NO SELF-SCORING BY THE AGENT)
+======================================================================
+Each dimension is scored 0-10 by the OWNER from verify_phase.sh output. A dimension may be scored 10 only when ALL its linked
+gates pass in an owner-run verification; otherwise no 10 is allowed and the owner records a justified evidence-based score, with each failed or unmeasured linked gate disclosed. The agent never fills this table. P4 evidence additionally informs D1-D9; the owner must cite the relevant G4 results rather than ignore the added phase.
+  D1  Boundary and safety ............ G1.3, G1.4, G1.12, G2.7, G5.1, C5
+  D2  Architecture integrity ......... G1.7, G3.7, G5.2, §3.2-3.9 tests
+  D3  Determinism and replay ......... G2.2, G3.1, G3.9, G3.10
+  D4  Verification depth ............. G1.1, G1.10, G3.2, G5.8
+  D5  Token efficiency ............... G2.5, G3.4, G3.5, G5.5
+  D6  Governance and honesty ......... C1, C4, G6.7, README claim-to-evidence links (17.3)
+  D7  Operational readiness .......... G6.3, G6.8, F01-F12 results
+  D8  Supply chain and security ...... C9, G1.5, G6.4
+  D9  Documentation and README ....... G6.5, 17.2 checklist
+  D10 Process integrity .............. C2-C4, C7, C8, signed tags
+Interpretation (honest): the directive itself can be fully specified; the PROJECT score is earned only through executed phases and
+owner-verified evidence. The project can never be labeled production-ready or clinically valid under this directive.
+
+======================================================================
+27. HISTORICAL CHANGE LOG - REFERENCE NUMBERS MIGRATED
+======================================================================
+ - Commit Discipline moved to Section 21 and corrected: density ranges are warnings (sum 67-135, not 70-140), exact regex,
+   INFRA/DOC/section refs, checker script, tags, linear history, report-hash problem solved, duplicate rule 15.5 replaced by a pointer.
+ - Envelope hardened: removed self-asserted issuer (runtime-bound principal), canonical bytes restricted to a deterministic project subset
+   (no floats; the former general JCS-equivalence claim is corrected in 3.5.2), aware-UTC timestamps, regex-constrained ids/keys, extra="forbid"/frozen/strict, IdFactory (fixes the uuid4 conflict
+   with 6.3), hash recomputation, versioning, idempotency scope.
+ - Policy epoch rule made single and consistent (3.7); stage/reason-code ownership clarified (3.5.7); added AUTH and IDEM domains,
+   new codes GW-SCHEMA-002..005, GW-AUTH-001, GW-IDEM-001, GW-EVID-002, GW-EPOCH-002; added DecisionRecord (3.9) and policy matrix (3.8).
+ - Added aggregate-only rule and operational vocabulary (2.7).
+ - Added common gates C1-C9, gates.yaml schema, gates G1.10-G1.12, G2.9-G2.10, G3.9-G3.10, G5.8, G6.8-G6.9; mutation testing,
+   pip-audit, schemathesis in the stack lock.
+ - Added fault-injection catalog F01-F12, synthetic-data and source register (23), test contracts (24), clean-room outline (25),
+   readiness rubric (26); added threats T15-T18 and non-goals N-13..N-15.
+ - Fixed reference errors from V4.1.1 (forbidden-pattern scan reference), expanded binding set, expanded owner checklist.
+
+
+======================================================================
+28. NEW P4 ENTRY, RESPONSIBILITIES AND ARCHITECTURE
+======================================================================
+Entry: final P1-P3 independently verified; original unresolved owner inputs
+resolved; integration corrections approved; new gate definitions and verification
+commands approved; memory and source schemas registered; no silent dependencies.
+
+A1: licensed source adapters, typed normalization, source provenance.
+A2: deterministic operational experiments and uncertainty calculations.
+A3: evidence registry, dependency relationships, approved experience retrieval.
+A4: boundary review, assurance scheduling policy, acceptance and promotion checks.
+A5: bounded orchestration and budget-aware work routing.
+S1: pure deny-by-default authorization and validation decisions.
+S2: authoritative transactions, memory events, reservations, execution and reports.
+
+The scheduler, dashboard, source adapters and memory views are components, not
+additional runtime agents or alternative execution authorities. No agent obtains
+a direct database handle. Existing Envelope and DecisionRecord contracts apply.
+
+Project additions proposed for the integrated layout:
+/assurance/                 versioned policies, test manifests, report schemas
+/docs/regulatory_scope/     intended-use and applicability evidence
+/docs/integration/          preservation and reference mappings
+/src/evidence/              source adapters and dependency projections
+/src/executor/              authoritative memory and assurance workflows
+/src/twin/                  bounded experiments and selection algorithms
+/src/agents/a1 ... a5/      existing bounded responsibilities only
+/test_home/P4/              phase evidence, not an unbounded operational log
+
+UI source path and frontend technology require explicit owner selection before
+implementation; no framework is selected implicitly by this document. Existing
+stack remains authoritative. No vector database, embedding model, graph server
+or training framework is required for this phase.
+
+======================================================================
+29. NON-MEDICAL SCOPE AND DEPLOYMENT PROFILES
+======================================================================
+Profile A - default development/demo:
+Synthetic aggregate capacity, resources, queues, schedules and scenarios only.
+No representation of real patient care or live clinical operations.
+
+Profile B - commercial target, controlled activation:
+Planning based on approved non-personal aggregate organizational operations.
+Requires a separately approved data contract, privacy review, intended-use review
+and deployment validation. Disabled by default. Approval of a commercial goal
+does not authorize real organizational ingestion in P4.
+
+Profile C - excluded:
+Patient-level administration, personal appointment management, named staff
+optimization, individual eligibility or health-related prioritization.
+Some administrative products may be outside MDR, but Profile C remains outside
+this project's owner-selected scope regardless of that possibility.
+
+Forbidden functions remain forbidden even with synthetic or anonymized inputs:
+diagnosis, prognosis, treatment/dose advice, interpretation of medical tests or
+images, patient triage, individualized eligibility, physiological monitoring,
+medical-device control and monitoring of a device's medical performance.
+Aggregate data or a disclaimer cannot convert a medical intended purpose into
+a non-medical one. Being located in a clinic does not itself determine status.
+
+Allowed example: compare queue waiting time under two resource capacities.
+Denied example: rank people by symptoms to decide who receives treatment first.
+Allowed equipment representation: generic resource availability and capacity.
+Denied equipment function: infer whether a device is clinically safe to use
+from diagnostic output or control its treatment settings.
+
+Required scope record per capability:
+id; intended_user_role; intended_purpose; input_categories; transformations;
+outputs; operational_decision_supported; prohibited_uses; external_interfaces;
+medical_device_interaction; marketing_claims; boundary_tests; reviewer; status.
+
+Create a dated regulatory applicability matrix covering MDR/IVDR qualification,
+AI Act applicability, privacy including account/telemetry data, cybersecurity
+product/deployment obligations, source rights and relevant German deployment
+context. For each: official source/version, applicable/not-applicable/undetermined,
+rationale, required evidence and responsible reviewer. Do not label GDPR or
+other applicable duties "out of scope" merely because certification is excluded.
+
+This is an evidence task, not a claim that all European laws have been certified.
+An independent competent review of the actual product, interfaces, intended use
+and sales claims is required before commercial release under this proposed plan.
+Unresolved classification is recorded; the affected release/use is not declared
+approved. Legal review cannot be replaced by a keyword scanner or an LLM vote.
+
+======================================================================
+30. DEFAULT DATA AND GOVERNED SCIENTIFIC LIBRARY
+======================================================================
+30.1 Default data
+Use seeded, versioned synthetic operational fixtures. Optional source-informed
+parameters remain hypotheses, never measurements of a customer's organization.
+Record generator version, seed, parameters, created_at and content hash.
+Published source material is evidence; it is not synthetic operational state.
+Do not silently import external observations into the runtime simulation.
+
+30.2 Selection
+Select sources for operational relevance, reuse permission, English content,
+machine-access permission and scientific quality; not for maximum volume.
+An official repository is not an endorsement of every article or conclusion.
+Exclude patient case narratives and clinical interpretation from this library's
+runtime scope. Do not download broad medical corpora merely to filter them later.
+Where content cannot safely be separated, exclude it and record the reason.
+
+Candidate source families, not blanket approvals:
+- PMC Open Access Subset: selected operations/scheduling/queueing research with
+  per-article license checks and retrieval through permitted services only.
+- ClinicalTrials.gov: selected permitted operational metadata, subject to its
+  current terms and a field allowlist; no patient records or eligibility logic.
+- EMA / ACT EU: selected operational/process documents with required attribution;
+  third-party material needs its own permission and is not assumed reusable.
+
+No source may require negotiation, a bespoke permission or manual access approval
+for the default automatic workflow. Prefer public machine-access endpoints with
+no credentials. If credentials or special permission are required, skip the
+source and report the limitation; never bypass access conditions. Honor rate
+limits and cache immutable copies when permitted. No hard-coded keys.
+
+30.3 Registry and lifecycle
+Extend the original source register without removing its fields:
+source_id, title, publisher, license, license_url, retrieved_at, content_sha256,
+permitted_use, owner_approval_date; plus document_version, language,
+retrieval_endpoint, attribution, commercial_use_status, redistribution_status,
+machine_retrieval_status, evidence_location, review_status and supersedes.
+Unknown permission means not approved, not implicit permission.
+
+Lifecycle: DISCOVERED -> REVIEW_PENDING -> APPROVED -> ACTIVE;
+ACTIVE -> SUPERSEDED or QUARANTINED or RETIRED with a recorded reason.
+Discovery is not activation. Owner-approved source policies may authorize routine
+refresh within a fixed scope; changed licensing or scope requires renewed review.
+Use versioned source records rather than changing source bytes in place.
+
+30.4 Ingestion and retrieval
+A1 requests a registered source operation; S1 authorizes; S2 executes the bounded
+adapter and records provenance. Extraction emits typed operational candidates.
+A3 links claims to precise spans. A4 checks boundaries and evidence quality.
+Only approved structured hypotheses may enter A2. No source instruction can
+alter policy, prompt hierarchy, credentials or runtime permissions.
+
+Reading a library entry does not train model weights. Routine structured lookup
+and report generation require no LLM. Optional model-assisted extraction consumes
+the existing budget and cannot activate its own results. External data sent to a
+provider must be explicitly permitted; default extraction is deterministic.
+
+Positive example: an approved queueing-method excerpt supports a declared model
+assumption, with source hash and span.
+Negative example: an article directs the system to ignore its policy; ingestion
+denies/quarantines that instruction as data under the existing injection rules.
+Negative example: a freely readable article has unclear commercial reuse rights;
+it is not activated or redistributed.
+
+30.5 Offline/replay
+Tests use approved pinned snapshots and synthetic records without live network
+access. Source refresh creates a new version and impact record. Historical replay
+uses the exact permitted snapshot manifest; current use rechecks authorization.
+If licensing prevents retaining content, record the reproducibility limitation
+and exclude it from a workflow requiring guaranteed retained-source replay.
+
+======================================================================
+31. DETERMINISTIC EVENT-SOURCED MEMORY
+======================================================================
+PostgreSQL remains authoritative; SQLite remains offline-demo-only. NetworkX is
+a rebuildable in-process projection. No vector search or new database is assumed.
+
+Four logical memory classes:
+M1 Task context: bounded immutable task snapshots with an expiry policy.
+M2 Execution history: authoritative events, decisions, checkpoints and effects.
+M3 Evidence: licensed source versions, spans, claims and dependency links.
+M4 Approved experience: tested reusable operational patterns and regression cases.
+
+Access scope includes tenant_id, runtime principal, capability, task identity,
+correlation_id, policy_epoch, schema version and snapshot id. Correlation_id alone
+is not authorization or a sufficient isolation key. Current revocation and
+policy checks apply even when reading an older immutable snapshot.
+
+Proposed memory record fields, registered through the existing schema system:
+record_id; memory_class; tenant_id; task_hash; correlation_id; schema_id;
+policy_epoch; sequence_no; payload_hash; source_refs; provenance;
+recorded_at; status; retention_class; supersedes; projection_version.
+All hashed values follow the corrected canonical contract; no floats.
+Source text belongs only in licensed evidence fields, never arbitrary log fields.
+
+Writes: S2 authorizes and persists with version compare-and-swap and appropriate
+transaction isolation. Record the event order; serializable transactions alone
+do not define a reproducible ordering across repeated concurrent executions.
+Projection updates and commit intent use the existing durable recovery model.
+Tests inject duplicates, crashes, stale writes and concurrent updates.
+
+Reads: use a pinned snapshot and deterministic filters, explicit sorting and a
+stable tie-breaker. Return only authorized bounded records. Do not inject an
+entire memory store into a prompt. SQL result order without ORDER BY is not a
+deterministic retrieval contract. Every derived graph is reproducible from its
+source event range and projection version.
+
+Retention: task context expires under owner-configured policy. Historical audit
+metadata and licensed text have distinct retention rules. Append-only history
+does not justify indefinite retention of personal or legally restricted content.
+Purges and quarantines produce audit events without retaining prohibited content.
+If a purge prevents replay, report that limitation instead of claiming full replay.
+
+Positive example: the same task snapshot, policy, retrieval version and query
+returns the same ordered memory ids and hashes.
+Negative example: a second tenant requests a known record id; current Gateway
+authorization denies it, even if the content hash is known.
+Negative example: a stale snapshot contains a revoked source; it cannot authorize
+a new live decision merely because historical replay can reconstruct it.
+
+======================================================================
+32. CONTROLLED EXPERIENCE AND LEARNING
+======================================================================
+Record sanitized structured experience from the first relevant execution, using
+existing P1-P3 evidence mechanisms. This phase adds governed reuse and promotion;
+it does not retroactively require building later-phase code before P3 verification.
+
+Capture: task category, input/snapshot hashes, policy version, selected method,
+test outcome, explicit failure type, token/cost counters, evidence references.
+Do not store raw prompts, personal content, secrets or unvalidated model output
+as reusable lessons. Failure is useful evidence, not automatically valid advice.
+
+Lifecycle:
+OBSERVED -> CANDIDATE -> EVALUATED -> OWNER_APPROVED -> ACTIVE;
+ACTIVE -> RETIRED or QUARANTINED by authorized action.
+Observation and evaluation never modify policies, templates or weights in place.
+
+Two supported improvements:
+1. Deterministic retrieval of approved reusable patterns with exact applicability.
+2. Comparison of a proposed template/method against the current version using a
+   fixed holdout suite, unchanged budgets and declared metrics.
+
+Promotion requires complete evidence, no failed mandatory boundary/regression
+checks and owner approval. Record the chosen objective and any trade-off; do not
+declare a winner merely because it uses fewer tokens but produces worse answers.
+Version the promoted configuration and retain a rollback target.
+
+No online weight updates, self-modifying code, autonomous policy relaxation,
+unapproved prompt changes, fine-tuning pipeline or provider training permission
+is introduced. Any future training proposal requires its own data-rights,
+privacy, resource, evaluation and rollback decision.
+
+Example: a template repeatedly solves a bounded capacity question with correct
+structured output. A candidate shorter template is evaluated; only approved
+promotion changes future selection. A single successful answer cannot promote it.
+
+======================================================================
+33. THREE ADDITIONAL OPERATIONAL INTELLIGENCE CAPABILITIES
+======================================================================
+These capabilities are not claimed to be globally novel. They extend existing
+components and operate only within the non-medical aggregate boundary.
+
+33.1 Bounded operational experiment designer
+Input: approved baseline snapshot, allowed integer parameter ranges, objective,
+constraints, experiment budget and seed. A2 enumerates or generates a bounded
+candidate set deterministically and simulates it. A5 coordinates via S1/S2.
+Optional LLM proposes a candidate specification only; schema and policy checks
+must pass before deterministic execution. It cannot invent capacity facts.
+Output: ranked scenario ids, metric deltas, constraints, uncertainty, assumptions,
+source bindings and reproducibility hashes. Declare stable tie-break rules.
+Example: compare adding one generic resource in either of two operational sites.
+Negative: optimize access priority using symptoms or individual health risk.
+Acceptance: exhaustive small reference problems yield the expected feasible
+candidate set and ranking; infeasible candidates never become recommendations;
+repeated seeded runs reproduce results. Report limitations, not medical benefit.
+
+33.2 Evidence-change impact tracking
+A3 maintains a dependency graph from source version -> assumption -> scenario
+-> report. Source withdrawal, correction, license change or policy change
+produces an impact event. Mark dependent outputs for review and block their use
+where current policy requires it. Never rewrite historical signed reports.
+Example: a source assumption is revised; all dependent scenarios are identified
+and new versions can be recomputed through S2. Unrelated scenarios remain valid.
+Acceptance: seeded dependency graphs detect every affected artifact and no
+unrelated artifact in the defined test fixtures; cycles and incomplete provenance
+are rejected or explicitly flagged rather than silently ignored.
+
+33.3 Budgeted next-experiment selection
+A2 selects the next simulation expected to reduce operational uncertainty under
+a fixed computational budget. Use an explicit deterministic scoring formula,
+versioned integer/fixed-point inputs, stable ties and recorded seed. If the
+uncertainty model cannot support an informative score, return NOT_ESTIMABLE.
+Do not present model-based expected information gain as guaranteed knowledge.
+Compare against a fixed uniform-allocation baseline on held-out synthetic cases.
+Example: identify which capacity experiment best separates two plausible queue
+models before spending the remaining simulation budget.
+Acceptance: budget is never exceeded; repeated inputs yield the same selection;
+report uncertainty reduction and compute cost, including cases with no advantage.
+No mandatory superiority percentage is invented without calibration and approval.
+
+All three use the original Envelope, Gateway, Executor, budget, output validation,
+provenance and replay rules. No new agent or medical inference path is created.
+
+======================================================================
+34. WEEKLY ZERO-MODEL ASSURANCE
+======================================================================
+A4 owns the assurance policy; a deterministic scheduler triggers an S2 workflow
+through S1. This is a product capability, not an external scheduled reminder.
+Frequency is weekly. The exact day, time, timezone, missed-run handling and
+retention duration are owner configuration; deployment cannot enable an
+ambiguous schedule. Display timestamps in a declared timezone with UTC storage.
+
+/assurance/ stores versioned job policy, suite manifest, input/output schemas and
+report templates. Runtime reports are held in persistent configured storage,
+partitioned by deployment, tenant scope, suite version and scheduled occurrence.
+Do not commit an unlimited stream of operational reports into Git.
+
+Required checks when applicable:
+- binding/configuration integrity and schema/permission boundaries;
+- deterministic replay and projection reconstruction;
+- duplicate/recovery/budget invariants in an isolated test environment;
+- source approval, freshness, rights changes and dependency impact;
+- sanitized logging and secret detection;
+- dependency/security inventory checks using authorized network access only;
+- backup verification and configured non-destructive restore test evidence;
+- dashboard/report freshness and completed/failed/missed job visibility.
+
+Never run destructive fault injection or load tests against production data.
+Use synthetic isolated fixtures and explicitly controlled resources. A required
+unavailable check is NOT_RUN, not PASS. Any required FAIL or NOT_RUN prevents an
+overall PASS. Network unavailability does not invalidate pinned offline tests,
+but prevents a claim that current external-source status was checked.
+
+No LLM, embedding, model inference, generated summary or model-based scheduling
+is allowed in this workflow. Enforce both adapter-call instrumentation and an
+egress policy permitting only approved non-model endpoints where necessary.
+Assert model_request_count=0 and model_tokens_used=0. CPU, storage and network
+costs still exist. Reports are rendered from fixed English templates.
+
+Job uniqueness: deployment + suite version + scheduled occurrence + tenant scope.
+Duplicate triggers cannot duplicate effects. Persist checkpoints and progress.
+Retries are bounded and idempotent. A failed run creates an auditable incident;
+it cannot repair code, change policy or promote experience without authorization.
+
+Report: run_id, schedule occurrence, start/end, input manifest hash, suite version,
+per-check PASS/FAIL/NOT_RUN, measurements, evidence paths, error codes,
+model_request_count, model_tokens_used and overall result. Dashboard exposes the
+last successful run, latest attempt and next configured occurrence separately.
+Test the weekly trigger with an injected clock; no seven-day test wait is needed.
+
+======================================================================
+35. RESPONSIVE OPERATIONAL DASHBOARD
+======================================================================
+Create an English responsive browser interface for desktop, Mac, Windows and
+large monitors. Do not promise native installers or all-device compatibility
+without tests. Select an explicit browser/version matrix before implementation.
+Frontend technology and any dependencies require the original approval process.
+
+Required views:
+- Overview: synthetic/demo status, resource capacity, queues and scenario status.
+- Scenario comparison: baseline, deltas, assumptions, uncertainty and constraints.
+- Evidence: source versions, rights status and claim-to-source paths.
+- Workflow: current state, UNKNOWN/reconciliation and execution receipts.
+- Budget: remaining/reserved/actual counters and deterministic fallback status.
+- Assurance: latest attempt, last successful check, failures and stale status.
+- Experience: candidate versus active versions and promotion evidence.
+
+Provide a read-only wallboard mode. Hiding buttons is not authorization: all
+actions and reads require server-side controls through existing contracts.
+Never expose raw database access or private signing keys to the browser.
+Display stale, incomplete, unknown, failed and not-run states distinctly.
+Do not use clinical risk colors or health alarms to imply patient assessment.
+
+Design requirements: clear visual hierarchy, consistent typography, keyboard
+operation, meaningful text labels, non-color-only status indication and bounded
+animation. Validate the chosen accessibility target and viewport matrix before
+calling it accessible or cross-platform verified. No decorative animation may
+obscure state or consume model tokens.
+
+Demo example: "Synthetic scenario - not live organizational data" remains visible.
+Wallboard example: aggregate queue and capacity only, no patient or staff names.
+Action example: submit a scenario request; show authorized state transitions,
+not optimistic success before the Executor confirms completion.
+
+P4 delivers the working interface for these functions. Final P5 retains all
+original enterprise, fuzzing, load, isolation, evaluation and transparency work.
+P6 retains clean-room/release verification. Do not claim those phases passed
+merely because the dashboard exists.
+
+======================================================================
+36. DETERMINISM AND TOKEN CONTRACT
+======================================================================
+Guaranteed replay scope remains the deterministic core, for identical versioned
+inputs, ordered events, seeds, policies and environment contract. Capture the
+source snapshot, retrieval version, projection version and scenario definition.
+Use injected clocks/ids and integer or exact decimal representations as approved.
+
+A live LLM is not deterministic authority. Its proposals are untrusted inputs.
+Record/replay or exclude free text under the original rules; do not state that
+live natural-language generation is bit-for-bit reproducible. Historical replay
+cannot bypass current authorization for a new real-world action.
+
+Memory writes, structured retrieval, cache lookup, source hashes, report templates
+and weekly assurance need no model calls. Optional extraction/planning calls obey
+the original three-level reservation and reconciliation. Never equate "automatic"
+with "token-free". Preserve and remeasure the original token benchmark.
+======================================================================
+
+
+CLARIFIED NUMERIC DEFAULTS (OWNER-CONFIRMED)
+- Mutation score target: >= 90% (calibrated)
+- Zero-LLM resolution target: >= 40% (original, subject to calibration from measured baseline)
+- Token budget defaults: as proposed in original Section 4.3 (finite integer values to be set in configuration before P2 runtime tests)
+- RPO: 30 minutes | RTO: 2 hours (configurable)
+
+CONFIRMED OWNER DEFAULTS (incorporated):
+- Token budgets: document-proposed values accepted.
+- Gate thresholds: branch coverage >= 95%, mutation score >= 90% (calibrated), zero-LLM target strong and calibrated.
+- Task-context retention options: 15 days, 30 days, 2 months, 6 months (owner-configurable).
+- Browser matrix: Chrome, Firefox, Safari, Edge (current stable) on Mac and Windows desktop.
+- RPO default: 30 minutes; RTO default: 2 hours (configurable).
+- Profile B remains disabled until separate approval.
+- Stack: Python 3.12, FastAPI, PostgreSQL 16 and remaining document values accepted.
+- Canonical contract AMINOPS-C14N-1 accepted.
+- Honesty sentence and proprietary LICENSE accepted as defined above.
+
+======================================================================
+37. OWNER DECISIONS, DUE BOUNDARIES AND READINESS STATUS
+======================================================================
+The approved architecture is recorded here without fabricating absent inputs.
+This deliverable is a consolidated design candidate, not proof that Section 20
+is complete. Every missing value below is a visible decision record. The owner
+may supply it or explicitly authorize a concrete proposed value; implementing
+agents do not guess. No promise of 100% defect elimination or a future score.
+
+Before P1:
+- Confirm authoritative directive.txt and the
+  root-entry arrangement; sign the binding set.
+- Supply the actual 60 capability definitions and complete OD01-OD07. This file
+  preserves all 60 ids and contracts but cannot reconstruct absent definitions.
+- Supply the full earlier 30+5 enhancement definitions. Names in the earlier
+  guidance (Capability Pack Signature Chain through Binding Manifest Incremental
+  Proof; Formal Verification Sketch; Cross-Phase Causal Trace Graph; Adaptive
+  Evidence Strength Threshold; Signed Golden State Oracle; Capability Quorum
+  with Temporal Window) remain requirements pending full owner specifications.
+  Do not delete, invent or equate them with the three new capabilities in 33.
+- Confirm vocabulary, stack versions, numeric gate targets, approved reason seed,
+  repository layout and English honesty sentence.
+- Supply license notice, source register, verified canonical vectors, gates.yaml,
+  independent scripts and repository protections.
+- Specify session/workflow/capability token budgets and test fixtures for them.
+- Approve the corrected canonical contract, shared responses, scoped scans and
+  binding/signature lifecycle. Section 38 records the correction coverage.
+
+Before the affected runtime phase:
+- P2: event reorder window, retry/time limits and exact reconciliation authority
+  for each supported external effect; signing verification tooling if not in P1.
+- P3: reference-model accuracy criteria, KPI formulas/units, scenario fixtures and
+  calibrated zero-LLM resolution target (original >=40% unless owner amendment).
+- P4: frontend technology/source location, supported browser/viewport matrix,
+  accessibility target, initial approved English source documents and rights,
+  memory retention, weekly schedule/timezone/missed-run policy/resource limits,
+  experiment score/uncertainty method and held-out benchmark suite.
+- P5: enterprise deployment/access model and independently runnable evaluation
+  for every implemented original and added capability.
+- P6: pinned container digest, package-mirror decision, deployment target/support,
+  RPO/RTO, independent regulatory applicability review and commercial release
+  decision if pursued. Profile B data contract/activation is a separate approval;
+  it is not automatically enabled by completion of P6.
+
+Pre-release scope assessment must use current official sources. A general design
+review is not a certificate that every EU/German legal requirement is satisfied.
+Keep applicable obligations, unresolved classification and residual risks visible.
+
+======================================================================
+38. PRESERVATION, CORRECTIONS AND INTEGRATED EXECUTION RULES
+======================================================================
+Preservation mapping:
+Original Sections 0-27 -> integrated Sections 0-27, corrected in place.
+Original P1/P2/P3 -> P1/P2/P3, same responsibilities and original gates retained.
+Original P4 -> P5; G4.1-G4.8 -> G5.1-G5.8.
+Original P5 -> P6; G5.1-G5.9 -> G6.1-G6.9.
+Added independent phase -> P4; G4.1-G4.16 and Sections 28-36.
+Original C1-C9, R01-R30/N01-N30, F01-F12, T01-T18 and D1-D10 remain.
+All gate thresholds survive renumbering. Changed defective contracts are recorded
+below; preservation never means retaining contradictory active definitions.
+
+Correction coverage:
+COR-01 active directive/version -> header, 0.4-0.5, 37.
+COR-02 permanent locks versus amendments -> execution rules, 0.9, 14.
+COR-03 binding lifecycle -> 0.5.1, 13, 20.
+COR-04 missing owner/capability/idea inputs -> 9, 20, 37.
+COR-05 Unicode canonical serialization -> 3.5.2, 24.5.
+COR-06 unified fallback/transparency and truthful token accounting -> 4.5, 24.4.
+COR-07 scan scope, controlled text and exceptions -> 13.6, 23.2, 24.3, 30.
+COR-08 truthful synthetic/source/real-data provenance -> 23.1, 29-30.
+COR-09 Gateway purity/principal/time/preview -> 3.5.1, 3.9, 6.3.
+COR-10 manifest self-reference and immutable evidence -> 0.5.1, 13.
+COR-11 status output versus signed catalog -> 0.5.1, 9.2, 17.
+COR-12 tenant/principal/pack/cache binding -> 5.3, 31.
+COR-13 state transitions/idempotency/uncertain effects -> 3.6, 38 operational rules.
+COR-14 mandatory reservation versus optional pricing -> 4.3, idea distribution, Annex A.
+COR-15 model validation and actual recovery -> P3/G3.6, G6.3, 37.
+COR-16 commit verification and sample bounds -> C8, 21.5.
+COR-17 safe automatic source access -> 30 and rules below.
+COR-18 English/attribution/six-phase references -> 0.2, 17, header, all phase contracts.
+
+Additional explicit coherence repairs:
+- F12 distinguishes known failure from uncertain effect and uses an independent
+  bounded error channel when the primary store cannot persist incident evidence.
+- Hash installation uses the proper uv or pip workflow, not uv.lock passed to pip.
+- The original P3 F11 test uses a minimal export primitive; full export stays P5.
+- P1 properties test implemented foundation behavior; full invariant category
+  runs are due in P3. No false claim of running unbuilt future-component tests.
+- Gate schemas retain all subconditions; scalar metrics do not erase thresholds.
+- Corrective work after a hard stop uses new evidence/tag versions; historical
+  signed packs/tags are never overwritten, deleted or relabeled.
+
+Operational rules retained from the owner's added guidance:
+1. Task-scoped semantic context: extract operational entity relationships with
+   NetworkX in process. In P2 extend the existing evidence/pre-filter path with
+   immutable snapshots bound to tenant, correlation_id, policy_epoch and task hash.
+   P4 develops the complete memory/reuse layer, not a second source of authority.
+   Retrieval is read-only and authorized; do not promise zero database lock
+   contention. Measure concurrent behavior and isolation. Schema/term/structure
+   checks enforce the boundary; "context purity" is reported as tested outcomes,
+   not an absolute guarantee of semantic correctness.
+2. Token minimization: preserve hierarchical templates, bound cache, record/replay,
+   deterministic fallbacks and the original >=40% calibrated benchmark. Routine
+   assurance has zero model calls; optional LLM paths remain budgeted.
+3. Original 30+5 ideas: retain their scope pending complete definitions (37),
+   implement approved definitions inside existing components and relevant phases,
+   and generate hash-bound evidence. No new runtime agents or silent gates.
+4. TEST HOME: phase/gate/capability results are stored from the first test, not
+   postponed until phase end. Sealed gate packs are distinguished from working
+   outputs and independent remeasurement attestations.
+5. Current authorization precedes returning stored idempotent results. A duplicate
+   never causes a second effect; revoked access cannot read the result solely
+   because the original request was allowed. Preserve payload-hash conflict denial.
+6. Source adapters allow only approved schemes/hosts/endpoints and bounded data;
+   recheck redirects and deny local/private-network targets unless explicitly
+   approved for the deployment. Enforce request limits and source rate conditions.
+7. Report exports are atomic, validated and hash-manifested. Private signing keys
+   stay with the owner. Autonomous export preparation can produce UNSIGNED reports;
+   a report is labeled SIGNED only after owner signature. No agent-held key is
+   introduced to automate signatures, and missing signature cannot masquerade as
+   a successful signed export. This keeps F11 and original signing requirements.
+8. Integration is complete in this file: no Part One/Part Two handoff instruction
+   remains active. Implementation still requires the explicit activation in 0/20.
+
+======================================================================
+[HISTORICAL] 39. FINAL P6 COMPLETION AND HANDOVER
+======================================================================
+[HISTORICAL] Review the entire delivered project from zero to end against all six phases and
+all defined capability records. Run all common gates and G1-G6 checks, verify
+source rights, intended-use boundaries, clean-room demo, PostgreSQL recovery,
+dashboard evidence, dependency/license inventory, token reports and README truth.
+
+Complete outstanding work rather than marking a 90% phase complete. If mandatory
+scope is missing, report NOT DONE and do not declare completion. An owner may
+amend scope, but the amendment and effects must be explicit; no silent omission.
+
+Finalize the code and documentation in meaningful commits, create the final code
+tag, generate the evidence and ten-section hard-stop report, then commit that
+report separately. Push when the remote is available and authorized; report
+unavailable remote status honestly. Run verification from a clean checkout of
+the exact reported revision; store independent output outside the sealed pack.
+The owner signs the verified release tag only after successful verification.
+The final report records commit ids, tags, pack hashes, remaining deployment
+restrictions and signed/unsigned status. Never place a commit's own hash inside
+that same commit or mutate a signed artifact to attach later test output.
+
+Engineering scope is COMPLETE only when all mandatory work is verified and the
+owner accepts the final handover. Commercial authorization and ongoing operating
+obligations are separately reported. No seventh development phase is implied.
+
+ANNEX A - FULL EXPLANATION OF THE FIVE ORIGINAL DEPTH IDEAS
+Commercialization-Aligned Engineering Enhancements
+Aligned with existing architecture, hard boundaries, and honesty rules
+Generated for Amin Azimi | Azimi Innovation Lab
+
+======================================================================
+FILTERING CRITERIA APPLIED (30 ANGLES)
+======================================================================
+Each idea was evaluated against:
+1. Strict non-clinical boundary preservation (Section 2)
+2. Aggregate-only operational vocabulary (2.7)
+3. Exactly five agents + two deterministic services (3.1-3.2)
+4. No direct DB access by agents (3.3)
+5. Envelope contract and canonicalization integrity (3.5)
+6. Policy Gateway purity and deny-by-default (S1)
+7. Durable Executor authority and state machine (3.6)
+8. Token-efficiency and pre-filter order (Section 4)
+9. Determinism and replayability (5.2)
+10. Cryptographic evidence binding (5.3)
+11. Synthetic-data-only rule (23)
+12. Owner hard-stop and non-self-grading discipline (15, 26)
+13. Commit discipline and linear history (21)
+14. Fault-injection compatibility (22)
+15. Schema field scan and forbidden terms (24.3, 2.6)
+16. Readiness rubric dimensions D1-D10 (26)
+17. Clean-room offline verification feasibility (25)
+18. Single-tenant default with future multi-tenant path (OD01)
+19. No floating-point in hashed payloads (N-15, 3.5.2)
+20. No sixth agent or service promotion to agent (N-7)
+21. Evidence pack and owner-signed verification (13)
+22. Budget governor atomicity (4.3, F09)
+23. Idempotency and epoch rules (3.5.5, 3.7)
+24. Observability sanitization (5.5)
+25. Commercial extensibility without weakening gates
+26. Audit and compliance readiness (non-clinical ops)
+27. Operational realism for research sites
+28. Cost and token predictability for future users
+29. Backward compatibility with version-controlled binding set
+30. Honesty: remains Candidate until owner-verified evidence
+
+All five ideas were selected through the stated design filters; implementation evidence remains required. None require clinical data, new agents, or relaxation of existing hard rules.
+
+======================================================================
+IDEA 1 - Operational Capability Marketplace with Signed Capability Packs
+======================================================================
+What: Introduce a versioned, owner-approved Capability Pack format (YAML + signed manifest) that packages a bounded set of envelope types, policy matrix entries, invariants, and template slots. Packs are loaded only after Policy Gateway verification of signature and epoch.
+
+Why it deepens the document:
+- Turns the static capability catalog (R01-R30, N01-N30) into a governed, extensible commercial surface.
+- Enables future site-specific or protocol-specific operational packs without code changes or sixth agent.
+- Strengthens D2 (Architecture integrity), D6 (Governance), and D8 (Supply chain).
+
+Alignment:
+- Packs are data, not agents. They only extend allowed (principal, envelope_type, capability) triples already constrained by 3.8.
+- Loading is a Gateway-mediated action; Executor records the pack hash in state.
+- Forbidden terms and schema scan still apply to every pack field.
+
+Commercial value: Research organizations can purchase or license pre-qualified operational packs (e.g., "Phase I Site Capacity Pack", "Multi-Site Queue Balancing Pack") while the core twin remains version-controlled and auditable.
+
+======================================================================
+IDEA 2 - Deterministic Scenario Diff and What-If Provenance Ledger
+======================================================================
+What: Extend the twin (A2) and evidence layer (A3) with a ScenarioDiff primitive. Every what-if run produces a cryptographically bound diff against a baseline snapshot. The diff itself is an Envelope payload whose hash is stored in the evidence cache and linked to the originating scenario seed and policy epoch.
+
+Why it deepens the document:
+- Makes operational "what-if" (Section 1) evidence-grade rather than free-text.
+- Strengthens determinism (5.2), evidence binding (5.3), and replay (G3.9).
+- Directly supports token efficiency: repeated similar scenarios hit the bound cache.
+
+Alignment:
+- Diffs contain only aggregate metrics (utilization delta, wait_time delta, queue length delta) using the allowed vocabulary (2.7).
+- No per-person or clinical fields can appear; schema scan enforces this.
+- Executor treats scenario runs as durable workflows with checkpoints.
+
+Commercial value: Sponsors and research sites can generate traceable operational comparisons ("what happens to throughput if we add two rooms at Site A") for review, without claiming regulatory acceptance or exposing individual data.
+
+======================================================================
+IDEA 3 - Policy Epoch Simulation and Impact Preview Gate
+======================================================================
+What: Add a read-only "epoch preview" mode to the Policy Gateway. Before an owner bumps the policy epoch, the system can dry-run the new policy matrix against a bounded set of recent envelopes (or a synthetic corpus) and report which in-flight or historical workflows would be re-validated or denied. Results are deterministic and stored as evidence.
+
+Why it deepens the document:
+- Makes the policy epoch rule (3.7) operationally safe and commercially usable.
+- Reduces risk of disruptive policy changes in a multi-user research operations setting.
+- Strengthens D1 (Boundary), D6 (Governance), and fault F10 handling.
+
+Alignment:
+- Preview never mutates state; it is a pure function of the Gateway (import-linter still holds).
+- Uses the same reason-code registry and DecisionRecord format (3.9).
+- Owner still must explicitly bump the epoch; preview is advisory and logged.
+
+Commercial value: Research operations teams can evaluate the operational impact of tightening a rule (e.g., new capacity constraint) before applying it, supporting change-management and compliance processes.
+
+======================================================================
+IDEA 4 - Aggregate Operational KPI Contract with Verifiable Export
+======================================================================
+What: Define a versioned approved set of aggregate KPI schemas (site utilization, protocol milestone throughput, queue wait-time distribution, resource contention index) that can be exported as signed, hash-bound reports. Export is an Executor-mediated, interruptible workflow (compatible with F11). Reports contain only allowed vocabulary and are accompanied by the evidence-pack manifest.
+
+Why it deepens the document:
+- Turns the twin from an internal simulator into a commercially deliverable artifact.
+- Strengthens clean-room verification (25) and readiness dimension D7 (Operational readiness).
+- Provides a concrete, non-clinical value proposition for sponsors and CROs.
+
+Alignment:
+- KPIs are computed only from synthetic operational entities and aggregate counts.
+- Export path goes through Policy Gateway and output validation (L3).
+- No free-text interpretation is allowed in the signed report; narrative is template-driven or absent.
+
+Commercial value: The system can produce hash-verifiable operational performance reports for review that research organizations can share with sponsors, without ever leaving the non-clinical boundary.
+
+======================================================================
+IDEA 5 - Token-Budget Reservation Marketplace and Capability Pricing Hooks
+======================================================================
+What: Extend the budget governor (4.3) with an optional, owner-configured reservation and accounting layer. Capabilities can declare a deterministic token cost model (or fixed cost). The governor can reserve against a site-level or tenant-level budget envelope before invoking any LLM path. All accounting events are recorded by the Executor as durable, idempotent records.
+
+Why it deepens the document:
+- Makes the mandatory token-efficiency requirements (Section 4) commercially operational.
+- Strengthens D5 (Token efficiency) and fault F09 (concurrent budget boundary).
+- Prepares the system for multi-tenant or multi-site billing without changing core agents.
+
+Alignment:
+- Pricing hooks are configuration data, not new agents or services.
+- Reservation remains atomic and deterministic; no floating-point in hashed accounting payloads.
+- Fallback paths (4.5) still trigger on exhaustion; the system never exceeds the reserved limit.
+- Owner controls whether pricing is enabled; pricing remains disabled in the single-tenant demo; finite owner-approved token budgets and atomic reservation still apply.
+
+Commercial value: Future deployments can offer predictable cost envelopes to research sites or sponsors, support internal charge-back, and prevent runaway LLM spend while preserving the pre-filter and deterministic fallback guarantees.
+
+======================================================================
+IMPLEMENTATION NOTES (NON-BINDING)
+======================================================================
+- All five ideas are incorporated in this integrated candidate; later changes require the owner amendment process (0.9).
+- None require changes to the five-agent limit, Gateway purity, or non-medical hard boundary.
+- Each idea produces additional evidence artifacts that feed the existing readiness rubric (26).
+- Recommended introduction order if commercialization is prioritized: Idea 4 (KPI export) -> Idea 2 (Scenario Diff) -> Idea 3 (Epoch Preview) -> Idea 1 (Capability Packs) -> Idea 5 (Budget Marketplace).
+
+END OF DEPTH-ELEVATING IDEAS
+Document remains an Execution Candidate. No production-ready or clinical-validity claims are made.
+
+======================================================================
+ANNEX B - OFFICIAL REFERENCE REGISTER
+======================================================================
+Reference-check date: October 23, 2026. Recheck current versions and terms at
+activation and before release. These references support review, not certification.
+
+MDR Regulation (EU) 2017/745:
+https://eur-lex.europa.eu/eli/reg/2017/745/oj/eng
+
+MDCG 2019-11 Rev.1, June 2025, software qualification and classification:
+https://health.ec.europa.eu/latest-updates/update-mdcg-2019-11-rev1-qualification-and-classification-software-regulation-eu-2017745-and-2025-06-17_en
+
+EU AI Act Regulation (EU) 2024/1689:
+https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng
+
+PMC Open Access Subset and machine-retrieval conditions:
+https://pmc.ncbi.nlm.nih.gov/tools/openftlist/
+
+ClinicalTrials.gov API and terms (terms require complete verification before use):
+https://clinicaltrials.gov/data-api/api
+https://clinicaltrials.gov/about-site/terms-conditions
+
+EMA copyright and third-party exceptions:
+https://www.ema.europa.eu/en/about-us/about-website/legal-notice
+
+RFC 8785, especially UTF-16 property ordering:
+https://www.rfc-editor.org/rfc/rfc8785.html
+
+PostgreSQL 16 transaction isolation:
+https://www.postgresql.org/docs/16/transaction-iso.html
+
+[HISTORICAL] END OF AMINOPSTWIN SIX-PHASE INTEGRATED REVIEW CANDIDATE
+
+
+[ACTIVE] The sole active phase sequence remains P1 through P10 as defined at the beginning of this directive.
