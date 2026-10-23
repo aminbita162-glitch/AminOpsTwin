@@ -108,7 +108,24 @@ class DashboardApp:
             data = self._provider.build()
             return data.to_dict()
 
-        @app.get("/api/dashboard/{view_key}")
+        @app.get(
+            "/api/dashboard/{view_key}",
+            responses={
+                404: {
+                    "description": "Unknown view key",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "detail": {"type": "string"},
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        )
         async def api_view(view_key: str) -> dict[str, Any]:
             """Return a single view's data by key (server-side)."""
             result = self._provider.build_view(view_key)
@@ -160,7 +177,26 @@ class DashboardApp:
                 "let wallboardMode = true;",
             )
 
-        @app.post("/api/action")
+        @app.post(
+            "/api/action",
+            responses={
+                202: {
+                    "description": "Action submitted for authorization",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "action": {"type": "string"},
+                                    "status": {"type": "string"},
+                                    "message": {"type": "string"},
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        )
         async def api_action(
             action: str = Query(..., description="Action to submit"),
         ) -> JSONResponse:
