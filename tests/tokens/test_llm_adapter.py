@@ -196,9 +196,6 @@ class TestRecordingsFromDir:
     """Recordings loaded from a directory."""
 
     def test_load_from_dir(self, tmp_path: Path) -> None:
-        import hashlib
-        import uuid
-
         clock = SeededClock()
         adapter = LLMAdapter("v1", "m1")
         messages = [{"role": "user", "content": "test"}]
@@ -292,7 +289,7 @@ def test_zero_live_network_calls() -> None:
     """
     import src.tokens.llm_adapter as mod
 
-    source = open(mod.__file__).read()
+    source = Path(mod.__file__).read_text()
     forbidden = ["import httpx", "import requests", "import openai",
                  "import aiohttp", "import urllib"]
     for fb in forbidden:
