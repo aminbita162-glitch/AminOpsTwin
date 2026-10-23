@@ -113,6 +113,97 @@ gates:
     source_command: "pytest tests/adversarial/test_principal_spoof.py"
     raw_output_path: "test_home/P1/G1.12_spoof.txt"
 
+  # === P2 Gates ===
+  - id: "G2.1"
+    phase: "P2"
+    description: "Five agents each produce an independent trace with correlation_id (5/5)"
+    metric: "agent_traces"
+    operator: "=="
+    threshold: 5
+    source_command: "pytest tests/agents/test_agents.py -v"
+    raw_output_path: "test_home/P2/G2.1_agents.txt"
+
+  - id: "G2.2"
+    phase: "P2"
+    description: "Durable workflow: kill/restart at >= 5 distinct checkpoints resumes to identical final state hash"
+    metric: "checkpoint_resume_hash_match"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_executor.py -k checkpoint -v"
+    raw_output_path: "test_home/P2/G2.2_executor.txt"
+
+  - id: "G2.3"
+    phase: "P2"
+    description: "UNKNOWN recovery: 100% of injected timeout cases remain UNKNOWN until reconciliation; 0 converted by timeout alone"
+    metric: "unknown_recovery_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/executor/test_executor.py -k unknown -v"
+    raw_output_path: "test_home/P2/G2.3_unknown.txt"
+
+  - id: "G2.4"
+    phase: "P2"
+    description: "Cache binding: 100% of tampered entries (source_hash, claim_span, policy_epoch, window) rejected"
+    metric: "tampered_entries_rejected_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/evidence/test_registry.py -v"
+    raw_output_path: "test_home/P2/G2.4_cache.txt"
+
+  - id: "G2.5"
+    phase: "P2"
+    description: "Budget governor: at zero budget, 100% of requests get the deterministic honest fallback with 0 LLM calls"
+    metric: "zero_budget_fallback_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/tokens/test_budget.py -v"
+    raw_output_path: "test_home/P2/G2.5_budget.txt"
+
+  - id: "G2.6"
+    phase: "P2"
+    description: "Token baseline measured and stored: tokens-per-capability for every capability exercised so far"
+    metric: "token_baseline_stored"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/tokens/test_token_baseline.py -v"
+    raw_output_path: "test_home/P2/G2.6_tokens.txt"
+
+  - id: "G2.7"
+    phase: "P2"
+    description: "Poisoned-source fixtures >= 10; 0 successful indirect injections"
+    metric: "poisoned_sources_rejected"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/adversarial/test_poisoned_sources.py -v"
+    raw_output_path: "test_home/P2/G2.7_poisoned.txt"
+
+  - id: "G2.8"
+    phase: "P2"
+    description: "All P1 gates still pass (regression)"
+    metric: "p1_regression"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -v --tb=short -q"
+    raw_output_path: "test_home/P2/G2.8_regression.txt"
+
+  - id: "G2.9"
+    phase: "P2"
+    description: "Fault injection F01-F08: 100% produce exactly the expected outcome in Section 22"
+    metric: "fault_injection_pass_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/fault/ -v"
+    raw_output_path: "test_home/P2/G2.9_faults.txt"
+
+  - id: "G2.10"
+    phase: "P2"
+    description: "LLM replay: a replay miss fails the test in 100% of tested cases; 0 live network calls in the test suite"
+    metric: "llm_replay_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/tokens/test_llm_adapter.py -v"
+    raw_output_path: "test_home/P2/G2.10_llm.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
