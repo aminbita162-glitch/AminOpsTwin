@@ -386,6 +386,34 @@ gates:
     source_command: "pytest tests/p4/test_preservation.py -v"
     raw_output_path: "test_home/P4/G4.16_preservation.txt"
 
+  # === P5 Gates ===
+  - id: "G4.7"
+    phase: "P5"
+    description: "Experiment designer: all analytical small reference cases return expected feasible candidates and ranking; prohibited specs denied; replay hashes match"
+    metric: "experiment_designer_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p5/test_experiment.py -v"
+    raw_output_path: "test_home/P5/G4.7_experiment.txt"
+
+  - id: "G4.8"
+    phase: "P5"
+    description: "Evidence impact: all fixture-defined affected artifacts identified; unrelated unflagged; historical signed bytes unchanged; cycles rejected"
+    metric: "evidence_impact_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p5/test_impact.py -v"
+    raw_output_path: "test_home/P5/G4.8_impact.txt"
+
+  - id: "G4.9"
+    phase: "P5"
+    description: "Next-experiment selection: zero budget violations; identical inputs reproduce identical selection; NOT_ESTIMABLE and held-out baseline reported without omitted failures"
+    metric: "next_experiment_selection_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p5/test_selection.py -v"
+    raw_output_path: "test_home/P5/G4.9_selection.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"

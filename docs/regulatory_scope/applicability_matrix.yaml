@@ -242,3 +242,52 @@ unresolved_questions:
   - "AI Act risk classification depends on final deployment context"
   - "German deployment law applicability requires independent review"
   - "Commercial use authorization requires separate deployment and legal approval"
+
+p5_capabilities:
+  - capability_id: "G4.7"
+    capability_name: "Bounded operational experiment designer"
+    intended_user_role: "Research operations analyst"
+    intended_purpose: "Design and rank bounded operational what-if experiments"
+    input_categories: ["baseline snapshots", "parameter ranges", "objectives"]
+    transformations: ["deterministic enumeration", "simulation", "ranking"]
+    outputs: ["ranked scenario ids", "metric deltas", "uncertainty reports"]
+    operational_decision_supported: "capacity planning experiment selection"
+    prohibited_uses: ["clinical/medical optimization", "individual patient prioritization"]
+    external_interfaces: ["ExperimentDesigner"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p5/test_experiment.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"
+
+  - capability_id: "G4.8"
+    capability_name: "Evidence-change impact tracking"
+    intended_user_role: "Evidence manager"
+    intended_purpose: "Track source changes and identify affected downstream artifacts"
+    input_categories: ["dependency graph", "change events"]
+    transformations: ["graph traversal", "impact propagation"]
+    outputs: ["impact events", "review flags"]
+    operational_decision_supported: "affected artifact identification"
+    prohibited_uses: ["rewriting historical signed reports"]
+    external_interfaces: ["ImpactTracker", "DependencyGraph"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p5/test_impact.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"
+
+  - capability_id: "G4.9"
+    capability_name: "Budgeted next-experiment selection"
+    intended_user_role: "Research operations analyst"
+    intended_purpose: "Select next experiment to reduce uncertainty under fixed budget"
+    input_categories: ["candidate experiments", "budget constraints"]
+    transformations: ["deterministic scoring", "budget allocation"]
+    outputs: ["selected experiment", "baseline comparison"]
+    operational_decision_supported: "experiment prioritization"
+    prohibited_uses: ["budget violation", "invented superiority percentages"]
+    external_interfaces: ["ExperimentSelector"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p5/test_selection.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"

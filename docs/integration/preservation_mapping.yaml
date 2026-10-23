@@ -96,3 +96,29 @@ unresolved_decisions:
   - "Gitleaks not installed (OQ-P1-005)"
   - "MDR/AI Act applicability requires independent legal review"
   - "Frontend technology selection for P7 dashboard requires owner decision"
+
+p5_preservation_mapping:
+  - original_section: "§33.1 Bounded operational experiment designer (P5 new)"
+    retained_location: "src/twin/experiment.py"
+    status: "added"
+
+  - original_section: "§33.2 Evidence-change impact tracking (P5 new)"
+    retained_location: "src/evidence/impact.py"
+    status: "added"
+
+  - original_section: "§33.3 Budgeted next-experiment selection (P5 new)"
+    retained_location: "src/twin/selection.py"
+    status: "added"
+
+p5_gate_reference_mapping:
+  - gate_id: "G4.7"
+    source_command: "pytest tests/p5/test_experiment.py"
+    status: "added_in_P5"
+
+  - gate_id: "G4.8"
+    source_command: "pytest tests/p5/test_impact.py"
+    status: "added_in_P5"
+
+  - gate_id: "G4.9"
+    source_command: "pytest tests/p5/test_selection.py"
+    status: "added_in_P5"

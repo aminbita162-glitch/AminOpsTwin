@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0 -- /Users/hermesdev/AminOpsTwin/.venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /Users/hermesdev/AminOpsTwin
+configfile: pyproject.toml
+plugins: cov-5.0.0, schemathesis-3.39.16, hypothesis-6.170.8, subtests-0.14.2, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 11 items
+
+tests/p5/test_experiment.py::TestExperimentDesign::test_basic_experiment_produces_candidates PASSED [  9%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_repeated_seeded_runs_reproduce_results PASSED [ 18%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_feasible_candidates_only_in_ranking PASSED [ 27%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_ranking_minimize_wait_time_ascending PASSED [ 36%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_ranking_maximize_throughput_descending PASSED [ 45%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_metric_deltas_reported PASSED [ 54%]
+tests/p5/test_experiment.py::TestExperimentDesign::test_uncertainty_reported PASSED [ 63%]
+tests/p5/test_experiment.py::TestProhibitedSpecifications::test_prohibited_term_in_description_denied PASSED [ 72%]
+tests/p5/test_experiment.py::TestProhibitedSpecifications::test_prohibited_term_diagnosis_denied PASSED [ 81%]
+tests/p5/test_experiment.py::TestProhibitedSpecifications::test_prohibited_term_treatment_denied PASSED [ 90%]
+tests/p5/test_experiment.py::TestExperimentReplay::test_replay_hash_stability_across_seeds PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    ref_error: type[Exception] = jsonschema.RefResolutionError,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 11 passed, 1 warning in 1.42s =========================
