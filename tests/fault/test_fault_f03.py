@@ -7,8 +7,8 @@ transaction is all-or-nothing.
 
 from __future__ import annotations
 
-import hashlib
 from src.executor import ExecutorState
+
 from tests.fault.infrastructure import CommitIntentExecutor
 
 

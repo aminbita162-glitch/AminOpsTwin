@@ -10,13 +10,11 @@ Provides the minimal executor extensions needed to test fault scenarios:
 
 from __future__ import annotations
 
-import datetime as _dt
 import hashlib
 import uuid
 from dataclasses import dataclass, field
 from typing import Any
 
-from src.contracts.canonical import canonical_hash
 from src.executor import ExecutorState, ExecutorStateMachine
 from src.tokens.fallback import FallbackReason, FallbackResponse, ReservationStatus
 

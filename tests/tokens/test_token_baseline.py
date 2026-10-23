@@ -23,7 +23,6 @@ from src.agents.a2 import AgentA2
 from src.agents.a3 import AgentA3
 from src.agents.a4 import AgentA4
 from src.agents.a5 import AgentA5
-from src.agents.base import AgentTrace
 from src.contracts.clock import SeededClock, SeededIdFactory
 from src.executor import ExecutorStateMachine
 from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
@@ -175,6 +174,6 @@ class TestTokenBaseline:
         if _RESULTS_PATH.exists():
             with _RESULTS_PATH.open() as f:
                 data = json.load(f)
-            for cap, info in data.get("capabilities", {}).items():
+            for _cap, info in data.get("capabilities", {}).items():
                 assert isinstance(info["tokens_used"], int)
                 assert info["tokens_used"] >= 0

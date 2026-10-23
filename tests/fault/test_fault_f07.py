@@ -7,9 +7,11 @@ timeout is handled exactly once.
 
 from __future__ import annotations
 
+import contextlib
 import uuid
 
-from src.tokens.fallback import FallbackReason, ReservationStatus
+from src.tokens.fallback import FallbackReason
+
 from tests.fault.infrastructure import LLMTimeoutSimulator
 
 
@@ -36,10 +38,8 @@ class TestF07LLMTimeout:
         policy_epoch = 0
 
         # First attempt times out
-        try:
+        with contextlib.suppress(TimeoutError):
             sim.call()
-        except TimeoutError:
-            pass
 
         # The fallback is returned without retrying
         fallback = sim.handle_timeout(correlation_id, policy_epoch)

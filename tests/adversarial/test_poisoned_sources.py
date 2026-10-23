@@ -92,9 +92,18 @@ def _detect_poison(source_text: str) -> str | None:
     # Distinguish direct vs indirect injection
     # Direct: starts with an imperative or override directive to the assistant
     direct_indicators = [
-        re.compile(r"^(ignore|system|instruction|override)\s*:", re.IGNORECASE),
-        re.compile(r"^(ignore|override|bypass)\s+(all\s+)?(previous|current|the)", re.IGNORECASE),
-        re.compile(r"^\[?(system\s+override|instruction)\]?\s*:", re.IGNORECASE),
+        re.compile(
+            r"^(ignore|system|instruction|override)\s*:",
+            re.IGNORECASE,
+        ),
+        re.compile(
+            r"^(ignore|override|bypass)\s+(all\s+)?(previous|current|the)",
+            re.IGNORECASE,
+        ),
+        re.compile(
+            r"^\[?(system\s+override|instruction)\]?\s*:",
+            re.IGNORECASE,
+        ),
         re.compile(r"^\[redacted\].*override", re.IGNORECASE),
         re.compile(r"override\s+current\s+policy", re.IGNORECASE),
         re.compile(r"bypass\s+the\s+policy\s+gateway", re.IGNORECASE),
@@ -146,7 +155,10 @@ class TestPoisonedSources:
     def test_fixture_structure(self) -> None:
         """Each fixture has the required fields."""
         sources = _load_poisoned_sources()
-        required_fields = {"id", "source_text", "poison_type", "expected_rejection_reason"}
+        required_fields = {
+            "id", "source_text", "poison_type",
+            "expected_rejection_reason",
+        }
         for source in sources:
             assert required_fields.issubset(source.keys()), (
                 f"Fixture {source.get('id', '?')} missing fields: "

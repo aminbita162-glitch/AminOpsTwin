@@ -242,9 +242,9 @@ class TestFiveAgents:
 
         # Use a gateway with epoch 1 but the envelope has epoch 0
         # so the epoch check fails and the envelope is denied.
-        from src.gateway.gateway import PolicyGateway as PG
+        from src.gateway.gateway import PolicyGateway
 
-        denied_gateway = PG(
+        denied_gateway = PolicyGateway(
             policy_matrix=PolicyMatrix(set()),
             current_epoch=1,
             schema_registry=set(),

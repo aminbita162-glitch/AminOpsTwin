@@ -7,8 +7,8 @@ the stored result without re-executing.
 
 from __future__ import annotations
 
-import uuid
 from src.contracts.canonical import canonical_hash
+
 from tests.fault.infrastructure import IdempotentDelivery
 
 

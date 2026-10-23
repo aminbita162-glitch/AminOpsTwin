@@ -7,6 +7,7 @@ sequence_no within the allowed window and delivers them in order.
 from __future__ import annotations
 
 import pytest
+
 from tests.fault.infrastructure import OrderedEvent, OrderedEventBuffer
 
 

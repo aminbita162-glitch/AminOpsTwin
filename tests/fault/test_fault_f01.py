@@ -8,6 +8,7 @@ valid checkpoint and the final state hash is identical to a clean run.
 from __future__ import annotations
 
 from src.executor import ExecutorState
+
 from tests.fault.infrastructure import CheckpointableExecutor
 
 
