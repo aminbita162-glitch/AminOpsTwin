@@ -9,20 +9,20 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 
 from src.contracts.canonical import canonical_hash
-from src.contracts.envelope import Envelope
 from src.contracts.clock import SeededClock
-from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
-from src.executor.memory import MemoryClass, MemoryStore
-from src.tokens.budget import BudgetGovernor, BudgetLevel
-from src.tokens.fallback import FallbackReason
-from src.twin.scenarios import load_default_scenarios
-from src.twin.simulation import SimulationEngine, ScenarioConfig
-from src.twin.pipeline import TokenPipeline
+from src.contracts.envelope import Envelope
 from src.enterprise.tenant import TenantGuard, TenantScope
+from src.executor.memory import MemoryClass, MemoryStore
+from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
+from src.tokens.budget import BudgetGovernor, BudgetLevel
+from src.twin.pipeline import TokenPipeline
+from src.twin.scenarios import load_default_scenarios
+from src.twin.simulation import ScenarioConfig, SimulationEngine
 
 __all__ = [
     "CapabilityResult",

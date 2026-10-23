@@ -10,11 +10,10 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from typing import Any
 from enum import StrEnum
+from typing import Any
 
 from src.tokens.fallback import (
-    HONESTY_STATEMENT,
     FallbackReason,
     ReservationStatus,
 )

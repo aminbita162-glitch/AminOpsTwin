@@ -11,7 +11,6 @@ successes).
 
 from __future__ import annotations
 
-import hashlib
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -138,8 +137,11 @@ class TenantGuard:
 
         Returns True if the access was denied (expected), False if
         it succeeded (which would be a security failure).
+
+        Does NOT pre-increment ``_cross_tenant_attempts`` — the
+        underlying :meth:`read` call already records the attempt
+        when it detects a tenant mismatch.
         """
-        self._cross_tenant_attempts += 1
         scope = TenantScope(
             tenant_id=requesting_tenant,
             policy_epoch=0,

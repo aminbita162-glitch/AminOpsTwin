@@ -8,12 +8,12 @@ from __future__ import annotations
 
 import hashlib
 import threading
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
-from src.twin.scenarios import load_default_scenarios
+from src.tokens.budget import BudgetGovernor
 from src.twin.pipeline import TokenPipeline
-from src.tokens.budget import BudgetGovernor, BudgetLevel
+from src.twin.scenarios import load_default_scenarios
 
 __all__ = [
     "LoadSmokeResult",
@@ -71,8 +71,6 @@ def run_load_smoke(
 
     # Run concurrent requests
     scenario_ids = library.scenario_ids
-    results_lock = threading.Lock()
-    all_results: list[TokenPipeline] = []  # type: ignore[type-arg]
 
     def worker(idx: int) -> None:
         sid = scenario_ids[idx % len(scenario_ids)]
