@@ -10,7 +10,7 @@ import hashlib
 
 import pytest
 from src.enterprise.tenant import TenantGuard, TenantScope
-from src.executor.memory import MemoryClass, MemoryStore
+from src.executor.memory import MemoryClass
 
 
 def _make_guard_with_tenants(
@@ -44,7 +44,6 @@ class TestTenantIsolation:
     def test_cross_tenant_read_denied(self) -> None:
         """Cross-tenant read is denied."""
         guard = _make_guard_with_tenants()
-        scope_a = TenantScope(tenant_id="tenant-00")
         scope_b = TenantScope(tenant_id="tenant-01")
         # tenant-00 owns rec-00-0000
         record = guard.read("rec-00-0000", scope_b)
@@ -70,15 +69,17 @@ class TestTenantIsolation:
             for requesting_tenant in range(5):
                 if owning_tenant == requesting_tenant:
                     continue
-                record_id = f"rec-{owning_tenant:02d}-0000"
-                denied = guard.attempt_cross_tenant(
-                    record_id,
-                    f"tenant-{owning_tenant:02d}",
-                    f"tenant-{requesting_tenant:02d}",
-                )
-                attempts += 1
-                if not denied:
-                    successes += 1
+                # Two records per tenant pair → 20 pairs × 2 = 40
+                for rec_idx in range(2):
+                    record_id = f"rec-{owning_tenant:02d}-{rec_idx:04d}"
+                    denied = guard.attempt_cross_tenant(
+                        record_id,
+                        f"tenant-{owning_tenant:02d}",
+                        f"tenant-{requesting_tenant:02d}",
+                    )
+                    attempts += 1
+                    if not denied:
+                        successes += 1
 
         assert attempts >= 40, (
             f"Need >= 40 attempts, got {attempts}"
