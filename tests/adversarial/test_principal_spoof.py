@@ -8,10 +8,7 @@ fails schema validation with GW-SCHEMA-001.
 
 from __future__ import annotations
 
-import uuid
-
 import pytest
-
 from src.contracts.canonical import canonical_hash
 from src.contracts.clock import SeededClock, SeededIdFactory
 from src.contracts.envelope import Envelope

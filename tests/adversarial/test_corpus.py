@@ -12,7 +12,6 @@ import json
 from pathlib import Path
 
 import pytest
-
 from src.contracts.reasons import is_known_code
 
 _CORPUS_PATH = (

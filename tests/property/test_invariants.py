@@ -6,20 +6,19 @@ Uses Hypothesis for property-based testing with fixed PYTHONHASHSEED.
 
 from __future__ import annotations
 
-import datetime as _dt
 import uuid
 
 import pytest
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
-
+from pydantic import ValidationError
 from src.contracts.canonical import (
     CanonicalError,
     canonical_bytes,
     canonical_hash,
 )
 from src.contracts.clock import SeededClock, SeededIdFactory
-from src.contracts.decision import Decision, DecisionRecord, Stage
+from src.contracts.decision import Decision
 from src.contracts.envelope import Envelope
 from src.gateway.gateway import (
     PolicyGateway,
@@ -35,12 +34,26 @@ from src.tokens.prefilter import (
 # --- Strategies ---
 
 # Canonical-safe payload values (no float, no NaN, no non-NFC)
-_canonical_scalar = st.one_of(
-    st.none(),
-    st.booleans(),
-    st.integers(min_value=-(2**53) + 1, max_value=2**53 - 1),
-    st.text(alphabet=st.characters(), min_size=0, max_size=20),
-)
+# Use a restricted alphabet to avoid non-NFC characters that Hypothesis
+# would otherwise generate (e.g. CJK compatibility ideographs, precomposed
+# Greek vowels). We use a custom filter on ASCII-safe characters.
+def _is_nfc_safe(s: str) -> bool:
+    """Return True if s contains only NFC-safe characters."""
+    import unicodedata
+    return all(
+        unicodedata.normalize("NFC", ch) == ch
+        for ch in s
+    )
+
+
+_ascii_text = st.text(
+    alphabet=st.characters(
+        whitelist_categories=("Lu", "Ll", "Nd", "Sm", "Sc", "Pc", "Pd", "Ps", "Pe"),
+        whitelist_characters=" -_",
+    ),
+    min_size=0,
+    max_size=20,
+).filter(_is_nfc_safe)
 
 _canonical_payload = st.recursive(
     st.one_of(
@@ -49,18 +62,12 @@ _canonical_payload = st.recursive(
         st.integers(
             min_value=-(2**53) + 1, max_value=2**53 - 1
         ),
-        st.text(min_size=0, max_size=20),
+        _ascii_text,
     ),
     lambda children: st.one_of(
         st.lists(children, min_size=0, max_size=5),
         st.dictionaries(
-            st.text(
-                alphabet=st.characters(
-                    whitelist_categories=("Lu", "Ll", "Nd"),
-                ),
-                min_size=1,
-                max_size=5,
-            ),
+            _ascii_text,
             children,
             min_size=0,
             max_size=3,
@@ -305,7 +312,7 @@ def test_canonical_determinism(payload: object) -> None:
 def test_envelope_frozen() -> None:
     """INV-014: attribute assignment raises after construction."""
     env = _make_envelope()
-    with pytest.raises(Exception):
+    with pytest.raises((ValidationError, TypeError, AttributeError)):
         env.tenant_id = "other-tenant"  # type: ignore[misc]
 
 
@@ -313,7 +320,7 @@ def test_envelope_frozen() -> None:
 
 def test_envelope_extra_forbid() -> None:
     """INV-015: unknown fields rejected at construction."""
-    with pytest.raises(Exception):
+    with pytest.raises((ValidationError, TypeError, ValueError)):
         Envelope(
             envelope_version="1.0",
             schema_id="ops.sim.scenario@1",
