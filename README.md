@@ -56,7 +56,7 @@ direct handle to the database or the Executor store (§3.3).
 | Phase | Description                          | Status      |
 |-------|--------------------------------------|-------------|
 | P1    | Foundation and Governance           | COMPLETE (CANDIDATE) |
-| P2    | Runtime Core and Evidence            | NOT STARTED |
+| P2    | Runtime Core and Evidence            | COMPLETE (CANDIDATE) |
 | P3    | Twin and Operational Simulation      | NOT STARTED |
 | P4    | Governed Knowledge and Memory       | NOT STARTED |
 | P5    | Operational Intelligence Capabilities | NOT STARTED |
