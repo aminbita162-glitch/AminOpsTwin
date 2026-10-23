@@ -10,6 +10,7 @@ import uuid
 
 from src.tokens.budget import BudgetGovernor, BudgetLevel
 from src.tokens.fallback import FallbackReason
+
 from tests.fault.infrastructure import ConcurrentBudgetBoundary
 
 

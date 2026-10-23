@@ -61,7 +61,7 @@ class TestF10EpochBumpMidWorkflow:
     def test_multiple_in_flight_all_revalidated(self) -> None:
         """All in-flight steps are revalidated."""
         handler = EpochBumpHandler()
-        for i in range(5):
+        for _i in range(5):
             handler.submit(envelope_epoch=0)
         handler.bump_epoch()
         handler.revalidate()

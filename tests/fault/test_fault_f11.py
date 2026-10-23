@@ -10,7 +10,6 @@ the complete product export workflow remains in P5 (§37).
 from __future__ import annotations
 
 import os
-import tempfile
 
 from tests.fault.infrastructure import AtomicExportWriter
 

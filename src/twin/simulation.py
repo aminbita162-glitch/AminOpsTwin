@@ -16,13 +16,11 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from src.twin.entities import (
-    Arrival,
     Queue,
     Resource,
-    ServiceCompletion,
     Site,
 )
-from src.twin.temporal import TemporalState, snapshot_hash
+from src.twin.temporal import TemporalState
 
 __all__ = [
     "ScenarioConfig",
@@ -79,7 +77,7 @@ class ScenarioResult:
     mean_wait_time: int = 0
     max_queue_length: int = 0
     total_events: int = 0
-    uncertainty: "UncertaintyReport | None" = None
+    uncertainty: UncertaintyReport | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from src.twin.delta import DeltaCompressor, StateDelta
 from src.twin.entities import (
     Arrival,
     EntityType,
@@ -11,7 +12,6 @@ from src.twin.entities import (
     ServiceCompletion,
     Site,
 )
-from src.twin.temporal import TemporalState, snapshot_hash
 from src.twin.simulation import (
     ReplayOracle,
     ScenarioConfig,
@@ -19,7 +19,7 @@ from src.twin.simulation import (
     SimulationEngine,
     UncertaintyReport,
 )
-from src.twin.delta import DeltaCompressor, StateDelta
+from src.twin.temporal import TemporalState, snapshot_hash
 
 __all__ = [
     # entities

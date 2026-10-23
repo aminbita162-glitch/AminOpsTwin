@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import os
 
-from src.tokens.budget import BudgetGovernor, BudgetLevel
+from src.tokens.budget import BudgetGovernor
 from src.twin.benchmark import (
     BENCHMARK_FIXTURE_PATH,
     generate_benchmark_suite,

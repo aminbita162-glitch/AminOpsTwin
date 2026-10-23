@@ -22,9 +22,9 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from src.tokens.budget import BudgetGovernor, BudgetLevel
-from src.tokens.fallback import FallbackReason, FallbackResponse
+from src.tokens.fallback import FallbackReason
 from src.tokens.prefilter import PreFilterStage
-from src.twin.scenarios import Scenario, ScenarioLibrary
+from src.twin.scenarios import ScenarioLibrary
 
 __all__ = [
     "PipelineResult",

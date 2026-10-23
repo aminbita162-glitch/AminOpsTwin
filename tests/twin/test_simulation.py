@@ -3,21 +3,21 @@
 from __future__ import annotations
 
 import pytest
+from pydantic import ValidationError
 from src.twin.entities import (
     Arrival,
+    OperationalSnapshot,
     Queue,
     Resource,
     ServiceCompletion,
     Site,
-    OperationalSnapshot,
 )
-from src.twin.temporal import TemporalState, snapshot_hash
 from src.twin.simulation import (
     ReplayOracle,
     ScenarioConfig,
     SimulationEngine,
-    UncertaintyReport,
 )
+from src.twin.temporal import TemporalState, snapshot_hash
 
 
 class TestEntities:
@@ -79,7 +79,7 @@ class TestEntities:
 
     def test_snapshot_is_immutable(self) -> None:
         snap = OperationalSnapshot(timestamp=0)
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             snap.timestamp = 1  # type: ignore[misc]
 
 

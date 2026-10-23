@@ -15,41 +15,31 @@ Capacity/temporal invariants:
 
 from __future__ import annotations
 
-from hypothesis import given, settings, HealthCheck, strategies as st
-
-from src.twin.entities import Queue, Resource, Site
-from src.twin.temporal import TemporalState, snapshot_hash
+from hypothesis import HealthCheck, given, settings
+from hypothesis import strategies as st
+from src.twin.entities import Queue, Site
 from src.twin.simulation import ScenarioConfig, SimulationEngine
-
+from src.twin.temporal import TemporalState, snapshot_hash
 
 # --- INV-CAP-001: queue.current_length <= queue.capacity ---
 
 
 def _check_queue_capacity(state: TemporalState) -> bool:
-    for q in state.queues.values():
-        if q.current_length > q.capacity:
-            return False
-    return True
+    return all(q.current_length <= q.capacity for q in state.queues.values())
 
 
 # --- INV-CAP-002: resource.available >= 0 ---
 
 
 def _check_resource_available(state: TemporalState) -> bool:
-    for r in state.resources.values():
-        if r.available < 0:
-            return False
-    return True
+    return all(r.available >= 0 for r in state.resources.values())
 
 
 # --- INV-CAP-003: completions <= arrivals ---
 
 
 def _check_completions_le_arrivals(state: TemporalState) -> bool:
-    for q in state.queues.values():
-        if q.total_completions > q.total_arrivals:
-            return False
-    return True
+    return all(q.total_completions <= q.total_arrivals for q in state.queues.values())
 
 
 # --- INV-TEMP-001: timestamps monotonically non-decreasing ---

@@ -522,9 +522,7 @@ class EpochBumpHandler:
 
     def commit(self) -> bool:
         """Attempt to commit; blocked until revalidation passes."""
-        if self._commit_blocked:
-            return False
-        return True
+        return not self._commit_blocked
 
 
 # ---------------------------------------------------------------------------
@@ -593,7 +591,7 @@ class AtomicExportWriter:
         Writes partial content to a temp file, then 'crashes'
         without renaming. The final name must not exist.
         """
-        final_path = os.path.join(self._base_dir, filename)
+        os.path.join(self._base_dir, filename)
         temp_fd, temp_path = tempfile.mkstemp(
             dir=self._base_dir,
             prefix=".tmp-export-",
