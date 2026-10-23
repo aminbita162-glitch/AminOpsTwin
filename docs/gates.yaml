@@ -433,6 +433,16 @@ gates:
     source_command: "pytest tests/p6/test_integrity.py tests/p6/test_scheduler.py -v"
     raw_output_path: "test_home/P6/G4.11_integrity.txt"
 
+  # === P7 Gates ===
+  - id: "G4.12"
+    phase: "P7"
+    description: "Dashboard correctness: all declared UI acceptance flows pass on the approved browser/viewport matrix; all attempted unauthorized UI/API actions deny; stale/UNKNOWN/demo indicators match authoritative state; no untested platform labeled verified"
+    metric: "dashboard_correctness_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p7/test_dashboard.py -v"
+    raw_output_path: "test_home/P7/G4.12_dashboard.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
