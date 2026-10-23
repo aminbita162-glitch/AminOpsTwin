@@ -295,6 +295,97 @@ gates:
     source_command: "pytest tests/fault/test_fault_f09.py tests/fault/test_fault_f10.py tests/fault/test_fault_f11.py tests/fault/test_fault_f12.py -v"
     raw_output_path: "test_home/P3/G3.10_faults.txt"
 
+  # === P4 Gates ===
+  - id: "G4.1"
+    phase: "P4"
+    description: "Scope completeness: 100% of new/changed capabilities have the Section 29 scope record"
+    metric: "scope_completeness_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/p4/test_scope.py -v"
+    raw_output_path: "test_home/P4/G4.1_scope.txt"
+
+  - id: "G4.2"
+    phase: "P4"
+    description: "Source rights and provenance: 100% of active source versions have complete approval, provenance and rights records"
+    metric: "source_rights_complete_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/p4/test_source_rights.py -v"
+    raw_output_path: "test_home/P4/G4.2_source_rights.txt"
+
+  - id: "G4.3"
+    phase: "P4"
+    description: "Ingestion security: all declared injection, redirect, oversized-input, unsupported-field and non-English-content fixtures are rejected/quarantined"
+    metric: "ingestion_security_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_ingestion.py -v"
+    raw_output_path: "test_home/P4/G4.3_ingestion.txt"
+
+  - id: "G4.4"
+    phase: "P4"
+    description: "Memory isolation: all cross-tenant, cross-task and revoked-access fixtures denied; zero unauthorized reads or writes"
+    metric: "memory_isolation_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_memory.py -v"
+    raw_output_path: "test_home/P4/G4.4_memory.txt"
+
+  - id: "G4.5"
+    phase: "P4"
+    description: "Memory reconstruction: event replay and projection rebuild reproduce expected ordered ids and state hashes exactly"
+    metric: "memory_reconstruction_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_memory.py -k 'replay or reconstruction or projection' -v"
+    raw_output_path: "test_home/P4/G4.5_reconstruction.txt"
+
+  - id: "G4.6"
+    phase: "P4"
+    description: "Experience promotion: zero unauthorized promotions; every active experience record links to complete evaluation and owner approval"
+    metric: "experience_promotion_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_experience.py -v"
+    raw_output_path: "test_home/P4/G4.6_experience.txt"
+
+  - id: "G4.13"
+    phase: "P4"
+    description: "Transparency and accounting: all response types contain unified metadata fields; measured reservations reconcile; zero false zero-token claims"
+    metric: "transparency_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_transparency.py -v"
+    raw_output_path: "test_home/P4/G4.13_transparency.txt"
+
+  - id: "G4.14"
+    phase: "P4"
+    description: "Regression and token evaluation: all final P1-P3 gates pass; original token benchmark rerun separately reported"
+    metric: "regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -v --tb=short -q"
+    raw_output_path: "test_home/P4/G4.14_regression.txt"
+
+  - id: "G4.15"
+    phase: "P4"
+    description: "Regulatory and release applicability: every new/changed capability covered by dated applicability matrix"
+    metric: "regulatory_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_regulatory.py -v"
+    raw_output_path: "test_home/P4/G4.15_regulatory.txt"
+
+  - id: "G4.16"
+    phase: "P4"
+    description: "Preservation and references: every original requirement maps to a retained final location or explicitly approved replacement; zero unexplained omissions"
+    metric: "preservation_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p4/test_preservation.py -v"
+    raw_output_path: "test_home/P4/G4.16_preservation.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"

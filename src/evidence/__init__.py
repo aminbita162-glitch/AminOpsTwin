@@ -1,14 +1,39 @@
-"""Evidence package — registry with cache binding (§3.10, G2.4).
+"""Evidence package — source rights, ingestion, registry with cache binding (P4).
 
-The Evidence Registry stores evidence entries keyed by a cryptographic
-outer key. Cache binding detects tampering with source_hash, claim_span,
-policy_epoch, or retrieval_window after storage (G2.4, GW-EVID-001).
+Source rights and provenance (§30, G4.2): SourceRegistry with lifecycle.
+Ingestion security (§30.4, G4.3): SourceIngestor with injection guards.
+Evidence registry (§3.10, G2.4): EvidenceRegistry with cache binding.
 """
 
+from src.evidence.ingestion import (
+    IngestionOutcome,
+    IngestionResult,
+    SourceIngestor,
+)
 from src.evidence.registry import (
     EvidenceEntry,
     EvidenceKey,
     EvidenceRegistry,
 )
+from src.evidence.source_rights import (
+    SourceRecord,
+    SourceRegistry,
+    SourceRegistryError,
+    SourceStatus,
+)
 
-__all__ = ["EvidenceKey", "EvidenceEntry", "EvidenceRegistry"]
+__all__ = [
+    # source rights
+    "SourceStatus",
+    "SourceRecord",
+    "SourceRegistry",
+    "SourceRegistryError",
+    # ingestion
+    "SourceIngestor",
+    "IngestionResult",
+    "IngestionOutcome",
+    # evidence registry
+    "EvidenceKey",
+    "EvidenceEntry",
+    "EvidenceRegistry",
+]

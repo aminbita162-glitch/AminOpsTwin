@@ -1,0 +1,244 @@
+# Regulatory Applicability Matrix (§29, G4.15)
+#
+# Dated applicability assessment for AminOpsTwin operational capabilities.
+# This is an evidence task, not a claim that all EU/German legal requirements
+# have been certified. An independent competent review of the actual product,
+# interfaces, intended use and sales claims is required before commercial
+# release. Unresolved classification is recorded; the affected release/use
+# is not declared approved. Legal review cannot be replaced by a keyword
+# scanner or an LLM vote.
+#
+# Reference date: October 23, 2026. Recheck current versions and terms at
+# activation and before release.
+
+version: "1.0"
+assessment_date: "2026-10-23"
+scope: "AminOpsTwin — Operational Cognitive Digital Twin for Clinical Research Operations (non-medical)"
+
+applicable_regulations:
+  - regulation: "MDR Regulation (EU) 2017/745"
+    source_url: "https://eur-lex.europa.eu/eli/reg/2017/745/oj/eng"
+    applicability: "not-applicable-pending-review"
+    rationale: >-
+      AminOpsTwin is a non-medical operational planning tool. It does not
+      perform diagnosis, prognosis, treatment recommendation, or individual
+      risk scoring. MDR qualification requires independent legal review of
+      the actual product and intended use. Engineering testing is not legal
+      clearance. Status is not-applicable-pending-review, not excluded_confirmed.
+
+  - regulation: "EU AI Act Regulation (EU) 2024/1689"
+    source_url: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng"
+    applicability: "undetermined"
+    rationale: >-
+      AI Act applicability depends on the final intended use, risk
+      classification, and deployment context. Not determined at P4
+      engineering stage. Requires independent legal review before
+      commercial release.
+
+  - regulation: "GDPR (Regulation (EU) 2016/679)"
+    source_url: "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng"
+    applicability: "applicable"
+    rationale: >-
+      Account/telemetry data and operational usage data may be personal data
+      under GDPR even though patient data is prohibited. Applicable obligations
+      are not excluded by naming them out of scope. Deployment must implement
+      data protection by design and by default.
+
+  - regulation: "Cybersecurity (NIS2 Directive 2022/2555)"
+    source_url: "https://eur-lex.europa.eu/eli/dir/2022/2555/oj/eng"
+    applicability: "undetermined"
+    rationale: >-
+      Applicability depends on deployment context and whether the operator
+      falls under essential/important entity classification. Not determined
+      at P4 engineering stage.
+
+  - regulation: "German MDR/VdM implementation context"
+    source_url: ""
+    applicability: "undetermined"
+    rationale: >-
+      German national implementation and applicable deployment law require
+      independent review of the actual deployment. Not determined at P4
+      engineering stage.
+
+entries:
+  - capability_id: "R27"
+    capability_name: "Source provenance tracking"
+    intended_user_role: "Research operations manager"
+    intended_purpose: "Track licensed source provenance and rights"
+    input_categories: ["licensed public source metadata"]
+    transformations: ["lifecycle tracking", "provenance recording"]
+    outputs: ["source provenance records", "rights status"]
+    operational_decision_supported: "source admission to evidence cache"
+    prohibited_uses: ["unapproved source activation", "license bypass"]
+    external_interfaces: ["source_allowlist.yaml"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_source_rights.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"
+
+  - capability_id: "R28"
+    capability_name: "Event-sourced memory"
+    intended_user_role: "Research operations analyst"
+    intended_purpose: "Store and retrieve deterministic operational memory"
+    input_categories: ["operational events", "task snapshots"]
+    transformations: ["event sourcing", "memory projection"]
+    outputs: ["ordered memory records", "state hashes"]
+    operational_decision_supported: "memory isolation and replay"
+    prohibited_uses: ["cross-tenant access", "unauthorized reads"]
+    external_interfaces: ["MemoryStore"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_memory.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"
+
+  - capability_id: "R29"
+    capability_name: "Experience promotion"
+    intended_user_role: "Research operations engineer"
+    intended_purpose: "Governed reuse of operational patterns"
+    input_categories: ["structured experience records"]
+    transformations: ["lifecycle promotion", "evaluation tracking"]
+    outputs: ["approved experience records"]
+    operational_decision_supported: "pattern reuse authorization"
+    prohibited_uses: ["unauthorized promotion", "weight updates"]
+    external_interfaces: ["ExperienceStore"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_experience.py"
+    reviewer: "[OWNER-FILL]"
+    status: "IMPLEMENTED_UNVERIFIED"
+
+  - capability_id: "R30"
+    capability_name: "Weekly assurance scheduler"
+    intended_user_role: "Quality assurance officer"
+    intended_purpose: "Weekly zero-model assurance checks"
+    input_categories: ["scheduled job policies"]
+    transformations: ["deterministic scheduling"]
+    outputs: ["assurance reports"]
+    operational_decision_supported: "weekly check execution"
+    prohibited_uses: ["model calls in weekly checks", "destructive tests on production"]
+    external_interfaces: ["assurance/"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_transparency.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N16"
+    capability_name: "Dashboard overview view"
+    intended_user_role: "Research operations viewer"
+    intended_purpose: "Display synthetic/demo status and resource capacity"
+    input_categories: ["operational snapshot data"]
+    transformations: ["read-only display"]
+    outputs: ["overview dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access", "clinical data display"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_scope.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N17"
+    capability_name: "Scenario comparison view"
+    intended_user_role: "Research operations analyst"
+    intended_purpose: "Display baseline, deltas, assumptions and uncertainty"
+    input_categories: ["scenario results"]
+    transformations: ["read-only comparison display"]
+    outputs: ["scenario comparison dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access", "patient data display"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_scope.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N18"
+    capability_name: "Evidence view"
+    intended_user_role: "Evidence manager"
+    intended_purpose: "Display source versions, rights status and claim-to-source paths"
+    input_categories: ["evidence registry data"]
+    transformations: ["read-only display"]
+    outputs: ["evidence dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_scope.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N19"
+    capability_name: "Workflow state view"
+    intended_user_role: "Operations manager"
+    intended_purpose: "Display current state and reconciliation status"
+    input_categories: ["executor state"]
+    transformations: ["read-only display"]
+    outputs: ["workflow dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_scope.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N20"
+    capability_name: "Budget view"
+    intended_user_role: "Operations manager"
+    intended_purpose: "Display remaining, reserved and actual budget counters"
+    input_categories: ["budget governor state"]
+    transformations: ["read-only display"]
+    outputs: ["budget dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_transparency.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N21"
+    capability_name: "Assurance view"
+    intended_user_role: "Quality assurance officer"
+    intended_purpose: "Display latest attempt, last successful check and stale status"
+    input_categories: ["assurance job results"]
+    transformations: ["read-only display"]
+    outputs: ["assurance dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_transparency.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+  - capability_id: "N22"
+    capability_name: "Experience view"
+    intended_user_role: "Research operations engineer"
+    intended_purpose: "Display candidate versus active versions and promotion evidence"
+    input_categories: ["experience store records"]
+    transformations: ["read-only display"]
+    outputs: ["experience dashboard"]
+    operational_decision_supported: "none (read-only)"
+    prohibited_uses: ["raw database access"]
+    external_interfaces: ["dashboard API"]
+    medical_device_interaction: "none"
+    marketing_claims: "none"
+    boundary_tests: "tests/p4/test_experience.py"
+    reviewer: "[OWNER-FILL]"
+    status: "SPECIFIED"
+
+unresolved_questions:
+  - "MDR qualification requires independent legal review of actual product"
+  - "AI Act risk classification depends on final deployment context"
+  - "German deployment law applicability requires independent review"
+  - "Commercial use authorization requires separate deployment and legal approval"

@@ -20,6 +20,17 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from src.contracts.canonical import canonical_hash
 from src.contracts.clock import Clock, SeededClock
+from src.executor.experience import (
+    ExperienceRecord,
+    ExperienceStatus,
+    ExperienceStore,
+)
+from src.executor.memory import (
+    MemoryClass,
+    MemoryRecord,
+    MemoryStore,
+    RetentionClass,
+)
 
 __all__ = [
     "ExecutorState",
@@ -27,6 +38,15 @@ __all__ = [
     "Checkpoint",
     "WorkflowRecord",
     "DurableExecutor",
+    # P4 memory
+    "MemoryClass",
+    "RetentionClass",
+    "MemoryRecord",
+    "MemoryStore",
+    # P4 experience
+    "ExperienceStatus",
+    "ExperienceRecord",
+    "ExperienceStore",
 ]
 
 

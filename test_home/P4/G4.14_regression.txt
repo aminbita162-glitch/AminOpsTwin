@@ -1,0 +1,94 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/hermesdev/AminOpsTwin
+configfile: pyproject.toml
+plugins: cov-5.0.0, schemathesis-3.39.16, hypothesis-6.170.8, subtests-0.14.2, anyio-4.15.1, platformdirs-4.13.5
+collected 784 items
+
+tests/adversarial/test_corpus.py ....................................... [  4%]
+........................................................................ [ 14%]
+........................................................................ [ 23%]
+........................................................................ [ 32%]
+...................................................................      [ 41%]
+tests/adversarial/test_poisoned_sources.py .................             [ 43%]
+tests/adversarial/test_principal_spoof.py ..........                     [ 44%]
+tests/agents/test_agents.py .......                                      [ 45%]
+tests/evidence/test_registry.py .............                            [ 47%]
+tests/executor/test_executor.py ......................................   [ 51%]
+tests/fault/test_fault_f01.py ...                                        [ 52%]
+tests/fault/test_fault_f02.py ...                                        [ 52%]
+tests/fault/test_fault_f03.py ...                                        [ 53%]
+tests/fault/test_fault_f04.py ...                                        [ 53%]
+tests/fault/test_fault_f05.py .....                                      [ 54%]
+tests/fault/test_fault_f06.py ....                                       [ 54%]
+tests/fault/test_fault_f07.py ....                                       [ 55%]
+tests/fault/test_fault_f08.py ......                                     [ 55%]
+tests/fault/test_fault_f09.py ....                                       [ 56%]
+tests/fault/test_fault_f10.py .....                                      [ 57%]
+tests/fault/test_fault_f11.py .....                                      [ 57%]
+tests/fault/test_fault_f12.py .........                                  [ 58%]
+tests/gateway/test_deny_default.py ...                                   [ 59%]
+tests/gateway/test_gateway.py .............                              [ 60%]
+tests/gateway/test_gateway_purity.py ..                                  [ 61%]
+tests/p4/test_experience.py ............                                 [ 62%]
+tests/p4/test_ingestion.py ...........................                   [ 66%]
+tests/p4/test_memory.py .....................                            [ 68%]
+tests/p4/test_preservation.py ......                                     [ 69%]
+tests/p4/test_regulatory.py ....                                         [ 70%]
+tests/p4/test_scope.py ..                                                [ 70%]
+tests/p4/test_source_rights.py .......................                   [ 73%]
+tests/p4/test_transparency.py ..............                             [ 75%]
+tests/property/test_invariants.py ..................                     [ 77%]
+tests/test_canonical_vectors.py ........................................ [ 82%]
+.                                                                        [ 82%]
+tests/test_forbidden_scan.py ....                                        [ 83%]
+tests/test_schema_scan.py ....                                           [ 83%]
+tests/tokens/test_budget.py .......................                      [ 86%]
+tests/tokens/test_fallback.py .......................................... [ 91%]
+.                                                                        [ 91%]
+tests/tokens/test_llm_adapter.py ...............                         [ 93%]
+tests/tokens/test_token_baseline.py ...                                  [ 94%]
+tests/twin/test_benchmark.py ..........                                  [ 95%]
+tests/twin/test_delta.py .......                                         [ 96%]
+tests/twin/test_invariants.py ......                                     [ 97%]
+tests/twin/test_simulation.py ...............                            [ 99%]
+tests/unit/test_prefilter.py .......                                     [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    ref_error: type[Exception] = jsonschema.RefResolutionError,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+--------- coverage: platform darwin, python 3.12.13-final-0 ----------
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+src/agents/base.py                 60      2      8      3    93%   51, 58, 139->141
+src/contracts/canonical.py         58      7     34      7    85%   58, 65, 69, 94, 104, 113, 118
+src/contracts/clock.py             48     11      6      1    74%   37, 45, 52, 59, 71, 80, 107, 115-121
+src/contracts/decision.py          43      3      6      3    88%   69, 71, 78
+src/contracts/envelope.py         100     11     26      9    84%   78, 87, 97, 106, 116, 123, 132, 149, 157, 161, 167, 180->exit
+src/contracts/reasons.py           41      4      2      0    91%   193, 211, 221, 226
+src/evidence/ingestion.py          86      3     28      2    96%   185, 251, 320
+src/evidence/registry.py           87      6     18      5    90%   50, 86, 95, 104, 113, 239
+src/evidence/source_rights.py     103      6     20      4    92%   112, 121, 127, 169, 204, 228
+src/executor/experience.py         88      8     26      4    89%   96, 157, 177, 194, 212, 214, 218, 221
+src/executor/memory.py            123      4     18      3    95%   106, 210, 262, 346
+src/gateway/gateway.py             63      9     16      0    86%   75, 84-86, 106, 118, 121, 146, 264
+src/tokens/budget.py               85      1     32      1    98%   142
+src/tokens/fallback.py             42      0      2      0   100%
+src/tokens/llm_adapter.py          76      3     16      4    92%   64, 73, 113->117, 185
+src/tokens/prefilter.py            13      0      0      0   100%
+src/twin/benchmark.py              45     12     10      1    69%   73, 107-110, 114-116, 120-122, 125
+src/twin/delta.py                  63      6     14      4    84%   65, 103, 108-110, 116->114, 191
+src/twin/entities.py               60      0      0      0   100%
+src/twin/pipeline.py               85     15     14      5    80%   51, 102->105, 115-118, 138-140, 147-157, 169->174
+src/twin/scenarios.py              77     17      6      1    73%   66, 97, 130, 136-139, 150-162, 187
+src/twin/simulation.py            138      5     32      3    95%   51, 83, 117, 221, 248->254, 386
+src/twin/temporal.py               98      6      4      2    92%   71, 75, 79, 83, 119->130, 155->165, 187, 191
+---------------------------------------------------------------------------
+TOTAL                            1682    139    338     62    89%
+Coverage HTML written to dir htmlcov
+
+================== 784 passed, 1 warning in 80.88s (0:01:20) ===================
