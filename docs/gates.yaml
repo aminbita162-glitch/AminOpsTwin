@@ -1,0 +1,196 @@
+# gates.yaml — machine-readable mirror of Section 8 gates (schema §8.4)
+# Each gate has: id, phase, description, metric, operator, threshold, source_command, raw_output_path
+
+version: "1.0"
+
+gates:
+  # === P1 Gates ===
+  - id: "G1.1"
+    phase: "P1"
+    description: "Gateway branch coverage >= 95%"
+    metric: "branch_coverage_pct"
+    operator: ">="
+    threshold: 95
+    source_command: "pytest --cov=src/gateway --cov-report=term-missing --cov-branch tests/gateway/"
+    raw_output_path: "test_home/P1/G1.1_coverage.txt"
+
+  - id: "G1.2"
+    phase: "P1"
+    description: "Gateway purity: 1000 repeated calls on the same input give the same output"
+    metric: "purity_repetitions_identical"
+    operator: "=="
+    threshold: 1000
+    source_command: "pytest tests/gateway/test_gateway_purity.py -k purity_1000"
+    raw_output_path: "test_home/P1/G1.2_purity.txt"
+
+  - id: "G1.3"
+    phase: "P1"
+    description: "Adversarial corpus >= 60 cases (>= 25 CLIN, >= 15 INJ, >= 10 SCHEMA, >= 5 AUTH, >= 5 IDEM); 100% denied with EXACT reason codes"
+    metric: "corpus_cases_denied_exact"
+    operator: "=="
+    threshold: 80
+    source_command: "pytest tests/adversarial/"
+    raw_output_path: "test_home/P1/G1.3_corpus.txt"
+
+  - id: "G1.4"
+    phase: "P1"
+    description: "Deny-by-default: unknown action/schema_id/envelope_type => GW-DEFAULT-001"
+    metric: "deny_by_default_count"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/gateway/test_deny_default.py"
+    raw_output_path: "test_home/P1/G1.4_deny.txt"
+
+  - id: "G1.5"
+    phase: "P1"
+    description: "Zero gitleaks findings; secrets baseline committed"
+    metric: "gitleaks_findings"
+    operator: "=="
+    threshold: 0
+    source_command: "gitleaks detect --source . --no-banner"
+    raw_output_path: "test_home/P1/G1.5_gitleaks.txt"
+
+  - id: "G1.6"
+    phase: "P1"
+    description: "mypy --strict: 0 errors in core packages"
+    metric: "mypy_errors"
+    operator: "=="
+    threshold: 0
+    source_command: "mypy --strict src/contracts src/gateway src/executor src/tokens"
+    raw_output_path: "test_home/P1/G1.6_mypy.txt"
+
+  - id: "G1.7"
+    phase: "P1"
+    description: "import-linter: 0 LLM-library and 0 network imports in the Gateway package"
+    metric: "import_linter_violations"
+    operator: "=="
+    threshold: 0
+    source_command: "lint-imports"
+    raw_output_path: "test_home/P1/G1.7_import_linter.txt"
+
+  - id: "G1.8"
+    phase: "P1"
+    description: "Invariant catalog >= 15 invariants, each with a property test (§24.1)"
+    metric: "invariant_count"
+    operator: ">="
+    threshold: 15
+    source_command: "pytest tests/property/test_invariants.py"
+    raw_output_path: "test_home/P1/G1.8_invariants.txt"
+
+  - id: "G1.9"
+    phase: "P1"
+    description: "Pre-filter order test (skeleton) passes"
+    metric: "prefilter_order_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/unit/test_prefilter.py"
+    raw_output_path: "test_home/P1/G1.9_prefilter.txt"
+
+  - id: "G1.10"
+    phase: "P1"
+    description: "Mutation score on the Gateway package >= 80% (calibrated to 90%)"
+    metric: "mutation_score_pct"
+    operator: ">="
+    threshold: 80
+    source_command: "mutmut run --paths-to-mutate src/gateway"
+    raw_output_path: "test_home/P1/G1.10_mutmut.txt"
+
+  - id: "G1.11"
+    phase: "P1"
+    description: "Canonical vectors: 100% of >= 30 vectors reproduce the exact bytes and hash (§24.5)"
+    metric: "canonical_vectors_pass_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/test_canonical_vectors.py"
+    raw_output_path: "test_home/P1/G1.11_canonical.txt"
+
+  - id: "G1.12"
+    phase: "P1"
+    description: "Principal-spoofing tests: 100% of attempts to assert an identity through message content are denied (T15)"
+    metric: "spoofing_denied_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/adversarial/test_principal_spoof.py"
+    raw_output_path: "test_home/P1/G1.12_spoof.txt"
+
+  # === Common Gates (apply in EVERY phase) ===
+  - id: "C1"
+    phase: "P1"
+    description: "Binding files match the signed manifest"
+    metric: "manifest_match"
+    operator: "=="
+    threshold: 1
+    source_command: "bash scripts/verify_manifest.sh"
+    raw_output_path: "test_home/P1/C1_manifest.txt"
+
+  - id: "C2"
+    phase: "P1"
+    description: "Commit-message format: 100% of commits of the phase match the regex in §21.3"
+    metric: "commit_regex_pass_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "python3 scripts/check_commits.py P1"
+    raw_output_path: "test_home/P1/C2_commits.txt"
+
+  - id: "C3"
+    phase: "P1"
+    description: "Every ID referenced in a commit exists in capability_catalog.yaml, gates.yaml, or the section index"
+    metric: "commit_refs_valid_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "python3 scripts/check_commits.py P1"
+    raw_output_path: "test_home/P1/C3_refs.txt"
+
+  - id: "C4"
+    phase: "P1"
+    description: "Every gate and every capability due in the phase is referenced by at least one commit of the phase"
+    metric: "due_gates_referenced_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "python3 scripts/check_commits.py P1"
+    raw_output_path: "test_home/P1/C4_due.txt"
+
+  - id: "C5"
+    phase: "P1"
+    description: "Schema field scan clean, canary detected (§24.3); forbidden-pattern scan clean (§13.6)"
+    metric: "schema_scan_clean"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/test_schema_scan.py tests/test_forbidden_scan.py"
+    raw_output_path: "test_home/P1/C5_scan.txt"
+
+  - id: "C6"
+    phase: "P1"
+    description: "No skipped/xfail test without an owner-approved entry in /docs/test_exceptions.md"
+    metric: "unapproved_skips"
+    operator: "=="
+    threshold: 0
+    source_command: "python3 scripts/check_skips.py"
+    raw_output_path: "test_home/P1/C6_skips.txt"
+
+  - id: "C7"
+    phase: "P1"
+    description: "Linear history: zero merge commits, no force-push evidence (§21.4); tags present (§21.6)"
+    metric: "merge_commits"
+    operator: "=="
+    threshold: 0
+    source_command: "git log --oneline --merges"
+    raw_output_path: "test_home/P1/C7_linear.txt"
+
+  - id: "C8"
+    phase: "P1"
+    description: "Bisectability sample: min(total commits, max(5, ceiling(10% of total))) deterministically selected phase commits each pass the smoke subset (§21.5)"
+    metric: "bisect_sample_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "python3 scripts/check_commits.py P1 --bisect"
+    raw_output_path: "test_home/P1/C8_bisect.txt"
+
+  - id: "C9"
+    phase: "P1"
+    description: "gitleaks 0 findings; pip-audit 0 high/critical findings (exceptions only via an owner-approved entry)"
+    metric: "security_findings"
+    operator: "=="
+    threshold: 0
+    source_command: "gitleaks detect --source . --no-banner; pip-audit --strict"
+    raw_output_path: "test_home/P1/C9_security.txt"

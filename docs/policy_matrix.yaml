@@ -1,0 +1,59 @@
+# policy_matrix.yaml (§3.8)
+# Deny-by-default allow-list of (principal, envelope_type, capability).
+# Least privilege: each principal may emit only the envelope types required
+# by its responsibilities in §3.4.
+# A combination not listed => DENY GW-AUTH-001.
+
+version: "1.0"
+policy_epoch: 0
+
+# Principal responsibilities (§3.4):
+# A1: ingest and normalize synthetic operational data and licensed public material
+# A2: operational entities, temporal state, discrete-event/queueing simulation, scenarios
+# A3: evidence registry, claim-to-source binding, evidence retrieval, operations analytics
+# A4: governance checks, quality checks, boundary review, invariant monitoring, escalation
+# A5: workflow orchestration, routing, budget-aware planning, delegating to A1-A4
+
+entries:
+  - principal: "A1"
+    envelope_type: "synthetic_fixture"
+    capability: "ingest"
+  - principal: "A1"
+    envelope_type: "synthetic_fixture"
+    capability: "normalize"
+  - principal: "A2"
+    envelope_type: "scenario"
+    capability: "simulate"
+  - principal: "A2"
+    envelope_type: "baseline"
+    capability: "simulate"
+  - principal: "A2"
+    envelope_type: "capacity_report"
+    capability: "generate"
+  - principal: "A2"
+    envelope_type: "queue_report"
+    capability: "generate"
+  - principal: "A3"
+    envelope_type: "evidence_query"
+    capability: "query"
+  - principal: "A3"
+    envelope_type: "evidence_result"
+    capability: "retrieve"
+  - principal: "A4"
+    envelope_type: "assurance_weekly"
+    capability: "schedule"
+  - principal: "A4"
+    envelope_type: "gateway_decision"
+    capability: "audit"
+  - principal: "A5"
+    envelope_type: "scenario"
+    capability: "orchestrate"
+  - principal: "A5"
+    envelope_type: "evidence_query"
+    capability: "route"
+  - principal: "S1"
+    envelope_type: "gateway_decision"
+    capability: "evaluate"
+  - principal: "S2"
+    envelope_type: "executor_transition"
+    capability: "persist"

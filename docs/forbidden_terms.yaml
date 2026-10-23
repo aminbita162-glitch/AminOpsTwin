@@ -1,0 +1,98 @@
+# forbidden_terms.yaml (§2.6)
+# Terms and structures forbidden in operational model fields and outputs.
+# Each entry has an expected reason code and at least one negative test.
+# The forbidden-pattern scan (§13.6) and schema field scan (§24.3) use this list.
+
+version: "1.0"
+
+forbidden_terms:
+  - term: "patient"
+    reason_code: "GW-CLIN-001"
+    rationale: "Individual patient state is forbidden (§2.2, N-1)"
+    negative_test: "tests/adversarial/test_clinical.py::test_patient_term_denied"
+
+  - term: "diagnosis"
+    reason_code: "GW-CLIN-001"
+    rationale: "Diagnosis is a forbidden clinical category (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_diagnosis_denied"
+
+  - term: "prognosis"
+    reason_code: "GW-CLIN-001"
+    rationale: "Prognosis is a forbidden clinical category (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_prognosis_denied"
+
+  - term: "treatment"
+    reason_code: "GW-CLIN-001"
+    rationale: "Treatment recommendation is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_treatment_denied"
+
+  - term: "dose"
+    reason_code: "GW-CLIN-001"
+    rationale: "Dose recommendation is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_dose_denied"
+
+  - term: "prescription"
+    reason_code: "GW-CLIN-001"
+    rationale: "Prescription implies medical decision (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_prescription_denied"
+
+  - term: "eligibility"
+    reason_code: "GW-CLIN-001"
+    rationale: "Individual eligibility decision is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_eligibility_denied"
+
+  - term: "triage"
+    reason_code: "GW-CLIN-001"
+    rationale: "Clinical triage is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_triage_denied"
+
+  - term: "symptom"
+    reason_code: "GW-CLIN-001"
+    rationale: "Symptom-based modeling is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_symptom_denied"
+
+  - term: "medical_advice"
+    reason_code: "GW-CLIN-001"
+    rationale: "Medical advice output is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_medical_advice_denied"
+
+  - term: "pharmacokinetics"
+    reason_code: "GW-CLIN-001"
+    rationale: "Pharmacokinetics is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_pharmacokinetics_denied"
+
+  - term: "physiology"
+    reason_code: "GW-CLIN-001"
+    rationale: "Individual physiology is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_physiology_denied"
+
+  - term: "issuer"
+    reason_code: "GW-SCHEMA-001"
+    rationale: "issuer key in payload is forbidden (§3.5.1)"
+    negative_test: "tests/adversarial/test_schema.py::test_issuer_key_denied"
+
+  - term: "ignore_previous_instructions"
+    reason_code: "GW-INJ-001"
+    rationale: "Direct instruction-override attempt (§2.2, T01)"
+    negative_test: "tests/adversarial/test_injection.py::test_direct_override_denied"
+
+  - term: "disregard_all_prior"
+    reason_code: "GW-INJ-001"
+    rationale: "Direct instruction-override attempt (T01)"
+    negative_test: "tests/adversarial/test_injection.py::test_disregard_prior_denied"
+
+forbidden_structures:
+  - structure: "per_person_record"
+    reason_code: "GW-CLIN-002"
+    rationale: "Modeling individual patient state is forbidden (§2.2, N-1)"
+    negative_test: "tests/adversarial/test_clinical.py::test_person_record_denied"
+
+  - structure: "individual_risk_score"
+    reason_code: "GW-CLIN-001"
+    rationale: "Individual risk scoring is forbidden (§2.2)"
+    negative_test: "tests/adversarial/test_clinical.py::test_individual_risk_denied"
+
+  - structure: "float_in_payload"
+    reason_code: "GW-SCHEMA-004"
+    rationale: "Float values in hashed payloads are forbidden (N-15, §3.5.2)"
+    negative_test: "tests/test_canonical.py::test_float_rejected"

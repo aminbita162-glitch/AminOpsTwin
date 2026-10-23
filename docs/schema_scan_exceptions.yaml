@@ -1,0 +1,7 @@
+# schema_scan_exceptions.yaml (§24.3)
+# Owner-approved scan exceptions, each with a justification.
+# [OWNER-FILL: No exceptions proposed by the agent in P1.]
+
+version: "1.0"
+
+exceptions: []

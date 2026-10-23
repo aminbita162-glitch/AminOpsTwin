@@ -1,0 +1,66 @@
+# schema_registry.yaml (§3.5)
+# schema_id -> model, envelope_type, version
+# Proposed by agent in P1; owner approves and signs at the P1 Hard Stop.
+
+version: "1.0"
+
+schemas:
+  - schema_id: "ops.sim.scenario@1"
+    model: "src.twin.Scenario"
+    envelope_type: "scenario"
+    version: "1"
+    is_root: true
+
+  - schema_id: "ops.sim.baseline@1"
+    model: "src.twin.Baseline"
+    envelope_type: "baseline"
+    version: "1"
+    is_root: true
+
+  - schema_id: "ops.evidence.query@1"
+    model: "src.evidence.EvidenceQuery"
+    envelope_type: "evidence_query"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.evidence.result@1"
+    model: "src.evidence.EvidenceResult"
+    envelope_type: "evidence_result"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.gateway.decision@1"
+    model: "src.contracts.decision.DecisionRecord"
+    envelope_type: "gateway_decision"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.executor.transition@1"
+    model: "src.executor.TransitionRecord"
+    envelope_type: "executor_transition"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.twin.capacity@1"
+    model: "src.twin.CapacityReport"
+    envelope_type: "capacity_report"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.twin.queue@1"
+    model: "src.twin.QueueReport"
+    envelope_type: "queue_report"
+    version: "1"
+    is_root: false
+
+  - schema_id: "ops.assurance.weekly@1"
+    model: "src.assurance.WeeklyCheck"
+    envelope_type: "assurance_weekly"
+    version: "1"
+    is_root: true
+
+  - schema_id: "ops.fixtures.synthetic@1"
+    model: "src.fixtures_gen.SyntheticRecord"
+    envelope_type: "synthetic_fixture"
+    version: "1"
+    is_root: true

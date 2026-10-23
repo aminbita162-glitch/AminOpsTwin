@@ -1,0 +1,20 @@
+# source_allowlist.yaml (§23.3)
+# One entry per licensed public source with:
+#   source_id, title, publisher, license, license_url, retrieved_at,
+#   content_sha256, permitted_use, owner_approval_date.
+# A source not in the register is denied (GW-EVID-002) and cannot enter the evidence cache.
+# [OWNER-FILL: The owner must populate this with actual approved sources.]
+
+version: "1.0"
+
+sources: []
+# Example format:
+# - source_id: "pmc-ops-queueing-001"
+#   title: "Operational queueing research"
+#   publisher: "PMC Open Access Subset"
+#   license: "CC-BY"
+#   license_url: "https://creativecommons.org/licenses/by/4.0/"
+#   retrieved_at: "2026-10-23T00:00:00Z"
+#   content_sha256: "[OWNER-FILL]"
+#   permitted_use: "operational research reference"
+#   owner_approval_date: "2026-10-23"
