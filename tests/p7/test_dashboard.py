@@ -25,19 +25,17 @@ import datetime as _dt
 
 import pytest
 from fastapi.testclient import TestClient
-
 from src.dashboard.accessibility import (
     AccessibilityConfig,
     StatusIndicator,
 )
 from src.dashboard.app import BROWSER_MATRIX, DashboardApp
 from src.dashboard.views import (
-    DashboardDataProvider,
     DashboardData,
+    DashboardDataProvider,
     ViewKey,
 )
 from src.dashboard.wallboard import WallboardConfig, WallboardMode
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -266,7 +264,7 @@ class TestAssuranceView:
         from src.contracts.clock import SeededClock
 
         clock = SeededClock(
-            _dt.datetime(2026, 1, 5, 9, 0, 0, tzinfo=_dt.timezone.utc)
+            _dt.datetime(2026, 1, 5, 9, 0, 0, tzinfo=_dt.UTC)
         )
         config = ScheduleConfig(
             deployment_id="dep-test",
