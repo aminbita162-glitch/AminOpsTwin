@@ -443,6 +443,79 @@ gates:
     source_command: "pytest tests/p7/test_dashboard.py -v"
     raw_output_path: "test_home/P7/G4.12_dashboard.txt"
 
+  # === P8 Gates ===
+  - id: "G5.1"
+    phase: "P8"
+    description: "Expanded adversarial corpus >= 200 cases; 100% denied with exact reason codes; corpus_version recorded"
+    metric: "corpus_cases_denied_exact"
+    operator: ">="
+    threshold: 200
+    source_command: "pytest tests/p8/test_corpus_expanded.py -v"
+    raw_output_path: "test_home/P8/G5.1_corpus.txt"
+
+  - id: "G5.2"
+    phase: "P8"
+    description: "Tenant isolation: >= 40 cross-tenant attempts, 0 successes, all denied with GW-TENANT-001"
+    metric: "cross_tenant_successes"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/p8/test_tenant_isolation.py -v"
+    raw_output_path: "test_home/P8/G5.2_tenant.txt"
+
+  - id: "G5.3"
+    phase: "P8"
+    description: "Export manifest hash verification: 100% of files hash-verified against manifests"
+    metric: "manifest_files_verified_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/p8/test_manifest.py -v"
+    raw_output_path: "test_home/P8/G5.3_manifest.txt"
+
+  - id: "G5.4"
+    phase: "P8"
+    description: "Evaluation harness for every implemented capability: all pass with measured values"
+    metric: "evaluation_harness_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p8/test_evaluation.py -v"
+    raw_output_path: "test_home/P8/G5.4_evaluation.txt"
+
+  - id: "G5.5"
+    phase: "P8"
+    description: "Transparency contract fields in 100% of responses (§4.5)"
+    metric: "transparency_fields_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/p8/test_transparency.py -v"
+    raw_output_path: "test_home/P8/G5.5_transparency.txt"
+
+  - id: "G5.6"
+    phase: "P8"
+    description: "Load smoke: 50 concurrent synthetic requests, 0 state corruption"
+    metric: "load_smoke_state_corruptions"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/p8/test_load_smoke.py -v"
+    raw_output_path: "test_home/P8/G5.6_load_smoke.txt"
+
+  - id: "G5.7"
+    phase: "P8"
+    description: "All P1-P7 gates still pass (regression)"
+    metric: "p1_p7_regression"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p8/test_regression.py -v"
+    raw_output_path: "test_home/P8/G5.7_regression.txt"
+
+  - id: "G5.8"
+    phase: "P8"
+    description: "API fuzz via schemathesis: >= 500 cases per endpoint group, 0 5xx, 0 schema violations"
+    metric: "api_fuzz_violations"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/p8/test_api_fuzz.py -v"
+    raw_output_path: "test_home/P8/G5.8_api_fuzz.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
