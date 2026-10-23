@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "measured_at": "2026-10-23T13:42:33.838892+00:00",
+  "capabilities": {
+    "ingest": {
+      "agent_id": "A1",
+      "capability": "ingest",
+      "tokens_used": 3,
+      "correlation_id": "bdd640fb-0667-4ad1-8000-000000000000"
+    },
+    "simulate": {
+      "agent_id": "A2",
+      "capability": "simulate",
+      "tokens_used": 3,
+      "correlation_id": "bd9c66b3-ad3c-4d6d-8000-000000000000"
+    },
+    "query": {
+      "agent_id": "A3",
+      "capability": "query",
+      "tokens_used": 3,
+      "correlation_id": "17fc695a-07a0-4a6e-8000-000000000000"
+    },
+    "schedule": {
+      "agent_id": "A4",
+      "capability": "schedule",
+      "tokens_used": 3,
+      "correlation_id": "b74d0fb1-32e7-4629-8000-000000000000"
+    },
+    "orchestrate": {
+      "agent_id": "A5",
+      "capability": "orchestrate",
+      "tokens_used": 3,
+      "correlation_id": "47378190-96da-4dac-8000-000000000000"
+    }
+  }
+}
