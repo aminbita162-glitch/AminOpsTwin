@@ -204,6 +204,97 @@ gates:
     source_command: "pytest tests/tokens/test_llm_adapter.py -v"
     raw_output_path: "test_home/P2/G2.10_llm.txt"
 
+  # === P3 Gates ===
+  - id: "G3.1"
+    phase: "P3"
+    description: "Replay oracle: 100 seeds x 3 replays => identical state hash in 300/300 runs; tolerance = 0 on the deterministic core"
+    metric: "replay_oracle_identical_runs"
+    operator: "=="
+    threshold: 300
+    source_command: "pytest tests/twin/test_simulation.py -k replay -v"
+    raw_output_path: "test_home/P3/G3.1_replay.txt"
+
+  - id: "G3.2"
+    phase: "P3"
+    description: "Each invariant runs >= its minimum Hypothesis cases (§24.1); 0 failures"
+    metric: "invariant_hypothesis_failures"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/twin/test_invariants.py -v"
+    raw_output_path: "test_home/P3/G3.2_invariants.txt"
+
+  - id: "G3.3"
+    phase: "P3"
+    description: "Capacity/temporal invariants: 0 violations in >= 10,000 simulated events per scenario"
+    metric: "capacity_temporal_violations"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/twin/test_invariants.py -k 'test_10000_events' -v"
+    raw_output_path: "test_home/P3/G3.3_capacity.txt"
+
+  - id: "G3.4"
+    phase: "P3"
+    description: "Delta compression: reconstructed state hash equals the original in 100% of tested snapshots; size reduction reported"
+    metric: "delta_reconstruction_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/twin/test_delta.py -v"
+    raw_output_path: "test_home/P3/G3.4_delta.txt"
+
+  - id: "G3.5"
+    phase: "P3"
+    description: "Token benchmark on a fixed 200-request synthetic suite stored in the repo: tokens-avoided, cache-hit-rate, and tokens-per-capability reported; target >= 40% of requests resolved with 0 LLM tokens"
+    metric: "token_benchmark_zero_token_rate"
+    operator: ">="
+    threshold: 40
+    source_command: "pytest tests/twin/test_benchmark.py -v"
+    raw_output_path: "test_home/P3/G3.5_benchmark.txt"
+
+  - id: "G3.6"
+    phase: "P3"
+    description: "Uncertainty reporting present in 100% of simulation outputs (interval or explicit 'not estimable' reason)"
+    metric: "uncertainty_reporting_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/twin/test_simulation.py -k uncertainty -v"
+    raw_output_path: "test_home/P3/G3.6_uncertainty.txt"
+
+  - id: "G3.7"
+    phase: "P3"
+    description: "Pre-filter order enforced; bypass attempts = 0 successes"
+    metric: "prefilter_order_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/unit/test_prefilter.py tests/twin/test_benchmark.py -k 'prefilter or bypass' -v"
+    raw_output_path: "test_home/P3/G3.7_prefilter.txt"
+
+  - id: "G3.8"
+    phase: "P3"
+    description: "All P1-P2 gates still pass (regression)"
+    metric: "p1_p2_regression"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -v --tb=short -q"
+    raw_output_path: "test_home/P3/G3.8_regression.txt"
+
+  - id: "G3.9"
+    phase: "P3"
+    description: "Cross-environment determinism: the final state hash is identical in two independently built environments (two clean containers)"
+    metric: "cross_env_determinism"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/twin/test_simulation.py -k 'deterministic or different_seed' -v"
+    raw_output_path: "test_home/P3/G3.9_determinism.txt"
+
+  - id: "G3.10"
+    phase: "P3"
+    description: "Fault injection F09-F12: 100% produce exactly the expected outcome in Section 22"
+    metric: "fault_injection_pass_pct"
+    operator: "=="
+    threshold: 100
+    source_command: "pytest tests/fault/test_fault_f09.py tests/fault/test_fault_f10.py tests/fault/test_fault_f11.py tests/fault/test_fault_f12.py -v"
+    raw_output_path: "test_home/P3/G3.10_faults.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
