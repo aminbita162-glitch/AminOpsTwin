@@ -12,6 +12,27 @@ from src.twin.entities import (
     ServiceCompletion,
     Site,
 )
+from src.twin.experiment import (
+    ExperimentCandidate,
+    ExperimentDesigner,
+    ExperimentResult,
+    ExperimentSpec,
+    Objective,
+    ProhibitedSpecError,
+)
+from src.twin.scenarios import (
+    Scenario,
+    ScenarioComparison,
+    ScenarioLibrary,
+)
+from src.twin.selection import (
+    BaselineComparison,
+    CandidateExperiment,
+    ExperimentSelector,
+    SelectionError,
+    SelectionOutcome,
+    SelectionResult,
+)
 from src.twin.simulation import (
     ReplayOracle,
     ScenarioConfig,
@@ -42,4 +63,22 @@ __all__ = [
     # delta
     "DeltaCompressor",
     "StateDelta",
+    # scenarios
+    "Scenario",
+    "ScenarioComparison",
+    "ScenarioLibrary",
+    # experiment designer (P5)
+    "Objective",
+    "ExperimentSpec",
+    "ExperimentCandidate",
+    "ExperimentResult",
+    "ProhibitedSpecError",
+    "ExperimentDesigner",
+    # selection (P5)
+    "SelectionOutcome",
+    "CandidateExperiment",
+    "SelectionResult",
+    "BaselineComparison",
+    "ExperimentSelector",
+    "SelectionError",
 ]
