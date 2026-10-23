@@ -92,9 +92,13 @@ class SeededIdFactory(IdFactory):
         # variant to 10xx. Build 128 bits from the seeded RNG.
         bits = self._rng.getrandbits(128)
         # Clear version and variant bits, then set them per RFC 4122 §4.4.
+        # Version nibble is at bits 76-79 (hex digit 12 from the MSB).
+        # Variant bits are at bits 62-63 (hex digit 15 from the MSB).
+        # The AND mask zeros the lower 64 bits (including variant) and
+        # clears the version nibble in the upper half.
         bits &= 0xFFFFFFFFFFFF4FFF0000000000000000
-        bits |= 0x0000000000004000  # version 4
-        bits |= 0x8000000000000000  # variant 10
+        bits |= 4 << 76  # version 4 at the correct bit position
+        bits |= 0x2 << 62  # variant 10xx (RFC 4122)
         return uuid.UUID(int=bits)
 
     def reset(self) -> None:
