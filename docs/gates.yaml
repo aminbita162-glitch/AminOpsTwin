@@ -414,6 +414,25 @@ gates:
     source_command: "pytest tests/p5/test_selection.py -v"
     raw_output_path: "test_home/P5/G4.9_selection.txt"
 
+  # === P6 Gates ===
+  - id: "G4.10"
+    phase: "P6"
+    description: "Zero-model assurance: every weekly-job success, failure, retry and missed-run test has zero model calls and zero model tokens; a deliberately injected model call causes test failure"
+    metric: "zero_model_assurance_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p6/test_zero_model.py -v"
+    raw_output_path: "test_home/P6/G4.10_zero_model.txt"
+
+  - id: "G4.11"
+    phase: "P6"
+    description: "Assurance integrity: every declared schedule/restart/duplicate fixture has the expected run state; required NOT_RUN/FAIL can never produce overall PASS; evidence hashes verify"
+    metric: "assurance_integrity_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p6/test_integrity.py tests/p6/test_scheduler.py -v"
+    raw_output_path: "test_home/P6/G4.11_integrity.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"

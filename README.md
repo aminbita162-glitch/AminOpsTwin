@@ -60,7 +60,7 @@ direct handle to the database or the Executor store (§3.3).
 | P3    | Twin and Operational Simulation      | COMPLETE (CANDIDATE) |
 | P4    | Governed Knowledge and Memory       | COMPLETE (CANDIDATE) |
 | P5    | Operational Intelligence Capabilities | COMPLETE (CANDIDATE) |
-| P6    | Assurance Interface and Weekly Checks | NOT STARTED |
+| P6    | Assurance Interface and Weekly Checks | COMPLETE (CANDIDATE) |
 | P7    | Responsive Dashboard and User Interface | NOT STARTED |
 | P8    | Enterprise Hardening and Evaluation | NOT STARTED |
 | P9    | Integration, Exports and Pre-Release | NOT STARTED |
