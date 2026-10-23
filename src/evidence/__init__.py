@@ -5,6 +5,14 @@ Ingestion security (§30.4, G4.3): SourceIngestor with injection guards.
 Evidence registry (§3.10, G2.4): EvidenceRegistry with cache binding.
 """
 
+from src.evidence.impact import (
+    ChangeType,
+    DependencyEdge,
+    DependencyGraph,
+    ImpactError,
+    ImpactEvent,
+    ImpactTracker,
+)
 from src.evidence.ingestion import (
     IngestionOutcome,
     IngestionResult,
@@ -36,4 +44,11 @@ __all__ = [
     "EvidenceKey",
     "EvidenceEntry",
     "EvidenceRegistry",
+    # impact tracking (P5)
+    "ChangeType",
+    "DependencyEdge",
+    "DependencyGraph",
+    "ImpactEvent",
+    "ImpactTracker",
+    "ImpactError",
 ]
