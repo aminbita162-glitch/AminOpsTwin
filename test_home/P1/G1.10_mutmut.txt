@@ -1,0 +1,9 @@
+mutmut run --paths-to-mutate src/gateway
+33 killed, 26 survived out of 59 mutants.
+Mutation score: 33/59 = 55.9% (below 80% threshold).
+G1.10 NOT MET at P1 Hard Stop. The survived mutants are in code paths
+not yet exercised by tests (e.g., PolicyMatrixEntry.__eq__, __hash__,
+__repr__, PolicyMatrix.add, PolicyMatrix.entries, PolicyMatrix.__len__,
+evaluate_pure alias, KNOWN_PRINCIPALS). These require deeper test
+coverage that will be added in P2 when the Gateway is exercised by the
+runtime. Recorded as NOT DONE.

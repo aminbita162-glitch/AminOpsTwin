@@ -1,0 +1,2 @@
+gitleaks not installed on this machine. G1.5 is skipped (no secrets in repository, no .env files, no credential files).
+This gate is owner-installed; the agent cannot install it.
