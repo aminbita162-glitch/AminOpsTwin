@@ -1,23 +1,32 @@
-"""Injected Clock and IdFactory for deterministic core operations (§3.5.3, §3.5.4, §6.3).
+"""Injected Clock and IdFactory for deterministic core operations.
 
-The deterministic core never calls datetime.now(), time.time(), random.*, uuid.uuid4(),
-os.urandom(), or secrets.* directly. Instead, it uses injected Clock and IdFactory
-objects seeded for test reproducibility.
+References: §3.5.3, §3.5.4, §6.3.
 
-Clock: produces timezone-aware UTC datetimes, serialized RFC 3339 with microseconds
-       and a literal "Z" (§3.5.3).
-IdFactory: UUID version 4 layout built from 128 bits of the injected seeded RNG (§3.5.4).
+The deterministic core never calls datetime.now(), time.time(), random.*,
+uuid.uuid4(), os.urandom(), or secrets.* directly. Instead, it uses injected
+Clock and IdFactory objects seeded for test reproducibility.
+
+Clock: produces timezone-aware UTC datetimes, serialized RFC 3339 with
+       microseconds and a literal "Z" (§3.5.3).
+IdFactory: UUID version 4 layout built from 128 bits of the injected
+           seeded RNG (§3.5.4).
 """
 
 from __future__ import annotations
 
 import datetime as _dt
-import hashlib
 import random
 import uuid
 from typing import Final
 
-__all__ = ["Clock", "IdFactory", "SystemClock", "SystemIdFactory", "SeededClock", "SeededIdFactory"]
+__all__ = [
+    "Clock",
+    "IdFactory",
+    "SystemClock",
+    "SystemIdFactory",
+    "SeededClock",
+    "SeededIdFactory",
+]
 
 
 class Clock:
@@ -51,7 +60,8 @@ class SystemIdFactory(IdFactory):
 
 
 class SeededClock(Clock):
-    """Deterministic clock for tests — starts at a fixed offset and advances."""
+    """Deterministic clock for tests — starts at a fixed offset and
+    advances."""
 
     def __init__(self, start: _dt.datetime | None = None) -> None:
         if start is None:
@@ -71,17 +81,18 @@ class SeededClock(Clock):
 
 
 class SeededIdFactory(IdFactory):
-    """Deterministic IdFactory for tests — UUID v4 layout from a seeded RNG."""
+    """Deterministic IdFactory for tests — UUID v4 layout from a seeded
+    RNG."""
 
     def __init__(self, seed: int) -> None:
         self._rng = random.Random(seed)
 
     def new_id(self) -> uuid.UUID:
-        # UUID version 4 layout: set version nibble to 4, variant to 10xx.
-        # Build 128 bits from the seeded RNG.
+        # UUID version 4 layout: set version nibble to 4,
+        # variant to 10xx. Build 128 bits from the seeded RNG.
         bits = self._rng.getrandbits(128)
-        # Force version 4 (0x4) and variant (0b10) per RFC 4122 §4.4.
-        bits &= 0xFFFFFFFFFFFF4FFF0000000000000000  # clear version and variant bits
+        # Clear version and variant bits, then set them per RFC 4122 §4.4.
+        bits &= 0xFFFFFFFFFFFF4FFF0000000000000000
         bits |= 0x0000000000004000  # version 4
         bits |= 0x8000000000000000  # variant 10
         return uuid.UUID(int=bits)
@@ -98,7 +109,9 @@ def format_rfc3339_z(dt: _dt.datetime) -> str:
     Naive datetimes are rejected (§3.5.3).
     """
     if dt.tzinfo is None:
-        raise ValueError("naive datetime not allowed; must be timezone-aware UTC")
+        raise ValueError(
+            "naive datetime not allowed; must be timezone-aware UTC"
+        )
     # Convert to UTC
     dt_utc = dt.astimezone(_dt.UTC)
     return dt_utc.strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z"

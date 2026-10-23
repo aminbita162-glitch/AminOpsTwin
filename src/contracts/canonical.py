@@ -94,7 +94,9 @@ def validate_canonical_value(value: Any, *, _top: bool = True) -> Any:
             raise CanonicalError(f"integer out of safe range: {value}")
         return value
     if isinstance(value, float):
-        raise CanonicalError("float values are not allowed in canonical payloads (N-15)")
+        raise CanonicalError(
+            "float values are not allowed in canonical payloads (N-15)"
+        )
     if isinstance(value, str):
         if not _is_nfc(value):
             raise CanonicalError(f"string is not in NFC form: {value!r}")
@@ -113,7 +115,9 @@ def validate_canonical_value(value: Any, *, _top: bool = True) -> Any:
         return validated
 
     # Reject any other type (including complex, bytes, custom objects).
-    raise CanonicalError(f"unsupported type in canonical payload: {type(value).__name__}")
+    raise CanonicalError(
+        f"unsupported type in canonical payload: {type(value).__name__}"
+    )
 
 
 def canonical_bytes(payload: Any) -> bytes:

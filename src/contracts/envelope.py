@@ -1,8 +1,8 @@
 """Envelope contract (§3.5) — typed, versioned inter-component message format.
 
 Every inter-component message is an Envelope (Pydantic v2, extra="forbid",
-frozen=True, strict=True). The model is normative; names, types, and constraints
-are exact.
+frozen=True, strict=True). The model is normative; names, types, and
+constraints are exact.
 
 NO issuer field (§3.5.1): the identity of the caller is NOT a message field.
 The caller's principal (A1..A5, S1, S2) is assigned by the runtime.
@@ -16,6 +16,7 @@ from datetime import datetime
 from typing import Any, Literal
 
 from pydantic import (
+    BaseModel,
     ConfigDict,
     field_serializer,
     field_validator,
@@ -40,22 +41,10 @@ _IDEMPOTENCY_KEY_PATTERN = re.compile(r"^[A-Za-z0-9_-]{16,128}$")
 _PAYLOAD_HASH_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 
 # Forbidden key: "issuer" must never appear anywhere in the payload (§3.5.1).
-_FORBIDDEN_KEYS = frozenset({"issuer"})
+_FORBIDDEN_KEYS: frozenset[str] = frozenset({"issuer"})
 
 
-class Envelope(BaseModel if False else object):  # type: ignore[misc]
-    """Normative Envelope model (§3.5).
-
-    Actually implemented as a Pydantic v2 model below.
-    """
-    pass
-
-
-# We define Envelope as a Pydantic model directly:
-from pydantic import BaseModel  # noqa: E402
-
-
-class Envelope(BaseModel):  # type: ignore[no-redef]
+class Envelope(BaseModel):
     """Typed, versioned inter-component message envelope (§3.5).
 
     model_config: extra="forbid", frozen=True, strict=True.
@@ -86,21 +75,28 @@ class Envelope(BaseModel):  # type: ignore[no-redef]
     @classmethod
     def _validate_schema_id(cls, v: str) -> str:
         if not _SCHEMA_ID_PATTERN.match(v):
-            raise ValueError(f"schema_id must match {_SCHEMA_ID_PATTERN.pattern}")
+            raise ValueError(
+                f"schema_id must match {_SCHEMA_ID_PATTERN.pattern}"
+            )
         return v
 
     @field_validator("envelope_type")
     @classmethod
     def _validate_envelope_type(cls, v: str) -> str:
         if not _ENVELOPE_TYPE_PATTERN.match(v):
-            raise ValueError(f"envelope_type must match {_ENVELOPE_TYPE_PATTERN.pattern}")
+            raise ValueError(
+                f"envelope_type must match "
+                f"{_ENVELOPE_TYPE_PATTERN.pattern}"
+            )
         return v
 
     @field_validator("tenant_id")
     @classmethod
     def _validate_tenant_id(cls, v: str) -> str:
         if not _TENANT_ID_PATTERN.match(v):
-            raise ValueError(f"tenant_id must match {_TENANT_ID_PATTERN.pattern}")
+            raise ValueError(
+                f"tenant_id must match {_TENANT_ID_PATTERN.pattern}"
+            )
         return v
 
     @field_validator("idempotency_key")
@@ -108,7 +104,8 @@ class Envelope(BaseModel):  # type: ignore[no-redef]
     def _validate_idempotency_key(cls, v: str) -> str:
         if not _IDEMPOTENCY_KEY_PATTERN.match(v):
             raise ValueError(
-                f"idempotency_key must match {_IDEMPOTENCY_KEY_PATTERN.pattern}"
+                f"idempotency_key must match "
+                f"{_IDEMPOTENCY_KEY_PATTERN.pattern}"
             )
         return v
 
@@ -123,7 +120,9 @@ class Envelope(BaseModel):  # type: ignore[no-redef]
     @classmethod
     def _validate_payload_hash(cls, v: str) -> str:
         if not _PAYLOAD_HASH_PATTERN.match(v):
-            raise ValueError("payload_hash must be a 64-char lowercase hex SHA-256")
+            raise ValueError(
+                "payload_hash must be a 64-char lowercase hex SHA-256"
+            )
         return v
 
     @field_validator("created_at")
@@ -135,18 +134,21 @@ class Envelope(BaseModel):  # type: ignore[no-redef]
 
     @field_validator("payload")
     @classmethod
-    def _validate_payload_no_issuer(cls, v: dict[str, Any]) -> dict[str, Any]:
-        """Reject the forbidden 'issuer' key anywhere in the payload (§3.5.1)."""
+    def _validate_payload_no_issuer(
+        cls, v: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Reject the forbidden 'issuer' key anywhere in the payload."""
         _check_no_issuer(v)
         return v
 
     @model_validator(mode="after")
-    def _validate_payload_hash_matches(self) -> "Envelope":
-        """Verify payload_hash matches the recomputed canonical hash (§3.5.2)."""
+    def _validate_payload_hash_matches(self) -> Envelope:
+        """Verify payload_hash matches the recomputed canonical hash."""
         recomputed = canonical_hash(self.payload)
         if recomputed != self.payload_hash:
             raise ValueError(
-                f"payload_hash mismatch: expected {recomputed}, got {self.payload_hash}"
+                f"payload_hash mismatch: expected {recomputed}, "
+                f"got {self.payload_hash}"
             )
         return self
 
@@ -159,7 +161,9 @@ class Envelope(BaseModel):  # type: ignore[no-redef]
         return str(v)
 
     @field_serializer("causation_id")
-    def _serialize_causation_id(self, v: uuid.UUID | None) -> str | None:
+    def _serialize_causation_id(
+        self, v: uuid.UUID | None
+    ) -> str | None:
         return str(v) if v is not None else None
 
 
@@ -168,7 +172,9 @@ def _check_no_issuer(obj: Any) -> None:
     if isinstance(obj, dict):
         for key, value in obj.items():
             if key in _FORBIDDEN_KEYS:
-                raise ValueError("forbidden key 'issuer' in payload (§3.5.1)")
+                raise ValueError(
+                    "forbidden key 'issuer' in payload (§3.5.1)"
+                )
             _check_no_issuer(value)
     elif isinstance(obj, list):
         for item in obj:

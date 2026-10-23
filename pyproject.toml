@@ -79,11 +79,12 @@ ignore_missing_imports = true
 
 [tool.importlinter]
 root_packages = ["src"]
+include_external_packages = true
 
 [[tool.importlinter.contracts]]
 name = "Gateway purity: no LLM-library or network imports"
 type = "forbidden"
-modules = ["src.gateway"]
+source_modules = ["src.gateway"]
 forbidden_modules = [
     "openai",
     "anthropic",
@@ -94,7 +95,7 @@ forbidden_modules = [
     "requests",
     "aiohttp",
     "httpcore",
-    "urllib.request",
+    "urllib",
     "urllib3",
     "socket",
 ]

@@ -10,12 +10,12 @@ the actual budget and cache logic arrive in P2/P3.
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 __all__ = ["PreFilterStage", "PREFILTER_ORDER"]
 
 
-class PreFilterStage(str, Enum):
+class PreFilterStage(StrEnum):
     """Stages of the mandatory pre-filter (§4.1), in fixed order."""
 
     SCHEMA = "schema"

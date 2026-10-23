@@ -1,55 +1,70 @@
 """Pytest configuration and shared fixtures for AminOpsTwin tests."""
 
+from __future__ import annotations
+
+import datetime as _dt
 import sys
+import uuid
 from pathlib import Path
+
+import pytest
 
 # Ensure src is importable
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-import datetime as _dt
-import hashlib
-import uuid
-
-import pytest
-
-from src.contracts.clock import SeededClock, SeededIdFactory, SystemClock, SystemIdFactory
-from src.contracts.canonical import canonical_hash, canonical_bytes
+from src.contracts.canonical import canonical_hash
+from src.contracts.clock import (
+    SeededClock,
+    SeededIdFactory,
+    SystemClock,
+    SystemIdFactory,
+)
 from src.contracts.envelope import Envelope
-from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
+from src.gateway.gateway import (
+    PolicyGateway,
+    PolicyMatrix,
+    PolicyMatrixEntry,
+)
 
 
 @pytest.fixture
-def seeded_clock():
+def seeded_clock() -> SeededClock:
     """Deterministic clock for tests."""
-    return SeededClock(start=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC))
+    return SeededClock(
+        start=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC)
+    )
 
 
 @pytest.fixture
-def seeded_id_factory():
+def seeded_id_factory() -> SeededIdFactory:
     """Deterministic IdFactory for tests."""
     return SeededIdFactory(seed=42)
 
 
 @pytest.fixture
-def system_clock():
+def system_clock() -> SystemClock:
     return SystemClock()
 
 
 @pytest.fixture
-def system_id_factory():
+def system_id_factory() -> SystemIdFactory:
     return SystemIdFactory()
 
 
 # --- Gateway fixtures ---
 
 @pytest.fixture
-def schema_registry():
+def schema_registry() -> set[str]:
     """Known schema_ids for the gateway."""
-    return {"ops.sim.scenario@1", "ops.sim.baseline@1", "ops.evidence.query@1"}
+    return {
+        "ops.sim.scenario@1",
+        "ops.sim.baseline@1",
+        "ops.evidence.query@1",
+    }
 
 
 @pytest.fixture
-def envelope_type_registry():
+def envelope_type_registry() -> dict[str, str]:
     """schema_id -> envelope_type mapping."""
     return {
         "ops.sim.scenario@1": "scenario",
@@ -59,7 +74,7 @@ def envelope_type_registry():
 
 
 @pytest.fixture
-def policy_matrix():
+def policy_matrix() -> PolicyMatrix:
     """Test policy matrix with a few allowed entries."""
     entries = {
         PolicyMatrixEntry("A1", "synthetic_fixture", "ingest"),
@@ -71,7 +86,11 @@ def policy_matrix():
 
 
 @pytest.fixture
-def gateway(policy_matrix, schema_registry, envelope_type_registry):
+def gateway(
+    policy_matrix: PolicyMatrix,
+    schema_registry: set[str],
+    envelope_type_registry: dict[str, str],
+) -> PolicyGateway:
     """Policy Gateway with epoch 0 and test registries."""
     return PolicyGateway(
         policy_matrix=policy_matrix,
@@ -87,7 +106,10 @@ def _make_payload() -> dict:
 
 
 @pytest.fixture
-def make_envelope(seeded_clock, seeded_id_factory):
+def make_envelope(
+    seeded_clock: SeededClock,
+    seeded_id_factory: SeededIdFactory,
+):
     """Factory fixture for creating valid Envelopes."""
 
     def _make(
@@ -104,7 +126,8 @@ def make_envelope(seeded_clock, seeded_id_factory):
             envelope_version="1.0",
             schema_id=schema_id,
             envelope_type=envelope_type,
-            correlation_id=correlation_id or seeded_id_factory.new_id(),
+            correlation_id=correlation_id
+            or seeded_id_factory.new_id(),
             causation_id=None,
             tenant_id=tenant_id,
             policy_epoch=policy_epoch,

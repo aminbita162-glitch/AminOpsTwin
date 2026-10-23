@@ -11,20 +11,29 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from enum import Enum
-from typing import Literal
+from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationInfo,
+    field_validator,
+)
 
 __all__ = ["Decision", "Stage", "DecisionRecord"]
 
 
-class Decision(str, Enum):
+class Decision(StrEnum):
+    """Gateway decision outcome."""
+
     ALLOW = "ALLOW"
     DENY = "DENY"
 
 
-class Stage(str, Enum):
+class Stage(StrEnum):
+    """Stage where the decision was made."""
+
     SCHEMA = "SCHEMA"
     GATEWAY = "GATEWAY"
     CACHE = "CACHE"
@@ -51,7 +60,9 @@ class DecisionRecord(BaseModel):
 
     @field_validator("reason_code")
     @classmethod
-    def _validate_reason_code(cls, v: str | None, info) -> str | None:  # type: ignore[no-untyped-def]
+    def _validate_reason_code(
+        cls, v: str | None, info: ValidationInfo
+    ) -> str | None:
         # info.data has the validated values so far
         decision = info.data.get("decision")
         if decision == Decision.DENY and v is None:
