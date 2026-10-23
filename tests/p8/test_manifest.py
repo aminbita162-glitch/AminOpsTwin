@@ -5,15 +5,12 @@ G5.3: Exports — 100% of files hash-verified against manifests.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import tempfile
 from pathlib import Path
 
 import pytest
 from src.enterprise.manifest import (
-    ExportManifest,
-    ManifestEntry,
     ManifestError,
     build_manifest,
 )
