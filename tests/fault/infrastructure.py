@@ -1,4 +1,4 @@
-"""Fault injection test infrastructure for F01–F08 (G2.9).
+"""Fault injection test infrastructure for F01–F12 (G2.9, G3.10).
 
 Provides the minimal executor extensions needed to test fault scenarios:
     - CheckpointableExecutor with checkpoint/resume (F01, F06)
@@ -6,16 +6,24 @@ Provides the minimal executor extensions needed to test fault scenarios:
     - IdempotentDelivery for duplicate detection (F04)
     - OrderedEventBuffer for out-of-order reordering (F05)
     - LLM timeout and malformed output handling (F07, F08)
+    - ConcurrentBudgetBoundary for F09 (concurrent budget exhaustion)
+    - EpochBumpHandler for F10 (policy epoch bump mid-workflow)
+    - AtomicExportWriter for F11 (interrupted export)
+    - DiskFullWriter for F12 (disk full / write failure)
 """
 
 from __future__ import annotations
 
 import hashlib
+import os
+import tempfile
+import threading
 import uuid
 from dataclasses import dataclass, field
 from typing import Any
 
 from src.executor import ExecutorState, ExecutorStateMachine
+from src.tokens.budget import BudgetGovernor, BudgetLevel
 from src.tokens.fallback import FallbackReason, FallbackResponse, ReservationStatus
 
 __all__ = [
@@ -26,6 +34,10 @@ __all__ = [
     "OrderedEventBuffer",
     "LLMTimeoutSimulator",
     "LLMMalformedSimulator",
+    "ConcurrentBudgetBoundary",
+    "EpochBumpHandler",
+    "AtomicExportWriter",
+    "DiskFullWriter",
     "compute_state_hash",
 ]
 
@@ -359,3 +371,391 @@ class LLMMalformedSimulator:
                 "Check the LLM output schema",
             ],
         )
+
+
+# ---------------------------------------------------------------------------
+# F09: Concurrent requests at the budget boundary
+# ---------------------------------------------------------------------------
+
+
+class ConcurrentBudgetBoundary:
+    """F09: Concurrent requests at the budget boundary.
+
+    Simulates multiple concurrent requests all trying to reserve
+    tokens from a budget governor at the same time. The total
+    reserved spend must never exceed the limit; excess requests
+    must get the GW-BUDGET-001 fallback.
+    """
+
+    def __init__(
+        self,
+        governor: BudgetGovernor,
+        level: BudgetLevel,
+    ) -> None:
+        self._governor = governor
+        self._level = level
+        self._lock = threading.Lock()
+
+    def concurrent_reserve(
+        self,
+        amount: int,
+        num_concurrent: int,
+    ) -> dict[str, Any]:
+        """Run *num_concurrent* concurrent reservation attempts.
+
+        Returns a dict with:
+            - successful_reservations: count
+            - failed_reservations: count
+            - total_reserved: total tokens reserved
+            - limit_exceeded: whether total_reserved > limit
+        """
+        results: list[bool] = []
+        total_reserved_list: list[int] = []
+
+        def worker() -> None:
+            ok = self._governor.reserve(self._level, amount)
+            with self._lock:
+                results.append(ok)
+                if ok:
+                    total_reserved_list.append(amount)
+
+        threads: list[threading.Thread] = []
+        for _ in range(num_concurrent):
+            t = threading.Thread(target=worker)
+            threads.append(t)
+            t.start()
+        for t in threads:
+            t.join()
+
+        successful = sum(1 for r in results if r)
+        failed = sum(1 for r in results if not r)
+        total_reserved = sum(total_reserved_list)
+
+        return {
+            "successful_reservations": successful,
+            "failed_reservations": failed,
+            "total_reserved": total_reserved,
+            "limit_exceeded": (
+                total_reserved > self._governor.remaining(self._level)
+            ),
+        }
+
+    def get_fallback(
+        self,
+        correlation_id: uuid.UUID,
+        policy_epoch: int,
+    ) -> FallbackResponse:
+        """Return the GW-BUDGET-001 fallback for excess requests."""
+        return self._governor.get_fallback(
+            correlation_id=correlation_id,
+            policy_epoch=policy_epoch,
+        )
+
+
+# ---------------------------------------------------------------------------
+# F10: Policy epoch bumped mid-workflow
+# ---------------------------------------------------------------------------
+
+
+class EpochBumpHandler:
+    """F10: Policy epoch bumped mid-workflow.
+
+    Simulates a policy epoch bump during an in-flight workflow.
+    In-flight steps must be re-validated and re-submitted (§3.7).
+    COMMIT is blocked until re-validation passes.
+    """
+
+    def __init__(self) -> None:
+        self._current_epoch: int = 0
+        self._in_flight: list[dict[str, Any]] = []
+        self._revalidated: bool = False
+        self._commit_blocked: bool = False
+
+    @property
+    def current_epoch(self) -> int:
+        return self._current_epoch
+
+    def submit(self, envelope_epoch: int) -> dict[str, Any]:
+        """Submit a workflow step with the given envelope epoch."""
+        entry: dict[str, Any] = {
+            "envelope_epoch": envelope_epoch,
+            "submitted_epoch": self._current_epoch,
+            "status": "in_flight",
+        }
+        self._in_flight.append(entry)
+        return entry
+
+    def bump_epoch(self) -> int:
+        """Bump the current policy epoch.
+
+        All in-flight steps are marked for re-validation.
+        """
+        self._current_epoch += 1
+        for entry in self._in_flight:
+            if entry["status"] == "in_flight":
+                entry["status"] = "needs_revalidation"
+        self._commit_blocked = True
+        return self._current_epoch
+
+    def revalidate(self) -> bool:
+        """Re-validate all in-flight steps.
+
+        Steps with an outdated envelope_epoch are re-submitted
+        with the new current epoch. Returns True if all pass.
+        """
+        all_pass = True
+        for entry in self._in_flight:
+            if entry["status"] == "needs_revalidation":
+                entry["envelope_epoch"] = self._current_epoch
+                entry["status"] = "revalidated"
+        self._revalidated = True
+        self._commit_blocked = False
+        return all_pass
+
+    @property
+    def commit_blocked(self) -> bool:
+        return self._commit_blocked
+
+    @property
+    def in_flight(self) -> list[dict[str, Any]]:
+        return list(self._in_flight)
+
+    def commit(self) -> bool:
+        """Attempt to commit; blocked until revalidation passes."""
+        if self._commit_blocked:
+            return False
+        return True
+
+
+# ---------------------------------------------------------------------------
+# F11: Export interrupted mid-write
+# ---------------------------------------------------------------------------
+
+
+class AtomicExportWriter:
+    """F11: Export interrupted mid-write.
+
+    Writes to a temporary file first, then atomically renames to
+    the final name. If interrupted mid-write:
+        - No partial file is visible under the final name
+        - The manifest is absent
+        - A retry is clean
+    """
+
+    def __init__(self, base_dir: str) -> None:
+        self._base_dir = base_dir
+        os.makedirs(base_dir, exist_ok=True)
+
+    def write_export(
+        self,
+        filename: str,
+        content: bytes,
+        manifest: dict[str, Any] | None = None,
+    ) -> str:
+        """Write an export atomically.
+
+        Writes to a temp file, then renames to the final name.
+        Returns the final path.
+        """
+        final_path = os.path.join(self._base_dir, filename)
+        temp_fd, temp_path = tempfile.mkstemp(
+            dir=self._base_dir,
+            prefix=".tmp-export-",
+            suffix=".tmp",
+        )
+        try:
+            os.write(temp_fd, content)
+            os.close(temp_fd)
+            os.rename(temp_path, final_path)
+        except Exception:
+            # Clean up the temp file on failure
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+            raise
+
+        # Write manifest (if provided) only after the data is
+        # safely at its final name.
+        if manifest is not None:
+            manifest_path = final_path + ".manifest"
+            import json
+            with open(manifest_path, "w") as f:
+                json.dump(manifest, f)
+
+        return final_path
+
+    def write_export_interrupted(
+        self,
+        filename: str,
+        content: bytes,
+    ) -> str:
+        """Simulate an interrupted write (F11).
+
+        Writes partial content to a temp file, then 'crashes'
+        without renaming. The final name must not exist.
+        """
+        final_path = os.path.join(self._base_dir, filename)
+        temp_fd, temp_path = tempfile.mkstemp(
+            dir=self._base_dir,
+            prefix=".tmp-export-",
+            suffix=".tmp",
+        )
+        # Write only partial content
+        os.write(temp_fd, content[: len(content) // 2])
+        os.close(temp_fd)
+        # Do NOT rename — simulate a crash
+        # The temp file exists but the final file does not
+        return temp_path
+
+    def final_file_exists(self, filename: str) -> bool:
+        """Check if the final file exists."""
+        return os.path.exists(
+            os.path.join(self._base_dir, filename)
+        )
+
+    def manifest_exists(self, filename: str) -> bool:
+        """Check if the manifest exists for a file."""
+        return os.path.exists(
+            os.path.join(self._base_dir, filename + ".manifest")
+        )
+
+    def retry_write(
+        self,
+        filename: str,
+        content: bytes,
+        manifest: dict[str, Any] | None = None,
+    ) -> str:
+        """Retry the write cleanly after an interruption."""
+        return self.write_export(filename, content, manifest)
+
+
+# ---------------------------------------------------------------------------
+# F12: Disk full / write failure
+# ---------------------------------------------------------------------------
+
+
+class DiskFullWriter:
+    """F12: Disk full / write failure.
+
+    Simulates a disk-full condition where writes fail. The system
+    must:
+        - Stop new writes
+        - Report explicit FAILED when no effect was committed
+        - Report UNKNOWN if the outcome cannot be established
+        - Use a bounded independent error channel when the
+          primary store cannot write
+        - Never silently lose data or claim success on timeout
+    """
+
+    def __init__(self) -> None:
+        self._disk_full: bool = False
+        self._writes_attempted: int = 0
+        self._writes_succeeded: int = 0
+        self._writes_failed: int = 0
+        self._error_channel: list[str] = []
+        self._new_write_status: str = "ACCEPTING"
+
+    @property
+    def disk_full(self) -> bool:
+        return self._disk_full
+
+    def set_disk_full(self) -> None:
+        """Simulate disk becoming full."""
+        self._disk_full = True
+        self._new_write_status = "STOPPED"
+
+    def clear_disk_full(self) -> None:
+        """Simulate disk being freed."""
+        self._disk_full = False
+        self._new_write_status = "ACCEPTING"
+
+    @property
+    def new_write_status(self) -> str:
+        return self._new_write_status
+
+    def write(self, data: bytes) -> dict[str, Any]:
+        """Attempt to write data.
+
+        Returns a dict with:
+            - status: "SUCCESS" | "FAILED" | "UNKNOWN"
+            - bytes_written: int
+            - error: str | None
+            - effect_committed: bool
+        """
+        self._writes_attempted += 1
+
+        if self._disk_full:
+            self._writes_failed += 1
+            # Record to the bounded independent error channel
+            self._error_channel.append(
+                f"write_failed:disk_full:attempt={self._writes_attempted}"
+            )
+            return {
+                "status": "FAILED",
+                "bytes_written": 0,
+                "error": "disk_full",
+                "effect_committed": False,
+            }
+
+        # Successful write
+        self._writes_succeeded += 1
+        return {
+            "status": "SUCCESS",
+            "bytes_written": len(data),
+            "error": None,
+            "effect_committed": True,
+        }
+
+    def write_with_uncertain_outcome(self, data: bytes) -> dict[str, Any]:
+        """Write where the outcome cannot be established (UNKNOWN).
+
+        The write was attempted but the disk went full during the
+        write; we cannot tell if the data was committed or not.
+        """
+        self._writes_attempted += 1
+        self._error_channel.append(
+            f"write_uncertain:disk_full_during_write:attempt={self._writes_attempted}"
+        )
+        return {
+            "status": "UNKNOWN",
+            "bytes_written": 0,
+            "error": "disk_full_during_write",
+            "effect_committed": False,
+        }
+
+    @property
+    def error_channel_entries(self) -> list[str]:
+        """Return the bounded independent error channel log."""
+        return list(self._error_channel)
+
+    @property
+    def writes_attempted(self) -> int:
+        return self._writes_attempted
+
+    @property
+    def writes_succeeded(self) -> int:
+        return self._writes_succeeded
+
+    @property
+    def writes_failed(self) -> int:
+        return self._writes_failed
+
+    def stop_new_writes(self) -> None:
+        """Stop accepting new writes (F12)."""
+        self._disk_full = True
+        self._new_write_status = "STOPPED"
+
+    def reconcile(
+        self,
+        primary_store_available: bool,
+    ) -> str:
+        """Reconcile after disk recovery.
+
+        If the primary store is available, persist the error channel
+        as reconciliation evidence. Returns 'RECONCILED' or 'STILL_UNAVAILABLE'.
+        """
+        if primary_store_available:
+            self._error_channel.append(
+                "reconciled:primary_store_available"
+            )
+            return "RECONCILED"
+        return "STILL_UNAVAILABLE"

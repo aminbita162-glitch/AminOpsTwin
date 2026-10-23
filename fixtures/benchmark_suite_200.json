@@ -1,0 +1,3802 @@
+[
+  {
+    "scenario_id": "bench-0000",
+    "seed": 0,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 2,
+    "sim_duration": 20,
+    "description": "Benchmark request 0",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0001",
+    "seed": 1,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 3,
+    "sim_duration": 21,
+    "description": "Benchmark request 1",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0002",
+    "seed": 2,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 4,
+    "sim_duration": 22,
+    "description": "Benchmark request 2",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0003",
+    "seed": 3,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 5,
+    "sim_duration": 23,
+    "description": "Benchmark request 3",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0004",
+    "seed": 4,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 6,
+    "sim_duration": 24,
+    "description": "Benchmark request 4",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0005",
+    "seed": 5,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 7,
+    "sim_duration": 25,
+    "description": "Benchmark request 5",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0006",
+    "seed": 6,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 8,
+    "sim_duration": 26,
+    "description": "Benchmark request 6",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0007",
+    "seed": 7,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 9,
+    "sim_duration": 27,
+    "description": "Benchmark request 7",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0008",
+    "seed": 8,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 2,
+    "sim_duration": 28,
+    "description": "Benchmark request 8",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0009",
+    "seed": 9,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 3,
+    "sim_duration": 29,
+    "description": "Benchmark request 9",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0010",
+    "seed": 10,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 4,
+    "sim_duration": 30,
+    "description": "Benchmark request 10",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0011",
+    "seed": 11,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 5,
+    "sim_duration": 31,
+    "description": "Benchmark request 11",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0012",
+    "seed": 12,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 6,
+    "sim_duration": 32,
+    "description": "Benchmark request 12",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0013",
+    "seed": 13,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 7,
+    "sim_duration": 33,
+    "description": "Benchmark request 13",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0014",
+    "seed": 14,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 8,
+    "sim_duration": 34,
+    "description": "Benchmark request 14",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0015",
+    "seed": 15,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 9,
+    "sim_duration": 35,
+    "description": "Benchmark request 15",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0016",
+    "seed": 16,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 2,
+    "sim_duration": 36,
+    "description": "Benchmark request 16",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0017",
+    "seed": 17,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 3,
+    "sim_duration": 37,
+    "description": "Benchmark request 17",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0018",
+    "seed": 18,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 4,
+    "sim_duration": 38,
+    "description": "Benchmark request 18",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0019",
+    "seed": 19,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 5,
+    "sim_duration": 39,
+    "description": "Benchmark request 19",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0020",
+    "seed": 20,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 6,
+    "sim_duration": 40,
+    "description": "Benchmark request 20",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0021",
+    "seed": 21,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 7,
+    "sim_duration": 41,
+    "description": "Benchmark request 21",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0022",
+    "seed": 22,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 8,
+    "sim_duration": 42,
+    "description": "Benchmark request 22",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0023",
+    "seed": 23,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 9,
+    "sim_duration": 43,
+    "description": "Benchmark request 23",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0024",
+    "seed": 24,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 2,
+    "sim_duration": 44,
+    "description": "Benchmark request 24",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0025",
+    "seed": 25,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 3,
+    "sim_duration": 45,
+    "description": "Benchmark request 25",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0026",
+    "seed": 26,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 4,
+    "sim_duration": 46,
+    "description": "Benchmark request 26",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0027",
+    "seed": 27,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 5,
+    "sim_duration": 47,
+    "description": "Benchmark request 27",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0028",
+    "seed": 28,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 6,
+    "sim_duration": 48,
+    "description": "Benchmark request 28",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0029",
+    "seed": 29,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 7,
+    "sim_duration": 49,
+    "description": "Benchmark request 29",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0030",
+    "seed": 30,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 8,
+    "sim_duration": 20,
+    "description": "Benchmark request 30",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0031",
+    "seed": 31,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 9,
+    "sim_duration": 21,
+    "description": "Benchmark request 31",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0032",
+    "seed": 32,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 2,
+    "sim_duration": 22,
+    "description": "Benchmark request 32",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0033",
+    "seed": 33,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 3,
+    "sim_duration": 23,
+    "description": "Benchmark request 33",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0034",
+    "seed": 34,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 4,
+    "sim_duration": 24,
+    "description": "Benchmark request 34",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0035",
+    "seed": 35,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 5,
+    "sim_duration": 25,
+    "description": "Benchmark request 35",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0036",
+    "seed": 36,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 6,
+    "sim_duration": 26,
+    "description": "Benchmark request 36",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0037",
+    "seed": 37,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 7,
+    "sim_duration": 27,
+    "description": "Benchmark request 37",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0038",
+    "seed": 38,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 8,
+    "sim_duration": 28,
+    "description": "Benchmark request 38",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0039",
+    "seed": 39,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 9,
+    "sim_duration": 29,
+    "description": "Benchmark request 39",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0040",
+    "seed": 40,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 2,
+    "sim_duration": 30,
+    "description": "Benchmark request 40",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0041",
+    "seed": 41,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 3,
+    "sim_duration": 31,
+    "description": "Benchmark request 41",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0042",
+    "seed": 42,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 4,
+    "sim_duration": 32,
+    "description": "Benchmark request 42",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0043",
+    "seed": 43,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 5,
+    "sim_duration": 33,
+    "description": "Benchmark request 43",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0044",
+    "seed": 44,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 6,
+    "sim_duration": 34,
+    "description": "Benchmark request 44",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0045",
+    "seed": 45,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 7,
+    "sim_duration": 35,
+    "description": "Benchmark request 45",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0046",
+    "seed": 46,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 8,
+    "sim_duration": 36,
+    "description": "Benchmark request 46",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0047",
+    "seed": 47,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 9,
+    "sim_duration": 37,
+    "description": "Benchmark request 47",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0048",
+    "seed": 48,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 2,
+    "sim_duration": 38,
+    "description": "Benchmark request 48",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0049",
+    "seed": 49,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 3,
+    "sim_duration": 39,
+    "description": "Benchmark request 49",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0050",
+    "seed": 50,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 4,
+    "sim_duration": 40,
+    "description": "Benchmark request 50",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0051",
+    "seed": 51,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 5,
+    "sim_duration": 41,
+    "description": "Benchmark request 51",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0052",
+    "seed": 52,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 6,
+    "sim_duration": 42,
+    "description": "Benchmark request 52",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0053",
+    "seed": 53,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 7,
+    "sim_duration": 43,
+    "description": "Benchmark request 53",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0054",
+    "seed": 54,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 8,
+    "sim_duration": 44,
+    "description": "Benchmark request 54",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0055",
+    "seed": 55,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 9,
+    "sim_duration": 45,
+    "description": "Benchmark request 55",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0056",
+    "seed": 56,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 2,
+    "sim_duration": 46,
+    "description": "Benchmark request 56",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0057",
+    "seed": 57,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 3,
+    "sim_duration": 47,
+    "description": "Benchmark request 57",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0058",
+    "seed": 58,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 4,
+    "sim_duration": 48,
+    "description": "Benchmark request 58",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0059",
+    "seed": 59,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 5,
+    "sim_duration": 49,
+    "description": "Benchmark request 59",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0060",
+    "seed": 60,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 6,
+    "sim_duration": 20,
+    "description": "Benchmark request 60",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0061",
+    "seed": 61,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 7,
+    "sim_duration": 21,
+    "description": "Benchmark request 61",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0062",
+    "seed": 62,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 8,
+    "sim_duration": 22,
+    "description": "Benchmark request 62",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0063",
+    "seed": 63,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 9,
+    "sim_duration": 23,
+    "description": "Benchmark request 63",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0064",
+    "seed": 64,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 2,
+    "sim_duration": 24,
+    "description": "Benchmark request 64",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0065",
+    "seed": 65,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 3,
+    "sim_duration": 25,
+    "description": "Benchmark request 65",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0066",
+    "seed": 66,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 4,
+    "sim_duration": 26,
+    "description": "Benchmark request 66",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0067",
+    "seed": 67,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 5,
+    "sim_duration": 27,
+    "description": "Benchmark request 67",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0068",
+    "seed": 68,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 6,
+    "sim_duration": 28,
+    "description": "Benchmark request 68",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0069",
+    "seed": 69,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 7,
+    "sim_duration": 29,
+    "description": "Benchmark request 69",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0070",
+    "seed": 70,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 8,
+    "sim_duration": 30,
+    "description": "Benchmark request 70",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0071",
+    "seed": 71,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 9,
+    "sim_duration": 31,
+    "description": "Benchmark request 71",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0072",
+    "seed": 72,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 2,
+    "sim_duration": 32,
+    "description": "Benchmark request 72",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0073",
+    "seed": 73,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 3,
+    "sim_duration": 33,
+    "description": "Benchmark request 73",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0074",
+    "seed": 74,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 4,
+    "sim_duration": 34,
+    "description": "Benchmark request 74",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0075",
+    "seed": 75,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 5,
+    "sim_duration": 35,
+    "description": "Benchmark request 75",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0076",
+    "seed": 76,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 6,
+    "sim_duration": 36,
+    "description": "Benchmark request 76",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0077",
+    "seed": 77,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 7,
+    "sim_duration": 37,
+    "description": "Benchmark request 77",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0078",
+    "seed": 78,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 8,
+    "sim_duration": 38,
+    "description": "Benchmark request 78",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0079",
+    "seed": 79,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 9,
+    "sim_duration": 39,
+    "description": "Benchmark request 79",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0080",
+    "seed": 80,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 2,
+    "sim_duration": 40,
+    "description": "Benchmark request 80",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0081",
+    "seed": 81,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 3,
+    "sim_duration": 41,
+    "description": "Benchmark request 81",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0082",
+    "seed": 82,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 4,
+    "sim_duration": 42,
+    "description": "Benchmark request 82",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0083",
+    "seed": 83,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 5,
+    "sim_duration": 43,
+    "description": "Benchmark request 83",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0084",
+    "seed": 84,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 6,
+    "sim_duration": 44,
+    "description": "Benchmark request 84",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0085",
+    "seed": 85,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 7,
+    "sim_duration": 45,
+    "description": "Benchmark request 85",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0086",
+    "seed": 86,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 8,
+    "sim_duration": 46,
+    "description": "Benchmark request 86",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0087",
+    "seed": 87,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 9,
+    "sim_duration": 47,
+    "description": "Benchmark request 87",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0088",
+    "seed": 88,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 2,
+    "sim_duration": 48,
+    "description": "Benchmark request 88",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0089",
+    "seed": 89,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 3,
+    "sim_duration": 49,
+    "description": "Benchmark request 89",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0090",
+    "seed": 90,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 4,
+    "sim_duration": 20,
+    "description": "Benchmark request 90",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0091",
+    "seed": 91,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 5,
+    "sim_duration": 21,
+    "description": "Benchmark request 91",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0092",
+    "seed": 92,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 6,
+    "sim_duration": 22,
+    "description": "Benchmark request 92",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0093",
+    "seed": 93,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 7,
+    "sim_duration": 23,
+    "description": "Benchmark request 93",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0094",
+    "seed": 94,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 8,
+    "sim_duration": 24,
+    "description": "Benchmark request 94",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0095",
+    "seed": 95,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 9,
+    "sim_duration": 25,
+    "description": "Benchmark request 95",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0096",
+    "seed": 96,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 2,
+    "sim_duration": 26,
+    "description": "Benchmark request 96",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0097",
+    "seed": 97,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 3,
+    "sim_duration": 27,
+    "description": "Benchmark request 97",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0098",
+    "seed": 98,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 4,
+    "sim_duration": 28,
+    "description": "Benchmark request 98",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0099",
+    "seed": 99,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 5,
+    "sim_duration": 29,
+    "description": "Benchmark request 99",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0100",
+    "seed": 100,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 6,
+    "sim_duration": 30,
+    "description": "Benchmark request 100",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0101",
+    "seed": 101,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 7,
+    "sim_duration": 31,
+    "description": "Benchmark request 101",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0102",
+    "seed": 102,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 8,
+    "sim_duration": 32,
+    "description": "Benchmark request 102",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0103",
+    "seed": 103,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 9,
+    "sim_duration": 33,
+    "description": "Benchmark request 103",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0104",
+    "seed": 104,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 2,
+    "sim_duration": 34,
+    "description": "Benchmark request 104",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0105",
+    "seed": 105,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 3,
+    "sim_duration": 35,
+    "description": "Benchmark request 105",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0106",
+    "seed": 106,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 4,
+    "sim_duration": 36,
+    "description": "Benchmark request 106",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0107",
+    "seed": 107,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 5,
+    "sim_duration": 37,
+    "description": "Benchmark request 107",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0108",
+    "seed": 108,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 6,
+    "sim_duration": 38,
+    "description": "Benchmark request 108",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0109",
+    "seed": 109,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 7,
+    "sim_duration": 39,
+    "description": "Benchmark request 109",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0110",
+    "seed": 110,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 8,
+    "sim_duration": 40,
+    "description": "Benchmark request 110",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0111",
+    "seed": 111,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 9,
+    "sim_duration": 41,
+    "description": "Benchmark request 111",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0112",
+    "seed": 112,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 2,
+    "sim_duration": 42,
+    "description": "Benchmark request 112",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0113",
+    "seed": 113,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 3,
+    "sim_duration": 43,
+    "description": "Benchmark request 113",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0114",
+    "seed": 114,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 4,
+    "sim_duration": 44,
+    "description": "Benchmark request 114",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0115",
+    "seed": 115,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 5,
+    "sim_duration": 45,
+    "description": "Benchmark request 115",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0116",
+    "seed": 116,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 6,
+    "sim_duration": 46,
+    "description": "Benchmark request 116",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0117",
+    "seed": 117,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 7,
+    "sim_duration": 47,
+    "description": "Benchmark request 117",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0118",
+    "seed": 118,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 8,
+    "sim_duration": 48,
+    "description": "Benchmark request 118",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0119",
+    "seed": 119,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 9,
+    "sim_duration": 49,
+    "description": "Benchmark request 119",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0120",
+    "seed": 120,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 2,
+    "sim_duration": 20,
+    "description": "Benchmark request 120",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0121",
+    "seed": 121,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 3,
+    "sim_duration": 21,
+    "description": "Benchmark request 121",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0122",
+    "seed": 122,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 4,
+    "sim_duration": 22,
+    "description": "Benchmark request 122",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0123",
+    "seed": 123,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 5,
+    "sim_duration": 23,
+    "description": "Benchmark request 123",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0124",
+    "seed": 124,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 6,
+    "sim_duration": 24,
+    "description": "Benchmark request 124",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0125",
+    "seed": 125,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 7,
+    "sim_duration": 25,
+    "description": "Benchmark request 125",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0126",
+    "seed": 126,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 8,
+    "sim_duration": 26,
+    "description": "Benchmark request 126",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0127",
+    "seed": 127,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 9,
+    "sim_duration": 27,
+    "description": "Benchmark request 127",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0128",
+    "seed": 128,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 2,
+    "sim_duration": 28,
+    "description": "Benchmark request 128",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0129",
+    "seed": 129,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 3,
+    "sim_duration": 29,
+    "description": "Benchmark request 129",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0130",
+    "seed": 130,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 4,
+    "sim_duration": 30,
+    "description": "Benchmark request 130",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0131",
+    "seed": 131,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 5,
+    "sim_duration": 31,
+    "description": "Benchmark request 131",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0132",
+    "seed": 132,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 6,
+    "sim_duration": 32,
+    "description": "Benchmark request 132",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0133",
+    "seed": 133,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 7,
+    "sim_duration": 33,
+    "description": "Benchmark request 133",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0134",
+    "seed": 134,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 8,
+    "sim_duration": 34,
+    "description": "Benchmark request 134",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0135",
+    "seed": 135,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 9,
+    "sim_duration": 35,
+    "description": "Benchmark request 135",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0136",
+    "seed": 136,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 2,
+    "sim_duration": 36,
+    "description": "Benchmark request 136",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0137",
+    "seed": 137,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 3,
+    "sim_duration": 37,
+    "description": "Benchmark request 137",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0138",
+    "seed": 138,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 4,
+    "sim_duration": 38,
+    "description": "Benchmark request 138",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0139",
+    "seed": 139,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 5,
+    "sim_duration": 39,
+    "description": "Benchmark request 139",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0140",
+    "seed": 140,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 6,
+    "sim_duration": 40,
+    "description": "Benchmark request 140",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0141",
+    "seed": 141,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 7,
+    "sim_duration": 41,
+    "description": "Benchmark request 141",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0142",
+    "seed": 142,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 8,
+    "sim_duration": 42,
+    "description": "Benchmark request 142",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0143",
+    "seed": 143,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 9,
+    "sim_duration": 43,
+    "description": "Benchmark request 143",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0144",
+    "seed": 144,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 2,
+    "sim_duration": 44,
+    "description": "Benchmark request 144",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0145",
+    "seed": 145,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 3,
+    "sim_duration": 45,
+    "description": "Benchmark request 145",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0146",
+    "seed": 146,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 4,
+    "sim_duration": 46,
+    "description": "Benchmark request 146",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0147",
+    "seed": 147,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 5,
+    "sim_duration": 47,
+    "description": "Benchmark request 147",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0148",
+    "seed": 148,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 6,
+    "sim_duration": 48,
+    "description": "Benchmark request 148",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0149",
+    "seed": 149,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 7,
+    "sim_duration": 49,
+    "description": "Benchmark request 149",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0150",
+    "seed": 150,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 8,
+    "sim_duration": 20,
+    "description": "Benchmark request 150",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0151",
+    "seed": 151,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 9,
+    "sim_duration": 21,
+    "description": "Benchmark request 151",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0152",
+    "seed": 152,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 2,
+    "sim_duration": 22,
+    "description": "Benchmark request 152",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0153",
+    "seed": 153,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 3,
+    "sim_duration": 23,
+    "description": "Benchmark request 153",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0154",
+    "seed": 154,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 4,
+    "sim_duration": 24,
+    "description": "Benchmark request 154",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0155",
+    "seed": 155,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 5,
+    "sim_duration": 25,
+    "description": "Benchmark request 155",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0156",
+    "seed": 156,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 6,
+    "sim_duration": 26,
+    "description": "Benchmark request 156",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0157",
+    "seed": 157,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 7,
+    "sim_duration": 27,
+    "description": "Benchmark request 157",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0158",
+    "seed": 158,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 8,
+    "sim_duration": 28,
+    "description": "Benchmark request 158",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0159",
+    "seed": 159,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 9,
+    "sim_duration": 29,
+    "description": "Benchmark request 159",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0160",
+    "seed": 160,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 2,
+    "sim_duration": 30,
+    "description": "Benchmark request 160",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0161",
+    "seed": 161,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 3,
+    "sim_duration": 31,
+    "description": "Benchmark request 161",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0162",
+    "seed": 162,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 4,
+    "sim_duration": 32,
+    "description": "Benchmark request 162",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0163",
+    "seed": 163,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 5,
+    "sim_duration": 33,
+    "description": "Benchmark request 163",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0164",
+    "seed": 164,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 6,
+    "sim_duration": 34,
+    "description": "Benchmark request 164",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0165",
+    "seed": 165,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 7,
+    "sim_duration": 35,
+    "description": "Benchmark request 165",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0166",
+    "seed": 166,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 8,
+    "sim_duration": 36,
+    "description": "Benchmark request 166",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0167",
+    "seed": 167,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 9,
+    "sim_duration": 37,
+    "description": "Benchmark request 167",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0168",
+    "seed": 168,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 2,
+    "sim_duration": 38,
+    "description": "Benchmark request 168",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0169",
+    "seed": 169,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 3,
+    "sim_duration": 39,
+    "description": "Benchmark request 169",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0170",
+    "seed": 170,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 4,
+    "sim_duration": 40,
+    "description": "Benchmark request 170",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0171",
+    "seed": 171,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 5,
+    "sim_duration": 41,
+    "description": "Benchmark request 171",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0172",
+    "seed": 172,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 6,
+    "sim_duration": 42,
+    "description": "Benchmark request 172",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0173",
+    "seed": 173,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 7,
+    "sim_duration": 43,
+    "description": "Benchmark request 173",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0174",
+    "seed": 174,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 8,
+    "sim_duration": 44,
+    "description": "Benchmark request 174",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0175",
+    "seed": 175,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 9,
+    "sim_duration": 45,
+    "description": "Benchmark request 175",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0176",
+    "seed": 176,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 2,
+    "sim_duration": 46,
+    "description": "Benchmark request 176",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0177",
+    "seed": 177,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 3,
+    "sim_duration": 47,
+    "description": "Benchmark request 177",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0178",
+    "seed": 178,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 4,
+    "sim_duration": 48,
+    "description": "Benchmark request 178",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0179",
+    "seed": 179,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 5,
+    "sim_duration": 49,
+    "description": "Benchmark request 179",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0180",
+    "seed": 180,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 6,
+    "sim_duration": 20,
+    "description": "Benchmark request 180",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0181",
+    "seed": 181,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 7,
+    "sim_duration": 21,
+    "description": "Benchmark request 181",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0182",
+    "seed": 182,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 8,
+    "sim_duration": 22,
+    "description": "Benchmark request 182",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0183",
+    "seed": 183,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 9,
+    "sim_duration": 23,
+    "description": "Benchmark request 183",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0184",
+    "seed": 184,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 2,
+    "sim_duration": 24,
+    "description": "Benchmark request 184",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0185",
+    "seed": 185,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 3,
+    "sim_duration": 25,
+    "description": "Benchmark request 185",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0186",
+    "seed": 186,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 4,
+    "sim_duration": 26,
+    "description": "Benchmark request 186",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0187",
+    "seed": 187,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 5,
+    "sim_duration": 27,
+    "description": "Benchmark request 187",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0188",
+    "seed": 188,
+    "num_sites": 3,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 6,
+    "sim_duration": 28,
+    "description": "Benchmark request 188",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0189",
+    "seed": 189,
+    "num_sites": 1,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 7,
+    "sim_duration": 29,
+    "description": "Benchmark request 189",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0190",
+    "seed": 190,
+    "num_sites": 2,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 3,
+    "queue_capacity": 50,
+    "arrival_rate": 1.0,
+    "mean_service_time": 8,
+    "sim_duration": 30,
+    "description": "Benchmark request 190",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0191",
+    "seed": 191,
+    "num_sites": 3,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 4,
+    "queue_capacity": 60,
+    "arrival_rate": 2.0,
+    "mean_service_time": 9,
+    "sim_duration": 31,
+    "description": "Benchmark request 191",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0192",
+    "seed": 192,
+    "num_sites": 1,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 5,
+    "queue_capacity": 70,
+    "arrival_rate": 3.0,
+    "mean_service_time": 2,
+    "sim_duration": 32,
+    "description": "Benchmark request 192",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0193",
+    "seed": 193,
+    "num_sites": 2,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 6,
+    "queue_capacity": 80,
+    "arrival_rate": 4.0,
+    "mean_service_time": 3,
+    "sim_duration": 33,
+    "description": "Benchmark request 193",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0194",
+    "seed": 194,
+    "num_sites": 3,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 7,
+    "queue_capacity": 90,
+    "arrival_rate": 5.0,
+    "mean_service_time": 4,
+    "sim_duration": 34,
+    "description": "Benchmark request 194",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0195",
+    "seed": 195,
+    "num_sites": 1,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 3,
+    "queue_capacity": 100,
+    "arrival_rate": 1.0,
+    "mean_service_time": 5,
+    "sim_duration": 35,
+    "description": "Benchmark request 195",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0196",
+    "seed": 196,
+    "num_sites": 2,
+    "num_resources_per_site": 2,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 4,
+    "queue_capacity": 110,
+    "arrival_rate": 2.0,
+    "mean_service_time": 6,
+    "sim_duration": 36,
+    "description": "Benchmark request 196",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0197",
+    "seed": 197,
+    "num_sites": 3,
+    "num_resources_per_site": 3,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 5,
+    "queue_capacity": 120,
+    "arrival_rate": 3.0,
+    "mean_service_time": 7,
+    "sim_duration": 37,
+    "description": "Benchmark request 197",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0198",
+    "seed": 198,
+    "num_sites": 1,
+    "num_resources_per_site": 4,
+    "num_queues_per_site": 1,
+    "capacity_per_resource": 6,
+    "queue_capacity": 130,
+    "arrival_rate": 4.0,
+    "mean_service_time": 8,
+    "sim_duration": 38,
+    "description": "Benchmark request 198",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  },
+  {
+    "scenario_id": "bench-0199",
+    "seed": 199,
+    "num_sites": 2,
+    "num_resources_per_site": 5,
+    "num_queues_per_site": 2,
+    "capacity_per_resource": 7,
+    "queue_capacity": 140,
+    "arrival_rate": 5.0,
+    "mean_service_time": 9,
+    "sim_duration": 39,
+    "description": "Benchmark request 199",
+    "provenance": {
+      "synthetic": true,
+      "generator_id": "aminopstwin-fixtures-gen-v1",
+      "generator_version": "0.1.0",
+      "seed": 0
+    }
+  }
+]
