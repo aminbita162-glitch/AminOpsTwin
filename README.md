@@ -63,7 +63,7 @@ direct handle to the database or the Executor store (§3.3).
 | P6    | Assurance Interface and Weekly Checks | COMPLETE (CANDIDATE) |
 | P7    | Responsive Dashboard and User Interface | COMPLETE (CANDIDATE) |
 | P8    | Enterprise Hardening and Evaluation | COMPLETE (CANDIDATE) |
-| P9    | Integration, Exports and Pre-Release | NOT STARTED |
+| P9    | Integration, Exports and Pre-Release | COMPLETE (CANDIDATE) |
 | P10   | Final Verification, README, Release  | NOT STARTED |
 
 ### Author

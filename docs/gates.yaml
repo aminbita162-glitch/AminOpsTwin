@@ -516,6 +516,70 @@ gates:
     source_command: "pytest tests/p8/test_api_fuzz.py -v"
     raw_output_path: "test_home/P8/G5.8_api_fuzz.txt"
 
+  # === P9 Gates ===
+  - id: "G6.1"
+    phase: "P9"
+    description: "Clean-room install on a fresh container/machine succeeds; step count recorded"
+    metric: "clean_room_steps"
+    operator: "=="
+    threshold: 11
+    source_command: "pytest tests/p9/test_deployment.py -k clean_room -v"
+    raw_output_path: "test_home/P9/G6.1_clean_room.txt"
+
+  - id: "G6.2"
+    phase: "P9"
+    description: "Offline synthetic demo runs with network disabled; 0 outbound network calls"
+    metric: "offline_demo_outbound_calls"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/p9/test_deployment.py -k offline -v"
+    raw_output_path: "test_home/P9/G6.2_offline.txt"
+
+  - id: "G6.3"
+    phase: "P9"
+    description: "Backup/restore drill: restored state hash equals the source state hash"
+    metric: "backup_restore_match"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p9/test_backup.py -v"
+    raw_output_path: "test_home/P9/G6.3_backup.txt"
+
+  - id: "G6.4"
+    phase: "P9"
+    description: "SBOM generated; license report committed; 0 unreviewed licenses"
+    metric: "sbom_license_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p9/test_deployment.py -k sbom -v"
+    raw_output_path: "test_home/P9/G6.4_sbom.txt"
+
+  - id: "G6.5"
+    phase: "P9"
+    description: "LICENSE present with all clauses of 7.2"
+    metric: "license_present"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p9/test_deployment.py -k license -v"
+    raw_output_path: "test_home/P9/G6.5_license.txt"
+
+  - id: "G6.8"
+    phase: "P9"
+    description: "Runbook drill executed once from the written steps only; transcript stored"
+    metric: "runbook_drill_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p9/test_deployment.py -k runbook -v"
+    raw_output_path: "test_home/P9/G6.8_runbook.txt"
+
+  - id: "G6.9"
+    phase: "P9"
+    description: "Readiness rubric dimensions D1-D10 filled from measured evidence; no dimension scored above its linked gates support"
+    metric: "readiness_rubric_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p9/test_deployment.py -k readiness -v"
+    raw_output_path: "test_home/P9/G6.9_readiness.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"

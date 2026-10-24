@@ -1,0 +1,54 @@
+Step 1: Start fresh container
+  Command: docker run --rm -it aminopstwin/cleanroom:latest /bin/bash
+  Expected: Fresh container started with no prior state
+  Status: SIMULATED
+
+Step 2: Clone at tag
+  Command: git clone --branch v{release} --depth 1 https://example.invalid/aminopstwin.git
+  Expected: Repository checked out at the specified release tag
+  Status: SIMULATED
+
+Step 3: Verify manifest
+  Command: python -m src.evidence.verify_manifest
+  Expected: Manifest hash matches the release attestation
+  Status: SIMULATED
+
+Step 4: Create venv and install
+  Command: python3.12 -m venv .venv && .venv/bin/pip install -e .
+  Expected: Virtual environment created and project installed
+  Status: SIMULATED
+
+Step 5: Disable network
+  Command: docker network disconnect bridge $HOSTNAME
+  Expected: Container has no outbound network access
+  Status: SIMULATED
+
+Step 6: Run migrations
+  Command: .venv/bin/alembic upgrade head
+  Expected: All migrations applied successfully
+  Status: SIMULATED
+
+Step 7: Generate synthetic data
+  Command: .venv/bin/python -m src.fixtures_gen.generate --seed 42
+  Expected: Synthetic dataset generated with deterministic seed
+  Status: SIMULATED
+
+Step 8: Run smoke suite offline
+  Command: .venv/bin/python -m pytest -m smoke --no-network
+  Expected: All smoke tests pass with network disabled
+  Status: SIMULATED
+
+Step 9: Assert zero outbound connections
+  Command: .venv/bin/python -m src.assurance.assert_no_outbound
+  Expected: Zero outbound network connections observed
+  Status: SIMULATED
+
+Step 10: Compare state hash
+  Command: .venv/bin/python -m src.evidence.compare_state_hash
+  Expected: State hash matches the golden reference
+  Status: SIMULATED
+
+Step 11: Write report
+  Command: .venv/bin/python -m src.evidence.write_cleanroom_report
+  Expected: Unsigned clean-room report written (§38 rule 7)
+  Status: SIMULATED
