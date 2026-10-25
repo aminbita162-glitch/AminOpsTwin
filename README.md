@@ -161,7 +161,7 @@ additional governance.
 
 ## Measured Summary
 
-Latest full regression: **2950 tests passed, 1 skipped, 0 failures** (P21
+Latest full regression: **3025 tests passed, 1 skipped, 0 failures** (P21
 regression, October 2026). The full suite including all P1–P20 gates passes with
 no failures. Every claim-id in this README resolves via the standalone verify CLI
 without running the full system. [CLAIM-016]

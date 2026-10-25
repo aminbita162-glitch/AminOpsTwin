@@ -23,7 +23,7 @@ claims:
   - claim_id: "CLAIM-001"
     text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
     evidence_path: "README.md"
-    hash: "7b18b536cf0b5062fce12a233f57e3b7efc5030ce512a9f59ef07fe774c1a539"
+    hash: "54d202c0758e615ef0acef1e8cb7ebc5b93de6db511c55948e3f201a68c06965"
     category: "capability"
 
   - claim_id: "CLAIM-002"
@@ -72,13 +72,13 @@ claims:
   - claim_id: "CLAIM-009"
     text: "The system is not clinically validated and not production-ready."
     evidence_path: "README.md"
-    hash: "7b18b536cf0b5062fce12a233f57e3b7efc5030ce512a9f59ef07fe774c1a539"
+    hash: "54d202c0758e615ef0acef1e8cb7ebc5b93de6db511c55948e3f201a68c06965"
     category: "boundary"
 
   - claim_id: "CLAIM-010"
     text: "The system is not synchronized with a real organization."
     evidence_path: "README.md"
-    hash: "7b18b536cf0b5062fce12a233f57e3b7efc5030ce512a9f59ef07fe774c1a539"
+    hash: "54d202c0758e615ef0acef1e8cb7ebc5b93de6db511c55948e3f201a68c06965"
     category: "boundary"
 
   # === Determinism claims ===
@@ -118,7 +118,7 @@ claims:
   - claim_id: "CLAIM-015"
     text: "Stage 2 (P11-P14) is complete with spec consolidation, determinism hardening, evidence infrastructure, and shadow pilot readiness."
     evidence_path: "README.md"
-    hash: "7b18b536cf0b5062fce12a233f57e3b7efc5030ce512a9f59ef07fe774c1a539"
+    hash: "54d202c0758e615ef0acef1e8cb7ebc5b93de6db511c55948e3f201a68c06965"
     category: "capability"
 
   - claim_id: "CLAIM-016"

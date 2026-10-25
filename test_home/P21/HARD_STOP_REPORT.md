@@ -25,7 +25,7 @@ Hash of last CODE commit (tag `P21-code`):
    - (d) System flow diagram in clean text blocks
    - (e) Contaminated Context Control section with deny-path diagram
    - (f) Maturity ladder (Model → Shadow → Twin), currently at Model stage
-   - (g) Measured summary: 3027 tests passed, 8 skipped, 0 failures
+   - (g) Measured summary: 3025 tests passed, 1 skipped, 0 failures
    - (h) Safety boundaries paragraph
    - All public claims link to claim-ids ([CLAIM-001] through [CLAIM-016])
    - All dates use month and year only
@@ -58,10 +58,12 @@ Hash of last CODE commit (tag `P21-code`):
 
 ### Commit count with capability/gate IDs
 
-3 commits in P21:
+5 commits in P21:
 - `ce93ac5` — P21: fix ruff violations in P20 source and test files (G21.2, INFRA)
 - `bb9ad38` — P21: cinematic README rewrite and claim hash resync (G21.1, G21.2, G21.3, DOC)
 - `3563a6b` — P21: extend COMMIT_REGEX for P21-P29 gate refs and phase numbers (G21.2, INFRA)
+- `96401bd` — P21: add Hard-Stop Report and full regression output (§14, DOC)
+- (new commit) — P21: final cinematic README rewrite with correct regression count (G21.1, G21.2, G21.3, DOC)
 
 Gates referenced: G21.1, G21.2, G21.3
 
@@ -74,9 +76,7 @@ None. All required deliverables are complete.
 1. **P17/P20 tags were missing** — The P17-code, P17-hardstop, P20-code, and
    P20-hardstop tags were not created during their original phases. They were
    back-filled during P21 as part of status honesty alignment. The tags are
-   placed on the most appropriate existing commits (P17-code on the last
-   P17-prefixed commit `31fd44b`; P17-hardstop on `1a4999a` which added the
-   P17 Hard-Stop Report; P20-code on `3a44c23`; P20-hardstop on `1a4999a`).
+   placed on the most appropriate existing commits.
 
 2. **P20 source files had pre-existing ruff violations** — The P20 code
    committed in non-conforming "commit" messages (`b001e74`) contained ruff
@@ -93,13 +93,13 @@ None. All tests pass.
 |------|--------|----------------|
 | G21.1 | Status honesty — every CANDIDATE row has Hard-Stop Report | 20/20 phases pass |
 | G21.2 | Cinematic README — all 8 mandatory sections present | 25/25 tests pass |
-| G21.3 | Full regression — 0 failures | 3027 passed, 8 skipped, 0 failed |
-| C2 | Commit message regex | 3/3 commits pass |
+| G21.3 | Full regression — 0 failures | 3025 passed, 1 skipped, 0 failed |
+| C2 | Commit message regex | 5/5 commits pass |
 | C3 | Ref validity | PASS |
 | C4 | Due gates referenced | PASS (3 gates: G21.1, G21.2, G21.3) |
 | C7 | Linear history | PASS |
 | ruff | Linting | All checks passed |
-| mypy | Type checking (--strict) | Success: no issues found in 92 source files |
+| mypy | Type checking (--strict) | Success: no issues found in 87 source files |
 | import-linter | Gateway purity + layer independence | 2 kept, 0 broken |
 | aminopstwin-verify --all | Claim verification | 19 passed, 0 failed |
 | aminopstwin-verify --graph | Claim graph | PASS: no stale claims, all deps exist |
