@@ -57,7 +57,8 @@ jobs:
             --package aminopstwin.ingestion \
             --package aminopstwin.shadow_pilot \
             --package aminopstwin.fixtures_gen \
-            --package aminopstwin.api
+            --package aminopstwin.api \
+            --package aminopstwin.stage4_seal
 
   test:
     name: Test (pytest + coverage)

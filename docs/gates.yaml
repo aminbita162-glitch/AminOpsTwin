@@ -1179,6 +1179,43 @@ gates:
     source_command: "pytest tests/p23/test_regression.py -v"
     raw_output_path: "test_home/P23/G23.5_regression.txt"
 
+  # === P24 Gates ===
+  - id: "G24.1"
+    phase: "P24"
+    description: "Full P1–P24 regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p24/test_regression.py -v"
+    raw_output_path: "test_home/P24/G24.1_regression.txt"
+
+  - id: "G24.2"
+    phase: "P24"
+    description: "Claim Register resync — every claim hash matches its evidence file"
+    metric: "claims_resynced"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p24/test_claim_resync.py -v"
+    raw_output_path: "test_home/P24/G24.2_claim_resync.txt"
+
+  - id: "G24.3"
+    phase: "P24"
+    description: "Stage Seal document exists with git tree hash and active claim-ids"
+    metric: "stage4_seal_present"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p24/test_stage_seal.py -v"
+    raw_output_path: "test_home/P24/G24.3_stage_seal.txt"
+
+  - id: "G24.4"
+    phase: "P24"
+    description: "No skeleton, placeholder, or unclaimed public statement remains"
+    metric: "no_skeleton_remaining"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p24/test_no_skeleton.py -v"
+    raw_output_path: "test_home/P24/G24.4_no_skeleton.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
