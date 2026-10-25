@@ -28,9 +28,9 @@ from pathlib import Path
 from typing import Any
 
 try:
-    import yaml  # type: ignore[import-not-found]
+    import yaml  # type: ignore[import-untyped]
 except ImportError:  # pragma: no cover
-    yaml = None  # type: ignore[assignment]
+    yaml = None  # type: ignore[assignment, unused-ignore]
 
 __all__ = [
     "ClaimRecord",

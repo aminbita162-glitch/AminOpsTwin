@@ -373,7 +373,7 @@ def tree_to_dict(tree: MerkleTree) -> dict[str, Any]:
     return {
         "root_hash": tree.root_hash,
         "leaves": [
-            {"file_name": l.file_name, "file_hash": l.file_hash}
-            for l in tree.leaves
+            {"file_name": leaf.file_name, "file_hash": leaf.file_hash}
+            for leaf in tree.leaves
         ],
     }
