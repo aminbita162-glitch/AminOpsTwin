@@ -691,6 +691,52 @@ gates:
     source_command: "pytest tests/twin/test_cross_platform_oracle.py tests/twin/test_integer_clock.py -v"
     raw_output_path: "test_home/P12/G12.5_cross_platform.txt"
 
+  # === P13 Gates ===
+  - id: "G13.1"
+    phase: "P13"
+    description: "claims.yaml covers every README capability sentence"
+    metric: "claims_coverage_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p13/test_claims_registry.py -v"
+    raw_output_path: "test_home/P13/G13.1_claims.txt"
+
+  - id: "G13.2"
+    phase: "P13"
+    description: "verify CLI returns success on valid claim and failure on tampered hash"
+    metric: "verify_cli_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p13/test_verify_cli.py -v"
+    raw_output_path: "test_home/P13/G13.2_verify_cli.txt"
+
+  - id: "G13.3"
+    phase: "P13"
+    description: "Prior Pack loads and its hash matches the manifest"
+    metric: "prior_pack_hash_match"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p13/test_prior_pack.py -v"
+    raw_output_path: "test_home/P13/G13.3_prior_pack.txt"
+
+  - id: "G13.4"
+    phase: "P13"
+    description: "Shadow ingestion rejects non-aggregate or under-k-min files"
+    metric: "shadow_ingestion_rejection_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p13/test_shadow_gateway.py -v"
+    raw_output_path: "test_home/P13/G13.4_shadow_gateway.txt"
+
+  - id: "G13.5"
+    phase: "P13"
+    description: "co-signature field present and optional"
+    metric: "cosignature_optional_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p13/test_cosignature.py -v"
+    raw_output_path: "test_home/P13/G13.5_cosignature.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
