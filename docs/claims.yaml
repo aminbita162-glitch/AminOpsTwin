@@ -23,7 +23,7 @@ claims:
   - claim_id: "CLAIM-001"
     text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
     evidence_path: "README.md"
-    hash: "1c0c3450a515b556a5885389ce9e9b9803a72f362f1162bfbb695ac24b0b94b7"
+    hash: "b97d5c5bd27559ac3fd9d0db50d33834b47b9b6bf769f65c460e1227af05e612"
     category: "capability"
 
   - claim_id: "CLAIM-002"
@@ -72,13 +72,13 @@ claims:
   - claim_id: "CLAIM-009"
     text: "The system is not clinically validated and not production-ready."
     evidence_path: "README.md"
-    hash: "1c0c3450a515b556a5885389ce9e9b9803a72f362f1162bfbb695ac24b0b94b7"
+    hash: "b97d5c5bd27559ac3fd9d0db50d33834b47b9b6bf769f65c460e1227af05e612"
     category: "boundary"
 
   - claim_id: "CLAIM-010"
     text: "The system is not synchronized with a real organization."
     evidence_path: "README.md"
-    hash: "1c0c3450a515b556a5885389ce9e9b9803a72f362f1162bfbb695ac24b0b94b7"
+    hash: "b97d5c5bd27559ac3fd9d0db50d33834b47b9b6bf769f65c460e1227af05e612"
     category: "boundary"
 
   # === Determinism claims ===
@@ -107,11 +107,18 @@ claims:
     hash: "3079ec0ff90b6c1bbe41a2cf03135e6830e385d805ff213fa787c03dbb9c6b4a"
     category: "capability"
 
+  # === P19 claims ===
+  - claim_id: "CLAIM-019"
+    text: "Data Contract v2 evolves additively from v1 with multi-version prior pack support and a read-only aggregate API."
+    evidence_path: "src/aminopstwin/priors/__init__.py"
+    hash: "8d8043306001ece81ff813cabae1d6ae50975d404e82b9f6efebc16f39e773fc"
+    category: "capability"
+
   # === P14 claims ===
   - claim_id: "CLAIM-015"
     text: "Stage 2 (P11-P14) is complete with spec consolidation, determinism hardening, evidence infrastructure, and shadow pilot readiness."
     evidence_path: "README.md"
-    hash: "1c0c3450a515b556a5885389ce9e9b9803a72f362f1162bfbb695ac24b0b94b7"
+    hash: "b97d5c5bd27559ac3fd9d0db50d33834b47b9b6bf769f65c460e1227af05e612"
     category: "capability"
 
   - claim_id: "CLAIM-016"

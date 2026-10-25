@@ -95,7 +95,8 @@ agent holds a direct handle to the database or the Executor store (§3.3).
 | P16 | Bit-Reproducible Deterministic Substrate | COMPLETE (CANDIDATE) |
 | P17 | Provable Evidence Graph and Auditability | COMPLETE (CANDIDATE) |
 | P18 | Enforceable Controls and Observability | COMPLETE (CANDIDATE) |
-| P19–P20 | Stage 3 phases | NOT STARTED |
+| P19 | Versioned Contracts, Cryptographic Outputs and API | COMPLETE (CANDIDATE) |
+| P20 | Formal Closure and Zero-Debt Stage Seal | NOT STARTED |
 
 ### Stage 3 (P15–P20) — Active
 
@@ -113,11 +114,12 @@ sequence.
 - P16: [test_home/P16/HARD_STOP_REPORT.md](test_home/P16/HARD_STOP_REPORT.md)
 - P17: [test_home/P17/HARD_STOP_REPORT.md](test_home/P17/HARD_STOP_REPORT.md)
 - P18: [test_home/P18/HARD_STOP_REPORT.md](test_home/P18/HARD_STOP_REPORT.md)
+- P19: [test_home/P19/HARD_STOP_REPORT.md](test_home/P19/HARD_STOP_REPORT.md)
 
 ### Measured summary
 
-Latest full-suite run: 2845 tests passed, 4 skipped, 0 failures (P18
-regression). The full suite including all P1–P18 gates passes with no
+Latest full-suite run: 2939 tests passed, 1 skipped, 0 failures (P19
+regression). The full suite including all P1–P19 gates passes with no
 failures.
 
 ### Security
