@@ -187,6 +187,7 @@ class SignedAssurancePack:
     CLAIM_SUMMARY_FILE = "claim_summary.json"
     DRIFT_METRICS_FILE = "drift_metrics.json"
     REPORT_FILE = "assurance_report.json"
+    PRIOR_VERSION_FILE = "prior_version.json"
 
     def __init__(
         self,
@@ -197,6 +198,7 @@ class SignedAssurancePack:
         drift_metrics: DriftMetrics,
         signing_key: str,
         generated_at: int,
+        prior_version_record: dict[str, Any] | None = None,
     ) -> None:
         self._assurance_report = assurance_report
         self._claim_graph = claim_graph
@@ -204,6 +206,7 @@ class SignedAssurancePack:
         self._drift_metrics = drift_metrics
         self._signing_key = signing_key
         self._generated_at = generated_at
+        self._prior_version_record = prior_version_record
 
     # ------------------------------------------------------------------
     # Pack construction
@@ -241,6 +244,22 @@ class SignedAssurancePack:
     def _report_payload(self) -> dict[str, Any]:
         return self._assurance_report.to_dict()
 
+    def _prior_version_payload(self) -> dict[str, Any]:
+        """Return the prior version record payload (G19.4).
+
+        If no prior version record was supplied, returns an empty record
+        with a ``prior_version`` of ``"none"``.  When a record is
+        supplied, it is passed through unchanged (the caller is
+        responsible for its structure).
+        """
+        if self._prior_version_record is not None:
+            return dict(self._prior_version_record)
+        return {
+            "prior_version": "none",
+            "pack_id": "",
+            "version_hash": "",
+        }
+
     def _pack_files_payloads(self) -> list[tuple[str, dict[str, Any]]]:
         """Return (file_name, payload) pairs for every non-manifest file."""
         return [
@@ -248,6 +267,7 @@ class SignedAssurancePack:
             (self.CLAIM_SUMMARY_FILE, self._claim_summary_payload()),
             (self.DRIFT_METRICS_FILE, self._drift_metrics_payload()),
             (self.REPORT_FILE, self._report_payload()),
+            (self.PRIOR_VERSION_FILE, self._prior_version_payload()),
         ]
 
     def build_manifest(self) -> PackManifest:
@@ -302,12 +322,18 @@ def generate_signed_pack(
     drift_metrics: DriftMetrics,
     signing_key: str,
     generated_at: int | None = None,
+    prior_version_record: dict[str, Any] | None = None,
 ) -> Path:
-    """Generate a signed Evidence Pack in *output_dir* (G18.4).
+    """Generate a signed Evidence Pack in *output_dir* (G18.4, G19.4).
 
     Writes ``gate_status.json``, ``claim_summary.json``,
-    ``drift_metrics.json``, ``assurance_report.json`` and a signed
-    ``manifest.json``.  Returns the path to the manifest.
+    ``drift_metrics.json``, ``assurance_report.json``,
+    ``prior_version.json`` and a signed ``manifest.json``.
+    Returns the path to the manifest.
+
+    When *prior_version_record* is provided, it is written to
+    ``prior_version.json`` and its hash is included in the Merkle
+    root, binding the chosen prior version to the Evidence Pack (G19.4).
     """
     if generated_at is None:
         # Use the report's started_at as a deterministic integer timestamp.
@@ -320,6 +346,7 @@ def generate_signed_pack(
         drift_metrics=drift_metrics,
         signing_key=signing_key,
         generated_at=generated_at,
+        prior_version_record=prior_version_record,
     )
     return pack.write_to(output_dir)
 

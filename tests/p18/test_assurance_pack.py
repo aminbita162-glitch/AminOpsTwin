@@ -141,6 +141,7 @@ class TestSignedAssurancePack:
             "claim_summary.json",
             "drift_metrics.json",
             "assurance_report.json",
+            "prior_version.json",
         ):
             assert (tmp_path / name).exists()
 
@@ -329,7 +330,7 @@ class TestSignedAssurancePack:
         assert isinstance(manifest, PackManifest)
         assert manifest.pack_version == "aminops-pack-v1"
         assert manifest.generated_at == 1730000000
-        assert len(manifest.files) == 4
+        assert len(manifest.files) == 5
         assert len(manifest.merkle_root) == 64
         assert len(manifest.signature) == 64
         assert manifest.claim_count == 2
