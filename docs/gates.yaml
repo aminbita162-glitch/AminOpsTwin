@@ -580,6 +580,25 @@ gates:
     source_command: "pytest tests/p9/test_deployment.py -k readiness -v"
     raw_output_path: "test_home/P9/G6.9_readiness.txt"
 
+  # === P10 Gates ===
+  - id: "G6.6"
+    phase: "P10"
+    description: "Full regression: all P1-P9 gates re-run and pass"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p10/test_regression.py -v"
+    raw_output_path: "test_home/P10/G6.6_regression.txt"
+
+  - id: "G6.7"
+    phase: "P10"
+    description: "Release notes list every capability with its REAL status; none marked VERIFIED_CANDIDATE without a passing evidence path"
+    metric: "release_notes_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p10/test_release_notes.py -v"
+    raw_output_path: "test_home/P10/G6.7_release_notes.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
