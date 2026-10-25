@@ -1133,6 +1133,52 @@ gates:
     source_command: "pytest tests/p22/test_regression.py -v"
     raw_output_path: "test_home/P22/G22.4_regression.txt"
 
+  # === P23 Gates ===
+  - id: "G23.1"
+    phase: "P23"
+    description: "Lockfile exists and is checked in CI (uv lock --check)"
+    metric: "lockfile_checked_in_ci"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p23/test_lockfile_ci.py -v"
+    raw_output_path: "test_home/P23/G23.1_lockfile_ci.txt"
+
+  - id: "G23.2"
+    phase: "P23"
+    description: "CI workflow runs ruff, mypy --strict, import-linter, and pytest"
+    metric: "ci_jobs_present"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p23/test_ci_workflow.py -v"
+    raw_output_path: "test_home/P23/G23.2_ci_workflow.txt"
+
+  - id: "G23.3"
+    phase: "P23"
+    description: "Security workflow runs gitleaks and pip-audit (or equivalent)"
+    metric: "security_workflow_present"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p23/test_security_workflow.py -v"
+    raw_output_path: "test_home/P23/G23.3_security_workflow.txt"
+
+  - id: "G23.4"
+    phase: "P23"
+    description: "Security fast-lane process documented for patch-level updates"
+    metric: "security_fast_lane_documented"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p23/test_security_fast_lane.py -v"
+    raw_output_path: "test_home/P23/G23.4_security_fast_lane.txt"
+
+  - id: "G23.5"
+    phase: "P23"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p23/test_regression.py -v"
+    raw_output_path: "test_home/P23/G23.5_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
