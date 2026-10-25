@@ -26,7 +26,12 @@ class TestFullRegression:
         if os.environ.get(NESTED_GUARD):
             pytest.skip("nested regression guard — P15")
 
-        env = {**os.environ, "PYTHONHASHSEED": "0", NESTED_GUARD: "1"}
+        env = {
+            **os.environ,
+            "PYTHONHASHSEED": "0",
+            NESTED_GUARD: "1",
+            "AMINOPS_REGRESSION_NESTED": "1",
+        }
         result = subprocess.run(
             [
                 sys.executable,
