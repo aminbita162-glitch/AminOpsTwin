@@ -60,5 +60,5 @@
     SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-2845 passed, 4 skipped, 5 warnings in 60.34s (0:01:00)
+2845 passed, 4 skipped, 5 warnings in 59.18s
 EXIT:0

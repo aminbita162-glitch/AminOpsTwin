@@ -5,8 +5,8 @@
 **Phase:** P18 — Enforceable Controls and Observability
 
 **P18-code tag hash:**
-- Full: `7e2186643...` (run `git rev-parse P18-code` for exact value)
-- Short: `7e21866`
+- Full: `f68d279f46d2dffbcc7e0bd058efaa784dda8c53`
+- Short: `f68d279`
 
 ## 2. DONE
 
@@ -54,7 +54,7 @@
 
 ### Commit count
 
-10 commits (1 INFRA + 6 deliverables + 1 regression test + 1 README + 1 pre-existing fix).
+10 commits (1 INFRA + 6 deliverables + 1 regression test + 1 README + 1 pre-existing fix + 1 claims resync).
 
 ### Gates referenced
 
