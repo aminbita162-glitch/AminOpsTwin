@@ -98,6 +98,14 @@ def _run_oracle_workload() -> str:
     return state.final_hash()
 
 
+def _first_diff_pos(a: str, b: str) -> int:
+    """Find the first position where two strings differ."""
+    for i, (ca, cb) in enumerate(zip(a, b, strict=False)):
+        if ca != cb:
+            return i
+    return min(len(a), len(b))
+
+
 def _structural_diff(hash_a: str, hash_b: str) -> str:
     """Emit a structural diff for hash mismatch."""
     return (

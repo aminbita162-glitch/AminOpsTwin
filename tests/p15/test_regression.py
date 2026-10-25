@@ -43,6 +43,8 @@ class TestFullRegression:
                 str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
                 "--ignore",
                 str(REPO_ROOT / "tests" / "p14" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p16"),
             ],
             capture_output=True,
             text=True,

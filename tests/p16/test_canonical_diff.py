@@ -59,9 +59,11 @@ class TestCanonicalDifferential:
 
     def test_float_rejected_by_both(self) -> None:
         """Both implementations reject floats."""
-        with pytest.raises((TypeError, ValueError)):
+        from aminopstwin.contracts.canonical import CanonicalError
+
+        with pytest.raises((TypeError, ValueError, CanonicalError)):
             canonical_bytes({"x": 1.5})
-        with pytest.raises((TypeError, ValueError)):
+        with pytest.raises((TypeError, ValueError, CanonicalError)):
             reference_canonical_bytes({"x": 1.5})
 
     def test_corpus_size(self) -> None:
