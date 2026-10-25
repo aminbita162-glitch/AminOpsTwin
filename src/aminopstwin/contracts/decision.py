@@ -43,7 +43,15 @@ class Stage(StrEnum):
 
 
 class DecisionRecord(BaseModel):
-    """Exact record of a single Gateway decision (§3.9)."""
+    """Exact record of a single Gateway decision (§3.9).
+
+    model_config: extra="forbid", frozen=True, strict=True.
+
+    The ``state_facts_hash`` field (P12, §112) carries the canonical
+    hash of the :class:`~aminopstwin.contracts.state_facts.StateFacts`
+    snapshot that the Gateway evaluated against.  It is ``None`` for
+    records produced before P12 (backward compatibility).
+    """
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
 
@@ -57,6 +65,7 @@ class DecisionRecord(BaseModel):
     principal: str
     payload_hash: str
     decided_at: datetime
+    state_facts_hash: str | None = None
 
     @field_validator("reason_code")
     @classmethod

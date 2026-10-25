@@ -33,6 +33,7 @@ from typing import Final
 
 from aminopstwin.contracts.decision import Decision, DecisionRecord, Stage
 from aminopstwin.contracts.envelope import Envelope
+from aminopstwin.contracts.state_facts import StateFacts, state_facts_hash
 
 __all__ = [
     "PolicyGateway",
@@ -151,12 +152,22 @@ class PolicyGateway:
         principal: str,
         decided_at: _dt.datetime,
         capability: str = "default",
+        state_facts: StateFacts | None = None,
     ) -> DecisionRecord:
         """Evaluate an envelope and return a DecisionRecord.
 
         This is a pure function: repeated calls with the same inputs
         produce identical DecisionRecords (G1.2).
+
+        If *state_facts* is provided, its canonical hash is included
+        in the returned DecisionRecord (P12, §112).
         """
+        sf_hash = (
+            state_facts_hash(state_facts)
+            if state_facts is not None
+            else None
+        )
+
         # --- Stage 1: Schema validation (already done by Envelope) ---
         # Check schema_id and envelope_type against the registries.
         if envelope.schema_id not in self._schema_registry:
@@ -171,6 +182,7 @@ class PolicyGateway:
                 principal=principal,
                 payload_hash=envelope.payload_hash,
                 decided_at=decided_at,
+                state_facts_hash=sf_hash,
             )
 
         expected_type = self._envelope_type_registry.get(
@@ -191,6 +203,7 @@ class PolicyGateway:
                 principal=principal,
                 payload_hash=envelope.payload_hash,
                 decided_at=decided_at,
+                state_facts_hash=sf_hash,
             )
 
         # --- Stage 2: Epoch check (§3.7) ---
@@ -206,6 +219,7 @@ class PolicyGateway:
                 principal=principal,
                 payload_hash=envelope.payload_hash,
                 decided_at=decided_at,
+                state_facts_hash=sf_hash,
             )
 
         if envelope.policy_epoch > self._current_epoch:
@@ -220,6 +234,7 @@ class PolicyGateway:
                 principal=principal,
                 payload_hash=envelope.payload_hash,
                 decided_at=decided_at,
+                state_facts_hash=sf_hash,
             )
 
         # --- Stage 3: Authorization (policy matrix, §3.8) ---
@@ -237,6 +252,7 @@ class PolicyGateway:
                 principal=principal,
                 payload_hash=envelope.payload_hash,
                 decided_at=decided_at,
+                state_facts_hash=sf_hash,
             )
 
         # --- All checks passed: ALLOW ---
@@ -251,6 +267,7 @@ class PolicyGateway:
             principal=principal,
             payload_hash=envelope.payload_hash,
             decided_at=decided_at,
+            state_facts_hash=sf_hash,
         )
 
     def evaluate_pure(
