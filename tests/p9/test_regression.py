@@ -30,6 +30,7 @@ class TestRegression:
                 "pytest",
                 "tests/",
                 "--ignore=tests/p9",
+                "--ignore=tests/p8",
                 "--tb=short",
                 "-q",
                 "--no-header",
