@@ -884,6 +884,52 @@ gates:
     source_command: "pytest tests/ -q --tb=short --no-cov"
     raw_output_path: "test_home/P16/G16.6_regression.txt"
 
+  # === P17 Gates ===
+  - id: "G17.1"
+    phase: "P17"
+    description: "Stale claim detection — deliberate stale claim causes failure; clean tree passes"
+    metric: "stale_claim_detection_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p17/test_claim_graph.py -v"
+    raw_output_path: "test_home/P17/G17.1_stale_claim.txt"
+
+  - id: "G17.2"
+    phase: "P17"
+    description: "Merkle partial proof verifies; tampered file fails verification"
+    metric: "merkle_partial_proof_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p17/test_merkle_pack.py -v"
+    raw_output_path: "test_home/P17/G17.2_merkle_proof.txt"
+
+  - id: "G17.3"
+    phase: "P17"
+    description: "Audit hash-chain detects tampering; temporal versioning retains prior hashes"
+    metric: "audit_chain_tamper_detect_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p17/test_audit_chain.py -v"
+    raw_output_path: "test_home/P17/G17.3_audit_chain.txt"
+
+  - id: "G17.4"
+    phase: "P17"
+    description: "Offline verification kit succeeds on a known-good pack"
+    metric: "offline_kit_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p17/test_offline_kit.py -v"
+    raw_output_path: "test_home/P17/G17.4_offline_kit.txt"
+
+  - id: "G17.5"
+    phase: "P17"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -q --tb=short --no-cov"
+    raw_output_path: "test_home/P17/G17.5_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
