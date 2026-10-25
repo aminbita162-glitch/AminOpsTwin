@@ -12,15 +12,15 @@ import datetime as _dt
 import uuid
 
 import pytest
-from src.agents.a1 import AgentA1
-from src.agents.a2 import AgentA2
-from src.agents.a3 import AgentA3
-from src.agents.a4 import AgentA4
-from src.agents.a5 import AgentA5
-from src.agents.base import AgentTrace
-from src.contracts.clock import SeededClock, SeededIdFactory
-from src.executor import ExecutorStateMachine
-from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
+from aminopstwin.agents.a1 import AgentA1
+from aminopstwin.agents.a2 import AgentA2
+from aminopstwin.agents.a3 import AgentA3
+from aminopstwin.agents.a4 import AgentA4
+from aminopstwin.agents.a5 import AgentA5
+from aminopstwin.agents.base import AgentTrace
+from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.executor import ExecutorStateMachine
+from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
 
 
 @pytest.fixture
@@ -242,7 +242,7 @@ class TestFiveAgents:
 
         # Use a gateway with epoch 1 but the envelope has epoch 0
         # so the epoch check fails and the envelope is denied.
-        from src.gateway.gateway import PolicyGateway
+        from aminopstwin.gateway.gateway import PolicyGateway
 
         denied_gateway = PolicyGateway(
             policy_matrix=PolicyMatrix(set()),

@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 import pytest
-from src.contracts.reasons import is_known_code
+from aminopstwin.contracts.reasons import is_known_code
 
 _CORPUS_PATH = (
     Path(__file__).parent.parent.parent

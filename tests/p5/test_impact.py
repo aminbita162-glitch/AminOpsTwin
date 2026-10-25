@@ -8,7 +8,7 @@ Cycles and incomplete provenance are rejected or explicitly flagged.
 from __future__ import annotations
 
 import pytest
-from src.evidence.impact import (
+from aminopstwin.evidence.impact import (
     ChangeType,
     DependencyEdge,
     DependencyGraph,

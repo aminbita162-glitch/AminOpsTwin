@@ -9,7 +9,7 @@ invented without calibration and approval.
 from __future__ import annotations
 
 import pytest
-from src.twin.selection import (
+from aminopstwin.twin.selection import (
     CandidateExperiment,
     ExperimentSelector,
     SelectionError,

@@ -17,7 +17,7 @@ import datetime as _dt
 import hashlib
 
 import pytest
-from src.evidence.registry import EvidenceEntry, EvidenceKey, EvidenceRegistry
+from aminopstwin.evidence.registry import EvidenceEntry, EvidenceKey, EvidenceRegistry
 
 
 class TestEvidenceRegistryPutGet:

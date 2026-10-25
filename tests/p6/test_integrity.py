@@ -10,28 +10,28 @@ from __future__ import annotations
 import datetime as _dt
 
 import pytest
-from src.assurance.checks import (
+from aminopstwin.assurance.checks import (
     AssuranceCheck,
     CheckOutcome,
     CheckResult,
 )
-from src.assurance.report import (
+from aminopstwin.assurance.report import (
     AssuranceReport,
     AssuranceRunSummary,
     RunState,
     build_report,
 )
-from src.assurance.runner import (
+from aminopstwin.assurance.runner import (
     AssuranceRunner,
     run_assurance,
 )
-from src.assurance.scheduler import (
+from aminopstwin.assurance.scheduler import (
     MissedRunPolicy,
     ScheduleConfig,
     ScheduleOccurrence,
     WeeklyScheduler,
 )
-from src.contracts.clock import SeededClock
+from aminopstwin.contracts.clock import SeededClock
 
 
 def _config(

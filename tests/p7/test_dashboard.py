@@ -24,18 +24,18 @@ from __future__ import annotations
 import datetime as _dt
 
 import pytest
-from fastapi.testclient import TestClient
-from src.dashboard.accessibility import (
+from aminopstwin.dashboard.accessibility import (
     AccessibilityConfig,
     StatusIndicator,
 )
-from src.dashboard.app import BROWSER_MATRIX, DashboardApp
-from src.dashboard.views import (
+from aminopstwin.dashboard.app import BROWSER_MATRIX, DashboardApp
+from aminopstwin.dashboard.views import (
     DashboardData,
     DashboardDataProvider,
     ViewKey,
 )
-from src.dashboard.wallboard import WallboardConfig, WallboardMode
+from aminopstwin.dashboard.wallboard import WallboardConfig, WallboardMode
+from fastapi.testclient import TestClient
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -209,7 +209,7 @@ class TestBudgetView:
         assert data.budget.fallback_reason is None
 
     def test_budget_with_governor(self) -> None:
-        from src.tokens.budget import BudgetGovernor
+        from aminopstwin.tokens.budget import BudgetGovernor
         governor = BudgetGovernor(
             session_budget=1000,
             workflow_budget=500,
@@ -224,7 +224,7 @@ class TestBudgetView:
         assert data.budget.fallback_active is False
 
     def test_budget_exhausted_shows_fallback(self) -> None:
-        from src.tokens.budget import BudgetGovernor, BudgetLevel
+        from aminopstwin.tokens.budget import BudgetGovernor, BudgetLevel
         governor = BudgetGovernor(
             session_budget=10,
             workflow_budget=10,
@@ -255,13 +255,13 @@ class TestAssuranceView:
         assert data.assurance.last_success_id is None
 
     def test_assurance_with_runner_and_scheduler(self) -> None:
-        from src.assurance.runner import AssuranceRunner
-        from src.assurance.scheduler import (
+        from aminopstwin.assurance.runner import AssuranceRunner
+        from aminopstwin.assurance.scheduler import (
             MissedRunPolicy,
             ScheduleConfig,
             WeeklyScheduler,
         )
-        from src.contracts.clock import SeededClock
+        from aminopstwin.contracts.clock import SeededClock
 
         clock = SeededClock(
             _dt.datetime(2026, 1, 5, 9, 0, 0, tzinfo=_dt.UTC)
@@ -305,7 +305,7 @@ class TestExperienceView:
         assert data.experience.promoted_count == 0
 
     def test_experience_with_store(self) -> None:
-        from src.executor.experience import ExperienceStore
+        from aminopstwin.executor.experience import ExperienceStore
         store = ExperienceStore()
         store.observe(
             experience_id="exp-001",

@@ -9,13 +9,13 @@ runs.
 from __future__ import annotations
 
 import pytest
-from src.twin.experiment import (
+from aminopstwin.twin.experiment import (
     ExperimentDesigner,
     ExperimentSpec,
     Objective,
     ProhibitedSpecError,
 )
-from src.twin.simulation import ScenarioConfig
+from aminopstwin.twin.simulation import ScenarioConfig
 
 
 def _baseline_config() -> ScenarioConfig:

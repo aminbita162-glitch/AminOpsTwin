@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AminOpsTwin Operational Dashboard</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --fg: #c9d1d9;
+  --accent: #58a6ff;
+  --border: #30363d;
+  --card: #161b22;
+  --pass: #3fb950;
+  --fail: #f85149;
+  --unknown: #d29922;
+  --stale: #a371f7;
+  --active: #58a6ff;
+  --pending: #8b949e;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+}
+header h1 {
+  font-size: 1.5rem;
+}
+header .demo-banner {
+  color: var(--unknown);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 2rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+nav button {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+nav button:focus-visible {
+  outline: 2px solid var(--accent);
+}
+nav button.active {
+  background: var(--accent);
+  color: #000;
+}
+main {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.view {
+  display: none;
+}
+.view.active {
+  display: block;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-size: 0.85rem;
+  color: var(--pending);
+  text-transform: uppercase;
+}
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+.status-indicator .icon {
+  font-size: 1.1rem;
+}
+.status-pass { color: var(--pass); }
+.status-fail { color: var(--fail); }
+.status-unknown { color: var(--unknown); }
+.status-stale { color: var(--stale); }
+.status-active { color: var(--active); }
+.status-pending { color: var(--pending); }
+.status-not-run { color: var(--pending); }
+.status-exhausted { color: var(--fail); }
+.status-demo { color: var(--unknown); }
+.status-denied { color: var(--fail); }
+.status-reserved { color: var(--stale); }
+.status-reconciling { color: var(--unknown); }
+.status-completed { color: var(--pass); }
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+.badge-pass { background: var(--pass); color: #000; }
+.badge-fail { background: var(--fail); color: #fff; }
+.badge-unknown { background: var(--unknown); color: #000; }
+.badge-stale { background: var(--stale); color: #fff; }
+.badge-not-run { background: var(--pending); color: #000; }
+.metric {
+  display: inline-block;
+  margin-right: 2rem;
+}
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--pending);
+}
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.wallboard-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+.accessibility-info {
+  font-size: 0.8rem;
+  color: var(--pending);
+  margin-top: 0.5rem;
+}
+footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--pending);
+}
+@media (max-width: 768px) {
+  main { padding: 1rem; }
+  nav { padding: 0.5rem 1rem; }
+  header { padding: 0.5rem 1rem; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>AminOpsTwin Operational Dashboard</h1>
+  <div class="demo-banner" aria-label="Data status">
+    Synthetic scenario - not live organizational data
+  </div>
+  <div class="accessibility-info" aria-label="Accessibility">
+    Keyboard operable | Non-colour-only status |
+    Screen reader labels | High contrast
+  </div>
+</header>
+<div class="wallboard-toggle">
+  <button id="wallboard-btn" onclick="toggleWallboard()"
+          aria-label="Toggle wallboard mode">Wallboard</button>
+</div>
+<nav role="tablist" aria-label="Dashboard views">
+  <button class="active" role="tab" aria-selected="true"
+          aria-controls="overview"
+          onclick="showView('overview')">Overview</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="scenario_comparison"
+          onclick="showView('scenario_comparison')">Scenario Comparison</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="evidence"
+          onclick="showView('evidence')">Evidence</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="workflow"
+          onclick="showView('workflow')">Workflow</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="budget"
+          onclick="showView('budget')">Budget</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="assurance"
+          onclick="showView('assurance')">Assurance</button>
+  <button role="tab" aria-selected="false"
+          aria-controls="experience"
+          onclick="showView('experience')">Experience</button>
+</nav>
+<main>
+  <div id="overview" class="view active" role="tabpanel"
+       aria-label="Overview view"></div>
+  <div id="scenario_comparison" class="view" role="tabpanel"
+       aria-label="Scenario comparison view"></div>
+  <div id="evidence" class="view" role="tabpanel"
+       aria-label="Evidence view"></div>
+  <div id="workflow" class="view" role="tabpanel"
+       aria-label="Workflow view"></div>
+  <div id="budget" class="view" role="tabpanel"
+       aria-label="Budget view"></div>
+  <div id="assurance" class="view" role="tabpanel"
+       aria-label="Assurance view"></div>
+  <div id="experience" class="view" role="tabpanel"
+       aria-label="Experience view"></div>
+</main>
+<footer>
+  Browser matrix: Chrome, Firefox, Safari, Edge (current stable)
+  - Mac and Windows desktop. No untested platform is labeled verified.
+  All actions require server-side authorization.
+</footer>
+<script>
+let wallboardMode = false;
+let dashboardData = {};
+
+async function loadData() {
+  const resp = await fetch('/api/dashboard');
+  dashboardData = await resp.json();
+  renderAll();
+}
+
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(
+    v => v.classList.remove('active')
+  );
+  document.querySelectorAll('nav button[role=tab]').forEach(
+    b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    }
+  );
+  document.getElementById(viewId).classList.add('active');
+  const btn = document.querySelector(
+    `nav button[onclick="showView('${viewId}')"]`
+  );
+  if (btn) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+  }
+}
+
+function toggleWallboard() {
+  wallboardMode = !wallboardMode;
+  const nav = document.querySelector('nav');
+  const toggle = document.getElementById('wallboard-btn');
+  if (wallboardMode) {
+    nav.style.display = 'none';
+    toggle.textContent = 'Exit Wallboard';
+    toggle.setAttribute('aria-label', 'Exit wallboard mode');
+    showView('overview');
+  } else {
+    nav.style.display = 'flex';
+    toggle.textContent = 'Wallboard';
+    toggle.setAttribute('aria-label', 'Toggle wallboard mode');
+  }
+}
+
+function statusBadge(state) {
+  const cls = `badge-${
+    state ? state.toLowerCase().replace('_', '-') : 'unknown'
+  }`;
+  return `<span class="badge ${cls}">${
+    state || 'UNKNOWN'
+  }</span>`;
+}
+
+function renderAll() {
+  renderOverview();
+  renderScenarioComparison();
+  renderEvidence();
+  renderWorkflow();
+  renderBudget();
+  renderAssurance();
+  renderExperience();
+}
+
+function renderOverview() {
+  const d = dashboardData.overview || {};
+  let html = '<div class="card"><h2>Overview</h2>';
+  html += `<div class="demo-banner">${d.demo_status || ''}</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Scenarios</div>`
+    + `<div class="metric-value">${d.scenario_count || 0}</div>`
+    + `</div>`;
+  if (d.sites && d.sites.length > 0) {
+    html += '<table><thead><tr>'
+      + '<th>Scenario</th><th>State Hash</th>'
+      + '<th>Arrivals</th><th>Completions</th>'
+      + '</tr></thead><tbody>';
+    d.sites.forEach(s => {
+      html += `<tr><td>${s.scenario_id}</td>`
+        + `<td>${
+          s.state_hash
+            ? s.state_hash.substring(0, 16) + '...'
+            : ''
+        }</td>`
+        + `<td>${s.total_arrivals}</td>`
+        + `<td>${s.total_completions}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  document.getElementById('overview').innerHTML = html;
+}
+
+function renderScenarioComparison() {
+  const d = dashboardData.scenario_comparison || {};
+  let html = '<div class="card"><h2>Scenario Comparison</h2>';
+  if (d.comparisons && d.comparisons.length > 0) {
+    html += `<p>Baseline: ${d.baseline_id} | `
+      + `Deltas: ${d.delta_count}</p>`;
+    html += '<table><thead><tr>'
+      + '<th>Scenario</th><th>Mean Wait</th>'
+      + '<th>Max Queue</th><th>Completions</th>'
+      + '</tr></thead><tbody>';
+    d.comparisons.forEach(c => {
+      html += `<tr><td>${c.scenario_id}</td>`
+        + `<td>${c.mean_wait_time}</td>`
+        + `<td>${c.max_queue_length}</td>`
+        + `<td>${c.total_completions}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  } else {
+    html += '<p>No scenario comparisons available.</p>';
+  }
+  if (d.has_uncertainty) {
+    html += '<p>Uncertainty reported.</p>';
+  }
+  if (d.not_estimable_reason) {
+    html += `<p>Not estimable: ${d.not_estimable_reason}</p>`;
+  }
+  html += '</div>';
+  document.getElementById('scenario_comparison').innerHTML = html;
+}
+
+function renderEvidence() {
+  const d = dashboardData.evidence || {};
+  let html = '<div class="card"><h2>Evidence</h2>';
+  html += `<div class="metric">`
+    + `<div class="metric-label">Approved</div>`
+    + `<div class="metric-value">${d.approved_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Active</div>`
+    + `<div class="metric-value">${d.active_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Pending</div>`
+    + `<div class="metric-value">${d.pending_count || 0}</div>`
+    + `</div>`;
+  if (d.sources && d.sources.length > 0) {
+    html += '<table><thead><tr>'
+      + '<th>Source ID</th><th>Title</th>'
+      + '<th>License</th><th>Status</th>'
+      + '</tr></thead><tbody>';
+    d.sources.forEach(s => {
+      html += `<tr><td>${s.source_id}</td>`
+        + `<td>${s.title}</td>`
+        + `<td>${s.license}</td>`
+        + `<td>${statusBadge(s.status)}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  document.getElementById('evidence').innerHTML = html;
+}
+
+function renderWorkflow() {
+  const d = dashboardData.workflow || {};
+  let html = '<div class="card"><h2>Workflow</h2>';
+  html += `<div class="status-indicator status-${
+    d.state_indicator || 'pending'
+  }"><span class="icon">${d.state_icon || '?'}</span> ${
+    d.state_label || 'Pending'
+  }</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Unknown</div>`
+    + `<div class="metric-value">${d.unknown_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Reconciling</div>`
+    + `<div class="metric-value">${d.reconciling_count || 0}</div>`
+    + `</div>`;
+  if (d.states && d.states.length > 0) {
+    html += '<table><thead><tr>'
+      + '<th>Record ID</th><th>State</th><th>Seq</th>'
+      + '</tr></thead><tbody>';
+    d.states.forEach(s => {
+      html += `<tr><td>${s.record_id}</td>`
+        + `<td>${statusBadge(s.state)}</td>`
+        + `<td>${s.sequence_no}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  document.getElementById('workflow').innerHTML = html;
+}
+
+function renderBudget() {
+  const d = dashboardData.budget || {};
+  let html = '<div class="card"><h2>Budget</h2>';
+  html += `<div class="status-indicator status-${
+    d.indicator || 'active'
+  }"><span class="icon">${d.indicator_icon || '?'}</span> ${
+    d.indicator_label || 'Active'
+  }</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Session Remaining</div>`
+    + `<div class="metric-value">${d.session_remaining || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Workflow Remaining</div>`
+    + `<div class="metric-value">${d.workflow_remaining || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Capability Remaining</div>`
+    + `<div class="metric-value">${d.capability_remaining || 0}</div>`
+    + `</div>`;
+  if (d.fallback_active) {
+    html += `<p>Fallback active: ${d.fallback_reason || ''}</p>`;
+  }
+  html += '</div>';
+  document.getElementById('budget').innerHTML = html;
+}
+
+function renderAssurance() {
+  const d = dashboardData.assurance || {};
+  let html = '<div class="card"><h2>Assurance</h2>';
+  html += `<div class="status-indicator status-${
+    d.indicator || 'not-run'
+  }"><span class="icon">${d.indicator_icon || '?'}</span> ${
+    d.indicator_label || 'Not Run'
+  }</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Latest Attempt</div>`
+    + `<div class="metric-value">${
+      d.latest_attempt_state || 'N/A'
+    }</div></div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Missed</div>`
+    + `<div class="metric-value">${d.missed_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Failed</div>`
+    + `<div class="metric-value">${d.failed_count || 0}</div>`
+    + `</div>`;
+  if (d.last_success_at) {
+    html += `<p>Last success: ${d.last_success_at}</p>`;
+  }
+  if (d.next_occurrence_at) {
+    html += `<p>Next occurrence: ${d.next_occurrence_at}</p>`;
+  }
+  if (d.checks && d.checks.length > 0) {
+    html += '<table><thead><tr>'
+      + '<th>Check</th><th>Outcome</th>'
+      + '</tr></thead><tbody>';
+    d.checks.forEach(c => {
+      html += `<tr><td>${c.check_id}</td>`
+        + `<td>${statusBadge(c.outcome)}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  document.getElementById('assurance').innerHTML = html;
+}
+
+function renderExperience() {
+  const d = dashboardData.experience || {};
+  let html = '<div class="card"><h2>Experience</h2>';
+  html += `<div class="metric">`
+    + `<div class="metric-label">Active</div>`
+    + `<div class="metric-value">${d.active_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Candidate</div>`
+    + `<div class="metric-value">${d.candidate_count || 0}</div>`
+    + `</div>`;
+  html += `<div class="metric">`
+    + `<div class="metric-label">Promoted</div>`
+    + `<div class="metric-value">${d.promoted_count || 0}</div>`
+    + `</div>`;
+  if (d.records && d.records.length > 0) {
+    html += '<table><thead><tr>'
+      + '<th>ID</th><th>Category</th><th>Method</th>'
+      + '<th>Outcome</th><th>Status</th>'
+      + '</tr></thead><tbody>';
+    d.records.forEach(r => {
+      html += `<tr><td>${r.experience_id}</td>`
+        + `<td>${r.task_category}</td>`
+        + `<td>${r.selected_method}</td>`
+        + `<td>${r.test_outcome}</td>`
+        + `<td>${statusBadge(r.status)}</td></tr>`;
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  document.getElementById('experience').innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', loadData);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && wallboardMode) {
+    toggleWallboard();
+  }
+});
+</script>
+</body>
+</html>

@@ -9,8 +9,8 @@ from __future__ import annotations
 import uuid
 
 import pytest
-from src.tokens.budget import BudgetGovernor, BudgetLevel
-from src.tokens.fallback import (
+from aminopstwin.tokens.budget import BudgetGovernor, BudgetLevel
+from aminopstwin.tokens.fallback import (
     HONESTY_STATEMENT,
     FallbackReason,
     ReservationStatus,

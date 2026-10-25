@@ -9,7 +9,7 @@ from __future__ import annotations
 import hashlib
 
 import pytest
-from src.executor.experience import (
+from aminopstwin.executor.experience import (
     ExperienceError,
     ExperienceStatus,
     ExperienceStore,

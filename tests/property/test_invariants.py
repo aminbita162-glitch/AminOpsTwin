@@ -9,27 +9,27 @@ from __future__ import annotations
 import uuid
 
 import pytest
-from hypothesis import HealthCheck, given, settings
-from hypothesis import strategies as st
-from pydantic import ValidationError
-from src.contracts.canonical import (
+from aminopstwin.contracts.canonical import (
     CanonicalError,
     canonical_bytes,
     canonical_hash,
 )
-from src.contracts.clock import SeededClock, SeededIdFactory
-from src.contracts.decision import Decision
-from src.contracts.envelope import Envelope
-from src.gateway.gateway import (
+from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.contracts.decision import Decision
+from aminopstwin.contracts.envelope import Envelope
+from aminopstwin.gateway.gateway import (
     PolicyGateway,
     PolicyMatrix,
     PolicyMatrixEntry,
 )
-from src.tokens.prefilter import (
+from aminopstwin.tokens.prefilter import (
     PREFILTER_ORDER,
     PreFilterStage,
     prefilter_order_valid,
 )
+from hypothesis import HealthCheck, given, settings
+from hypothesis import strategies as st
+from pydantic import ValidationError
 
 # --- Strategies ---
 

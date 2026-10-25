@@ -35,7 +35,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/aminopstwin"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -48,13 +48,13 @@ markers = [
 addopts = "--cov --cov-report=term-missing --cov-report=html:htmlcov --strict-markers"
 
 [tool.coverage.run]
-source = ["src"]
+source = ["src/aminopstwin"]
 branch = true
 omit = ["**/__init__.py"]
 
 [tool.ruff]
 target-version = "py312"
-src = ["src", "tests"]
+src = ["src/aminopstwin", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
@@ -62,7 +62,7 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["src.contracts", "src.gateway", "src.executor", "src.tokens", "src.twin", "src.evidence", "src.assurance", "src.dashboard", "src.enterprise", "src.integration"]
+packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration"]
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -78,13 +78,13 @@ module = "simpy.*"
 ignore_missing_imports = true
 
 [tool.importlinter]
-root_packages = ["src"]
+root_packages = ["aminopstwin"]
 include_external_packages = true
 
 [[tool.importlinter.contracts]]
 name = "Gateway purity: no LLM-library or network imports"
 type = "forbidden"
-source_modules = ["src.gateway"]
+source_modules = ["aminopstwin.gateway"]
 forbidden_modules = [
     "openai",
     "anthropic",

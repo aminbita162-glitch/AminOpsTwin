@@ -15,11 +15,11 @@ Capacity/temporal invariants:
 
 from __future__ import annotations
 
+from aminopstwin.twin.entities import Queue, Site
+from aminopstwin.twin.simulation import ScenarioConfig, SimulationEngine
+from aminopstwin.twin.temporal import TemporalState, snapshot_hash
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
-from src.twin.entities import Queue, Site
-from src.twin.simulation import ScenarioConfig, SimulationEngine
-from src.twin.temporal import TemporalState, snapshot_hash
 
 # --- INV-CAP-001: queue.current_length <= queue.capacity ---
 

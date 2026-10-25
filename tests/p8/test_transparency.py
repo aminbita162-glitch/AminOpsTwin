@@ -11,11 +11,11 @@ from __future__ import annotations
 
 import uuid
 
-from src.enterprise.transparency import (
+from aminopstwin.enterprise.transparency import (
     TRANSPARENCY_REQUIRED_FIELDS,
     build_transparency_response,
 )
-from src.tokens.fallback import FallbackReason, ReservationStatus
+from aminopstwin.tokens.fallback import FallbackReason, ReservationStatus
 
 
 class TestTransparencyContract:

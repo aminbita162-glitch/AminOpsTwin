@@ -13,14 +13,14 @@ from __future__ import annotations
 import datetime as _dt
 
 import pytest
-from src.assurance.scheduler import (
+from aminopstwin.assurance.scheduler import (
     MissedRunPolicy,
     ScheduleConfig,
     ScheduleOccurrence,
     SchedulerError,
     WeeklyScheduler,
 )
-from src.contracts.clock import SeededClock
+from aminopstwin.contracts.clock import SeededClock
 
 
 def _config(

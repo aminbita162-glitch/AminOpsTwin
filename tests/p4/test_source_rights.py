@@ -10,7 +10,7 @@ from __future__ import annotations
 import hashlib
 
 import pytest
-from src.evidence.source_rights import (
+from aminopstwin.evidence.source_rights import (
     SourceRecord,
     SourceRegistry,
     SourceRegistryError,

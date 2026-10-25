@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from src.tokens.prefilter import (
+from aminopstwin.tokens.prefilter import (
     PREFILTER_ORDER,
     PreFilterStage,
     prefilter_order_valid,

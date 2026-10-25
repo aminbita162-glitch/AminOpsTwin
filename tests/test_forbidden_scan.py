@@ -53,7 +53,7 @@ class TestForbiddenScan:
 
     def test_reason_codes_known(self) -> None:
         """Every reason_code in forbidden_terms.yaml is registered."""
-        from src.contracts.reasons import is_known_code
+        from aminopstwin.contracts.reasons import is_known_code
 
         data = yaml.safe_load(_FORBIDDEN_TERMS_PATH.read_text())
         for entry in data["forbidden_terms"]:

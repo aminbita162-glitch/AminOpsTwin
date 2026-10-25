@@ -11,7 +11,7 @@ gates:
     metric: "branch_coverage_pct"
     operator: ">="
     threshold: 95
-    source_command: "pytest --cov=src/gateway --cov-report=term-missing --cov-branch tests/gateway/"
+    source_command: "pytest --cov=src/aminopstwin/gateway --cov-report=term-missing --cov-branch tests/gateway/"
     raw_output_path: "test_home/P1/G1.1_coverage.txt"
 
   - id: "G1.2"
@@ -56,7 +56,7 @@ gates:
     metric: "mypy_errors"
     operator: "=="
     threshold: 0
-    source_command: "mypy --strict src/contracts src/gateway src/executor src/tokens"
+    source_command: "mypy --strict src/aminopstwin/contracts src/aminopstwin/gateway src/aminopstwin/executor src/aminopstwin/tokens"
     raw_output_path: "test_home/P1/G1.6_mypy.txt"
 
   - id: "G1.7"
@@ -92,7 +92,7 @@ gates:
     metric: "mutation_score_pct"
     operator: ">="
     threshold: 80
-    source_command: "mutmut run --paths-to-mutate src/gateway"
+    source_command: "mutmut run --paths-to-mutate src/aminopstwin/gateway"
     raw_output_path: "test_home/P1/G1.10_mutmut.txt"
 
   - id: "G1.11"
@@ -598,6 +598,52 @@ gates:
     threshold: 1
     source_command: "pytest tests/p10/test_release_notes.py -v"
     raw_output_path: "test_home/P10/G6.7_release_notes.txt"
+
+  # === P11 Gates ===
+  - id: "G11.1"
+    phase: "P11"
+    description: "Package import succeeds in clean venv"
+    metric: "import_success"
+    operator: "=="
+    threshold: 1
+    source_command: "python -c 'import aminopstwin; print(1)'"
+    raw_output_path: "test_home/P11/G11.1_import.txt"
+
+  - id: "G11.2"
+    phase: "P11"
+    description: "uv.lock present and uv lock --check passes"
+    metric: "lockfile_check"
+    operator: "=="
+    threshold: 1
+    source_command: "uv lock --check"
+    raw_output_path: "test_home/P11/G11.2_lock.txt"
+
+  - id: "G11.3"
+    phase: "P11"
+    description: ".mutmut-cache absent from git ls-files"
+    metric: "mutmut_absent"
+    operator: "=="
+    threshold: 1
+    source_command: "test -z \"$(git ls-files .mutmut-cache)\""
+    raw_output_path: "test_home/P11/G11.3_mutmut.txt"
+
+  - id: "G11.4"
+    phase: "P11"
+    description: "CI workflow file exists and is valid YAML"
+    metric: "ci_yaml_valid"
+    operator: "=="
+    threshold: 1
+    source_command: "python -c 'import yaml; yaml.safe_load(open(\".github/workflows/ci.yml\")); print(1)'"
+    raw_output_path: "test_home/P11/G11.4_ci.txt"
+
+  - id: "G11.5"
+    phase: "P11"
+    description: "Full regression of P1-P10 still passes"
+    metric: "p1_p10_regression"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -q --tb=short"
+    raw_output_path: "test_home/P11/G11.5_regression.txt"
 
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"

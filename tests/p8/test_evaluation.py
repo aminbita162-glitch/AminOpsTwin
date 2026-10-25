@@ -8,7 +8,7 @@ isolation.
 
 from __future__ import annotations
 
-from src.enterprise.evaluation import EvaluationHarness, EvaluationReport
+from aminopstwin.enterprise.evaluation import EvaluationHarness, EvaluationReport
 
 
 class TestEvaluationHarness:

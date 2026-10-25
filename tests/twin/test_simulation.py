@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import pytest
-from pydantic import ValidationError
-from src.twin.entities import (
+from aminopstwin.twin.entities import (
     Arrival,
     OperationalSnapshot,
     Queue,
@@ -12,12 +11,13 @@ from src.twin.entities import (
     ServiceCompletion,
     Site,
 )
-from src.twin.simulation import (
+from aminopstwin.twin.simulation import (
     ReplayOracle,
     ScenarioConfig,
     SimulationEngine,
 )
-from src.twin.temporal import TemporalState, snapshot_hash
+from aminopstwin.twin.temporal import TemporalState, snapshot_hash
+from pydantic import ValidationError
 
 
 class TestEntities:

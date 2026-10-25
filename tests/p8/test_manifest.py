@@ -10,7 +10,7 @@ import tempfile
 from pathlib import Path
 
 import pytest
-from src.enterprise.manifest import (
+from aminopstwin.enterprise.manifest import (
     ManifestError,
     build_manifest,
 )

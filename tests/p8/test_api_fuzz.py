@@ -8,11 +8,11 @@ dashboard endpoints via the OpenAPI schema.
 from __future__ import annotations
 
 import schemathesis
+from aminopstwin.dashboard.accessibility import AccessibilityConfig
+from aminopstwin.dashboard.app import DashboardApp
+from aminopstwin.dashboard.views import DashboardDataProvider
+from aminopstwin.dashboard.wallboard import WallboardConfig
 from fastapi import FastAPI
-from src.dashboard.accessibility import AccessibilityConfig
-from src.dashboard.app import DashboardApp
-from src.dashboard.views import DashboardDataProvider
-from src.dashboard.wallboard import WallboardConfig
 
 #: Build a test app instance for fuzzing.
 _provider = DashboardDataProvider()

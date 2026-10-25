@@ -10,14 +10,14 @@ from __future__ import annotations
 import json
 import os
 
-from src.tokens.budget import BudgetGovernor
-from src.twin.benchmark import (
+from aminopstwin.tokens.budget import BudgetGovernor
+from aminopstwin.twin.benchmark import (
     BENCHMARK_FIXTURE_PATH,
     generate_benchmark_suite,
     load_benchmark_suite,
 )
-from src.twin.pipeline import TokenPipeline
-from src.twin.scenarios import load_default_scenarios
+from aminopstwin.twin.pipeline import TokenPipeline
+from aminopstwin.twin.scenarios import load_default_scenarios
 
 
 class TestTokenBenchmark:
@@ -108,7 +108,7 @@ class TestPrefilterOrder:
 
     def test_prefilter_order_enforced(self) -> None:
         """Pre-filter order is enforced in the pipeline."""
-        from src.tokens.prefilter import (
+        from aminopstwin.tokens.prefilter import (
             PREFILTER_ORDER,
             prefilter_order_valid,
         )
@@ -116,7 +116,7 @@ class TestPrefilterOrder:
 
     def test_no_bypass_succeeds(self) -> None:
         """A request bypassing the pre-filter cannot succeed."""
-        from src.tokens.prefilter import (
+        from aminopstwin.tokens.prefilter import (
             PREFILTER_ORDER,
             prefilter_order_valid,
         )

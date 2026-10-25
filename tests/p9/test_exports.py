@@ -13,7 +13,7 @@ import tempfile
 from pathlib import Path
 
 import pytest
-from src.integration.exports import (
+from aminopstwin.integration.exports import (
     NO_AGENT_HELD_KEY,
     ExportSignatureError,
     ExportSignatureStatus,

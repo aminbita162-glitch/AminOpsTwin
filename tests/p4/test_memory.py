@@ -11,7 +11,7 @@ from __future__ import annotations
 import hashlib
 
 import pytest
-from src.executor.memory import (
+from aminopstwin.executor.memory import (
     MemoryClass,
     MemoryStore,
     RetentionClass,

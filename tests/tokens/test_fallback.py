@@ -8,13 +8,13 @@ from __future__ import annotations
 import uuid
 
 import pytest
-from pydantic import ValidationError
-from src.tokens.fallback import (
+from aminopstwin.tokens.fallback import (
     HONESTY_STATEMENT,
     FallbackReason,
     FallbackResponse,
     ReservationStatus,
 )
+from pydantic import ValidationError
 
 # ---------------------------------------------------------------------------
 # FallbackResponse construction and field validation

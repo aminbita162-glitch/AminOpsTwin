@@ -7,7 +7,7 @@ used instead.
 
 from __future__ import annotations
 
-from src.executor import ExecutorState
+from aminopstwin.executor import ExecutorState
 
 from tests.fault.infrastructure import CheckpointableExecutor
 

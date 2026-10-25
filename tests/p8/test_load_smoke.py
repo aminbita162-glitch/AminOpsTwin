@@ -7,7 +7,7 @@ claim.
 
 from __future__ import annotations
 
-from src.enterprise.load_smoke import LoadSmokeResult, run_load_smoke
+from aminopstwin.enterprise.load_smoke import LoadSmokeResult, run_load_smoke
 
 
 class TestLoadSmoke:

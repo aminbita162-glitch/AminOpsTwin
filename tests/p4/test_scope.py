@@ -42,11 +42,11 @@ class TestScopeCompleteness:
         # Here we verify the forbidden_terms are still enforced
         import hashlib
 
-        from src.evidence.ingestion import (
+        from aminopstwin.evidence.ingestion import (
             IngestionOutcome,
             SourceIngestor,
         )
-        from src.evidence.source_rights import (
+        from aminopstwin.evidence.source_rights import (
             SourceRecord,
             SourceRegistry,
             SourceStatus,

@@ -5,8 +5,12 @@ from __future__ import annotations
 import uuid
 
 import pytest
-from src.tokens.budget import BudgetGovernor, BudgetLevel
-from src.tokens.fallback import FallbackReason, FallbackResponse, ReservationStatus
+from aminopstwin.tokens.budget import BudgetGovernor, BudgetLevel
+from aminopstwin.tokens.fallback import (
+    FallbackReason,
+    FallbackResponse,
+    ReservationStatus,
+)
 
 # ---------------------------------------------------------------------------
 # Budget reservation and reconciliation

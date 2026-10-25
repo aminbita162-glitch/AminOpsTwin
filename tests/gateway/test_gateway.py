@@ -11,9 +11,9 @@ Tests cover:
 
 from __future__ import annotations
 
-from src.contracts.clock import SeededClock
-from src.contracts.decision import Decision, Stage
-from src.gateway.gateway import (
+from aminopstwin.contracts.clock import SeededClock
+from aminopstwin.contracts.decision import Decision, Stage
+from aminopstwin.gateway.gateway import (
     PolicyGateway,
 )
 

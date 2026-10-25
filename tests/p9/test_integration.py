@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from src.integration.integration import (
+from aminopstwin.integration.integration import (
     IntegrationHarness,
     IntegrationTestResult,
 )

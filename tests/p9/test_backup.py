@@ -11,10 +11,10 @@ import json
 import uuid
 
 import pytest
-from src.contracts.clock import SeededClock
-from src.executor import DurableExecutor
-from src.executor.memory import MemoryClass, MemoryStore
-from src.integration.backup import (
+from aminopstwin.contracts.clock import SeededClock
+from aminopstwin.executor import DurableExecutor
+from aminopstwin.executor.memory import MemoryClass, MemoryStore
+from aminopstwin.integration.backup import (
     BACKUP_RPO_MINUTES,
     BACKUP_RTO_HOURS,
     BackupDrill,

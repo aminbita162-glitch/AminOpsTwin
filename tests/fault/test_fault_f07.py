@@ -10,7 +10,7 @@ from __future__ import annotations
 import contextlib
 import uuid
 
-from src.tokens.fallback import FallbackReason
+from aminopstwin.tokens.fallback import FallbackReason
 
 from tests.fault.infrastructure import LLMTimeoutSimulator
 

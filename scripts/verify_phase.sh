@@ -56,7 +56,7 @@ echo "3. Computing numeric gates..."
 
 # G1.1: Gateway branch coverage >= 95%
 echo "   G1.1: Gateway branch coverage..."
-python3 -m pytest --cov=src/gateway --cov-branch --cov-report=term-missing tests/gateway/ 2>&1 | tee "test_home/$PHASE/G1.1_coverage.txt" || true
+python3 -m pytest --cov=src/aminopstwin/gateway --cov-branch --cov-report=term-missing tests/gateway/ 2>&1 | tee "test_home/$PHASE/G1.1_coverage.txt" || true
 COV_LINE=$(grep "TOTAL" "test_home/$PHASE/G1.1_coverage.txt" 2>/dev/null || echo "")
 if [ -n "$COV_LINE" ]; then
     COV_PCT=$(echo "$COV_LINE" | awk '{print $NF}' | sed 's/%//')
@@ -97,7 +97,7 @@ fi
 
 # G1.6: mypy --strict
 echo "   G1.6: mypy --strict..."
-python3 -m mypy --strict src/contracts src/gateway src/executor src/tokens 2>&1 | tee "test_home/$PHASE/G1.6_mypy.txt" || true
+python3 -m mypy --strict src/aminopstwin/contracts src/aminopstwin/gateway src/aminopstwin/executor src/aminopstwin/tokens 2>&1 | tee "test_home/$PHASE/G1.6_mypy.txt" || true
 if [ "${PIPESTATUS[0]:-1}" -eq 0 ]; then
     echo "   G1.6: PASS"
 else

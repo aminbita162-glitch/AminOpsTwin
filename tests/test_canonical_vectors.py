@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 import pytest
-from src.contracts.canonical import (
+from aminopstwin.contracts.canonical import (
     CanonicalError,
     canonical_bytes,
 )

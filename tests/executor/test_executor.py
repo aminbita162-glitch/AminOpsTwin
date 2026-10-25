@@ -9,14 +9,14 @@ import datetime as _dt
 import uuid
 
 import pytest
-from pydantic import ValidationError
-from src.contracts.clock import SeededClock
-from src.executor import (
+from aminopstwin.contracts.clock import SeededClock
+from aminopstwin.executor import (
     Checkpoint,
     DurableExecutor,
     ExecutorState,
     WorkflowRecord,
 )
+from pydantic import ValidationError
 
 # ---------------------------------------------------------------------------
 # Fixtures

@@ -9,9 +9,9 @@ fails schema validation with GW-SCHEMA-001.
 from __future__ import annotations
 
 import pytest
-from src.contracts.canonical import canonical_hash
-from src.contracts.clock import SeededClock, SeededIdFactory
-from src.contracts.envelope import Envelope
+from aminopstwin.contracts.canonical import canonical_hash
+from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.contracts.envelope import Envelope
 
 
 def _make_env(payload: dict) -> Envelope:

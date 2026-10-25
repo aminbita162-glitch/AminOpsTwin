@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 import pytest
-from src.integration.deployment import (
+from aminopstwin.integration.deployment import (
     CLEAN_ROOM_STEPS,
     DEPLOYMENT_CONFIG,
     RPO_MINUTES,

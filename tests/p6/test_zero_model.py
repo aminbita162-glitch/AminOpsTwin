@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import datetime as _dt
 
-from src.assurance.checks import (
+from aminopstwin.assurance.checks import (
     AssuranceCheck,
     CheckOutcome,
     check_binding_integrity,
@@ -17,24 +17,24 @@ from src.assurance.checks import (
     check_duplicate_budget_invariants,
     check_sanitized_logging,
 )
-from src.assurance.report import (
+from aminopstwin.assurance.report import (
     AssuranceReport,
     CheckResult,
     RunState,
     build_report,
 )
-from src.assurance.runner import (
+from aminopstwin.assurance.runner import (
     AssuranceRunner,
     build_default_checks,
     run_assurance,
 )
-from src.assurance.scheduler import (
+from aminopstwin.assurance.scheduler import (
     MissedRunPolicy,
     ScheduleConfig,
     ScheduleOccurrence,
     WeeklyScheduler,
 )
-from src.contracts.clock import SeededClock
+from aminopstwin.contracts.clock import SeededClock
 
 
 def _config(
@@ -300,7 +300,7 @@ class TestReportZeroModel:
         # Same run_id? No—uuid4. But the report hashes for the same
         # checks and same timestamps should be the same if run_id is
         # the same. Let's verify with fixed run_id.
-        from src.assurance.report import AssuranceReport
+        from aminopstwin.assurance.report import AssuranceReport
         report1 = AssuranceReport(
             run_id="fixed-id",
             occurrence_id=r1.occurrence_id,

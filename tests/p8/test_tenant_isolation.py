@@ -9,8 +9,8 @@ from __future__ import annotations
 import hashlib
 
 import pytest
-from src.enterprise.tenant import TenantGuard, TenantScope
-from src.executor.memory import MemoryClass
+from aminopstwin.enterprise.tenant import TenantGuard, TenantScope
+from aminopstwin.executor.memory import MemoryClass
 
 
 def _make_guard_with_tenants(

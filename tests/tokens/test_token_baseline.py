@@ -18,14 +18,14 @@ import json
 from pathlib import Path
 
 import pytest
-from src.agents.a1 import AgentA1
-from src.agents.a2 import AgentA2
-from src.agents.a3 import AgentA3
-from src.agents.a4 import AgentA4
-from src.agents.a5 import AgentA5
-from src.contracts.clock import SeededClock, SeededIdFactory
-from src.executor import ExecutorStateMachine
-from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
+from aminopstwin.agents.a1 import AgentA1
+from aminopstwin.agents.a2 import AgentA2
+from aminopstwin.agents.a3 import AgentA3
+from aminopstwin.agents.a4 import AgentA4
+from aminopstwin.agents.a5 import AgentA5
+from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.executor import ExecutorStateMachine
+from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
 
 _RESULTS_PATH = (
     Path(__file__).parent.parent.parent

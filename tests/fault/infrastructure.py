@@ -22,9 +22,13 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Any
 
-from src.executor import ExecutorState, ExecutorStateMachine
-from src.tokens.budget import BudgetGovernor, BudgetLevel
-from src.tokens.fallback import FallbackReason, FallbackResponse, ReservationStatus
+from aminopstwin.executor import ExecutorState, ExecutorStateMachine
+from aminopstwin.tokens.budget import BudgetGovernor, BudgetLevel
+from aminopstwin.tokens.fallback import (
+    FallbackReason,
+    FallbackResponse,
+    ReservationStatus,
+)
 
 __all__ = [
     "Checkpoint",

@@ -6,9 +6,9 @@ same input produce the same output.
 
 from __future__ import annotations
 
-from src.contracts.clock import SeededClock
-from src.contracts.decision import Decision, Stage
-from src.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
+from aminopstwin.contracts.clock import SeededClock
+from aminopstwin.contracts.decision import Decision, Stage
+from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
 
 
 def _make_gateway() -> PolicyGateway:

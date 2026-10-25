@@ -6,12 +6,12 @@ Verifies that reconstructed state hash equals the original in
 
 from __future__ import annotations
 
-from src.twin.delta import DeltaCompressor
-from src.twin.entities import (
+from aminopstwin.twin.delta import DeltaCompressor
+from aminopstwin.twin.entities import (
     Queue,
     Site,
 )
-from src.twin.temporal import TemporalState, snapshot_hash
+from aminopstwin.twin.temporal import TemporalState, snapshot_hash
 
 
 class TestDeltaCompression:

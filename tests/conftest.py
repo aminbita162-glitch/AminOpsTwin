@@ -12,15 +12,15 @@ import pytest
 # Ensure src is importable
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from src.contracts.canonical import canonical_hash
-from src.contracts.clock import (
+from aminopstwin.contracts.canonical import canonical_hash
+from aminopstwin.contracts.clock import (
     SeededClock,
     SeededIdFactory,
     SystemClock,
     SystemIdFactory,
 )
-from src.contracts.envelope import Envelope
-from src.gateway.gateway import (
+from aminopstwin.contracts.envelope import Envelope
+from aminopstwin.gateway.gateway import (
     PolicyGateway,
     PolicyMatrix,
     PolicyMatrixEntry,

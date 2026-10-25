@@ -14,8 +14,8 @@ import json
 from pathlib import Path
 
 import pytest
-from src.contracts.clock import SeededClock
-from src.tokens.llm_adapter import LLMAdapter, LLMRecord, ReplayMissError
+from aminopstwin.contracts.clock import SeededClock
+from aminopstwin.tokens.llm_adapter import LLMAdapter, LLMRecord, ReplayMissError
 
 
 class TestLLMRecordReplay:
@@ -287,7 +287,7 @@ def test_zero_live_network_calls() -> None:
     This test asserts that the adapter has no httpx, requests, or
     openai imports — it is pure record/replay.
     """
-    import src.tokens.llm_adapter as mod
+    import aminopstwin.tokens.llm_adapter as mod
 
     source = Path(mod.__file__).read_text()
     forbidden = ["import httpx", "import requests", "import openai",
