@@ -4,9 +4,9 @@ Runs the full test suite (excluding P21's own regression test to
 avoid infinite recursion) and verifies that all tests pass.
 
 The subprocess propagates all prior nested-regression guard env vars
-so that P10, P14, P15, P16, P17, P18, P19, and P20 regression tests
-skip their own subprocesses — the outer suite is the single source
-of truth.
+so that P10, P14, P15, P16, P17, P18, P19, P20, and P22 regression
+tests skip their own subprocesses — the outer suite is the single
+source of truth.
 """
 
 from __future__ import annotations
@@ -42,6 +42,7 @@ class TestFullRegression:
             "AMINOPS_REGRESSION_NESTED_P18": "1",
             "AMINOPS_REGRESSION_NESTED_P19": "1",
             "AMINOPS_REGRESSION_NESTED_P20": "1",
+            "AMINOPS_REGRESSION_NESTED_P22": "1",
         }
         result = subprocess.run(
             [
@@ -71,6 +72,8 @@ class TestFullRegression:
                 str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
                 "--ignore",
                 str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
             ],
             capture_output=True,
             text=True,
