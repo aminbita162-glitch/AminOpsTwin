@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0 -- /Users/hermesdev/AminOpsTwin/.venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /Users/hermesdev/AminOpsTwin
+configfile: pyproject.toml
+plugins: cov-5.0.0, schemathesis-3.39.16, hypothesis-6.170.8, subtests-0.14.2, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 5 items
+
+tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_no_owner_fill PASSED [ 20%]
+tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_no_outdated_phase_refs PASSED [ 40%]
+tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_gates_yaml_no_legacy_stage_refs PASSED [ 60%]
+tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_check_commits_no_legacy_stage_refs PASSED [ 80%]
+tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    ref_error: type[Exception] = jsonschema.RefResolutionError,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 5 passed, 1 warning in 0.05s =========================
+EXIT:0

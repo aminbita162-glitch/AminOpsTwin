@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0 -- /Users/hermesdev/AminOpsTwin/.venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /Users/hermesdev/AminOpsTwin
+configfile: pyproject.toml
+plugins: cov-5.0.0, schemathesis-3.39.16, hypothesis-6.170.8, subtests-0.14.2, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 7 items
+
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_directive_exists PASSED [ 14%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence PASSED [ 28%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete PASSED [ 42%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary PASSED [ 57%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_no_outdated_stage_references PASSED [ 71%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_no_outdated_phase_active_refs PASSED [ 85%]
+tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    ref_error: type[Exception] = jsonschema.RefResolutionError,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 7 passed, 1 warning in 0.06s =========================
+EXIT:0
