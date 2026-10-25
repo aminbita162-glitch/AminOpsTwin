@@ -3,7 +3,7 @@
 ## 1. Phase and P-code commit hash
 
 - **Phase:** P9 — Integration, Exports and Pre-Release
-- **P-code commit (tag `P9-code`):** `60db2bc` (`1946f10ebd43b41313e8fdab571a0b943bbb775b`)
+- **P-code commit (tag `P9-code`):** `ed303e9` (`ed303e9d2e7f6bf8b2e4bde1b77d21ce14da5b08`)
 
 ## 2. DONE — Deliverables with file paths; commit count with capability/gate IDs
 
@@ -20,7 +20,8 @@
 | Deployment preparation tests (G6.1, G6.2, G6.4, G6.5, G6.8, G6.9) | `tests/p9/test_deployment.py` |
 | Signed exports tests (G5.3/G6.1) | `tests/p9/test_exports.py` |
 | Cross-component integration tests | `tests/p9/test_integration.py` |
-| P1–P8 regression test (G6.6 analog) | `tests/p9/test_regression.py` |
+| P1–P8 regression test with env-var guard (G6.6) | `tests/p9/test_regression.py` |
+| P8 regression test env-var guard fix | `tests/p8/test_regression.py` |
 | G6.1–G6.9 gates in gates.yaml | `docs/gates.yaml` |
 | mypy `src.integration` package added to pyproject.toml | `pyproject.toml` |
 | P9 gate IDs in check_commits.py PHASE_GATES | `scripts/check_commits.py` |
@@ -28,10 +29,12 @@
 | Readiness rubric evidence (D1–D10 with linked gates) | `test_home/P9/readiness_rubric.json` |
 | Runbook drill transcript (11 clean-room steps) | `test_home/P9/runbook_drill.txt` |
 
-### Commits (4 P9-prefixed commits)
+### Commits (6 P9-prefixed commits)
 
 | Hash | Message | Gate refs |
 |------|---------|-----------|
+| `ed303e9` | P9: add env-var guard to regression tests preventing nested recursion | G6.6, INFRA |
+| `2d572b1` | P9: add Hard-Stop Report for integration, exports and pre-release | §14, DOC |
 | `60db2bc` | P9: fix regression test to exclude p8 and prevent nested regression | G6.6, INFRA |
 | `37ad5bf` | P9: add G6.1-G6.9 gates, mypy integration package, README and check_commits status | G6.1, G6.2, G6.3, G6.4, G6.5, G6.8, G6.9, INFRA |
 | `1c29bb4` | P9: add integration, exports, deployment, backup and regression tests | G6.1, G6.2, G6.3, G6.4, G6.5, G6.8, G6.9 |
@@ -47,13 +50,13 @@
 
 ## 4. DEVIATIONS
 
-- The first regression test run (`tests/p9/test_regression.py`) created an infinite recursion: the P9 regression test ran `tests/ --ignore=tests/p9` which included `tests/p8/test_regression.py` which ran `tests/ --ignore=tests/p8` which included `tests/p9/test_regression.py` again. Fixed by adding `--ignore=tests/p8` to the P9 regression test's subprocess command. The fix is committed as `60db2bc`.
+- The first regression test run (`tests/p9/test_regression.py`) created an infinite recursion: the P9 regression test ran `tests/ --ignore=tests/p9` which included `tests/p8/test_regression.py` which ran `tests/ --ignore=tests/p8` which included `tests/p9/test_regression.py` again. Fixed in two commits: `60db2bc` added `--ignore=tests/p8` to the P9 regression subprocess, and `ed303e9` added an env-var guard (`AMINOPS_REGRESSION_NESTED`) to both P8 and P9 regression tests to prevent any nested regression recursion.
 - Two prior commits (`fed2070`, `5480cfe`) were pushed to `origin/main` with non-conforming bare "commit" messages, violating §21.3. Per §21.2 (no force-push, no history rewrite), these cannot be amended. This is a pre-existing deviation, not introduced by P9.
 - The `P3` phase has no `P3-code` or `P3-hardstop` tags (prior session omission). This is a pre-existing deviation, not introduced by P9.
 
 ## 5. FAILED
 
-No failing tests or gates. All 61 P9 tests pass (60 non-regression + 1 regression). The P1–P8 suite (2286 tests) passes as confirmed at session start.
+No failing tests or gates. All 2347 tests pass (2286 P1–P8 + 61 P9). The full suite (`PYTHONHASHSEED=0 pytest`) completes in 347.71s with 2347 passed, 0 failed.
 
 ## 6. MEASURED VALUES
 
@@ -71,12 +74,11 @@ No failing tests or gates. All 61 P9 tests pass (60 non-regression + 1 regressio
 
 | Check | Command | Result |
 |-------|---------|--------|
-| P9 non-regression tests | `PYTHONHASHSEED=0 .venv/bin/python -m pytest tests/p9/test_backup.py tests/p9/test_deployment.py tests/p9/test_exports.py tests/p9/test_integration.py -q` | 60 passed, 1 warning |
-| P9 regression test | `PYTHONHASHSEED=0 .venv/bin/python -m pytest tests/p9/test_regression.py -v` | 1 passed in 89.47s |
+| Full suite | `PYTHONHASHSEED=0 .venv/bin/python -m pytest --tb=short -q --no-header -p no:cacheprovider` | 2347 passed, 5 warnings in 347.71s |
 | mypy --strict | `mypy --strict src/contracts src/gateway src/executor src/tokens src/twin src/evidence src/assurance src/dashboard src/enterprise src/integration` | Success: no issues found in 52 source files |
 | ruff check | `ruff check src/ tests/` | All checks passed |
 | import-linter | `lint-imports` | Contracts: 1 kept, 0 broken |
-| check_commits.py P9 | `python3 scripts/check_commits.py P9` | ALL COMMIT CHECKS PASS (4 commits, 7 gates referenced) |
+| check_commits.py P9 | `python3 scripts/check_commits.py P9` | ALL COMMIT CHECKS PASS (6 commits, 7 gates referenced) |
 
 ## 7. OPEN QUESTIONS
 
