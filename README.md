@@ -16,9 +16,9 @@ Capacity planning · Queues · Scheduling · Bottleneck analysis · Operational 
 
 AminOpsTwin is a non-medical **operational** cognitive digital twin for clinical
 **research operations** — it models capacity, flow, and contention so teams can
-reason about "what-if" without touching production. [CLAIM-001] It uses synthetic
-operational data and licensed public research material only. [CLAIM-003] It is
-**not** a medical device, does not perform diagnosis, prognosis, treatment, or
+reason about what-if scenarios without touching production. [CLAIM-001] It uses
+synthetic operational data and licensed public research material only. [CLAIM-003]
+It is not a medical device, does not perform diagnosis, prognosis, treatment, or
 dose recommendation, and never models individual patient state. [CLAIM-006]
 
 ## What It Is Not
@@ -31,28 +31,28 @@ dose recommendation, and never models individual patient state. [CLAIM-006]
 
 ## Phase Status
 
-| Phase | Description | Status | Evidence |
-|-------|-------------|--------|----------|
-| P1 | Foundation and Governance | COMPLETE (CANDIDATE) | [test_home/P1/](test_home/P1/) |
-| P2 | Runtime Core and Evidence | COMPLETE (CANDIDATE) | [test_home/P2/](test_home/P2/) |
-| P3 | Twin and Operational Simulation | COMPLETE (CANDIDATE) | [test_home/P3/](test_home/P3/) |
-| P4 | Governed Knowledge and Memory | COMPLETE (CANDIDATE) | [test_home/P4/](test_home/P4/) |
-| P5 | Operational Intelligence Capabilities | COMPLETE (CANDIDATE) | [test_home/P5/](test_home/P5/) |
-| P6 | Assurance Interface and Weekly Checks | COMPLETE (CANDIDATE) | [test_home/P6/](test_home/P6/) |
-| P7 | Responsive Dashboard and User Interface | COMPLETE (CANDIDATE) | [test_home/P7/](test_home/P7/) |
-| P8 | Enterprise Hardening and Evaluation | COMPLETE (CANDIDATE) | [test_home/P8/](test_home/P8/) |
-| P9 | Integration, Exports and Pre-Release | COMPLETE (CANDIDATE) | [test_home/P9/](test_home/P9/) |
-| P10 | Final Verification, README, Release | COMPLETE (CANDIDATE) | [test_home/P10/](test_home/P10/) |
-| P11 | Spec Consolidation, Package Hygiene | COMPLETE (CANDIDATE) | [test_home/P11/](test_home/P11/) |
-| P12 | Core Determinism and Safety Hardening | COMPLETE (CANDIDATE) | [test_home/P12/](test_home/P12/) |
-| P13 | Evidence Infrastructure, Prior Pack, Shadow Ingestion | COMPLETE (CANDIDATE) | [test_home/P13/](test_home/P13/) |
-| P14 | Shadow Pilot Readiness, Claim Verification, Stage 2 Close | COMPLETE (CANDIDATE) | [test_home/P14/](test_home/P14/) |
-| P15 | Absolute Integrity, Toolchain and Professional Surface | COMPLETE (CANDIDATE) | [test_home/P15/](test_home/P15/) |
-| P16 | Bit-Reproducible Deterministic Substrate | COMPLETE (CANDIDATE) | [test_home/P16/](test_home/P16/) |
-| P17 | Provable Evidence Graph and Auditability | COMPLETE (CANDIDATE) | [test_home/P17/](test_home/P17/) |
-| P18 | Enforceable Controls and Observability | COMPLETE (CANDIDATE) | [test_home/P18/](test_home/P18/) |
-| P19 | Versioned Contracts, Cryptographic Outputs and API | COMPLETE (CANDIDATE) | [test_home/P19/](test_home/P19/) |
-| P20 | Formal Closure and Zero-Debt Stage Seal | COMPLETE (CANDIDATE) | [test_home/P20/](test_home/P20/) |
+| Phase | Status | Evidence |
+|-------|--------|----------|
+| P1 | COMPLETE (CANDIDATE) | [test_home/P1/](test_home/P1/) |
+| P2 | COMPLETE (CANDIDATE) | [test_home/P2/](test_home/P2/) |
+| P3 | COMPLETE (CANDIDATE) | [test_home/P3/](test_home/P3/) |
+| P4 | COMPLETE (CANDIDATE) | [test_home/P4/](test_home/P4/) |
+| P5 | COMPLETE (CANDIDATE) | [test_home/P5/](test_home/P5/) |
+| P6 | COMPLETE (CANDIDATE) | [test_home/P6/](test_home/P6/) |
+| P7 | COMPLETE (CANDIDATE) | [test_home/P7/](test_home/P7/) |
+| P8 | COMPLETE (CANDIDATE) | [test_home/P8/](test_home/P8/) |
+| P9 | COMPLETE (CANDIDATE) | [test_home/P9/](test_home/P9/) |
+| P10 | COMPLETE (CANDIDATE) | [test_home/P10/](test_home/P10/) |
+| P11 | COMPLETE (CANDIDATE) | [test_home/P11/](test_home/P11/) |
+| P12 | COMPLETE (CANDIDATE) | [test_home/P12/](test_home/P12/) |
+| P13 | COMPLETE (CANDIDATE) | [test_home/P13/](test_home/P13/) |
+| P14 | COMPLETE (CANDIDATE) | [test_home/P14/](test_home/P14/) |
+| P15 | COMPLETE (CANDIDATE) | [test_home/P15/](test_home/P15/) |
+| P16 | COMPLETE (CANDIDATE) | [test_home/P16/](test_home/P16/) |
+| P17 | COMPLETE (CANDIDATE) | [test_home/P17/](test_home/P17/) |
+| P18 | COMPLETE (CANDIDATE) | [test_home/P18/](test_home/P18/) |
+| P19 | COMPLETE (CANDIDATE) | [test_home/P19/](test_home/P19/) |
+| P20 | COMPLETE (CANDIDATE) | [test_home/P20/](test_home/P20/) |
 
 Every phase above has a Hard-Stop Report at `test_home/P<n>/HARD_STOP_REPORT.md`
 and a passing full regression. No phase is marked beyond what the evidence
@@ -108,20 +108,24 @@ supports. [CLAIM-015]
          └─────────────────────────┘
 ```
 
+Five agents (A1–A5) issue typed envelopes that pass through the deny-by-default
+Policy Gateway (S1), then the Durable Executor (S2). [CLAIM-004] No agent holds a
+direct handle to the database or the Executor store. [CLAIM-005]
+
 ## Contaminated Context Control
 
 ```
   Input payload
        │
        ▼
-  ┌─────────────┐     patient-level field?     ┌─────────┐
-  │  Pre-filter  │─────────────────────────────►│  DENY    │
+  ┌─────────────┐     patient-level field?       ┌─────────┐
+  │  Pre-filter  │──────────────────────────────►│  DENY    │
   │  (tokens)   │     non-aggregate content?   │ GW-CLIN  │
   └──────┬──────┘     forbidden pattern?       └─────────┘
          │ pass
          ▼
-  ┌─────────────┐     schema mismatch?         ┌─────────┐
-  │  Schema     │─────────────────────────────►│  DENY    │
+  ┌─────────────┐     schema mismatch?           ┌─────────┐
+  │  Schema     │──────────────────────────────►│  DENY    │
   │  validator  │     non-NFC string?          │ GW-SCHEMA│
   └──────┬──────┘     lone surrogate?          └─────────┘
          │ pass
@@ -136,42 +140,42 @@ supports. [CLAIM-015]
 ```
 
 Every envelope traverses pre-filter, schema validation, and the deny-by-default
-Gateway before reaching the Executor. The Gateway never queries time, network,
-or mutable storage internally — it is a pure function. Contaminated or
-non-conforming input is denied at the earliest stage with a precise reason code.
-No patient-level data, non-aggregate content, or forbidden pattern reaches the
-deterministic core. [CLAIM-004]
+Gateway before reaching the Executor. The Gateway never queries time, network, or
+mutable storage internally — it is a pure function. Contaminated or non-conforming
+input is denied at the earliest stage with a precise reason code. No patient-level
+data, non-aggregate content, or forbidden pattern reaches the deterministic core.
+[CLAIM-004]
 
 ## Maturity Ladder
 
 | Stage | Description | Status |
 |-------|-------------|--------|
 | **Model** | Synthetic data, deterministic simulation, operational what-if | **Current** |
-| Shadow | Side-by-side with live aggregate data, no committed effects | Not started |
-| Twin | Real-time mirror with live operational state | Not started |
+| Shadow | Side-by-side with live aggregate data, no committed effects | Future |
+| Twin | Real-time mirror with live operational state | Future |
 
-AminOpsTwin is currently at the **Model** stage. All data is synthetic or
-derived from licensed public research aggregates. No live operational data is
-ingested. The Shadow and Twin stages are future work requiring owner-approved
-data sources and additional governance.
+AminOpsTwin is currently at the **Model** stage. All data is synthetic or derived
+from licensed public research aggregates. No live operational data is ingested.
+The Shadow and Twin stages are future work requiring approved data sources and
+additional governance.
 
 ## Measured Summary
 
 Latest full regression: **2950 tests passed, 1 skipped, 0 failures** (P21
-regression, October 2026). The full suite including all P1–P20 gates passes
-with no failures. Every claim-id in this README resolves via the standalone
-verify CLI without running the full system. [CLAIM-016]
+regression, October 2026). The full suite including all P1–P20 gates passes with
+no failures. Every claim-id in this README resolves via the standalone verify CLI
+without running the full system. [CLAIM-016]
 
 ## Safety Boundaries
 
-AminOpsTwin operates within strict non-medical safety boundaries. It performs
-no diagnosis, prognosis, treatment, or dose recommendation. It never models
+AminOpsTwin operates within strict non-medical safety boundaries. It performs no
+diagnosis, prognosis, treatment, or dose recommendation. It never models
 individual patient state. It uses no real patient or participant data. It is not
 synchronized with a real organization. It is not clinically validated and not
-production-ready. All outputs are operational planning aids derived from
-synthetic data and public research aggregates. The deny-by-default Gateway
-enforces these boundaries at the protocol level — no input bypasses the Gateway
-to reach the Executor. [CLAIM-006] [CLAIM-008] [CLAIM-009] [CLAIM-010]
+production-ready. All outputs are operational planning aids derived from synthetic
+data and public research aggregates. The deny-by-default Gateway enforces these
+boundaries at the protocol level — no input bypasses the Gateway to reach the
+Executor. [CLAIM-006] [CLAIM-008] [CLAIM-009] [CLAIM-010]
 
 ## Hard-Stop Reports
 
@@ -231,16 +235,15 @@ Package layout (all modules under `src/aminopstwin/`):
 - `fixtures_gen/` — synthetic data generator
 
 Five agents (A1–A5), two deterministic shared services (S1 Policy Gateway, S2
-Durable Executor). Every action passes through S1, then S2. [CLAIM-004] No
-agent holds a direct handle to the database or the Executor store. [CLAIM-005]
+Durable Executor). Every action passes through S1, then S2. [CLAIM-004] No agent
+holds a direct handle to the database or the Executor store. [CLAIM-005]
 
 ## Honesty
 
 > Honesty is a person's greatest asset, regardless of their position or work.
 
-All claims remain Candidate until independently verified by owner-approved
-evidence. No status in this README exceeds what the evidence under
-`test_home/` supports.
+All claims remain Candidate until independently verified by approved evidence.
+No status in this README exceeds what the evidence under `test_home/` supports.
 
 ## Security
 
