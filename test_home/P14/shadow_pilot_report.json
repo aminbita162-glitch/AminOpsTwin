@@ -1,0 +1,99 @@
+{
+  "calibration": {
+    "comparisons": [
+      {
+        "actual": 48,
+        "difference": 3,
+        "metric_name": "enrollment",
+        "pct_error": 6.67,
+        "predicted": 45,
+        "week_start": "2026-01-01"
+      },
+      {
+        "actual": 52,
+        "difference": 2,
+        "metric_name": "enrollment",
+        "pct_error": 4.0,
+        "predicted": 50,
+        "week_start": "2026-01-08"
+      },
+      {
+        "actual": 58,
+        "difference": 3,
+        "metric_name": "enrollment",
+        "pct_error": 5.45,
+        "predicted": 55,
+        "week_start": "2026-01-15"
+      },
+      {
+        "actual": 61,
+        "difference": 1,
+        "metric_name": "enrollment",
+        "pct_error": 1.67,
+        "predicted": 60,
+        "week_start": "2026-01-22"
+      },
+      {
+        "actual": 67,
+        "difference": 2,
+        "metric_name": "enrollment",
+        "pct_error": 3.08,
+        "predicted": 65,
+        "week_start": "2026-01-29"
+      },
+      {
+        "actual": 14,
+        "difference": 2,
+        "metric_name": "screen_failure",
+        "pct_error": 16.67,
+        "predicted": 12,
+        "week_start": "2026-01-01"
+      },
+      {
+        "actual": 13,
+        "difference": 0,
+        "metric_name": "screen_failure",
+        "pct_error": 0.0,
+        "predicted": 13,
+        "week_start": "2026-01-08"
+      },
+      {
+        "actual": 16,
+        "difference": 2,
+        "metric_name": "screen_failure",
+        "pct_error": 14.29,
+        "predicted": 14,
+        "week_start": "2026-01-15"
+      }
+    ],
+    "count": 8
+  },
+  "data_contract_version": "v1",
+  "data_label": "SYNTHETIC",
+  "generated_at": "2026-10-25T00:00:00Z",
+  "ingestion_receipt_id": "c2bf682a43e878b2",
+  "k_min": 5,
+  "metrics_summary": {
+    "enrollment": {
+      "mape_pct": 4.173,
+      "mean_difference": 2.2,
+      "total_actual": 286,
+      "total_difference": 11,
+      "total_predicted": 275,
+      "weeks": 5
+    },
+    "screen_failure": {
+      "mape_pct": 10.3175,
+      "mean_difference": 1.3333,
+      "total_actual": 43,
+      "total_difference": 4,
+      "total_predicted": 39,
+      "weeks": 3
+    }
+  },
+  "report_hash": "bc3146504862497ea45f360e0d2ca6b8c480faa61ee0477f505d1c870009a165",
+  "report_id": "c2bf682a43e878b2",
+  "report_type": "shadow_pilot",
+  "synthetic_notice": "This Shadow Pilot report uses synthetic aggregate data. No real clinical trial data is included.",
+  "total_rows": 8
+}
