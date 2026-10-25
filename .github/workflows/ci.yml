@@ -56,7 +56,8 @@ jobs:
             --package aminopstwin.priors \
             --package aminopstwin.ingestion \
             --package aminopstwin.shadow_pilot \
-            --package aminopstwin.fixtures_gen
+            --package aminopstwin.fixtures_gen \
+            --package aminopstwin.api
 
   test:
     name: Test (pytest + coverage)
