@@ -1,0 +1,108 @@
+# claims.yaml — Evidence Claim Registry (Idea S1, P13, G13.1)
+#
+# Every claim in README.md that makes a capability assertion has a
+# claim-id.  Each claim-id maps to an evidence-path (a file whose
+# existence and content supports the claim) and the SHA-256 hash of
+# that evidence file.
+#
+# The standalone CLI tool `scripts/aminopstwin-verify` checks any
+# claim-id without running the full system: it recomputes the hash
+# of the evidence-path and compares it to the recorded hash.
+#
+# Schema:
+#   claim_id:   unique identifier referenced in README.md as [CLAIM-NNN]
+#   text:       the claim sentence (human-readable)
+#   evidence_path: relative path from repo root to the evidence file
+#   hash:       SHA-256 hex of the evidence file content
+#   category:   claim category (capability, safety, boundary, architecture)
+
+version: "1.0"
+
+claims:
+  # === Capability claims ===
+  - claim_id: "CLAIM-001"
+    text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
+    evidence_path: "README.md"
+    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    category: "capability"
+
+  - claim_id: "CLAIM-002"
+    text: "The system performs capacity planning, queues, scheduling, bottleneck analysis, and operational what-if scenarios."
+    evidence_path: "tests/twin/test_simulation.py"
+    hash: "e09c474068af9af5d55ff19b1b1e06e59158a2a3121c6699e420bf5e27976c70"
+    category: "capability"
+
+  - claim_id: "CLAIM-003"
+    text: "The system uses synthetic operational data and licensed public research material only."
+    evidence_path: "fixtures/"
+    hash: "469980f8b5bcb00e1b28605aef028396b3a864f2f3f37559e1035199878e8ec7"
+    category: "capability"
+
+  - claim_id: "CLAIM-004"
+    text: "The Policy Gateway is deny-by-default; every action passes through S1 then S2."
+    evidence_path: "tests/gateway/test_gateway_purity.py"
+    hash: "972e163da24a43e59f44be138d5958544d8460203feebed2c81830fd5d87f722"
+    category: "architecture"
+
+  - claim_id: "CLAIM-005"
+    text: "Five agents (A1-A5) each produce independent traces with correlation_id."
+    evidence_path: "tests/agents/test_agents.py"
+    hash: "6eb16a45212682fb9bb650a7f7ef400a00f4b415c8124af33e97bd354650685b"
+    category: "architecture"
+
+  # === Boundary / safety claims ===
+  - claim_id: "CLAIM-006"
+    text: "The system is not a medical device and does not perform diagnosis, prognosis, treatment, or dose recommendation."
+    evidence_path: "docs/threat_model.md"
+    hash: "df22ec382d422428ab496a0b6937107e180a21d4c617137af23b48b4eee92374"
+    category: "boundary"
+
+  - claim_id: "CLAIM-007"
+    text: "The system never models individual patient state."
+    evidence_path: "docs/threat_model.md"
+    hash: "df22ec382d422428ab496a0b6937107e180a21d4c617137af23b48b4eee92374"
+    category: "boundary"
+
+  - claim_id: "CLAIM-008"
+    text: "The system does not use real patient or participant data."
+    evidence_path: "docs/source_allowlist.yaml"
+    hash: "3da4aa5a9ffc0ebe091860731cfa7d5ad337a9fc4cb1a5dbf33ccb6ec5094688"
+    category: "boundary"
+
+  - claim_id: "CLAIM-009"
+    text: "The system is not clinically validated and not production-ready."
+    evidence_path: "README.md"
+    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    category: "boundary"
+
+  - claim_id: "CLAIM-010"
+    text: "The system is not synchronized with a real organization."
+    evidence_path: "README.md"
+    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    category: "boundary"
+
+  # === Determinism claims ===
+  - claim_id: "CLAIM-011"
+    text: "Simulation state hashes are identical across replays on the same seed."
+    evidence_path: "tests/twin/test_simulation.py"
+    hash: "e09c474068af9af5d55ff19b1b1e06e59158a2a3121c6699e420bf5e27976c70"
+    category: "capability"
+
+  - claim_id: "CLAIM-012"
+    text: "State hashes are identical across x86_64 and ARM64 platforms."
+    evidence_path: "tests/twin/test_cross_platform_oracle.py"
+    hash: "eb5dcd16ae9520db5b9e01f9c740669015a2310adab49f7be49bccb0e5d6a5de"
+    category: "capability"
+
+  # === P13 claims ===
+  - claim_id: "CLAIM-013"
+    text: "The Prior Pack contains only aggregate statistics derived from public ClinicalTrials.gov/AACT data."
+    evidence_path: "src/aminopstwin/priors/public_prior_pack_v1.json"
+    hash: "485e2503ce55fd6c6d8b3d5482658071c984a874f0d2acd2a3ab2ae2aeba3331"
+    category: "capability"
+
+  - claim_id: "CLAIM-014"
+    text: "The shadow ingestion gateway enforces schema, k-min cell suppression, and emits hashed receipts."
+    evidence_path: "src/aminopstwin/ingestion/shadow_gateway.py"
+    hash: "3079ec0ff90b6c1bbe41a2cf03135e6830e385d805ff213fa787c03dbb9c6b4a"
+    category: "capability"

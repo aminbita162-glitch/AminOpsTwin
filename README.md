@@ -8,18 +8,18 @@ All claims remain Candidate until independently verified by owner-approved evide
 
 AminOpsTwin is a non-medical **operational** cognitive digital twin for clinical
 **research operations** — capacity planning, queues, scheduling, bottleneck
-analysis, and operational "what-if" scenarios. It uses synthetic operational data
-and licensed public research material only. It is **not** a medical device, does
-not perform diagnosis, prognosis, treatment, or dose recommendation, and never
-models individual patient state.
+analysis, and operational "what-if" scenarios. [CLAIM-001] It uses synthetic
+operational data and licensed public research material only. [CLAIM-003] It is
+**not** a medical device, does not perform diagnosis, prognosis, treatment, or
+dose recommendation, and never models individual patient state. [CLAIM-006]
 
 ### What it is not
 
-- Not a medical decision system (§2.2)
-- Not clinically validated (§0.3)
-- Not production-ready (§0.3)
-- Not synchronized with a real organization (§1)
-- Does not use real patient or participant data (§2.5)
+- Not a medical decision system (§2.2) [CLAIM-006]
+- Not clinically validated (§0.3) [CLAIM-009]
+- Not production-ready (§0.3) [CLAIM-009]
+- Not synchronized with a real organization (§1) [CLAIM-010]
+- Does not use real patient or participant data (§2.5) [CLAIM-008]
 
 ### Architecture (P1 foundation)
 
@@ -36,8 +36,8 @@ models individual patient state.
 ```
 
 Five agents (A1-A5), two deterministic shared services (S1 Policy Gateway, S2
-Durable Executor). Every action passes through S1, then S2. No agent holds a
-direct handle to the database or the Executor store (§3.3).
+Durable Executor). Every action passes through S1, then S2. [CLAIM-004] No
+agent holds a direct handle to the database or the Executor store (§3.3). [CLAIM-005]
 
 ### Honesty
 
@@ -65,7 +65,9 @@ direct handle to the database or the Executor store (§3.3).
 | P8    | Enterprise Hardening and Evaluation | COMPLETE (CANDIDATE) |
 | P9    | Integration, Exports and Pre-Release | COMPLETE (CANDIDATE) |
 | P10   | Final Verification, README, Release  | COMPLETE (CANDIDATE) |
-| P11   | Spec Consolidation, Package Hygiene  | IN PROGRESS (CANDIDATE) |
+| P11   | Spec Consolidation, Package Hygiene  | COMPLETE (CANDIDATE) |
+| P12   | Core Determinism and Safety Hardening | COMPLETE (CANDIDATE) |
+| P13   | Evidence Infrastructure, Prior Pack, Shadow Ingestion | IN PROGRESS (CANDIDATE) |
 
 ### Stage 2 (P11–P14) Active
 

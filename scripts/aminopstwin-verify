@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+"""aminopstwin-verify — Evidence Claim Registry verification CLI (Idea S1, P13, G13.2).
+
+Usage:
+    python3 scripts/aminopstwin-verify [claim_id ...]
+    python3 scripts/aminopstwin-verify --all
+    python3 scripts/aminopstwin-verify --check CLAIM-001
+
+Checks each claim-id in docs/claims.yaml:
+    1. The claim-id exists in the registry.
+    2. The evidence_path exists on disk.
+    3. The SHA-256 hash of the evidence_path matches the recorded hash.
+
+Exit codes:
+    0  all checked claims pass
+    1  one or more claims fail (missing, path-not-found, hash mismatch)
+    2  usage error or registry file error
+
+A "tampered" claim (hash mismatch) is the core security check: if
+the evidence file has been modified after the claim was recorded,
+verification fails.  This catches silent tampering without running
+the full system.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import sys
+from pathlib import Path
+from typing import Any
+
+try:
+    import yaml  # type: ignore[import-untyped]
+except ImportError:
+    print(
+        "ERROR: PyYAML is required (pip install pyyaml)",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+CLAIMS_FILE = Path(__file__).parent.parent / "docs" / "claims.yaml"
+REPO_ROOT = Path(__file__).parent.parent
+
+
+def load_claims(claims_path: Path) -> list[dict[str, Any]]:
+    """Load the claims registry from the YAML file."""
+    if not claims_path.exists():
+        print(f"ERROR: claims file not found: {claims_path}", file=sys.stderr)
+        sys.exit(2)
+    with claims_path.open("r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    if not isinstance(data, dict) or "claims" not in data:
+        print(f"ERROR: invalid claims format in {claims_path}", file=sys.stderr)
+        sys.exit(2)
+    claims = data["claims"]
+    if not isinstance(claims, list):
+        print(f"ERROR: 'claims' must be a list in {claims_path}", file=sys.stderr)
+        sys.exit(2)
+    return claims
+
+
+def compute_file_hash(path: Path) -> str:
+    """Compute SHA-256 hex of a file (or all files in a directory)."""
+    hasher = hashlib.sha256()
+    if path.is_dir():
+        # Hash all files in the directory, sorted for determinism.
+        for fpath in sorted(path.rglob("*")):
+            if fpath.is_file():
+                hasher.update(fpath.as_posix().encode("utf-8"))
+                hasher.update(b"\0")
+                hasher.update(fpath.read_bytes())
+    elif path.is_file():
+        hasher.update(path.read_bytes())
+    else:
+        raise FileNotFoundError(f"evidence path not found: {path}")
+    return hasher.hexdigest()
+
+
+def verify_claim(
+    claim: dict[str, Any],
+    repo_root: Path,
+) -> tuple[bool, str]:
+    """Verify a single claim. Returns (passed, message)."""
+    claim_id = claim.get("claim_id", "?")
+    evidence_rel = claim.get("evidence_path", "")
+    expected_hash = claim.get("hash", "")
+
+    if not evidence_rel:
+        return False, f"{claim_id}: missing evidence_path"
+
+    evidence_path = repo_root / evidence_rel
+    if not evidence_path.exists():
+        return False, f"{claim_id}: evidence path not found: {evidence_rel}"
+
+    actual_hash = compute_file_hash(evidence_path)
+    if expected_hash == "PLACEHOLDER":
+        return False, f"{claim_id}: hash is PLACEHOLDER (not yet computed)"
+    if actual_hash != expected_hash:
+        return (
+            False,
+            f"{claim_id}: hash mismatch\n"
+            f"    expected: {expected_hash}\n"
+            f"    actual:   {actual_hash}\n"
+            f"    path:     {evidence_rel}",
+        )
+    return True, f"{claim_id}: PASS ({evidence_rel})"
+
+
+def verify_claims(
+    claims: list[dict[str, Any]],
+    claim_ids: list[str] | None,
+    repo_root: Path,
+) -> int:
+    """Verify specified claims (or all if claim_ids is None)."""
+    all_claims_by_id: dict[str, dict[str, Any]] = {}
+    for c in claims:
+        cid = c.get("claim_id", "")
+        if cid:
+            all_claims_by_id[cid] = c
+
+    if claim_ids:
+        to_check: list[dict[str, Any]] = []
+        for cid in claim_ids:
+            if cid not in all_claims_by_id:
+                print(f"FAIL: {cid}: claim-id not found in registry")
+                return 1
+            to_check.append(all_claims_by_id[cid])
+    else:
+        to_check = list(claims)
+
+    passed = 0
+    failed = 0
+    for claim in to_check:
+        ok, msg = verify_claim(claim, repo_root)
+        if ok:
+            print(f"PASS: {msg}")
+            passed += 1
+        else:
+            print(f"FAIL: {msg}")
+            failed += 1
+
+    print(f"\n{passed} passed, {failed} failed out of {len(to_check)}")
+    return 0 if failed == 0 else 1
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        prog="aminopstwin-verify",
+        description="Verify evidence claims without running the full system.",
+    )
+    parser.add_argument(
+        "claim_ids",
+        nargs="*",
+        help="Claim IDs to verify (default: verify all)",
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Verify all claims in the registry",
+    )
+    parser.add_argument(
+        "--check",
+        action="append",
+        dest="check_ids",
+        help="Verify a specific claim-id (can be repeated)",
+    )
+    args = parser.parse_args()
+
+    claims = load_claims(CLAIMS_FILE)
+
+    if args.check_ids:
+        ids = args.check_ids
+    elif args.all or not args.claim_ids:
+        ids = None  # all
+    else:
+        ids = args.claim_ids
+
+    return verify_claims(claims, ids, REPO_ROOT)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
