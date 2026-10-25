@@ -1,0 +1,6 @@
+{
+  "phase": "P11",
+  "mutmut_version": "not-run",
+  "note": "Mutation testing not re-run in P11. See test_home/P1/G1.10_mutmut.txt for the P1 mutation baseline.",
+  "status": "SKIP"
+}
