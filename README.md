@@ -91,8 +91,9 @@ agent holds a direct handle to the database or the Executor store (§3.3).
 | P12 | Core Determinism and Safety Hardening | COMPLETE (CANDIDATE) |
 | P13 | Evidence Infrastructure, Prior Pack, Shadow Ingestion | COMPLETE (CANDIDATE) |
 | P14 | Shadow Pilot Readiness, Claim Verification, Stage 2 Close | COMPLETE (CANDIDATE) |
-| P15 | Absolute Integrity, Toolchain and Professional Surface | ACTIVE |
-| P16–P20 | Stage 3 phases | NOT STARTED |
+| P15 | Absolute Integrity, Toolchain and Professional Surface | COMPLETE (CANDIDATE) |
+| P16 | Bit-Reproducible Deterministic Substrate | COMPLETE (CANDIDATE) |
+| P17–P20 | Stage 3 phases | NOT STARTED |
 
 ### Stage 3 (P15–P20) — Active
 
@@ -106,6 +107,8 @@ sequence.
 - P12: [test_home/P12/HARD_STOP_REPORT.md](test_home/P12/HARD_STOP_REPORT.md)
 - P13: [test_home/P13/HARD_STOP_REPORT.md](test_home/P13/HARD_STOP_REPORT.md)
 - P14: [test_home/P14/HARD_STOP_REPORT.md](test_home/P14/HARD_STOP_REPORT.md)
+- P15: [test_home/P15/HARD_STOP_REPORT.md](test_home/P15/HARD_STOP_REPORT.md)
+- P16: [test_home/P16/HARD_STOP_REPORT.md](test_home/P16/HARD_STOP_REPORT.md)
 
 ### Measured summary
 
