@@ -43,6 +43,7 @@ class TestFullRegression:
             "AMINOPS_REGRESSION_NESTED_P19": "1",
             "AMINOPS_REGRESSION_NESTED_P20": "1",
             "AMINOPS_REGRESSION_NESTED_P22": "1",
+            "AMINOPS_REGRESSION_NESTED_P23": "1",
         }
         result = subprocess.run(
             [
@@ -74,6 +75,8 @@ class TestFullRegression:
                 str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
                 "--ignore",
                 str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p23" / "test_regression.py"),
             ],
             capture_output=True,
             text=True,
