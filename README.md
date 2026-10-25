@@ -6,7 +6,7 @@
 
 Capacity planning · Queues · Scheduling · Bottleneck analysis · Operational what-if
 
-**STATUS: CANDIDATE** — Stage 4 (P21–P24) active · Stage 3 (P15–P20) complete · P1–P20 COMPLETE (CANDIDATE)
+**STATUS: CANDIDATE** — Stage 4 (P21–P24) complete · Stage 3 (P15–P20) complete · P1–P24 COMPLETE (CANDIDATE)
 
 </div>
 
@@ -56,6 +56,7 @@ dose recommendation, and never models individual patient state. [CLAIM-006]
 | P21 | COMPLETE (CANDIDATE) | [test_home/P21/](test_home/P21/) |
 | P22 | COMPLETE (CANDIDATE) | [test_home/P22/](test_home/P22/) |
 | P23 | COMPLETE (CANDIDATE) | [test_home/P23/](test_home/P23/) |
+| P24 | COMPLETE (CANDIDATE) | [test_home/P24/](test_home/P24/) |
 
 Every phase above has a Hard-Stop Report at `test_home/P<n>/HARD_STOP_REPORT.md`
 and a passing full regression. No phase is marked beyond what the evidence
@@ -164,8 +165,8 @@ additional governance.
 
 ## Measured Summary
 
-Latest full regression: **3068 tests passed, 10 skipped, 0 failures** (P23
-regression, October 2026). The full suite including all P1–P23 gates passes with
+Latest full regression: **3074 tests passed, 10 skipped, 0 failures** (P24
+regression, October 2026). The full suite including all P1–P24 gates passes with
 no failures. Every claim-id in this README resolves via the standalone verify CLI
 without running the full system. [CLAIM-016]
 
@@ -209,6 +210,7 @@ Every phase concludes with a Hard-Stop Report stored under `test_home/P<n>/`:
 | P21 | [test_home/P21/HARD_STOP_REPORT.md](test_home/P21/HARD_STOP_REPORT.md) |
 | P22 | [test_home/P22/HARD_STOP_REPORT.md](test_home/P22/HARD_STOP_REPORT.md) |
 | P23 | [test_home/P23/HARD_STOP_REPORT.md](test_home/P23/HARD_STOP_REPORT.md) |
+| P24 | [test_home/P24/HARD_STOP_REPORT.md](test_home/P24/HARD_STOP_REPORT.md) |
 
 ## Technology
 
