@@ -1022,6 +1022,52 @@ gates:
     source_command: "pytest tests/p19/test_regression.py -v"
     raw_output_path: "test_home/P19/G19.5_regression.txt"
 
+  # === P20 Gates ===
+  - id: "G20.1"
+    phase: "P20"
+    description: "Formal sketch present — gateway properties document references concrete code locations"
+    metric: "formal_sketch_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p20/test_formal_sketch.py -v"
+    raw_output_path: "test_home/P20/G20.1_formal_sketch.txt"
+
+  - id: "G20.2"
+    phase: "P20"
+    description: "Stage-close script enforces completeness — passes on complete tree, fails on incomplete"
+    metric: "stage_close_script_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p20/test_stage_close.py -v"
+    raw_output_path: "test_home/P20/G20.2_stage_close.txt"
+
+  - id: "G20.3"
+    phase: "P20"
+    description: "Stage Seal verifies and matches the git tree hash"
+    metric: "stage_seal_verifies_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p20/test_stage_seal.py -v"
+    raw_output_path: "test_home/P20/G20.3_stage_seal.txt"
+
+  - id: "G20.4"
+    phase: "P20"
+    description: "Full P1-P20 regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p20/test_regression.py -v"
+    raw_output_path: "test_home/P20/G20.4_regression.txt"
+
+  - id: "G20.5"
+    phase: "P20"
+    description: "README reflects Stage 3 completion"
+    metric: "readme_completion_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p20/test_readme.py -v"
+    raw_output_path: "test_home/P20/G20.5_readme.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
