@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import hashlib
 import random
+from dataclasses import dataclass
 from typing import Any, Final
 
 __all__ = [
@@ -28,10 +29,86 @@ __all__ = [
     "NamedPrngStream",
     "PrngRegistry",
     "MILLIMINUTES_PER_MINUTE",
+    "NonWorkingInterval",
+    "WorkingCalendar",
 ]
 
 
 MILLIMINUTES_PER_MINUTE: Final[int] = 1000
+
+
+@dataclass(frozen=True)
+class NonWorkingInterval:
+    """A non-working interval in milliminutes (integer).
+
+    Used by :class:`WorkingCalendar` to mark intervals during which
+    the simulation clock should skip (non-working time).
+    """
+
+    start_mmin: int
+    end_mmin: int
+
+    def __post_init__(self) -> None:
+        if self.start_mmin < 0:
+            raise ValueError("start_mmin must be >= 0")
+        if self.end_mmin <= self.start_mmin:
+            raise ValueError("end_mmin must be > start_mmin")
+
+    def contains(self, mmin: int) -> bool:
+        """Return True if *mmin* falls within this interval."""
+        return self.start_mmin <= mmin < self.end_mmin
+
+    def to_dict(self) -> dict[str, int]:
+        return {
+            "start_mmin": self.start_mmin,
+            "end_mmin": self.end_mmin,
+        }
+
+
+class WorkingCalendar:
+    """A working calendar — a list of non-working intervals.
+
+    The clock advances in integer milliminutes.  When :meth:`tick` is
+    called and the new time falls within a non-working interval, the
+    clock skips to the end of the interval.  All arithmetic is integer —
+    no floats.
+    """
+
+    def __init__(
+        self,
+        intervals: list[NonWorkingInterval] | None = None,
+    ) -> None:
+        self._intervals: list[NonWorkingInterval] = sorted(
+            intervals or [], key=lambda iv: iv.start_mmin
+        )
+        # Validate no overlap
+        for i in range(1, len(self._intervals)):
+            if self._intervals[i].start_mmin < self._intervals[i - 1].end_mmin:
+                raise ValueError(
+                    "overlapping non-working intervals detected"
+                )
+
+    @property
+    def intervals(self) -> list[NonWorkingInterval]:
+        return list(self._intervals)
+
+    def is_working(self, mmin: int) -> bool:
+        """Return True if *mmin* is within working time."""
+        return not any(iv.contains(mmin) for iv in self._intervals)
+
+    def next_working(self, mmin: int) -> int:
+        """Return *mmin* if it is working time, else the end of the
+        containing non-working interval.
+        """
+        for iv in self._intervals:
+            if iv.contains(mmin):
+                return iv.end_mmin
+        return mmin
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "intervals": [iv.to_dict() for iv in self._intervals],
+        }
 
 
 class MilliMinuteClock:
@@ -41,13 +118,16 @@ class MilliMinuteClock:
     starts at ``start_mmin`` (default 0) and advances by ``step_mmin``
     (default 1) on each call to :meth:`tick`.
 
-    No floating-point operations are used on the hashed state path.
+    An optional :class:`WorkingCalendar` causes the clock to skip
+    non-working intervals on each tick — all with integer arithmetic,
+    no floats.
     """
 
     def __init__(
         self,
         start_mmin: int = 0,
         step_mmin: int = 1,
+        calendar: WorkingCalendar | None = None,
     ) -> None:
         if start_mmin < 0:
             raise ValueError("start_mmin must be >= 0")
@@ -55,7 +135,13 @@ class MilliMinuteClock:
             raise ValueError("step_mmin must be > 0")
         self._start: int = start_mmin
         self._step: int = step_mmin
-        self._current: int = start_mmin
+        self._calendar: WorkingCalendar | None = calendar
+        # If start is in a non-working interval, skip to the end
+        self._current: int = (
+            calendar.next_working(start_mmin)
+            if calendar is not None
+            else start_mmin
+        )
 
     @property
     def current(self) -> int:
@@ -71,8 +157,15 @@ class MilliMinuteClock:
         return self._step
 
     def tick(self) -> int:
-        """Advance one step and return the new time."""
+        """Advance one step and return the new time.
+
+        If a :class:`WorkingCalendar` is configured and the new time
+        falls within a non-working interval, the clock skips to the
+        end of that interval.  All arithmetic is integer.
+        """
         self._current += self._step
+        if self._calendar is not None:
+            self._current = self._calendar.next_working(self._current)
         return self._current
 
     def reset(self) -> None:

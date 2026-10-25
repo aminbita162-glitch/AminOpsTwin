@@ -774,6 +774,61 @@ gates:
     source_command: "pytest tests/p14/test_regression.py -v"
     raw_output_path: "test_home/P14/G14.4_regression.txt"
 
+  # === P16 Gates ===
+  - id: "G16.1"
+    phase: "P16"
+    description: "Replay engine checkpoint resume hash match"
+    metric: "checkpoint_resume_hash_match"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p16/test_replay.py -v"
+    raw_output_path: "test_home/P16/G16.1_replay.txt"
+
+  - id: "G16.2"
+    phase: "P16"
+    description: "Cross-platform oracle green — identical hash on ubuntu-latest and macos-14"
+    metric: "cross_platform_oracle_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p16/test_cross_platform.py -v"
+    raw_output_path: "test_home/P16/G16.2_cross_platform.txt"
+
+  - id: "G16.3"
+    phase: "P16"
+    description: "Mutation/property thresholds met — Hypothesis subset and gateway mutation >= 80%"
+    metric: "mutation_property_thresholds_met"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p16/test_advanced_testing.py -v"
+    raw_output_path: "test_home/P16/G16.3_advanced_testing.txt"
+
+  - id: "G16.4"
+    phase: "P16"
+    description: "Fixed-point paths clean — no float on hashed state path; working calendar passes"
+    metric: "fixed_point_paths_clean"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p16/test_fixed_point.py -v"
+    raw_output_path: "test_home/P16/G16.4_fixed_point.txt"
+
+  - id: "G16.5"
+    phase: "P16"
+    description: "Simulation validation within thresholds (Erlang-C, Little's Law)"
+    metric: "sim_validation_within_thresholds"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p16/test_sim_validation.py -v"
+    raw_output_path: "test_home/P16/G16.5_sim_validation.txt"
+
+  - id: "G16.6"
+    phase: "P16"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/ -q --tb=short --no-cov"
+    raw_output_path: "test_home/P16/G16.6_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
