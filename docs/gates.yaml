@@ -645,6 +645,52 @@ gates:
     source_command: "pytest tests/ -q --tb=short"
     raw_output_path: "test_home/P11/G11.5_regression.txt"
 
+  # === P12 Gates ===
+  - id: "G12.1"
+    phase: "P12"
+    description: "raw JSON rejects duplicate keys and floats with exact reason codes"
+    metric: "raw_json_rejection_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/gateway/test_raw_json.py -v"
+    raw_output_path: "test_home/P12/G12.1_raw_json.txt"
+
+  - id: "G12.2"
+    phase: "P12"
+    description: "crash-recovery test produces no duplicate or orphan IDs"
+    metric: "crash_recovery_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/contracts/test_idfactory.py -v"
+    raw_output_path: "test_home/P12/G12.2_idfactory.txt"
+
+  - id: "G12.3"
+    phase: "P12"
+    description: "TOCTOU test: 0 commits with stale epoch"
+    metric: "toctou_stale_commits"
+    operator: "=="
+    threshold: 0
+    source_command: "pytest tests/contracts/test_toctou.py -v"
+    raw_output_path: "test_home/P12/G12.3_toctou.txt"
+
+  - id: "G12.4"
+    phase: "P12"
+    description: "StateFacts hash present in every DecisionRecord"
+    metric: "state_facts_hash_present"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/contracts/test_state_facts.py -v"
+    raw_output_path: "test_home/P12/G12.4_state_facts.txt"
+
+  - id: "G12.5"
+    phase: "P12"
+    description: "cross-platform state hash identical (or explicit waiver)"
+    metric: "cross_platform_hash_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/twin/test_cross_platform_oracle.py tests/twin/test_integer_clock.py -v"
+    raw_output_path: "test_home/P12/G12.5_cross_platform.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
