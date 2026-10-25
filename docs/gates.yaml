@@ -774,6 +774,61 @@ gates:
     source_command: "pytest tests/p14/test_regression.py -v"
     raw_output_path: "test_home/P14/G14.4_regression.txt"
 
+  # === P15 Gates ===
+  - id: "G15.1"
+    phase: "P15"
+    description: "config integrity test passes; no legacy src.* paths"
+    metric: "config_integrity_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p15/test_config_integrity.py -v"
+    raw_output_path: "test_home/P15/G15.1_config_integrity.txt"
+
+  - id: "G15.2"
+    phase: "P15"
+    description: "CI workflow valid YAML with all required jobs"
+    metric: "ci_workflow_valid"
+    operator: "=="
+    threshold: 1
+    source_command: "python -c 'import yaml; d=yaml.safe_load(open(\".github/workflows/ci.yml\")); jobs=d[\"jobs\"]; assert all(j in jobs for j in [\"lint\",\"types\",\"test\",\"security\",\"arch\",\"sbom\"]); print(1)'"
+    raw_output_path: "test_home/P15/G15.2_ci.txt"
+
+  - id: "G15.3"
+    phase: "P15"
+    description: "uv lock --check passes"
+    metric: "lockfile_check"
+    operator: "=="
+    threshold: 1
+    source_command: "uv lock --check"
+    raw_output_path: "test_home/P15/G15.3_lock.txt"
+
+  - id: "G15.4"
+    phase: "P15"
+    description: "README meets professional criteria (status table, arch diagram, claim links, measured summary)"
+    metric: "readme_professional"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p15/test_readme.py -v"
+    raw_output_path: "test_home/P15/G15.4_readme.txt"
+
+  - id: "G15.5"
+    phase: "P15"
+    description: "authors email is azimilab2025@gmail.com"
+    metric: "email_correct"
+    operator: "=="
+    threshold: 1
+    source_command: "python -c 'import tomllib; d=tomllib.load(open(\"pyproject.toml\",\"rb\")); assert d[\"project\"][\"authors\"][0][\"email\"]==\"azimilab2025@gmail.com\"; print(1)'"
+    raw_output_path: "test_home/P15/G15.5_email.txt"
+
+  - id: "G15.6"
+    phase: "P15"
+    description: "full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p15/test_regression.py -v"
+    raw_output_path: "test_home/P15/G15.6_regression.txt"
+
   # === P16 Gates ===
   - id: "G16.1"
     phase: "P16"

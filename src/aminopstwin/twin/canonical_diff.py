@@ -19,7 +19,7 @@ import random
 import unicodedata
 from typing import Any
 
-from aminopstwin.contracts.canonical import canonical_bytes, canonical_hash
+from aminopstwin.contracts.canonical import canonical_bytes
 
 __all__ = [
     "reference_canonical_bytes",
@@ -154,7 +154,7 @@ def generate_corpus(count: int = 10_000) -> list[Any]:
 
 
 def _generate_random_vector(
-    rng: "random.Random",
+    rng: random.Random,
     depth: int,
     keys: list[str],
     str_vals: list[str],

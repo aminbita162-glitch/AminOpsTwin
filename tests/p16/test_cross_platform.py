@@ -103,8 +103,8 @@ def _structural_diff(hash_a: str, hash_b: str) -> str:
     return (
         f"  Platform A hash: {hash_a}\n"
         f"  Platform B hash: {hash_b}\n"
-        f"  Differ at position: "
-        f"{next((i for i, (a, b) in enumerate(zip(hash_a, hash_b)) if a != b), 'N/A')}\n"
+        "  Differ at position: "
+        f"{_first_diff_pos(hash_a, hash_b)}\n"
     )
 
 
@@ -150,7 +150,10 @@ class TestCrossPlatformOracle:
         """
         from pathlib import Path
 
-        ci_path = Path(__file__).resolve().parents[2] / ".github" / "workflows" / "ci.yml"
+        ci_path = (
+            Path(__file__).resolve().parents[2]
+            / ".github" / "workflows" / "ci.yml"
+        )
         if not ci_path.exists():
             pytest.skip("ci.yml not found")
         content = ci_path.read_text()

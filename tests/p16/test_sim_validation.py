@@ -6,7 +6,6 @@ time, Little's Law) with pre-declared relative error thresholds.
 
 from __future__ import annotations
 
-import pytest
 from aminopstwin.twin.sim_validation import (
     ERLANG_C_REL_ERROR_THRESHOLD,
     LITTLES_LAW_REL_ERROR_THRESHOLD,
@@ -56,16 +55,16 @@ class TestLittlesLaw:
     """Little's Law L = lam * W."""
 
     def test_basic(self) -> None:
-        l = littles_law(lam=5.0, w=2.0)
-        assert l == 10.0
+        result = littles_law(lam=5.0, w=2.0)
+        assert result == 10.0
 
     def test_zero_arrivals(self) -> None:
-        l = littles_law(lam=0.0, w=5.0)
-        assert l == 0.0
+        result = littles_law(lam=0.0, w=5.0)
+        assert result == 0.0
 
     def test_zero_wait(self) -> None:
-        l = littles_law(lam=5.0, w=0.0)
-        assert l == 0.0
+        result = littles_law(lam=5.0, w=0.0)
+        assert result == 0.0
 
 
 class TestSimulationValidation:

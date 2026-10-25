@@ -111,7 +111,7 @@ class TestSaveAndResume:
     ) -> None:
         """Run N steps, checkpoint, resume, and assert identical hash."""
         exec1, twin1 = _build_executor_and_twin()
-        hash1 = _run_steps(exec1, twin1, 10)
+        _run_steps(exec1, twin1, 10)
 
         cp_path = tmp_path / "checkpoint.json"
         save_checkpoint(exec1, twin1, cp_path)

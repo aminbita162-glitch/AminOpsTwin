@@ -9,43 +9,43 @@ assessment_date: "2026-10-23"
 
 preservation_mapping:
   - original_section: "§3.5 Envelope contract"
-    retained_location: "src/contracts/envelope.py"
+    retained_location: "src/aminopstwin/contracts/envelope.py"
     status: "retained"
 
   - original_section: "§3.5.2 Canonical serialization (AMINOPS-C14N-1)"
-    retained_location: "src/contracts/canonical.py"
+    retained_location: "src/aminopstwin/contracts/canonical.py"
     status: "retained"
 
   - original_section: "§3.8 Policy Matrix"
-    retained_location: "src/gateway/gateway.py"
+    retained_location: "src/aminopstwin/gateway/gateway.py"
     status: "retained"
 
   - original_section: "§3.9 DecisionRecord"
-    retained_location: "src/contracts/decision.py"
+    retained_location: "src/aminopstwin/contracts/decision.py"
     status: "retained"
 
   - original_section: "§3.6 Executor state machine"
-    retained_location: "src/executor/__init__.py"
+    retained_location: "src/aminopstwin/executor/__init__.py"
     status: "retained"
 
   - original_section: "§31 Deterministic event-sourced memory (P4 new)"
-    retained_location: "src/executor/memory.py"
+    retained_location: "src/aminopstwin/executor/memory.py"
     status: "added"
 
   - original_section: "§32 Controlled experience and learning (P4 new)"
-    retained_location: "src/executor/experience.py"
+    retained_location: "src/aminopstwin/executor/experience.py"
     status: "added"
 
   - original_section: "§30 Source rights and provenance (P4 new)"
-    retained_location: "src/evidence/source_rights.py"
+    retained_location: "src/aminopstwin/evidence/source_rights.py"
     status: "added"
 
   - original_section: "§30.4 Source ingestion security (P4 new)"
-    retained_location: "src/evidence/ingestion.py"
+    retained_location: "src/aminopstwin/evidence/ingestion.py"
     status: "added"
 
   - original_section: "§5.3 Cryptographically bound evidence cache"
-    retained_location: "src/evidence/registry.py"
+    retained_location: "src/aminopstwin/evidence/registry.py"
     status: "retained"
 
 gate_reference_mapping:
@@ -99,15 +99,15 @@ unresolved_decisions:
 
 p5_preservation_mapping:
   - original_section: "§33.1 Bounded operational experiment designer (P5 new)"
-    retained_location: "src/twin/experiment.py"
+    retained_location: "src/aminopstwin/twin/experiment.py"
     status: "added"
 
   - original_section: "§33.2 Evidence-change impact tracking (P5 new)"
-    retained_location: "src/evidence/impact.py"
+    retained_location: "src/aminopstwin/evidence/impact.py"
     status: "added"
 
   - original_section: "§33.3 Budgeted next-experiment selection (P5 new)"
-    retained_location: "src/twin/selection.py"
+    retained_location: "src/aminopstwin/twin/selection.py"
     status: "added"
 
 p5_gate_reference_mapping:

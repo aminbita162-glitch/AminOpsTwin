@@ -9,12 +9,12 @@ Byte equality is asserted.
 from __future__ import annotations
 
 import pytest
+from aminopstwin.contracts.canonical import canonical_bytes
 from aminopstwin.twin.canonical_diff import (
     differential_check,
     generate_corpus,
     reference_canonical_bytes,
 )
-from aminopstwin.contracts.canonical import canonical_bytes
 
 
 class TestCanonicalDifferential:
@@ -59,9 +59,9 @@ class TestCanonicalDifferential:
 
     def test_float_rejected_by_both(self) -> None:
         """Both implementations reject floats."""
-        with pytest.raises(Exception):
+        with pytest.raises((TypeError, ValueError)):
             canonical_bytes({"x": 1.5})
-        with pytest.raises(Exception):
+        with pytest.raises((TypeError, ValueError)):
             reference_canonical_bytes({"x": 1.5})
 
     def test_corpus_size(self) -> None:

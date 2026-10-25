@@ -10,7 +10,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 import yaml
 
 
@@ -34,7 +33,9 @@ class TestAdvancedTestingThresholds:
         """G16.3 has a mutation score threshold."""
         gates = _load_gates()
         g16_3 = next(g for g in gates["gates"] if g["id"] == "G16.3")
-        assert "mutation" in g16_3["description"].lower() or "threshold" in g16_3["description"].lower()
+        assert "mutation" in g16_3["description"].lower() or "threshold" in g16_3[
+            "description"
+        ].lower()
 
     def test_property_tests_pass(self) -> None:
         """Run a subset of Hypothesis property tests."""

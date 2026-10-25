@@ -76,12 +76,12 @@ class Fixed:
         return {"raw": self._raw, "scale": self._scale}
 
     @classmethod
-    def from_dict(cls, d: dict[str, int]) -> "Fixed":
+    def from_dict(cls, d: dict[str, int]) -> Fixed:
         """Reconstruct from a canonical dict."""
         return cls.from_raw(d["raw"], d["scale"])
 
     @classmethod
-    def from_raw(cls, raw: int, scale: int = DEFAULT_SCALE) -> "Fixed":
+    def from_raw(cls, raw: int, scale: int = DEFAULT_SCALE) -> Fixed:
         """Construct from a raw scaled integer (no conversion needed)."""
         if not isinstance(raw, int):
             raise TypeError(f"raw must be int, got {type(raw).__name__}")
@@ -90,17 +90,17 @@ class Fixed:
         obj._scale = scale
         return obj
 
-    def __add__(self, other: "Fixed") -> "Fixed":
+    def __add__(self, other: Fixed) -> Fixed:
         if self._scale != other._scale:
             raise ValueError("cannot add Fixed with different scales")
         return Fixed.from_raw(self._raw + other._raw, self._scale)
 
-    def __sub__(self, other: "Fixed") -> "Fixed":
+    def __sub__(self, other: Fixed) -> Fixed:
         if self._scale != other._scale:
             raise ValueError("cannot subtract Fixed with different scales")
         return Fixed.from_raw(self._raw - other._raw, self._scale)
 
-    def __mul__(self, other: int) -> "Fixed":
+    def __mul__(self, other: int) -> Fixed:
         if not isinstance(other, int):
             raise TypeError("Fixed *= int only")
         return Fixed.from_raw(self._raw * other, self._scale)
@@ -135,9 +135,7 @@ def detect_floats(obj: Any, *, _path: str = "") -> list[str]:
         pass  # bool is fine
     elif isinstance(obj, float):
         found.append(_path or "<root>")
-    elif isinstance(obj, int):
-        pass
-    elif isinstance(obj, str):
+    elif isinstance(obj, (int, str)):
         pass
     elif isinstance(obj, dict):
         for k, v in obj.items():

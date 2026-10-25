@@ -13,11 +13,9 @@ import pytest
 from aminopstwin.twin.fixed_point import (
     DEFAULT_SCALE,
     Fixed,
-    FloatDetectionError,
     detect_floats,
 )
 from aminopstwin.twin.integer_clock import (
-    MILLIMINUTES_PER_MINUTE,
     MilliMinuteClock,
     NonWorkingInterval,
     WorkingCalendar,

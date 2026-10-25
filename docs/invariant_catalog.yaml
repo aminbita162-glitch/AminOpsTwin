@@ -9,7 +9,7 @@ version: "1.0"
 invariants:
   - id: "INV-001"
     statement: "Envelope.payload_hash equals the SHA-256 of canonical bytes of payload"
-    scope: "src.contracts.envelope"
+    scope: "aminopstwin.contracts.envelope"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_payload_hash_matches_canonical"
@@ -18,7 +18,7 @@ invariants:
 
   - id: "INV-002"
     statement: "Envelope rejects non-NFC strings in payload values and keys"
-    scope: "src.contracts.canonical"
+    scope: "aminopstwin.contracts.canonical"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_non_nfc_rejected"
@@ -27,7 +27,7 @@ invariants:
 
   - id: "INV-003"
     statement: "Envelope rejects float values in payload (N-15)"
-    scope: "src.contracts.canonical"
+    scope: "aminopstwin.contracts.canonical"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_float_rejected"
@@ -36,7 +36,7 @@ invariants:
 
   - id: "INV-004"
     statement: "Envelope rejects the forbidden 'issuer' key anywhere in payload"
-    scope: "src.contracts.envelope"
+    scope: "aminopstwin.contracts.envelope"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_issuer_key_rejected"
@@ -45,7 +45,7 @@ invariants:
 
   - id: "INV-005"
     statement: "Gateway purity: 1000 repeated calls on the same input give the same output"
-    scope: "src.gateway.gateway"
+    scope: "aminopstwin.gateway.gateway"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_gateway_purity"
@@ -54,7 +54,7 @@ invariants:
 
   - id: "INV-006"
     statement: "Gateway deny-by-default: unknown schema_id yields GW-DEFAULT-001"
-    scope: "src.gateway.gateway"
+    scope: "aminopstwin.gateway.gateway"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_deny_by_default"
@@ -63,7 +63,7 @@ invariants:
 
   - id: "INV-007"
     statement: "Gateway epoch check: outdated epoch yields GW-EPOCH-001"
-    scope: "src.gateway.gateway"
+    scope: "aminopstwin.gateway.gateway"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_epoch_outdated"
@@ -72,7 +72,7 @@ invariants:
 
   - id: "INV-008"
     statement: "Gateway epoch check: future epoch yields GW-EPOCH-002"
-    scope: "src.gateway.gateway"
+    scope: "aminopstwin.gateway.gateway"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_epoch_future"
@@ -81,7 +81,7 @@ invariants:
 
   - id: "INV-009"
     statement: "Gateway authorization: unlisted (principal, envelope_type, capability) yields GW-AUTH-001"
-    scope: "src.gateway.gateway"
+    scope: "aminopstwin.gateway.gateway"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_auth_denied"
@@ -90,7 +90,7 @@ invariants:
 
   - id: "INV-010"
     statement: "ALLOW DecisionRecord always has reason_code=None"
-    scope: "src.contracts.decision"
+    scope: "aminopstwin.contracts.decision"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_allow_no_reason"
@@ -99,7 +99,7 @@ invariants:
 
   - id: "INV-011"
     statement: "DENY DecisionRecord always has a non-None reason_code"
-    scope: "src.contracts.decision"
+    scope: "aminopstwin.contracts.decision"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_deny_has_reason"
@@ -108,7 +108,7 @@ invariants:
 
   - id: "INV-012"
     statement: "Pre-filter order is fixed: schema -> gateway -> cache -> invariant -> budget -> output"
-    scope: "src.tokens.prefilter"
+    scope: "aminopstwin.tokens.prefilter"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_prefilter_order"
@@ -117,7 +117,7 @@ invariants:
 
   - id: "INV-013"
     statement: "Canonical bytes are deterministic: same payload always produces same bytes"
-    scope: "src.contracts.canonical"
+    scope: "aminopstwin.contracts.canonical"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_canonical_determinism"
@@ -126,7 +126,7 @@ invariants:
 
   - id: "INV-014"
     statement: "Envelope is frozen: attribute assignment raises after construction"
-    scope: "src.contracts.envelope"
+    scope: "aminopstwin.contracts.envelope"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_envelope_frozen"
@@ -135,7 +135,7 @@ invariants:
 
   - id: "INV-015"
     statement: "Envelope extra='forbid': unknown fields are rejected at construction"
-    scope: "src.contracts.envelope"
+    scope: "aminopstwin.contracts.envelope"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_envelope_extra_forbid"
@@ -144,7 +144,7 @@ invariants:
 
   - id: "INV-016"
     statement: "IdFactory produces UUID v4 layout (version nibble = 4, variant = 10xx)"
-    scope: "src.contracts.clock"
+    scope: "aminopstwin.contracts.clock"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_uuid_v4_layout"
@@ -153,7 +153,7 @@ invariants:
 
   - id: "INV-017"
     statement: "SeededIdFactory with same seed produces identical UUID sequence"
-    scope: "src.contracts.clock"
+    scope: "aminopstwin.contracts.clock"
     category: "Gateway purity and determinism"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_seeded_id_reproducibility"
@@ -162,7 +162,7 @@ invariants:
 
   - id: "INV-018"
     statement: "Envelope rejects NaN and Infinity in payload (§3.5.2)"
-    scope: "src.contracts.canonical"
+    scope: "aminopstwin.contracts.canonical"
     category: "envelope/canonicalization round-trip"
     severity: "BLOCKING"
     property_test: "tests/property/test_invariants.py::test_nan_infinity_rejected"

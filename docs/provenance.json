@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "generated_at_phase": "P15",
+  "files": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "36babec281039c3bb64cf53f4df550b08e5fa3013aa51ce8077cafd9725bdb11",
+      "size_bytes": 4726
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "145d8a5876865e73cb7fd3d51f99cf82ed5e8ea465c08b3cb0a6d7dbc399dfb9",
+      "size_bytes": 182197
+    },
+    {
+      "path": "directive.txt",
+      "sha256": "3ee648e9994e4cbe1ae3f0aaf0fbd5c47fb583ea438e14a86656ca10207e72e2",
+      "size_bytes": 16416
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "cffd40851a8b0d3f9af0b2521c3558cad9cc853998108b021edb0681367ceff5",
+      "size_bytes": 5701
+    }
+  ]
+}
