@@ -1096,6 +1096,43 @@ gates:
     source_command: "pytest tests/p21/test_regression.py -v"
     raw_output_path: "test_home/P21/G21.3_regression.txt"
 
+  # === P22 Gates ===
+  - id: "G22.1"
+    phase: "P22"
+    description: "Directive consistency — single phase sequence, single status vocabulary, no internal contradictions"
+    metric: "directive_consistency_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p22/test_directive_consistency.py -v"
+    raw_output_path: "test_home/P22/G22.1_directive_consistency.txt"
+
+  - id: "G22.2"
+    phase: "P22"
+    description: "No remaining OWNER-FILL markers or outdated phase references in directive.txt or governance files"
+    metric: "owner_fill_eliminated_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p22/test_owner_fill_eliminated.py -v"
+    raw_output_path: "test_home/P22/G22.2_owner_fill.txt"
+
+  - id: "G22.3"
+    phase: "P22"
+    description: "gates.yaml is the single source for gate identifiers; check_commits.py GATE_IDS matches gates.yaml"
+    metric: "gate_source_consistency_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p22/test_gate_source_consistency.py -v"
+    raw_output_path: "test_home/P22/G22.3_gate_source.txt"
+
+  - id: "G22.4"
+    phase: "P22"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p22/test_regression.py -v"
+    raw_output_path: "test_home/P22/G22.4_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
