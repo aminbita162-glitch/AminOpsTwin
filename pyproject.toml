@@ -89,7 +89,7 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "DTZ", "TID"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.agents", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot", "aminopstwin.fixtures_gen", "aminopstwin.api"]
+packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.agents", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot", "aminopstwin.fixtures_gen", "aminopstwin.api", "aminopstwin.policy_simulation", "aminopstwin.retention", "aminopstwin.scheduling", "aminopstwin.stage_seal"]
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
