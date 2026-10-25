@@ -1,0 +1,300 @@
+======================================================================
+HISTORICAL PHASES — ARCHIVED FROM PREVIOUS DIRECTIVE (P1–P10)
+======================================================================
+
+This file preserves all prior six-phase, nine-plus-one, and
+HISTORICAL sections removed from the previous directive when it
+was replaced by the Stage 2 directive (P11–P14).
+These sections carry no active obligations.
+The sole active phase sequence is P11 through P14.
+
+----------------------------------------------------------------------
+
+--- Historical Section 1 ---
+
+AMINOPSTWIN
+MASTER DEVELOPMENT DIRECTIVE
+Project start: October 2026 | Directive date: October 23, 2026
+Operational Cognitive Digital Twin for Clinical Research Operations
+Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
+
+Authoritative directive: directive.txt (project root)
+This file is the single authoritative directive.
+
+STATUS: EXECUTION CANDIDATE
+
+THE SOLE ACTIVE PHASE SEQUENCE IS P1 THROUGH P10.
+All earlier six-phase references are historical only and carry no active obligations.
+
+----------------------------------------------------------------------
+
+--- Historical Section 2 ---
+
+Authoritative directive: directive.txt (project root)
+This file is the single authoritative directive.
+
+STATUS: EXECUTION CANDIDATE.
+
+
+======================================================================
+GATE MIGRATION TABLE (OLD TO NEW PHASES)
+======================================================================
+Old G1.* / G2.* / G3.*          -> remain in P1 / P2 / P3
+Old G4.2–G4.6                   -> primarily P4 (memory/source)
+Old G4.7–G4.9                   -> primarily P5 (intelligence)
+Old G4.10–G4.11                 -> primarily P6 (assurance)
+Old G4.12                       -> primarily P7 (dashboard)
+Old G4.1, G4.13–G4.16           -> cross-cutting across P4–P7
+Old G5.1–G5.2, G5.4–G5.8        -> P8 (enterprise)
+Old G5.3                        -> P9 (exports)
+Old G6.*                        -> distributed to P9 (preparation) and P10 (final verification)
+Thresholds and conditions are unchanged.
+HISTORICAL NOTE: Previous phase lists are superseded. Active sequence is P1–P10 above.
+P1 Foundation and Governance
+P2 Runtime Core and Evidence
+P3 Twin and Operational Simulation
+P4 Governed Knowledge and Deterministic Memory
+P5 Operational Intelligence Capabilities
+P6 Assurance Interface and Weekly Checks
+P7 Responsive Dashboard and User Interface
+P8 Enterprise Hardening and Evaluation
+P9 Integration, Exports and Pre-Release
+P10 Final Verification, README, Release Notes and Project Close
+
+P10 performs full regression testing, README and release-notes update, final commit and push, and project completion declaration. No new development occurs in P10.
+
+
+[HISTORICAL] PHASE MAPPING FROM PREVIOUS SIX-PHASE STRUCTURE
+Original P1 -> P1
+Original P2 -> P2
+Original P3 -> P3
+Original new P4 (memory + intelligence + assurance + dashboard) split into:
+  P4 Governed Knowledge and Deterministic Memory
+  P5 Operational Intelligence Capabilities
+  P6 Assurance Interface and Weekly Checks
+  P7 Responsive Dashboard and User Interface
+Original P5 (Enterprise) -> P8
+Original P6 (Release) content distributed into P9 and P10
+P10 is the dedicated final verification and close phase.
+
+All original gates, requirements, and content are preserved and distributed across the new phases.
+Meaningful commits remain mandatory after each logical unit.
+
+AMINOPSTWIN
+MASTER DEVELOPMENT DIRECTIVE
+Project start: October 2026 | Directive date: October 23, 2026
+
+----------------------------------------------------------------------
+
+--- Historical Section 3 ---
+
+Project start: October 2026 | Directive date: October 23, 2026
+Operational Cognitive Digital Twin for Clinical Research Operations
+Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
+
+Authoritative directive: directive.txt (project root)
+This file (directive.txt) is the single authoritative directive.
+The owner confirms the version and entry arrangement before binding activation.
+
+STATUS: EXECUTION CANDIDATE. This document integrates the five original phases
+and the additional P4 into one nine-plus-one phase plan. It corrects identified contract
+defects while retaining original scope and acceptance obligations. It does not
+claim literal byte-for-byte preservation where approved corrections replace
+defective wording. Section 38 records the preservation and correction mapping.
+All missing owner inputs are disclosed in Section 37. No implementation, test
+execution, regulatory clearance, signature or future score is asserted here.
+
+MANDATORY EXECUTION DISCIPLINE
+Execute only the approved binding requirements. Do not delete capabilities,
+invent missing values, silently simplify, select unapproved technology, fabricate
+evidence or rewrite Git history. On material ambiguity, record the exact question
+and stop the affected work; do not proceed into a later phase. Meaningful commits
+are required after each complete logical unit, not micro-edits or phase-end-only
+commits. All authored project content is English. Project attribution is Amin
+Azimi / Azimi Innovation Lab; authentic third-party rights and scientific
+attribution must remain accurate. Do not fabricate sole authorship of third-party
+code, data or publications, endorsements, signatures or dates.
+
+There are no permanently unchangeable files: the owner may amend any requirement
+through the signed change process. This is not permission for an implementing
+agent to alter verification controls, policy or scope. Each phase must satisfy
+all of its applicable obligations and independent checks before advancement.
+After verification, the next phase starts only on explicit owner instruction.
+
+NINE-PLUS-ONE PHASE SEQUENCE
+P1 Foundation / Governance (original P1 retained)
+P2 Runtime / Evidence (original P2 retained)
+P3 Twin / Operations (original P3 retained)
+P4 Governed Knowledge, Deterministic Memory, Operational Intelligence and Interface (new)
+P5 Enterprise / Product (original P4 retained and renumbered)
+P6 Release / Deployment (original P5 retained and renumbered)
+
+[HISTORICAL] P6 is the final development/release phase. Completion means this directive's
+verified Candidate deliverables are finished, not that future maintenance,
+scheduled assurance, source review or applicable legal obligations cease.
+
+======================================================================
+ORIGINAL FIVE DEPTH-ELEVATING IDEAS - BINDING PHASE DISTRIBUTION
+(Original scopes retained; phase references migrated to the six-phase sequence)
+======================================================================
+
+The five ideas are fully incorporated below as owner-approved extensions. They do not create a sixth agent or weaken a hard boundary. The separate new P4 adds capabilities described in Sections 28-36. Each idea is mapped to existing phases, capabilities, and gates. The technical substance of both source documents is preserved in the sections that follow this integration layer.
+
+IDEA 1 - Operational Capability Marketplace with Signed Capability Packs
+Distribution:
+- P1: Extend schema_registry.yaml and policy_matrix.yaml to support pack-manifest schema_id. Add invariant for pack signature verification. Gateway purity remains intact.
+- P2: Executor records pack hash in durable state (compatible with state machine 3.6). Cache binding includes pack_hash.
+- P5: Tenant-context tests (G5.2) include pack isolation. Export manifests include pack provenance.
+- Gates affected (existing only): G1.3, G1.4, G1.7, G2.4, G5.1, C5. No new gate IDs.
+- Binding: Packs are data only. Loading is a Gateway-mediated action under 3.8.
+
+IDEA 2 - Deterministic Scenario Diff and What-If Provenance Ledger
+Distribution:
+- P2: Evidence registry (A3) stores scenario seed + policy_epoch + baseline snapshot hash.
+- P3: Twin (A2) produces ScenarioDiff as an Envelope payload (aggregate metrics only, vocabulary 2.7). Replay oracle (G3.1, G3.9) includes diff hash.
+- P5: Evaluation harness reports diff reproducibility.
+- Gates affected (existing only): G3.1, G3.4, G3.9, G2.4, G5.4.
+- Binding: Diffs contain only allowed aggregate fields. Schema field scan (24.3) enforces.
+
+IDEA 3 - Policy Epoch Simulation and Impact Preview Gate
+Distribution:
+- P1: Gateway pure function gains a read-only preview mode (no state mutation; import-linter still holds).
+- P2: Preview results stored as evidence with DecisionRecord format (3.9). Compatible with F10.
+- P3: Epoch-change tests (existing) include preview dry-run.
+- Gates affected (existing only): G1.2, G1.7, G2.3, G3.10.
+- Binding: Preview is advisory. Owner still explicitly bumps epoch (3.7).
+
+IDEA 4 - Aggregate Operational KPI Contract with Verifiable Export
+Distribution:
+- P3: Twin produces versioned approved KPI schemas (site utilization, protocol_milestone throughput, queue wait_time distribution, resource contention index) using only allowed vocabulary.
+- P5: Export workflow is Executor-mediated and interruptible (F11). Signed reports include evidence-pack manifest.
+- P6: Clean-room verification (25) includes KPI export offline check. Runbook covers export recovery.
+- Gates affected (existing only): G3.6, G5.3, G6.3, G6.8, F11.
+- Binding: No free-text interpretation in signed reports. Output validation L3 applies.
+
+IDEA 5 - Token-Budget Reservation Marketplace and Capability Pricing Hooks
+Distribution:
+- P2: Budget governor (4.3) gains optional owner-configured pricing/accounting layer. Atomic token reservation is mandatory (F09).
+- P3: Token benchmarks (G3.5) include reservation accounting.
+- P5: Transparency contract (4.5) reports reservation status. Multi-tenant path (OD01) prepared without enabling billing by default.
+- Gates affected (existing only): G2.5, G3.5, G5.5, F09.
+- Binding: Pricing hooks are configuration data. No floating-point in hashed accounting payloads (N-15). Fallback paths unchanged.
+
+Recommended introduction order (non-binding, for owner scheduling only): Idea 4 -> Idea 2 -> Idea 3 -> Idea 1 -> Idea 5.
+All ideas remain Candidate until owner-verified evidence. No production-ready or clinical-validity claims.
+
+
+======================================================================
+0. DOCUMENT CONTROL
+======================================================================
+0.1 STATUS: OWNER REVIEW CANDIDATE. Execution begins only after the applicable
+Section 20 inputs are complete, binding controls are verified and the owner signs
+the active binding manifest and instructs P1. This drafting authorization is not
+implementation authorization. Preparatory document editing is owner-authorized;
+no agent may manufacture missing owner decisions or signatures.
+0.2 LANGUAGE: All authored code, comments, docs, README, tests, UI, reports and
+commit messages are English. This does not mean ASCII-only. Exact identifiers,
+source author names, URLs and required Unicode conformance vectors are preserved
+without falsification. Prefer English publications; non-English narrative is not
+
+----------------------------------------------------------------------
+
+--- Historical Section 4 ---
+
+  FINAL HARD STOP. When all six phases, full regression and owner verification
+  pass, this project's defined development scope is complete at "Advanced
+  Operational Cognitive Digital Twin Candidate" level. [HISTORICAL] There is no seventh
+  development phase. Scheduled assurance and maintenance continue as operations.
+  Commercial availability requires the separate deployment and legal applicability
+  conditions in Section 29; completing engineering gates is not legal clearance.
+
+======================================================================
+
+----------------------------------------------------------------------
+
+--- Historical Section 5 ---
+
+        history, never amends or rebases after a Hard Stop, and never deletes tags.
+     6. Per-phase density guidance (WARNING only, not a gate; verify_phase.sh prints WARN when outside): P1 12-25, P2 15-30,
+        P3 18-35, P5 12-25, P6 10-20. New P4 has meaningful-unit guidance only;
+        no fabricated density quota. The earlier 67-135 estimate covered only the
+        five original phases and is not a six-phase total. Never chase counts.
+     7. At each Hard Stop the report lists the number of commits in the phase and the IDs they reference (14, section 2).
+
+COMMIT MESSAGE PHASE SUPPORT
+The commit checker accepts phases P1 through P10.
+Regex phase component: P(?:[1-9]|10)
+All other original commit rules remain unchanged.
+
+
+----------------------------------------------------------------------
+
+--- Historical Section 6 ---
+
+27. HISTORICAL CHANGE LOG - REFERENCE NUMBERS MIGRATED
+======================================================================
+ - Commit Discipline moved to Section 21 and corrected: density ranges are warnings (sum 67-135, not 70-140), exact regex,
+   INFRA/DOC/section refs, checker script, tags, linear history, report-hash problem solved, duplicate rule 15.5 replaced by a pointer.
+ - Envelope hardened: removed self-asserted issuer (runtime-bound principal), canonical bytes restricted to a deterministic project subset
+   (no floats; the former general JCS-equivalence claim is corrected in 3.5.2), aware-UTC timestamps, regex-constrained ids/keys, extra="forbid"/frozen/strict, IdFactory (fixes the uuid4 conflict
+   with 6.3), hash recomputation, versioning, idempotency scope.
+ - Policy epoch rule made single and consistent (3.7); stage/reason-code ownership clarified (3.5.7); added AUTH and IDEM domains,
+   new codes GW-SCHEMA-002..005, GW-AUTH-001, GW-IDEM-001, GW-EVID-002, GW-EPOCH-002; added DecisionRecord (3.9) and policy matrix (3.8).
+ - Added aggregate-only rule and operational vocabulary (2.7).
+ - Added common gates C1-C9, gates.yaml schema, gates G1.10-G1.12, G2.9-G2.10, G3.9-G3.10, G5.8, G6.8-G6.9; mutation testing,
+   pip-audit, schemathesis in the stack lock.
+ - Added fault-injection catalog F01-F12, synthetic-data and source register (23), test contracts (24), clean-room outline (25),
+   readiness rubric (26); added threats T15-T18 and non-goals N-13..N-15.
+ - Fixed reference errors from V4.1.1 (forbidden-pattern scan reference), expanded binding set, expanded owner checklist.
+
+
+======================================================================
+28. NEW P4 ENTRY, RESPONSIBILITIES AND ARCHITECTURE
+======================================================================
+Entry: final P1-P3 independently verified; original unresolved owner inputs
+resolved; integration corrections approved; new gate definitions and verification
+commands approved; memory and source schemas registered; no silent dependencies.
+
+----------------------------------------------------------------------
+
+--- Historical Section 7 ---
+
+COR-18 English/attribution/six-phase references -> 0.2, 17, header, all phase contracts.
+
+
+----------------------------------------------------------------------
+
+--- Historical Section 8 ---
+
+[HISTORICAL] 39. FINAL P6 COMPLETION AND HANDOVER
+======================================================================
+[HISTORICAL] Review the entire delivered project from zero to end against all six phases and
+all defined capability records. Run all common gates and G1-G6 checks, verify
+source rights, intended-use boundaries, clean-room demo, PostgreSQL recovery,
+dashboard evidence, dependency/license inventory, token reports and README truth.
+
+Complete outstanding work rather than marking a 90% phase complete. If mandatory
+scope is missing, report NOT DONE and do not declare completion. An owner may
+amend scope, but the amendment and effects must be explicit; no silent omission.
+
+Finalize the code and documentation in meaningful commits, create the final code
+tag, generate the evidence and ten-section hard-stop report, then commit that
+report separately. Push when the remote is available and authorized; report
+unavailable remote status honestly. Run verification from a clean checkout of
+the exact reported revision; store independent output outside the sealed pack.
+The owner signs the verified release tag only after successful verification.
+The final report records commit ids, tags, pack hashes, remaining deployment
+restrictions and signed/unsigned status. Never place a commit's own hash inside
+that same commit or mutate a signed artifact to attach later test output.
+
+----------------------------------------------------------------------
+
+--- Historical Section 9 ---
+
+[HISTORICAL] END OF AMINOPSTWIN SIX-PHASE INTEGRATED REVIEW CANDIDATE
+
+
+[ACTIVE] The sole active phase sequence remains P1 through P10 as defined at the beginning of this directive.
+
+----------------------------------------------------------------------
+
