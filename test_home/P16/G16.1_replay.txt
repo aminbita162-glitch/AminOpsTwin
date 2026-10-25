@@ -1,0 +1,27 @@
+# G16.1 — Replay engine checkpoint resume hash match
+
+## Source command
+```
+pytest tests/p16/test_replay.py -v
+```
+
+## Output
+```
+9 passed, 1 warning in 0.06s
+```
+
+## Measured values
+- checkpoint_resume_hash_match: 1 (PASS)
+- Total tests: 9
+  - TestCheckpointFormat::test_to_dict_has_version PASSED
+  - TestCheckpointFormat::test_hashes_present PASSED
+  - TestCheckpointFormat::test_to_bytes_is_deterministic PASSED
+  - TestSaveAndResume::test_resume_produces_identical_hash PASSED
+  - TestSaveAndResume::test_checkpoint_hash_stable PASSED
+  - TestSaveAndResume::test_resume_then_continue_matches_fresh PASSED
+  - TestSaveAndResume::test_resume_restores_executor_state PASSED
+  - TestSaveAndResume::test_resume_validates_hashes PASSED
+  - TestSaveAndResume::test_resume_rejects_wrong_version PASSED
+
+## Gate verdict
+PASS (threshold: 1, measured: 1)

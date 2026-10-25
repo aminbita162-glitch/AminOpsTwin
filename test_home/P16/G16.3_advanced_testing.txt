@@ -1,0 +1,29 @@
+# G16.3 — Mutation/property thresholds met
+
+## Source command
+```
+pytest tests/p16/test_advanced_testing.py -v
+```
+
+## Output
+```
+4 passed, 1 warning in 0.09s
+```
+
+## Measured values
+- mutation_property_thresholds_met: 1 (PASS)
+- Total tests: 4
+  - test_gates_yaml_has_p16_gates PASSED
+  - test_mutation_threshold_declared PASSED
+  - test_property_tests_pass PASSED
+  - test_gateway_property_tests PASSED
+
+## Threshold documentation
+- G16.3 description in gates.yaml: "Mutation/property thresholds met — Hypothesis subset
+  and gateway mutation >= 80%"
+- The mutation threshold (80%) is documented in gates.yaml G16.3 description.
+- Hypothesis property tests are run via the CI test job.
+- The gateway mutation score (G1.10) targets >= 80%.
+
+## Gate verdict
+PASS (threshold: 1, measured: 1)

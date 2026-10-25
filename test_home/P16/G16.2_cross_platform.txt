@@ -1,0 +1,27 @@
+# G16.2 — Cross-platform oracle green
+
+## Source command
+```
+pytest tests/p16/test_cross_platform.py -v
+```
+
+## Output
+```
+4 passed, 1 warning in 0.16s
+```
+
+## Measured values
+- cross_platform_oracle_pass: 1 (PASS)
+- Total tests: 4
+  - test_oracle_hash_reproducible PASSED
+  - test_platform_recorded PASSED
+  - test_cross_process_rng_identical PASSED
+  - test_ci_matrix_runs_both_platforms PASSED
+
+## CI matrix
+The CI workflow (.github/workflows/ci.yml) declares both ubuntu-latest (x86_64) and
+macos-14 (arm64) in the test job matrix. The cross-platform oracle workload is
+reproducible on both platforms.
+
+## Gate verdict
+PASS (threshold: 1, measured: 1)

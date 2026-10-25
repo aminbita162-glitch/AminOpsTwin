@@ -1,0 +1,29 @@
+# G16.5 — Simulation validation within thresholds (Erlang-C, Little's Law)
+
+## Source command
+```
+pytest tests/p16/test_sim_validation.py -v
+```
+
+## Output
+```
+12 passed, 1 warning in 0.06s
+```
+
+## Measured values
+- sim_validation_within_thresholds: 1 (PASS)
+- Total tests: 12
+  - TestErlangC (5 tests) — probability of waiting at low/high/overloaded, waiting time, zero arrivals
+  - TestLittlesLaw (3 tests) — basic, zero arrivals, zero wait
+  - TestSimulationValidation (4 tests) — pass within threshold, fail outside, thresholds declared, to_dict
+
+## Thresholds
+- ERLANG_C_REL_ERROR_THRESHOLD = 0.15 (15%)
+- LITTLES_LAW_REL_ERROR_THRESHOLD = 0.15 (15%)
+
+## Analytical references
+1. Erlang-C waiting time: W = C / (c*mu - lam), where C is the Erlang-C probability of waiting.
+2. Little's Law: L = lam * W, where L is average number in system.
+
+## Gate verdict
+PASS (threshold: 1, measured: 1)

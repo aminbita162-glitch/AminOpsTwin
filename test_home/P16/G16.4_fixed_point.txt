@@ -1,0 +1,31 @@
+# G16.4 — Fixed-point paths clean
+
+## Source command
+```
+pytest tests/p16/test_fixed_point.py -v
+```
+
+## Output
+```
+35 passed, 1 warning in 0.06s
+```
+
+## Measured values
+- fixed_point_paths_clean: 1 (PASS)
+- Total tests: 35
+  - TestFixed (16 tests) — construction, arithmetic, round-trip, hash, repr
+  - TestFloatDetection (6 tests) — recursive float detection in nested structures
+  - TestWorkingCalendar (13 tests) — non-working interval skipping with integer arithmetic
+  - TestFixedPointPathsClean (2 tests) — no floats on hashed state path
+
+## Fixed-point type
+The Fixed class (src/aminopstwin/twin/fixed_point.py) uses scaled integers for
+all values that enter a hash. detect_floats() recursively finds floats in nested
+structures and returns them as a list of paths.
+
+## Working calendar
+The WorkingCalendar (src/aminopstwin/twin/integer_clock.py) uses NonWorkingInterval
+(start_mmin, end_mmin) and integer arithmetic to skip non-working intervals.
+
+## Gate verdict
+PASS (threshold: 1, measured: 1)
