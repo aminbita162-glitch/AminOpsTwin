@@ -13,8 +13,28 @@ from __future__ import annotations
 import datetime as _dt
 from typing import Any
 
-__all__ = ["SyntheticRecord", "GENERATOR_ID", "GENERATOR_VERSION"]
+from aminopstwin.fixtures_gen.synthetic_priors import (
+    GENERATOR_ID as SYNTHETIC_GENERATOR_ID,
+)
+from aminopstwin.fixtures_gen.synthetic_priors import (
+    GENERATOR_VERSION as SYNTHETIC_GENERATOR_VERSION,
+)
+from aminopstwin.fixtures_gen.synthetic_priors import (
+    SYNTHETIC_LABEL,
+    SyntheticAggregateGenerator,
+    SyntheticAggregateRecord,
+)
 
+__all__ = [
+    "SyntheticRecord",
+    "SyntheticAggregateRecord",
+    "SyntheticAggregateGenerator",
+    "GENERATOR_ID",
+    "GENERATOR_VERSION",
+    "SYNTHETIC_LABEL",
+    "SYNTHETIC_GENERATOR_ID",
+    "SYNTHETIC_GENERATOR_VERSION",
+]
 
 GENERATOR_ID: str = "aminopstwin-fixtures-gen-v1"
 GENERATOR_VERSION: str = "0.1.0"
