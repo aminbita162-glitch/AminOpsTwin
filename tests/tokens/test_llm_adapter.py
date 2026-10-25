@@ -277,7 +277,7 @@ class TestLLMRecordFrozen:
                 expected_schema_id="schema@1",
                 tokens_input=0,
                 tokens_output=0,
-                recorded_at=_dt.datetime(2026, 1, 1),  # naive
+                recorded_at=_dt.datetime(2026, 1, 1),  # noqa: DTZ001
             )
 
 

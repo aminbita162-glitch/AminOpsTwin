@@ -367,8 +367,8 @@ class TestReportSerialization:
                 occurrence_id="o1",
                 suite_version="v1",
                 tenant_scope="t1",
-                started_at=_dt.datetime(2026, 1, 1),  # naive
-                ended_at=_dt.datetime(2026, 1, 1),
+                started_at=_dt.datetime(2026, 1, 1),  # noqa: DTZ001
+                ended_at=_dt.datetime(2026, 1, 1),  # noqa: DTZ001
                 input_manifest_hash="a" * 64,
             )
 

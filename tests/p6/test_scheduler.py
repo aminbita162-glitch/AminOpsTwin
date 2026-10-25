@@ -202,7 +202,7 @@ class TestNextOccurrence:
         scheduler = WeeklyScheduler(cfg, clock)
         with pytest.raises(SchedulerError):
             scheduler.next_occurrence(
-                after=_dt.datetime(2026, 1, 5, 9, 0)
+                after=_dt.datetime(2026, 1, 5, 9, 0)  # noqa: DTZ001
             )
 
 

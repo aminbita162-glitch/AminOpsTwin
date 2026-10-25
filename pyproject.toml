@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Operational Cognitive Digital Twin for Clinical Research Operations (non-medical)"
 requires-python = ">=3.12,<3.13"
 license = { file = "LICENSE" }
-authors = [{ name = "Amin Azimi", email = "noreply@azimi-innovation-lab.example" }]
+authors = [{ name = "Amin Azimi", email = "azimilab2025@gmail.com" }]
 dependencies = [
     "fastapi>=0.115.0,<0.116.0",
     "pydantic>=2.9.0,<3.0.0",
@@ -57,12 +57,39 @@ target-version = "py312"
 src = ["src/aminopstwin", "tests"]
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "DTZ", "TID"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"datetime.datetime.now" = { msg = "Use injected Clock, not datetime.now() (deterministic core)" }
+"uuid.uuid4" = { msg = "Use injected IdFactory, not uuid.uuid4() (deterministic core)" }
+"random.random" = { msg = "Use seeded random.Random, not random.random() (deterministic core)" }
+"random.randint" = { msg = "Use seeded random.Random, not random.randint() (deterministic core)" }
+"random.choice" = { msg = "Use seeded random.Random, not random.choice() (deterministic core)" }
+"os.urandom" = { msg = "Use injected IdFactory, not os.urandom() (deterministic core)" }
+"secrets.token_bytes" = { msg = "Use injected IdFactory, not secrets.token_bytes() (deterministic core)" }
+
+[tool.ruff.lint.per-file-ignores]
+# System implementations legitimately use the banned APIs at the runtime edge
+"src/aminopstwin/contracts/clock.py" = ["TID251"]
+"src/aminopstwin/contracts/idfactory.py" = ["TID251"]
+# Non-deterministic operational modules use uuid/datetime at the runtime edge
+"src/aminopstwin/executor/__init__.py" = ["TID251"]
+"src/aminopstwin/assurance/report.py" = ["TID251"]
+"src/aminopstwin/enterprise/evaluation.py" = ["TID251"]
+"src/aminopstwin/enterprise/transparency.py" = ["TID251"]
+"src/aminopstwin/ingestion/shadow_gateway.py" = ["TID251"]
+"src/aminopstwin/integration/exports.py" = ["TID251"]
+"src/aminopstwin/integration/integration.py" = ["TID251"]
+"src/aminopstwin/tokens/llm_adapter.py" = ["TID251"]
+"src/aminopstwin/twin/pipeline.py" = ["TID251"]
+"src/aminopstwin/fixtures_gen/__init__.py" = ["TID251"]
+# Test files may use uuid.uuid4, datetime constructors, and naive datetimes
+"tests/**" = ["DTZ001", "TID251"]
 
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot"]
+packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.agents", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot", "aminopstwin.fixtures_gen"]
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -98,4 +125,14 @@ forbidden_modules = [
     "urllib",
     "urllib3",
     "socket",
+]
+
+[[tool.importlinter.contracts]]
+name = "Layer independence: contracts < gateway < executor < agents"
+type = "layers"
+layers = [
+    "aminopstwin.agents",
+    "aminopstwin.executor",
+    "aminopstwin.gateway",
+    "aminopstwin.contracts",
 ]
