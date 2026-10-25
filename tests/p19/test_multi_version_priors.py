@@ -20,7 +20,6 @@ from __future__ import annotations
 import datetime as _dt
 import json
 from pathlib import Path
-from typing import Any
 
 import pytest
 from aminopstwin.assurance.report import (
