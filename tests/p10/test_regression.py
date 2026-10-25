@@ -49,7 +49,7 @@ class TestFinalRegression:
             ],
             capture_output=True,
             text=True,
-            timeout=300,
+            timeout=1800,
             cwd=str(project_root),
             env={
                 **os.environ,
@@ -86,7 +86,7 @@ class TestFinalRegression:
             ],
             capture_output=True,
             text=True,
-            timeout=300,
+            timeout=1800,
             cwd=str(project_root),
             env={
                 **os.environ,

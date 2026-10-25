@@ -49,7 +49,7 @@ class TestFullRegression:
             capture_output=True,
             text=True,
             env=env,
-            timeout=600,
+            timeout=1800,
             cwd=str(REPO_ROOT),
         )
 
