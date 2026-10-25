@@ -1,216 +1,334 @@
 AMINOPSTWIN
-MASTER DEVELOPMENT DIRECTIVE — STAGE 2 (P11–P14)
+MASTER DEVELOPMENT DIRECTIVE — STAGE 3 (P15–P20)
 Project start: October 2026 | Directive date: 25 October 2026
 Operational Cognitive Digital Twin for Clinical Research Operations
 Amin Azimi | AI Architect | End-to-End System Development | Azimi Innovation Lab
 
 Authoritative directive: directive.txt (project root)
-This file is the single authoritative directive for Stage 2.
-P1 through P10 are COMPLETE (CANDIDATE) and closed.
-THE SOLE ACTIVE PHASE SEQUENCE FOR THIS STAGE IS P11 THROUGH P14.
+This file is the single authoritative directive for Stage 3.
+P1 through P14 are COMPLETE (CANDIDATE) and closed.
+THE SOLE ACTIVE PHASE SEQUENCE FOR THIS STAGE IS P15 THROUGH P20.
 
 STATUS: EXECUTION CANDIDATE
-This document is binding for the implementing agent once the owner places it in the repository root and instructs the first phase. No implementation may begin before explicit owner instruction for P11.
+This document is binding for the implementing agent once the owner places it in the repository root and instructs the first phase.
 
 MANDATORY EXECUTION DISCIPLINE
-- Execute only the approved binding requirements in this file. Do not invent missing values, silently simplify, select unapproved technology, fabricate evidence or rewrite Git history.
-- On any material ambiguity, record the exact question in docs/open_questions.md and stop the affected work. Do not proceed.
-- All authored project content (code, comments, docs, README, tests, UI, reports, commit messages) is English. Do not introduce any text from private owner-agent conversations into any project artifact.
-- Meaningful commits are required after each complete logical unit (a finished feature, a finished set of related tests, or a finished documentation update). Do not make micro-edit commits or phase-end-only commits.
-- After every phase, run the full test suite and all phase-specific gates. Evidence must be stored under test_home/P<n>/.
-- After verification of a phase, the next phase starts only on explicit owner instruction.
-- Do not modify the clinical non-medical boundary, deny-by-default principle, or evidence-pack integrity rules established in P1–P10.
+- Execute only the requirements stated in this directive for the active phase.
+- On any ambiguity, record the question in docs/open_questions.md and Hard Stop. Do not invent solutions outside the constraints given here.
+- Do not add any sentence that refers to private instructions, owner-agent dialogue, or "as discussed".
+- After each logical unit, create a meaningful commit whose message describes the completed unit.
+- At the end of each phase run the full test suite and store the output in test_home/P<n>/full_regression.txt.
+- Do not start the next phase until the owner explicitly instructs it.
+- No skeleton, placeholder, OWNER-FILL marker, or incomplete implementation is acceptable.
+- Every deliverable must include: implementation, tests that prove the acceptance criteria, gate entry, and evidence under test_home/P<n>/.
+- The non-medical boundary, deny-by-default Gateway purity, integer-only paths where hashing occurs, and evidence-pack integrity must not be weakened.
+- All new public claims must be registered in docs/claims.yaml with evidence_path and sha256 hash.
+- Package metadata email must be exactly azimilab2025@gmail.com.
 
-ELEVATED STRATEGIC IDEAS (binding for this stage)
-Idea S1 — Evidence Claim Registry + Independent Verify CLI
-  Every claim in README and reports receives a claim-id. Each claim-id maps to a signed evidence-pack hash. A standalone CLI tool (aminopstwin-verify) must be able to verify any claim without running the full system.
-Idea S2 — Deterministic Prior Pack from Public Aggregate Data
-  Extract aggregate distributions (phase duration, site count, enrollment rates) from ClinicalTrials.gov / AACT public aggregates. Package them as a versioned, signed Capability Pack that the Twin can load as priors. No private data.
-Idea S3 — Shadow-Mode Ingestion Gateway + Data Contract v1
-  A dedicated ingestion path that accepts only weekly aggregate CSV/JSON files under a strict Data Contract. Enforces schema, k-min cell suppression, and produces a hashed receipt. Output is limited to aggregate forecast-vs-actual comparison.
-Idea S4 — State Hash Cross-Platform Oracle
-  A fixed suite of determinism tests whose final state hashes must be identical on x86_64 and ARM64 and across two Python 3.12 patch versions. The oracle runs in CI and fails the build on mismatch.
-Idea S5 — Owner Key Rotation & Hard-Stop Co-Signature Protocol
-  A minimal protocol for rotating the owner signing key and allowing an optional co-signature on Hard-Stop reports. Reduces single-person bus factor without requiring full Shamir sharing in this stage.
+DESIGN CONSTRAINTS (APPLY TO ALL PHASES)
+- All state that participates in hashing or replay must be integer, string, or canonical bytes. No float.
+- All serialization used for hashing or signing must be deterministic and reject duplicate keys and non-NFC Unicode.
+- Gateway must remain free of network, LLM, and direct store imports.
+- Every new persistent structure must have an explicit schema and a round-trip test.
+- CI must fail closed: any missing evidence, failing gate, or stale claim blocks the phase.
 
-PHASE SEQUENCE
-P11 Spec Consolidation, Package Hygiene and CI Foundation
-P12 Core Determinism and Safety Hardening
-P13 Evidence Infrastructure, Prior Pack and Shadow Ingestion
-P14 Shadow Pilot Readiness, Claim Verification and Stage Close
-
-----------------------------------------------------------------------
-P11 — SPEC CONSOLIDATION, PACKAGE HYGIENE AND CI FOUNDATION
-----------------------------------------------------------------------
-Entry: P1–P10 independently verified and owner has instructed P11.
-Responsible: implementing agent under existing contracts.
-Required (exact deliverables):
-  1. Create docs/archive/historical_phases.txt containing all prior six-phase, nine-plus-one and HISTORICAL sections removed from the previous directive. The active directive.txt must contain only the current P11–P14 sequence and the elevated ideas above.
-  2. Rename package layout:
-     - Move all modules from src/ to src/aminopstwin/
-     - Update pyproject.toml:
-       [tool.hatch.build.targets.wheel]
-       packages = ["src/aminopstwin"]
-       [tool.importlinter]
-       root_packages = ["aminopstwin"]
-     - Update all import statements and mypy packages list.
-     - Verify: a clean venv can do "pip install -e ." and "import aminopstwin" succeeds; no top-level "src" package is installed.
-  3. Add hash-locked lockfile:
-     - Use uv: run "uv lock" and commit uv.lock.
-     - Add CI check "uv lock --check".
-     - Document the choice in docs/adr/ADR-001-lockfile.md.
-  4. Remove .mutmut-cache from the repository:
-     - git rm --cached .mutmut-cache
-     - Add .mutmut-cache to .gitignore
-     - Store mutation results only as JSON under test_home/<phase>/mutation.json.
-  5. Create .github/workflows/ci.yml with jobs:
-     - lint (ruff)
-     - types (mypy --strict on listed packages)
-     - test (pytest + coverage)
-     - security (gitleaks, pip-audit)
-     - arch (import-linter)
-     Pin all actions by SHA. Permissions: contents: read.
-  6. Update README.md:
-     - Remove any text that originated from private owner-agent dialogue.
-     - Keep STATUS: CANDIDATE.
-     - Add a short note that Stage 2 (P11–P14) is active.
-Exit:
-  - All P11 gates below pass.
-  - Evidence stored in test_home/P11/.
-  - Full test suite (pytest) passes with 0 failures.
-  - Meaningful commits have been made for each logical unit.
-Hard Stop. Owner reviews evidence before authorizing P12.
-
-P11 Gates (add to docs/gates.yaml):
-  - G11.1 package import succeeds in clean venv
-  - G11.2 uv.lock present and "uv lock --check" passes
-  - G11.3 .mutmut-cache absent from git ls-files
-  - G11.4 CI workflow file exists and is valid YAML
-  - G11.5 full regression of P1–P10 still passes
-
-----------------------------------------------------------------------
-P12 — CORE DETERMINISM AND SAFETY HARDENING
-----------------------------------------------------------------------
-Entry: P11 verified and owner has instructed P12.
+================================================================================
+P15 — ABSOLUTE INTEGRITY, TOOLCHAIN AND PROFESSIONAL SURFACE
+================================================================================
+Entry: P14 verified and owner has instructed P15.
 Responsible: implementing agent.
-Required (exact deliverables):
-  1. Raw JSON ingestion at API edge (Idea support for S3):
-     - Add a FastAPI dependency that reads request.body() as bytes.
-     - Parse with json.loads(object_pairs_hook=..., parse_float=reject, parse_constant=reject).
-     - Reject duplicate keys, floats, NaN, Infinity with exact reason codes.
-     - Place the function in src/aminopstwin/gateway/raw_json.py.
-  2. Two IdFactory implementations:
-     - DeterministicIdFactory: HMAC-SHA256(seed, domain||counter) truncated and formatted as UUID.
-     - EntropyIdFactory: secrets.token_bytes only at the runtime edge.
-     - step_id = H(workflow_id, step_no, attempt) for crash-safe retries.
-     - Tests must prove no duplicate or orphan IDs after simulated crash.
-  3. Close TOCTOU for policy_epoch:
-     - In the commit transaction use:
-       UPDATE steps SET state='COMMITTED', version=version+1
-       WHERE id=:id AND version=:v AND :epoch = (SELECT current_epoch FROM policy_state FOR SHARE);
-     - Zero rows → retry or DENY.
-  4. Explicit StateFacts for Gateway:
-     - Executor builds an immutable StateFacts snapshot (idempotency record, budget balance, tenant link, policy epoch/hash) and passes it to the pure Gateway function.
-     - DecisionRecord includes hash(StateFacts).
-  5. Integer-oriented simulation time and dedicated PRNG:
-     - Simulation clock becomes integer ticks (milliminutes).
-     - Named PRNG streams (PCG32 or xoshiro256**) keyed by H(seed, entity_name).
-     - Ban math.* floating-point operations on the hashed state path.
-  6. State Hash Cross-Platform Oracle (Idea S4):
-     - Add tests/twin/test_cross_platform_oracle.py.
-     - CI matrix must run on x86_64 and ARM64; final state hash must match exactly.
-Exit:
-  - All P12 gates pass.
-  - Evidence in test_home/P12/.
-  - Full test suite passes.
-  - Determinism oracle green on both architectures (or documented if only one is available in current CI).
-Hard Stop.
 
-P12 Gates:
-  - G12.1 raw JSON rejects duplicate keys and floats with exact codes
-  - G12.2 crash-recovery test produces no duplicate/orphan IDs
-  - G12.3 TOCTOU test: 0 commits with stale epoch
-  - G12.4 StateFacts hash present in every DecisionRecord
-  - G12.5 cross-platform state hash identical (or explicit waiver)
+Required (exact deliverables and acceptance):
 
-----------------------------------------------------------------------
-P13 — EVIDENCE INFRASTRUCTURE, PRIOR PACK AND SHADOW INGESTION
-----------------------------------------------------------------------
-Entry: P12 verified and owner has instructed P13.
-Responsible: implementing agent.
-Required (exact deliverables):
-  1. Evidence Claim Registry (Idea S1):
-     - Create docs/claims.yaml with claim-id, text, evidence-path, hash.
-     - Every sentence in README that makes a capability claim must have a claim-id.
-     - Implement CLI tool scripts/aminopstwin-verify that checks claim-id → hash match.
-  2. Deterministic Prior Pack (Idea S2):
-     - Create src/aminopstwin/priors/public_prior_pack_v1.json containing only aggregate statistics derived from public ClinicalTrials.gov/AACT data.
-     - Include a signed manifest (hash + owner signature placeholder).
-     - Document source allow-list entry in docs/source_allowlist.yaml.
-  3. Shadow-Mode Ingestion Gateway + Data Contract v1 (Idea S3):
-     - Create src/aminopstwin/ingestion/shadow_gateway.py.
-     - Accept only weekly aggregate CSV or JSON.
-     - Enforce schema, reject unknown columns, apply k-min (default 5) cell suppression.
-     - Emit a hashed receipt stored under test_home/P13/receipts/.
-     - Output limited to aggregate forecast-vs-actual comparison; no free-text clinical interpretation.
-  4. Owner Key Rotation & Co-Signature protocol skeleton (Idea S5):
-     - Document the protocol in docs/key_rotation_protocol.md.
-     - Add a test that a Hard-Stop report can carry an optional second signature field without breaking verification.
-Exit:
-  - All P13 gates pass.
-  - Evidence in test_home/P13/.
-  - Full test suite passes.
-  - Verify CLI can successfully check at least three sample claims.
-Hard Stop.
+1. Configuration path integrity
+   - Update pyproject.toml, mypy, coverage, import-linter and hatch so every reference uses aminopstwin (or src/aminopstwin).
+   - Add tests/p15/test_config_integrity.py that programmatically inspects the tool configurations and fails if any legacy "src.contracts", "src.gateway" etc. path remains.
+   - Acceptance: test passes; mypy --strict and import-linter succeed on the real package.
 
-P13 Gates:
-  - G13.1 claims.yaml covers every README capability sentence
-  - G13.2 verify CLI returns success on valid claim and failure on tampered hash
-  - G13.3 Prior Pack loads and its hash matches the manifest
-  - G13.4 Shadow ingestion rejects non-aggregate or under-k-min files
-  - G13.5 co-signature field present and optional
+2. CI workflow
+   - Create .github/workflows/ci.yml with jobs: lint (ruff), types (mypy), test (pytest with coverage), arch (import-linter), secrets (gitleaks), audit (pip-audit), sbom.
+   - Actions pinned by full commit SHA. Artifacts from test_home uploaded.
+   - Acceptance: workflow file is valid YAML; a dry-run or documented manual trigger succeeds.
 
-----------------------------------------------------------------------
-P14 — SHADOW PILOT READINESS, CLAIM VERIFICATION AND STAGE CLOSE
-----------------------------------------------------------------------
-Entry: P13 verified and owner has instructed P14.
-Responsible: implementing agent.
-Required (exact deliverables):
-  1. Produce a sample Shadow Pilot report:
-     - Use synthetic aggregate data that satisfies Data Contract v1.
-     - Generate a calibration-style comparison (predicted vs actual aggregate metrics).
-     - Store the report and its evidence pack under test_home/P14/.
-  2. Final README update:
-     - STATUS remains CANDIDATE.
-     - Add section "Stage 2 Complete (Candidate)" with links to claim-ids.
-     - Remove any remaining private-conversation text.
-  3. Create signed tags:
-     - Tag P11-verified, P12-verified, P13-verified, P14-verified (lightweight tags acceptable if signing keys are not yet rotated).
-  4. Full regression of P1–P14.
-  5. Release notes for v0.2.0-candidate under docs/release_notes_v0.2.0-candidate.md.
-Exit:
-  - All P14 gates pass.
-  - Full test suite passes with 0 failures.
-  - Evidence pack for the stage is complete under test_home/P14/.
-  - Owner accepts handover.
-Hard Stop. Stage 2 complete.
+3. Repository security baseline
+   - Add .github/dependabot.yml and SECURITY.md describing the reporting channel.
+   - Acceptance: files exist and contain the required sections.
 
-P14 Gates:
-  - G14.1 sample Shadow Pilot report exists and is reproducible
-  - G14.2 all claim-ids in README resolve via verify CLI
-  - G14.3 tags P11-verified through P14-verified exist
-  - G14.4 full P1–P14 regression passes
+4. Lockfile
+   - Generate uv.lock and add a CI step or script that runs `uv lock --check`.
+   - Acceptance: lockfile committed; check passes.
 
-----------------------------------------------------------------------
+5. Strengthened architecture lint
+   - Extend import-linter contracts with layer rules (contracts < gateway < executor < agents) and a canary test in tests/arch/ that intentionally violates a rule and is expected to fail.
+   - Acceptance: normal lint passes; canary fails as expected.
+
+6. Strengthened ruff
+   - Enable DTZ and banned-api rules for datetime.now, uuid.uuid4, random.random/randint/choice, os.urandom, secrets.*.
+   - Acceptance: ruff check passes on src/ and tests/; a deliberate violation is rejected.
+
+7. mypy coverage
+   - Add aminopstwin.agents and aminopstwin.fixtures_gen to mypy packages.
+   - Acceptance: mypy --strict reports 0 errors.
+
+8. Professional README rewrite
+   - Rewrite README.md to include:
+     - Living status table through P14 (COMPLETE CANDIDATE) and note that Stage 3 is active.
+     - Updated architecture diagram reflecting current package layout.
+     - Direct links to test_home/P11 through P14 Hard-Stop reports and key claim-ids.
+     - Short measured summary (latest full-suite pass count).
+     - No placeholder or conversational text.
+   - Acceptance: README contains the above sections; claim links resolve.
+
+9. Email
+   - Set authors email in pyproject.toml to azimilab2025@gmail.com.
+   - Acceptance: exact string present.
+
+10. Provenance file
+    - Generate docs/provenance.json with sha256 of pyproject.toml, uv.lock, directive.txt and .github/workflows/ci.yml.
+    - Acceptance: file exists and hashes match.
+
+11. Status consistency
+    - Ensure README and any status panel no longer claim Stage 2 is the active stage.
+    - Acceptance: grep confirms consistency.
+
+Exit: All G15.* gates pass. Evidence pack under test_home/P15/ including full_regression.txt and HARD_STOP_REPORT.md.
+Hard Stop. Await owner instruction for P16.
+
+P15 Gates:
+- G15.1 config integrity test passes
+- G15.2 CI workflow valid and jobs present
+- G15.3 uv lock --check passes
+- G15.4 README meets professional criteria above
+- G15.5 email correct
+- G15.6 full regression 0 failures
+
+================================================================================
+P16 — BIT-REPRODUCIBLE DETERMINISTIC SUBSTRATE
+================================================================================
+Entry: P15 verified and owner has instructed P16.
+
+Required:
+
+1. Replay Engine
+   - Implement a checkpoint format (canonical bytes + signature placeholder) that captures Executor and Twin state.
+   - Provide resume_from_checkpoint(path) that restores state and continues; final state hash must equal a fresh run.
+   - Acceptance: test that runs N steps, checkpoints, resumes, and asserts identical hash.
+
+2. Cross-platform oracle
+   - CI matrix job (ubuntu-latest and macos-14 or equivalent ARM) runs a fixed workload and compares state hashes.
+   - On mismatch, emit a structural diff.
+   - Acceptance: both platforms produce identical hash on the reference workload.
+
+3. Mandatory advanced testing
+   - CI runs a defined subset of Hypothesis property tests and a mutation check on gateway/ with a minimum score threshold documented in gates.yaml.
+   - Acceptance: CI fails if threshold not met.
+
+4. Integer simulation time
+   - MilliMinuteClock (or equivalent) supports a configurable working calendar (list of non-working intervals) using only integer arithmetic.
+   - Acceptance: advancing across a non-working interval skips correctly; no float used.
+
+5. Fixed-point numeric type
+   - Introduce a Fixed scalar type (scaled integer) for any field that enters a hash. Provide conversion helpers and ban float in those paths via test.
+   - Acceptance: round-trip and aggregation tests pass; float detection test fails the build if violated.
+
+6. Canonical serializer differential
+   - Maintain the existing canonical JSON serializer. Add a second pure-Python reference implementation or a large corpus differential test (≥10 000 random + fixed vectors) that asserts byte equality.
+   - Acceptance: differential test passes.
+
+7. Deterministic RNG
+   - Named streams derived by H(seed || stream_id). Sequences identical across processes and architectures.
+   - Acceptance: cross-process and (via CI) cross-platform equality.
+
+8. Simulation validation
+   - Tests against at least two analytical references (e.g. Erlang-C waiting time, Little’s Law) with pre-declared relative error thresholds.
+   - Acceptance: measured error ≤ threshold.
+
+Exit: All G16.* pass. Evidence under test_home/P16/.
+Hard Stop. Await owner instruction for P17.
+
+P16 Gates:
+- G16.1 checkpoint resume hash match
+- G16.2 cross-platform oracle green
+- G16.3 mutation/property thresholds met
+- G16.4 fixed-point paths clean
+- G16.5 simulation validation within thresholds
+- G16.6 full regression 0 failures
+
+================================================================================
+P17 — PROVABLE EVIDENCE GRAPH AND AUDITABILITY
+================================================================================
+Entry: P16 verified and owner has instructed P17.
+
+Required:
+
+1. Claim Graph
+   - docs/claims.yaml extended with optional depends_on list.
+   - CI step or pre-commit equivalent that recomputes hashes and fails if any claim whose evidence changed is not updated.
+   - Acceptance: deliberate stale claim causes failure; clean tree passes.
+
+2. Merkle Evidence Pack
+   - Function to build a Merkle tree over pack files and generate/verify a partial proof for a single file.
+   - Acceptance: proof verifies; tampered file fails verification.
+
+3. Temporal versioning
+   - Claim history stored (append-only) so previous hashes remain queryable.
+   - Acceptance: after an update the prior hash is still retrievable.
+
+4. Audit hash-chain
+   - Each audit record contains prev_hash and record_hash. Periodic checkpoint signed (placeholder key acceptable if documented).
+   - Offline CLI verifies the chain.
+   - Acceptance: tampering is detected.
+
+5. Offline Verification Kit
+   - Standalone script (scripts/verify_pack.py or equivalent) that validates a pack directory without importing the main application.
+   - Acceptance: validates a known-good pack produced by the system.
+
+6. Update verify CLI
+   - aminopstwin-verify gains flags for graph check and partial-proof verification.
+   - Acceptance: new flags work as documented.
+
+Exit: All G17.* pass. Evidence under test_home/P17/.
+Hard Stop. Await owner instruction for P18.
+
+P17 Gates:
+- G17.1 stale claim detection works
+- G17.2 partial proof verifies
+- G17.3 audit chain detects tampering
+- G17.4 offline kit succeeds on good pack
+- G17.5 full regression 0 failures
+
+================================================================================
+P18 — ENFORCEABLE CONTROLS AND OBSERVABILITY
+================================================================================
+Entry: P17 verified and owner has instructed P18.
+
+Required:
+
+1. Isolation suite
+   - Concurrent test (multiple tenants) that asserts no shared mutable state, no cross-log leakage, and no timing side-channel that reveals other tenant data.
+   - Acceptance: suite passes.
+
+2. Quota Engine
+   - Gateway checks tenant budget before allowing any Executor submission. Over-budget requests receive a defined reason code.
+   - Acceptance: unit and integration tests show rejection at Gateway.
+
+3. PostgreSQL RLS
+   - Executor tables use RLS policies keyed on tenant_id. Tests (including raw SQL attempts) demonstrate zero leakage.
+   - Acceptance: leakage tests fail closed.
+
+4. Assurance report
+   - Generator produces a signed Evidence Pack containing gate status, claim summary and drift metrics.
+   - Acceptance: pack validates with the offline kit.
+
+5. Secure telemetry
+   - OpenTelemetry instrumentation (or structured equivalent) with explicit allow-list; test that a canary secret never appears in exported spans.
+   - Acceptance: canary test passes.
+
+6. Drift detection
+   - Component that compares recent state hashes and denial rates against thresholds and emits a structured alert record.
+   - Acceptance: synthetic drift is detected.
+
+Exit: All G18.* pass. Evidence under test_home/P18/.
+Hard Stop. Await owner instruction for P19.
+
+P18 Gates:
+- G18.1 isolation suite passes
+- G18.2 quota enforced at Gateway
+- G18.3 RLS zero leakage
+- G18.4 assurance pack valid
+- G18.5 full regression 0 failures
+
+================================================================================
+P19 — VERSIONED CONTRACTS, CRYPTOGRAPHIC OUTPUTS AND API
+================================================================================
+Entry: P18 verified and owner has instructed P19.
+
+Required:
+
+1. Data Contract v2
+   - Schema with explicit evolution rules (additive optional fields only). Compatibility test: old reader accepts new data; new reader accepts old data.
+   - Acceptance: compatibility tests pass.
+
+2. Synthetic generator
+   - Produces aggregate-only records matching the shape of public prior distributions; every record labelled SYNTHETIC.
+   - Acceptance: output validates against contract and contains no individual-level fields.
+
+3. Signed export
+   - Export archive + manifest with file hashes, signed by owner key (key material outside repo). Optional co-signature field.
+   - Offline verify tool.
+   - Acceptance: valid export verifies; tampered export fails.
+
+4. Read-only API
+   - Endpoints return only aggregate metrics plus claim-id references. OpenAPI spec, RFC 9457 errors, Idempotency-Key support.
+   - Acceptance: contract tests and a negative test (attempt to retrieve non-aggregate) fail closed.
+
+5. Multi-version priors
+   - Loader accepts a version identifier; chosen version hash recorded in every Evidence Pack.
+   - Acceptance: pack contains the version hash.
+
+Exit: All G19.* pass. Evidence under test_home/P19/.
+Hard Stop. Await owner instruction for P20.
+
+P19 Gates:
+- G19.1 contract compatibility passes
+- G19.2 signed export verifies offline
+- G19.3 API aggregate-only enforced
+- G19.4 prior version recorded
+- G19.5 full regression 0 failures
+
+================================================================================
+P20 — FORMAL CLOSURE AND ZERO-DEBT STAGE SEAL
+================================================================================
+Entry: P19 verified and owner has instructed P20.
+
+Required:
+
+1. Formal sketch
+   - Document (docs/formal/gateway_properties.md) outlining arguments or model snippets for: deny-by-default, no Gateway state leakage, rejection of non-aggregate payloads.
+   - Acceptance: document exists and references concrete code locations.
+
+2. Policy simulation mode
+   - Ability to evaluate a candidate policy against historical or synthetic envelopes without committing effects.
+   - Acceptance: simulation produces a report and does not alter live state.
+
+3. Retention / Legal Hold
+   - Mechanism that marks evidence packs as held; deletion attempts fail until hold is released by an explicit owner action.
+   - Acceptance: held pack cannot be deleted.
+
+4. Deterministic resource-aware scheduling
+   - Executor scheduling decisions depend only on integer priorities and budgets; identical inputs produce identical schedules.
+   - Acceptance: replay test confirms schedule identity.
+
+5. Stage-close script
+   - scripts/stage3_close.py (or equivalent) checks all G15–G20 gates, claim freshness, required tags and evidence directories. Exits non-zero if anything is missing.
+   - Acceptance: script passes on a complete tree and fails on a deliberately incomplete one.
+
+6. Stage Seal
+   - Signed document containing the git tree hash at close and the list of valid claim-ids.
+   - Acceptance: seal verifies and matches the tree.
+
+7. Final README and regression
+   - README updated to show Stage 3 complete (Candidate). Full P1–P20 regression green.
+   - Acceptance: README consistent; regression 0 failures.
+
+Exit: All G20.* pass. Stage Seal produced. Owner accepts.
+Hard Stop. Stage 3 complete. No further phases authorized.
+
+P20 Gates:
+- G20.1 formal sketch present
+- G20.2 stage-close script enforces completeness
+- G20.3 Stage Seal verifies
+- G20.4 full regression 0 failures
+- G20.5 README reflects completion
+
+================================================================================
 GENERAL RULES FOR ALL PHASES
-----------------------------------------------------------------------
-- After each logical unit, create a meaningful commit whose message describes the completed unit (example: "P12: implement raw JSON edge parser and rejection tests").
-- At the end of each phase run:
-  pytest -q --tb=short
-  and store the output in test_home/P<n>/full_regression.txt
-- Do not add any sentence that refers to private instructions, "as discussed", or owner-agent dialogue.
-- If a required public data source cannot be reached, record the failure and use a minimal synthetic prior that is clearly labeled SYNTHETIC; do not invent real statistics.
-- All new dependencies require an entry in docs/dependency_requests.md and an owner amendment note before use.
+================================================================================
+- Meaningful commit after each logical unit.
+- pytest output stored in test_home/P<n>/full_regression.txt at phase end.
+- No private-conversation text in any committed file.
+- New dependencies require docs/dependency_requests.md entry and owner note before use.
+- STATUS remains CANDIDATE.
 
-END OF STAGE 2 DIRECTIVE
+END OF STAGE 3 DIRECTIVE
 No further phases are authorized by this document.
