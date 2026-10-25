@@ -112,9 +112,9 @@ sequence.
 
 ### Measured summary
 
-Latest full-suite run: 2637 tests passed, 1 skipped, 0 failures (claims
-hashes resynced). The full suite including all P1–P14 regression gates
-passes with no failures.
+Latest full-suite run: 2647 tests passed, 3 skipped, 0 failures (P16
+regression). The full suite including all P1–P16 gates passes with no
+failures.
 
 ### Security
 
