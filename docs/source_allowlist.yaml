@@ -7,14 +7,25 @@
 
 version: "1.0"
 
-sources: []
-# Example format:
-# - source_id: "pmc-ops-queueing-001"
-#   title: "Operational queueing research"
-#   publisher: "PMC Open Access Subset"
-#   license: "CC-BY"
-#   license_url: "https://creativecommons.org/licenses/by/4.0/"
-#   retrieved_at: "2026-10-23T00:00:00Z"
-#   content_sha256: "[OWNER-FILL]"
-#   permitted_use: "operational research reference"
-#   owner_approval_date: "2026-10-23"
+sources:
+  - source_id: "clinicaltrials-gov-aggregate"
+    title: "ClinicalTrials.gov public aggregate distributions"
+    publisher: "U.S. National Library of Medicine / NIH"
+    license: "public_domain"
+    license_url: "https://clinicaltrials.gov/data/about"
+    retrieved_at: "2026-10-25T00:00:00Z"
+    content_sha256: "SYNTHETIC-PENDING-OWNER-FILL"
+    permitted_use: "aggregate prior distribution shape reference for operational simulation"
+    owner_approval_date: "[OWNER-FILL]"
+    note: "SYNTHETIC pack — shape reference only, no actual data ingested"
+
+  - source_id: "aact-aggregate"
+    title: "AACT (Aggregate Analysis of ClinicalTrials.gov) public aggregate statistics"
+    publisher: "CTTI (Clinical Trials Transformation Initiative)"
+    license: "public_domain"
+    license_url: "https://aact.ctti-clinicaltrials.org/"
+    retrieved_at: "2026-10-25T00:00:00Z"
+    content_sha256: "SYNTHETIC-PENDING-OWNER-FILL"
+    permitted_use: "aggregate prior distribution shape reference for operational simulation"
+    owner_approval_date: "[OWNER-FILL]"
+    note: "SYNTHETIC pack — shape reference only, no actual data ingested"
