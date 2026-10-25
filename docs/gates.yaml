@@ -976,6 +976,52 @@ gates:
     source_command: "pytest tests/p18/test_regression.py -v"
     raw_output_path: "test_home/P18/G18.5_regression.txt"
 
+  # === P19 Gates ===
+  - id: "G19.1"
+    phase: "P19"
+    description: "Data Contract v2 compatibility — old reader accepts new data; new reader accepts old data"
+    metric: "contract_compatibility_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p19/test_data_contract.py -v"
+    raw_output_path: "test_home/P19/G19.1_data_contract.txt"
+
+  - id: "G19.2"
+    phase: "P19"
+    description: "Signed export verifies offline; tampered export fails"
+    metric: "signed_export_verify_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p19/test_signed_export.py -v"
+    raw_output_path: "test_home/P19/G19.2_signed_export.txt"
+
+  - id: "G19.3"
+    phase: "P19"
+    description: "Read-only API aggregate-only enforced; negative test (non-aggregate retrieval) fails closed"
+    metric: "api_aggregate_only_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p19/test_api.py -v"
+    raw_output_path: "test_home/P19/G19.3_api.txt"
+
+  - id: "G19.4"
+    phase: "P19"
+    description: "Multi-version priors — chosen version hash recorded in every Evidence Pack"
+    metric: "prior_version_recorded_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p19/test_multi_version_priors.py -v"
+    raw_output_path: "test_home/P19/G19.4_multi_version.txt"
+
+  - id: "G19.5"
+    phase: "P19"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p19/test_regression.py -v"
+    raw_output_path: "test_home/P19/G19.5_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
