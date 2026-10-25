@@ -23,7 +23,7 @@ claims:
   - claim_id: "CLAIM-001"
     text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
     evidence_path: "README.md"
-    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
     category: "capability"
 
   - claim_id: "CLAIM-002"
@@ -72,13 +72,13 @@ claims:
   - claim_id: "CLAIM-009"
     text: "The system is not clinically validated and not production-ready."
     evidence_path: "README.md"
-    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
     category: "boundary"
 
   - claim_id: "CLAIM-010"
     text: "The system is not synchronized with a real organization."
     evidence_path: "README.md"
-    hash: "0a210ced3f9e318bda72615b682c4cf22e44d929a8f257e15a3898cfd1c249d7"
+    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
     category: "boundary"
 
   # === Determinism claims ===

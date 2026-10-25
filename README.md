@@ -67,7 +67,7 @@ agent holds a direct handle to the database or the Executor store (§3.3). [CLAI
 | P10   | Final Verification, README, Release  | COMPLETE (CANDIDATE) |
 | P11   | Spec Consolidation, Package Hygiene  | COMPLETE (CANDIDATE) |
 | P12   | Core Determinism and Safety Hardening | COMPLETE (CANDIDATE) |
-| P13   | Evidence Infrastructure, Prior Pack, Shadow Ingestion | IN PROGRESS (CANDIDATE) |
+| P13   | Evidence Infrastructure, Prior Pack, Shadow Ingestion | COMPLETE (CANDIDATE) |
 
 ### Stage 2 (P11–P14) Active
 
