@@ -27,6 +27,7 @@ __all__ = [
     "build_export_bundle",
     "verify_bundle",
     "sign_bundle",
+    "co_sign_bundle",
     "NO_AGENT_HELD_KEY",
 ]
 
@@ -54,6 +55,11 @@ class ExportBundle:
     Bundles are UNSIGNED by default. The owner signs out-of-band by
     providing a 64-char hex ``signature_hash`` via :func:`sign_bundle`.
     No agent-held key is involved (see :data:`NO_AGENT_HELD_KEY`).
+
+    An optional ``co_signature_hash`` (P19, G19.2) carries a second
+    independent signature — e.g. an institutional co-signer — and is
+    ``None`` when absent.  The co-signature is optional and does not
+    affect the primary signature status.
     """
 
     bundle_id: str
@@ -62,6 +68,7 @@ class ExportBundle:
     bundle_hash: str
     signature_status: ExportSignatureStatus = ExportSignatureStatus.UNSIGNED
     signature_hash: str | None = None
+    co_signature_hash: str | None = None
 
 
 def build_export_bundle(
@@ -93,7 +100,8 @@ def verify_bundle(bundle: ExportBundle, base_path: Path) -> int:
 
     Returns the number of manifest files verified. Raises
     :class:`ExportSignatureError` if the bundle is signed but its
-    signature hash is not a valid 64-char hex string. Raises
+    signature hash is not a valid 64-char hex string, or if a
+    co-signature is present but invalid. Raises
     :class:`ManifestError` (via the manifest) if any file on disk
     does not match its manifest hash.
     """
@@ -103,15 +111,10 @@ def verify_bundle(bundle: ExportBundle, base_path: Path) -> int:
             raise ExportSignatureError(
                 "SIGNED bundle is missing its signature_hash"
             )
-        if len(sig) != 64:
-            raise ExportSignatureError(
-                f"SIGNED bundle signature_hash must be 64 chars, "
-                f"got {len(sig)}"
-            )
-        if not all(c in "0123456789abcdef" for c in sig):
-            raise ExportSignatureError(
-                "SIGNED bundle signature_hash must be a hex string"
-            )
+        _validate_hex64(sig, "signature_hash")
+    # Co-signature is optional but if present must be a valid hex64.
+    if bundle.co_signature_hash is not None:
+        _validate_hex64(bundle.co_signature_hash, "co_signature_hash")
     return bundle.manifest.verify_files(base_path)
 
 
@@ -126,15 +129,7 @@ def sign_bundle(
     :class:`ExportSignatureError` if the hash is not a valid 64-char
     hex string.
     """
-    if len(owner_signature_hash) != 64:
-        raise ExportSignatureError(
-            "owner_signature_hash must be a 64-char hex string, "
-            f"got length {len(owner_signature_hash)}"
-        )
-    if not all(c in "0123456789abcdef" for c in owner_signature_hash):
-        raise ExportSignatureError(
-            "owner_signature_hash must be a hex string (0-9, a-f)"
-        )
+    _validate_hex64(owner_signature_hash, "owner_signature_hash")
     return ExportBundle(
         bundle_id=bundle.bundle_id,
         manifest=bundle.manifest,
@@ -142,4 +137,41 @@ def sign_bundle(
         bundle_hash=bundle.bundle_hash,
         signature_status=ExportSignatureStatus.SIGNED,
         signature_hash=owner_signature_hash,
+        co_signature_hash=bundle.co_signature_hash,
     )
+
+
+def co_sign_bundle(
+    bundle: ExportBundle,
+    co_signature_hash: str,
+) -> ExportBundle:
+    """Attach an optional co-signature to *bundle* (P19, G19.2).
+
+    The co-signature is an independent second signature (e.g. an
+    institutional co-signer).  It does **not** replace the primary
+    owner signature; it supplements it.  Raises
+    :class:`ExportSignatureError` if the hash is not a valid 64-char
+    hex string.
+    """
+    _validate_hex64(co_signature_hash, "co_signature_hash")
+    return ExportBundle(
+        bundle_id=bundle.bundle_id,
+        manifest=bundle.manifest,
+        created_at=bundle.created_at,
+        bundle_hash=bundle.bundle_hash,
+        signature_status=bundle.signature_status,
+        signature_hash=bundle.signature_hash,
+        co_signature_hash=co_signature_hash,
+    )
+
+
+def _validate_hex64(value: str, name: str) -> None:
+    """Validate that *value* is a 64-char hex string."""
+    if len(value) != 64:
+        raise ExportSignatureError(
+            f"{name} must be a 64-char hex string, got length {len(value)}"
+        )
+    if not all(c in "0123456789abcdef" for c in value):
+        raise ExportSignatureError(
+            f"{name} must be a hex string (0-9, a-f)"
+        )

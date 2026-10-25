@@ -25,6 +25,7 @@ from aminopstwin.integration.exports import (
     ExportSignatureError,
     ExportSignatureStatus,
     build_export_bundle,
+    co_sign_bundle,
     sign_bundle,
     verify_bundle,
 )
@@ -41,6 +42,7 @@ __all__ = [
     "ExportSignatureStatus",
     "build_export_bundle",
     "sign_bundle",
+    "co_sign_bundle",
     "verify_bundle",
     "NO_AGENT_HELD_KEY",
     # integration
