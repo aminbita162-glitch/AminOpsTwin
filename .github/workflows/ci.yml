@@ -157,11 +157,11 @@ jobs:
       - name: Generate CycloneDX SBOM
         run: |
           cyclonedx-py environment \
-            -o test_home/P15/sbom.json \
+            -o test_home/P16/sbom.json \
             --format json
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@b4b15b6e012bee9c31e16ee8cec67dd97bc265f6  # v4
         with:
           name: sbom
-          path: test_home/P15/sbom.json
+          path: test_home/P16/sbom.json
           if-no-files-found: warn
