@@ -22,6 +22,11 @@ from aminopstwin.assurance.checks import (
     check_duplicate_budget_invariants,
     check_sanitized_logging,
 )
+from aminopstwin.assurance.drift import (
+    DriftAlert,
+    DriftDetector,
+    DriftMetric,
+)
 from aminopstwin.assurance.report import (
     AssuranceReport,
     AssuranceRunSummary,
@@ -36,6 +41,20 @@ from aminopstwin.assurance.scheduler import (
     MissedRunPolicy,
     ScheduleConfig,
     WeeklyScheduler,
+)
+from aminopstwin.assurance.signed_pack import (
+    DriftMetrics,
+    GateStatus,
+    PackManifest,
+    SignedAssurancePack,
+    generate_signed_pack,
+    verify_signed_pack,
+)
+from aminopstwin.assurance.telemetry import (
+    TelemetryAllowList,
+    TelemetryCanary,
+    TelemetryExporter,
+    TelemetryField,
 )
 
 __all__ = [
@@ -58,4 +77,20 @@ __all__ = [
     "AssuranceRunner",
     "build_default_checks",
     "run_assurance",
+    # signed pack (P18, G18.4)
+    "DriftMetrics",
+    "GateStatus",
+    "PackManifest",
+    "SignedAssurancePack",
+    "generate_signed_pack",
+    "verify_signed_pack",
+    # telemetry (P18, G18.5)
+    "TelemetryField",
+    "TelemetryAllowList",
+    "TelemetryExporter",
+    "TelemetryCanary",
+    # drift detection (P18, G18.5)
+    "DriftMetric",
+    "DriftAlert",
+    "DriftDetector",
 ]
