@@ -9,6 +9,11 @@ from aminopstwin.enterprise.evaluation import (
     EvaluationHarness,
     EvaluationReport,
 )
+from aminopstwin.enterprise.isolation import (
+    IsolationResult,
+    TenantIsolationSuite,
+    run_isolation_suite,
+)
 from aminopstwin.enterprise.load_smoke import (
     LoadSmokeResult,
     run_load_smoke,
@@ -18,6 +23,11 @@ from aminopstwin.enterprise.manifest import (
     ManifestEntry,
     ManifestError,
     build_manifest,
+)
+from aminopstwin.enterprise.rls import (
+    RLSEngine,
+    RLSPolicy,
+    generate_executor_rls_policies,
 )
 from aminopstwin.enterprise.tenant import (
     TenantAccessError,
@@ -35,6 +45,14 @@ __all__ = [
     "TenantGuard",
     "TenantAccessError",
     "TenantScope",
+    # isolation suite (P18, G18.1)
+    "TenantIsolationSuite",
+    "IsolationResult",
+    "run_isolation_suite",
+    # RLS (P18, G18.3)
+    "RLSPolicy",
+    "RLSEngine",
+    "generate_executor_rls_policies",
     # evaluation harness
     "CapabilityResult",
     "EvaluationHarness",
