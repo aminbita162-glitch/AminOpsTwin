@@ -1068,6 +1068,34 @@ gates:
     source_command: "pytest tests/p20/test_readme.py -v"
     raw_output_path: "test_home/P20/G20.5_readme.txt"
 
+  # === P21 Gates ===
+  - id: "G21.1"
+    phase: "P21"
+    description: "Status honesty alignment — every README phase row matches evidence under test_home/"
+    metric: "status_honesty_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p21/test_status_honesty.py -v"
+    raw_output_path: "test_home/P21/G21.1_status_honesty.txt"
+
+  - id: "G21.2"
+    phase: "P21"
+    description: "Cinematic README rewrite — all mandatory sections present with visual hierarchy"
+    metric: "readme_cinematic_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p21/test_readme_cinematic.py -v"
+    raw_output_path: "test_home/P21/G21.2_readme_cinematic.txt"
+
+  - id: "G21.3"
+    phase: "P21"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p21/test_regression.py -v"
+    raw_output_path: "test_home/P21/G21.3_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
