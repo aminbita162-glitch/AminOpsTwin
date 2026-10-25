@@ -21,7 +21,16 @@ class TestRegression:
         Runs pytest on the test directories for P1–P7 (excluding
         tests/p8/) with PYTHONHASHSEED=0 to confirm no P8 changes
         broke any prior-phase functionality.
+
+        An env-var guard (AMINOPS_REGRESSION_NESTED) prevents
+        infinite recursion when this test is itself run inside
+        another phase's regression subprocess.
         """
+        if os.environ.get("AMINOPS_REGRESSION_NESTED") == "1":
+            # Already running inside a parent regression subprocess;
+            # skip to prevent infinite recursion.
+            return
+
         project_root = Path(__file__).parent.parent.parent
         result = subprocess.run(
             [
@@ -40,7 +49,11 @@ class TestRegression:
             text=True,
             timeout=300,
             cwd=str(project_root),
-            env={**os.environ, "PYTHONHASHSEED": "0"},
+            env={
+                **os.environ,
+                "PYTHONHASHSEED": "0",
+                "AMINOPS_REGRESSION_NESTED": "1",
+            },
         )
         output = result.stdout + result.stderr
         assert result.returncode == 0, (
