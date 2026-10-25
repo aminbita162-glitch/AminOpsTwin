@@ -5,14 +5,25 @@ Usage:
     python3 scripts/aminopstwin-verify [claim_id ...]
     python3 scripts/aminopstwin-verify --all
     python3 scripts/aminopstwin-verify --check CLAIM-001
+    python3 scripts/aminopstwin-verify --graph
+    python3 scripts/aminopstwin-verify --partial-proof <pack_dir> [--file <file_name>]
 
 Checks each claim-id in docs/claims.yaml:
     1. The claim-id exists in the registry.
     2. The evidence_path exists on disk.
     3. The SHA-256 hash of the evidence_path matches the recorded hash.
 
+--graph:        Load claims.yaml, build the dependency graph, and verify
+                that no claims are stale and every depends_on target
+                exists (G17.1).
+
+--partial-proof <pack_dir> [--file <file_name>]:
+                Build a Merkle tree over <pack_dir>, generate a partial
+                proof for <file_name> (or the first file), and verify
+                it (G17.2).
+
 Exit codes:
-    0  all checked claims pass
+    0  all checked claims pass / graph clean / proof verifies
     1  one or more claims fail (missing, path-not-found, hash mismatch)
     2  usage error or registry file error
 
@@ -144,6 +155,175 @@ def verify_claims(
     return 0 if failed == 0 else 1
 
 
+def _verify_graph(claims_path: Path, repo_root: Path) -> int:
+    """G17.1: Verify the claim dependency graph — no stale claims, all deps exist."""
+    import hashlib
+    from pathlib import Path as _P
+
+    try:
+        import yaml  # type: ignore[import-untyped]
+    except ImportError:
+        print("ERROR: PyYAML is required", file=sys.stderr)
+        return 2
+
+    with claims_path.open("r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    if not isinstance(data, dict) or "claims" not in data:
+        print("ERROR: invalid claims format", file=sys.stderr)
+        return 2
+
+    all_claims = data["claims"]
+    by_id = {}
+    for c in all_claims:
+        cid = c.get("claim_id", "")
+        if cid:
+            by_id[cid] = c
+
+    stale = []
+    missing_deps = []
+    for c in all_claims:
+        cid = c.get("claim_id", "?")
+        ep = c.get("evidence_path", "")
+        expected = c.get("hash", "")
+        ev_path = repo_root / ep
+        if not ev_path.exists():
+            stale.append((cid, ep, expected, "FILE_NOT_FOUND"))
+            continue
+        if expected == "PLACEHOLDER":
+            stale.append((cid, ep, expected, "PLACEHOLDER"))
+            continue
+        # Compute hash (file or directory).
+        hasher = hashlib.sha256()
+        if ev_path.is_dir():
+            for fp in sorted(ev_path.rglob("*")):
+                if fp.is_file():
+                    hasher.update(fp.as_posix().encode("utf-8"))
+                    hasher.update(b"\0")
+                    hasher.update(fp.read_bytes())
+        else:
+            hasher.update(ev_path.read_bytes())
+        actual = hasher.hexdigest()
+        if actual != expected:
+            stale.append((cid, ep, expected, actual))
+
+        for dep in c.get("depends_on", []) or []:
+            if dep not in by_id:
+                missing_deps.append((cid, dep))
+
+    if stale:
+        print(f"FAIL: {len(stale)} stale claims:")
+        for cid, ep, exp, act in stale:
+            print(f"  {cid}: {ep} (expected {exp[:16]}…, actual {act[:16]}…)")
+    else:
+        print("PASS: no stale claims")
+
+    if missing_deps:
+        print(f"FAIL: {len(missing_deps)} missing dependencies:")
+        for cid, dep in missing_deps:
+            print(f"  {cid} depends on missing {dep}")
+    else:
+        print("PASS: all dependencies exist")
+
+    if stale or missing_deps:
+        return 1
+    return 0
+
+
+def _verify_partial_proof(pack_dir_str: str, file_name: str | None) -> int:
+    """G17.2: Build a Merkle tree over pack_dir, generate+verify a partial proof."""
+    import hashlib
+    from pathlib import Path as _P
+
+    pack_dir = _P(pack_dir_str)
+    if not pack_dir.exists():
+        print(f"ERROR: pack directory not found: {pack_dir}", file=sys.stderr)
+        return 2
+
+    files = sorted(
+        (f for f in pack_dir.rglob("*") if f.is_file()),
+        key=lambda p: p.as_posix(),
+    )
+    if not files:
+        print("ERROR: no files in pack directory", file=sys.stderr)
+        return 1
+
+    # Compute leaf hashes.
+    leaves = []
+    for f in files:
+        rel = f.relative_to(pack_dir).as_posix()
+        h = hashlib.sha256(f.read_bytes()).hexdigest()
+        leaves.append((rel, h))
+
+    if file_name is None:
+        file_name = leaves[0][0]
+
+    # Find the target leaf.
+    target_idx = -1
+    for i, (name, _) in enumerate(leaves):
+        if name == file_name:
+            target_idx = i
+            break
+    if target_idx < 0:
+        print(f"ERROR: file not in pack: {file_name}", file=sys.stderr)
+        return 1
+
+    # Build the tree level by level.
+    def _hash_pair(left: str, right: str) -> str:
+        return hashlib.sha256((left + right).encode("utf-8")).hexdigest()
+
+    level = [h for _, h in leaves]
+    all_levels = [list(level)]
+    while len(level) > 1:
+        next_level = []
+        i = 0
+        while i < len(level):
+            left = level[i]
+            if i + 1 < len(level):
+                right = level[i + 1]
+                next_level.append(_hash_pair(left, right))
+                i += 2
+            else:
+                next_level.append(_hash_pair(left, left))
+                i += 1
+        all_levels.append(next_level)
+        level = next_level
+
+    root_hash = all_levels[-1][0] if all_levels[-1] else hashlib.sha256(b"").hexdigest()
+
+    # Generate the proof: collect sibling hashes from leaf to root.
+    # Adjacent pairing: sibling of index i is i^1, next level index is i//2.
+    idx = target_idx
+    steps = []
+    for level_idx in range(len(all_levels) - 1):
+        n = len(all_levels[level_idx])
+        if idx % 2 == 0:
+            sibling_idx = idx + 1
+            if sibling_idx >= n:
+                sibling_idx = idx
+            steps.append((all_levels[level_idx][sibling_idx], True))
+        else:
+            sibling_idx = idx - 1
+            steps.append((all_levels[level_idx][sibling_idx], False))
+        idx = idx // 2
+
+    # Verify the proof.
+    current = leaves[target_idx][1]
+    for sibling_hash, sibling_is_right in steps:
+        if sibling_is_right:
+            current = _hash_pair(current, sibling_hash)
+        else:
+            current = _hash_pair(sibling_hash, current)
+
+    if current == root_hash:
+        print(f"PASS: partial proof for {file_name} verifies (root {root_hash[:16]}…)")
+        return 0
+    else:
+        print(f"FAIL: partial proof for {file_name} does not verify")
+        print(f"  computed root: {current[:16]}…")
+        print(f"  expected root: {root_hash[:16]}…")
+        return 1
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="aminopstwin-verify",
@@ -165,7 +345,34 @@ def main() -> int:
         dest="check_ids",
         help="Verify a specific claim-id (can be repeated)",
     )
+    parser.add_argument(
+        "--graph",
+        action="store_true",
+        help="Verify the claim dependency graph (G17.1): no stale claims, all deps exist",
+    )
+    parser.add_argument(
+        "--partial-proof",
+        dest="partial_proof",
+        type=str,
+        default=None,
+        help="Build a Merkle tree over <pack_dir> and verify a partial proof (G17.2)",
+    )
+    parser.add_argument(
+        "--file",
+        dest="proof_file",
+        type=str,
+        default=None,
+        help="File name for the partial proof (default: first file in pack)",
+    )
     args = parser.parse_args()
+
+    # --graph mode: verify the dependency graph.
+    if args.graph:
+        return _verify_graph(CLAIMS_FILE, REPO_ROOT)
+
+    # --partial-proof mode: verify a Merkle partial proof.
+    if args.partial_proof:
+        return _verify_partial_proof(args.partial_proof, args.proof_file)
 
     claims = load_claims(CLAIMS_FILE)
 

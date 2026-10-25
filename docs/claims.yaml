@@ -117,7 +117,7 @@ claims:
   - claim_id: "CLAIM-016"
     text: "All claim-ids in README resolve via the standalone verify CLI without running the full system."
     evidence_path: "scripts/aminopstwin-verify"
-    hash: "d17c9620f8d709c65f5a31185274a810745e32aecba2ce68efae763c3cb75bcb"
+    hash: "79e3bad5fdc556d8e8eccab831287f3bcd4b69ce87cbec581de12b0fc43f53d9"
     category: "capability"
 
   - claim_id: "CLAIM-017"
