@@ -930,6 +930,52 @@ gates:
     source_command: "pytest tests/ -q --tb=short --no-cov"
     raw_output_path: "test_home/P17/G17.5_regression.txt"
 
+  # === P18 Gates ===
+  - id: "G18.1"
+    phase: "P18"
+    description: "Isolation suite passes — concurrent tenants, no shared state, no cross-log leakage, no timing side-channel"
+    metric: "isolation_suite_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p18/test_isolation.py -v"
+    raw_output_path: "test_home/P18/G18.1_isolation.txt"
+
+  - id: "G18.2"
+    phase: "P18"
+    description: "Quota enforced at Gateway — over-budget requests denied with GW-BUDGET-001"
+    metric: "quota_enforced_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p18/test_quota.py -v"
+    raw_output_path: "test_home/P18/G18.2_quota.txt"
+
+  - id: "G18.3"
+    phase: "P18"
+    description: "PostgreSQL RLS — zero leakage across tenants"
+    metric: "rls_zero_leakage_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p18/test_rls.py -v"
+    raw_output_path: "test_home/P18/G18.3_rls.txt"
+
+  - id: "G18.4"
+    phase: "P18"
+    description: "Assurance report — signed Evidence Pack validates with offline kit"
+    metric: "assurance_pack_valid_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p18/test_assurance_pack.py -v"
+    raw_output_path: "test_home/P18/G18.4_assurance_pack.txt"
+
+  - id: "G18.5"
+    phase: "P18"
+    description: "Full regression 0 failures"
+    metric: "full_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p18/test_regression.py -v"
+    raw_output_path: "test_home/P18/G18.5_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
