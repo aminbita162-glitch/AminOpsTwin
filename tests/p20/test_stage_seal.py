@@ -5,10 +5,7 @@ Verifies that the Stage Seal verifies and matches the git tree hash.
 
 from __future__ import annotations
 
-import subprocess
 from pathlib import Path
-
-import pytest
 
 from aminopstwin.stage_seal import (
     StageSeal,

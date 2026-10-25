@@ -9,8 +9,6 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-import pytest
-
 REPO_ROOT = Path(__file__).parent.parent.parent
 SKETCH_PATH = REPO_ROOT / "docs" / "formal" / "gateway_properties.md"
 

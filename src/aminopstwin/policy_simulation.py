@@ -27,7 +27,7 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
-from aminopstwin.contracts.decision import Decision, DecisionRecord
+from aminopstwin.contracts.decision import Decision
 from aminopstwin.contracts.envelope import Envelope
 from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix
 

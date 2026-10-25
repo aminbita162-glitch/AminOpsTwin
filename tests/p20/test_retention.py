@@ -9,11 +9,10 @@ from __future__ import annotations
 import datetime as _dt
 
 import pytest
-
 from aminopstwin.retention import (
     HoldError,
-    HoldReleased,
     HoldRecord,
+    HoldReleasedError,
     RetentionManager,
 )
 
@@ -41,7 +40,7 @@ class TestRetentionLegalHold:
             reason="Audit",
             placed_by="owner",
         )
-        with pytest.raises(HoldReleased):
+        with pytest.raises(HoldReleasedError):
             mgr.delete_pack("pack-001")
 
     def test_held_pack_can_be_deleted_after_release(self) -> None:
@@ -105,7 +104,7 @@ class TestRetentionLegalHold:
 
     def test_hold_error_is_base_exception(self) -> None:
         """HoldError is the base exception class."""
-        assert issubclass(HoldReleased, HoldError)
+        assert issubclass(HoldReleasedError, HoldError)
 
     def test_placed_at_must_be_timezone_aware(self) -> None:
         """placed_at must be timezone-aware if provided."""

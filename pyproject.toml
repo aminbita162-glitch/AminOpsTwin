@@ -83,6 +83,7 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "DTZ", "TID"]
 "src/aminopstwin/tokens/llm_adapter.py" = ["TID251"]
 "src/aminopstwin/twin/pipeline.py" = ["TID251"]
 "src/aminopstwin/fixtures_gen/__init__.py" = ["TID251"]
+"src/aminopstwin/retention.py" = ["TID251"]
 # Test files may use uuid.uuid4, datetime constructors, and naive datetimes
 "tests/**" = ["DTZ001", "TID251"]
 

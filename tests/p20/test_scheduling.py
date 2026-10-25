@@ -7,10 +7,7 @@ and budgets, and that identical inputs produce identical schedules.
 from __future__ import annotations
 
 import pytest
-
 from aminopstwin.scheduling import (
-    ResourceScheduler,
-    ScheduleOrder,
     ScheduleRequest,
     schedule_requests,
 )

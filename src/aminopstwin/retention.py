@@ -5,7 +5,7 @@ the hold is released by an explicit owner action.
 
 This module is intentionally simple and in-memory: it tracks hold
 markers by pack ID and prevents deletion while a hold is active.
-The ``HoldReleased`` exception is raised if a caller attempts to
+The ``HoldReleasedError`` exception is raised if a caller attempts to
 delete a held pack.  The module integrates with the evidence pack
 infrastructure by operating on pack IDs (strings) — it does not
 import the pack itself.
@@ -13,12 +13,12 @@ import the pack itself.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from dataclasses import dataclass
+from datetime import UTC, datetime
 
 __all__ = [
     "HoldError",
-    "HoldReleased",
+    "HoldReleasedError",
     "HoldRecord",
     "RetentionManager",
 ]
@@ -28,7 +28,7 @@ class HoldError(Exception):
     """Base exception for retention / hold errors."""
 
 
-class HoldReleased(HoldError):
+class HoldReleasedError(HoldError):
     """Raised when a held pack deletion is attempted.
 
     Despite the name, this exception is raised to *prevent* the
@@ -59,7 +59,7 @@ class RetentionManager:
 
     A held pack cannot be deleted until its hold is released by an
     explicit owner action (:meth:`release_hold`).  Attempting to delete
-    a held pack raises :class:`HoldReleased`.
+    a held pack raises :class:`HoldReleasedError`.
 
     The manager is in-memory and does not persist across processes —
     it is the interface contract that matters, not the storage backend.
@@ -81,7 +81,7 @@ class RetentionManager:
         Returns the created :class:`HoldRecord`.
         """
         if placed_at is None:
-            placed_at = datetime.now(timezone.utc)
+            placed_at = datetime.now(UTC)
         if placed_at.tzinfo is None:
             raise ValueError("placed_at must be timezone-aware (UTC)")
         record = HoldRecord(
@@ -113,12 +113,12 @@ class RetentionManager:
         """Delete *pack_id* — fails if a hold is active.
 
         Returns ``True`` if the pack was deleted.  Raises
-        :class:`HoldReleased` if a hold is active (the pack is NOT
+        :class:`HoldReleasedError` if a hold is active (the pack is NOT
         deleted).
         """
         if self.is_held(pack_id):
             hold = self._holds[pack_id]
-            raise HoldReleased(
+            raise HoldReleasedError(
                 f"pack {pack_id!r} is under legal hold "
                 f"(placed by {hold.placed_by!r}: {hold.reason})"
             )

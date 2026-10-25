@@ -195,7 +195,8 @@ def verify_stage_seal(
     if expected_tree_hash is not None and seal.tree_hash != expected_tree_hash:
         return False
     if expected_claim_ids is not None:
-        if sorted(seal.claim_ids) != sorted(expected_claim_ids):
+        expected = sorted(expected_claim_ids)
+        if sorted(seal.claim_ids) != expected:
             return False
     return True
 

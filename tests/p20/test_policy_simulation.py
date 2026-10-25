@@ -9,8 +9,6 @@ from __future__ import annotations
 import datetime as _dt
 import uuid
 
-import pytest
-
 from aminopstwin.contracts.canonical import canonical_hash
 from aminopstwin.contracts.envelope import Envelope
 from aminopstwin.gateway.gateway import (
@@ -19,10 +17,9 @@ from aminopstwin.gateway.gateway import (
     PolicyMatrixEntry,
 )
 from aminopstwin.policy_simulation import (
-    PolicySimulator,
     SimulationReport,
-    simulate_policy,
     build_candidate_gateway,
+    simulate_policy,
 )
 
 
