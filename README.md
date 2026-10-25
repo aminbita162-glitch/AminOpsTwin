@@ -53,6 +53,9 @@ dose recommendation, and never models individual patient state. [CLAIM-006]
 | P18 | COMPLETE (CANDIDATE) | [test_home/P18/](test_home/P18/) |
 | P19 | COMPLETE (CANDIDATE) | [test_home/P19/](test_home/P19/) |
 | P20 | COMPLETE (CANDIDATE) | [test_home/P20/](test_home/P20/) |
+| P21 | COMPLETE (CANDIDATE) | [test_home/P21/](test_home/P21/) |
+| P22 | COMPLETE (CANDIDATE) | [test_home/P22/](test_home/P22/) |
+| P23 | COMPLETE (CANDIDATE) | [test_home/P23/](test_home/P23/) |
 
 Every phase above has a Hard-Stop Report at `test_home/P<n>/HARD_STOP_REPORT.md`
 and a passing full regression. No phase is marked beyond what the evidence
@@ -161,8 +164,8 @@ additional governance.
 
 ## Measured Summary
 
-Latest full regression: **3042 tests passed, 1 skipped, 0 failures** (P22
-regression, October 2026). The full suite including all P1–P20 gates passes with
+Latest full regression: **3068 tests passed, 10 skipped, 0 failures** (P23
+regression, October 2026). The full suite including all P1–P23 gates passes with
 no failures. Every claim-id in this README resolves via the standalone verify CLI
 without running the full system. [CLAIM-016]
 
@@ -203,6 +206,9 @@ Every phase concludes with a Hard-Stop Report stored under `test_home/P<n>/`:
 | P18 | [test_home/P18/HARD_STOP_REPORT.md](test_home/P18/HARD_STOP_REPORT.md) |
 | P19 | [test_home/P19/HARD_STOP_REPORT.md](test_home/P19/HARD_STOP_REPORT.md) |
 | P20 | [test_home/P20/HARD_STOP_REPORT.md](test_home/P20/HARD_STOP_REPORT.md) |
+| P21 | [test_home/P21/HARD_STOP_REPORT.md](test_home/P21/HARD_STOP_REPORT.md) |
+| P22 | [test_home/P22/HARD_STOP_REPORT.md](test_home/P22/HARD_STOP_REPORT.md) |
+| P23 | [test_home/P23/HARD_STOP_REPORT.md](test_home/P23/HARD_STOP_REPORT.md) |
 
 ## Technology
 
