@@ -39,15 +39,15 @@ dose recommendation, and never models individual patient state. [CLAIM-006]
 Package layout (all modules under `src/aminopstwin/`):
 
 - `contracts/` — envelopes, schemas, reasons, Clock, IdFactory
-- `gateway/` — Policy Gateway (no LLM or network imports)
+- `gateway/` — Policy Gateway (no LLM or network imports), quota enforcement
 - `executor/` — Durable Executor with checkpointing
 - `agents/` — five agents (A1–A5)
 - `twin/` — entities, temporal state, simulation, delta compression
-- `evidence/` — registry, cache binding, impact tracking
+- `evidence/` — registry, cache binding, impact tracking, Merkle pack, audit chain, claim graph
 - `tokens/` — pre-filter, templates, budget governor, LLM adapter
-- `assurance/` — weekly scheduler, zero-model assurance
+- `assurance/` — weekly scheduler, zero-model assurance, signed pack, telemetry, drift detection
 - `dashboard/` — views, app, wallboard, accessibility
-- `enterprise/` — tenant isolation, evaluation, manifest, transparency
+- `enterprise/` — tenant isolation, evaluation, manifest, transparency, RLS
 - `integration/` — backup, deployment, exports
 - `priors/` — deterministic prior pack from public aggregates
 - `ingestion/` — shadow-mode ingestion gateway (Data Contract v1)
@@ -93,7 +93,9 @@ agent holds a direct handle to the database or the Executor store (§3.3).
 | P14 | Shadow Pilot Readiness, Claim Verification, Stage 2 Close | COMPLETE (CANDIDATE) |
 | P15 | Absolute Integrity, Toolchain and Professional Surface | COMPLETE (CANDIDATE) |
 | P16 | Bit-Reproducible Deterministic Substrate | COMPLETE (CANDIDATE) |
-| P17–P20 | Stage 3 phases | NOT STARTED |
+| P17 | Provable Evidence Graph and Auditability | COMPLETE (CANDIDATE) |
+| P18 | Enforceable Controls and Observability | COMPLETE (CANDIDATE) |
+| P19–P20 | Stage 3 phases | NOT STARTED |
 
 ### Stage 3 (P15–P20) — Active
 
@@ -109,11 +111,13 @@ sequence.
 - P14: [test_home/P14/HARD_STOP_REPORT.md](test_home/P14/HARD_STOP_REPORT.md)
 - P15: [test_home/P15/HARD_STOP_REPORT.md](test_home/P15/HARD_STOP_REPORT.md)
 - P16: [test_home/P16/HARD_STOP_REPORT.md](test_home/P16/HARD_STOP_REPORT.md)
+- P17: [test_home/P17/HARD_STOP_REPORT.md](test_home/P17/HARD_STOP_REPORT.md)
+- P18: [test_home/P18/HARD_STOP_REPORT.md](test_home/P18/HARD_STOP_REPORT.md)
 
 ### Measured summary
 
-Latest full-suite run: 2647 tests passed, 3 skipped, 0 failures (P16
-regression). The full suite including all P1–P16 gates passes with no
+Latest full-suite run: 2845 tests passed, 4 skipped, 0 failures (P18
+regression). The full suite including all P1–P18 gates passes with no
 failures.
 
 ### Security
