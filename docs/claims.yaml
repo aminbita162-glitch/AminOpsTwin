@@ -23,7 +23,7 @@ claims:
   - claim_id: "CLAIM-001"
     text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
     evidence_path: "README.md"
-    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
+    hash: "d1685d07bc414926c41d4636872bc3d69f737b11490cbafce75e586076dff0d5"
     category: "capability"
 
   - claim_id: "CLAIM-002"
@@ -72,13 +72,13 @@ claims:
   - claim_id: "CLAIM-009"
     text: "The system is not clinically validated and not production-ready."
     evidence_path: "README.md"
-    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
+    hash: "d1685d07bc414926c41d4636872bc3d69f737b11490cbafce75e586076dff0d5"
     category: "boundary"
 
   - claim_id: "CLAIM-010"
     text: "The system is not synchronized with a real organization."
     evidence_path: "README.md"
-    hash: "936bb7645d7c6639753bdd5c72a40de190c5eecec0560479ab432ce2d612d84b"
+    hash: "d1685d07bc414926c41d4636872bc3d69f737b11490cbafce75e586076dff0d5"
     category: "boundary"
 
   # === Determinism claims ===
@@ -105,4 +105,29 @@ claims:
     text: "The shadow ingestion gateway enforces schema, k-min cell suppression, and emits hashed receipts."
     evidence_path: "src/aminopstwin/ingestion/shadow_gateway.py"
     hash: "3079ec0ff90b6c1bbe41a2cf03135e6830e385d805ff213fa787c03dbb9c6b4a"
+    category: "capability"
+
+  # === P14 claims ===
+  - claim_id: "CLAIM-015"
+    text: "Stage 2 (P11-P14) is complete with spec consolidation, determinism hardening, evidence infrastructure, and shadow pilot readiness."
+    evidence_path: "README.md"
+    hash: "d1685d07bc414926c41d4636872bc3d69f737b11490cbafce75e586076dff0d5"
+    category: "capability"
+
+  - claim_id: "CLAIM-016"
+    text: "All claim-ids in README resolve via the standalone verify CLI without running the full system."
+    evidence_path: "scripts/aminopstwin-verify"
+    hash: "d17c9620f8d709c65f5a31185274a810745e32aecba2ce68efae763c3cb75bcb"
+    category: "capability"
+
+  - claim_id: "CLAIM-017"
+    text: "The Shadow Pilot report uses synthetic aggregate data that satisfies Data Contract v1 and is reproducible."
+    evidence_path: "test_home/P14/shadow_pilot_report.json"
+    hash: "56405e8125679192dcaea7dd0a10af562ef98c6cab5234f0edcf5d79cdb1ac14"
+    category: "capability"
+
+  - claim_id: "CLAIM-018"
+    text: "Release notes for v0.2.0-candidate list every capability with its real status."
+    evidence_path: "docs/release_notes_v0.2.0-candidate.md"
+    hash: "d6e3faaf0b414c1e5f31e75e930a92afa9ecf3bc35c9db8994819b8b46ae5f9e"
     category: "capability"

@@ -67,12 +67,20 @@ agent holds a direct handle to the database or the Executor store (§3.3). [CLAI
 | P10   | Final Verification, README, Release  | COMPLETE (CANDIDATE) |
 | P11   | Spec Consolidation, Package Hygiene  | COMPLETE (CANDIDATE) |
 | P12   | Core Determinism and Safety Hardening | COMPLETE (CANDIDATE) |
-| P13   | Evidence Infrastructure, Prior Pack, Shadow Ingestion | COMPLETE (CANDIDATE) |
+| P14   | Shadow Pilot Readiness, Claim Verification, Stage Close | COMPLETE (CANDIDATE) |
 
-### Stage 2 (P11–P14) Active
+### Stage 2 Complete (Candidate)
 
-Stage 2 is active with phases P11 through P14. P1–P10 are complete and closed.
-See `directive.txt` for the binding Stage 2 requirements.
+Stage 2 (P11–P14) is complete. The system includes spec consolidation with
+package hygiene and CI, core determinism hardening with cross-platform state
+hash oracle, evidence infrastructure with claim registry and verify CLI,
+shadow-mode ingestion with Data Contract v1, and a sample Shadow Pilot
+report with synthetic aggregate calibration data. [CLAIM-015] All claim-ids
+in this README resolve via the standalone verify CLI without running the full
+system. [CLAIM-016] The Shadow Pilot report uses synthetic aggregate data
+that satisfies Data Contract v1 and is reproducible. [CLAIM-017] Release
+notes for v0.2.0-candidate list every capability with its real status.
+[CLAIM-018]
 
 ### Author
 
