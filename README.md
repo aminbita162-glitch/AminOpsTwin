@@ -65,6 +65,12 @@ direct handle to the database or the Executor store (§3.3).
 | P8    | Enterprise Hardening and Evaluation | COMPLETE (CANDIDATE) |
 | P9    | Integration, Exports and Pre-Release | COMPLETE (CANDIDATE) |
 | P10   | Final Verification, README, Release  | COMPLETE (CANDIDATE) |
+| P11   | Spec Consolidation, Package Hygiene  | IN PROGRESS (CANDIDATE) |
+
+### Stage 2 (P11–P14) Active
+
+Stage 2 is active with phases P11 through P14. P1–P10 are complete and closed.
+See `directive.txt` for the binding Stage 2 requirements.
 
 ### Author
 
