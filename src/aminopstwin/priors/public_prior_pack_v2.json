@@ -1,0 +1,123 @@
+{
+  "pack_id": "public_prior_pack_v2",
+  "pack_version": "2.0",
+  "pack_type": "aggregate_priors",
+  "data_label": "SYNTHETIC",
+  "synthetic_notice": "This prior pack (v2) contains synthetic aggregate statistics modeled on the shape of public ClinicalTrials.gov/AACT aggregate distributions. No real clinical trial data is included. Real statistics require owner-approved ingestion from ClinicalTrials.gov/AACT public aggregates with a source_allowlist entry.",
+  "created_at": "2026-10-25T00:00:00Z",
+  "source_references": [
+    {
+      "source_id": "clinicaltrials-gov-aggregate",
+      "description": "ClinicalTrials.gov public aggregate distributions (shape reference only)",
+      "url": "https://clinicaltrials.gov",
+      "license": "public_domain",
+      "accessed": "2026-10-25",
+      "note": "SYNTHETIC — shape derived from published aggregate patterns, not actual data"
+    },
+    {
+      "source_id": "aact-aggregate",
+      "description": "AACT (Aggregate Analysis of ClinicalTrials.gov) public aggregate statistics (shape reference only)",
+      "url": "https://aact.ctti-clinicaltrials.org",
+      "license": "public_domain",
+      "accessed": "2026-10-25",
+      "note": "SYNTHETIC — shape derived from published aggregate patterns, not actual data"
+    }
+  ],
+  "aggregate_statistics": {
+    "phase_duration_days": {
+      "description": "Distribution of clinical trial phase duration in days (aggregate, v2 revised)",
+      "distribution": "lognormal",
+      "parameters": {
+        "mean_log": 5.3,
+        "sigma_log": 0.75
+      },
+      "percentiles": {
+        "p10": 85,
+        "p25": 140,
+        "p50": 230,
+        "p75": 380,
+        "p90": 620
+      },
+      "unit": "days",
+      "sample_count": 0,
+      "note": "SYNTHETIC — v2 revised phase duration aggregate"
+    },
+    "site_count_per_trial": {
+      "description": "Distribution of number of sites per trial (aggregate, v2 revised)",
+      "distribution": "negative_binomial",
+      "parameters": {
+        "mean": 14,
+        "variance": 210
+      },
+      "percentiles": {
+        "p10": 2,
+        "p25": 4,
+        "p50": 9,
+        "p75": 23,
+        "p90": 48
+      },
+      "unit": "sites",
+      "sample_count": 0,
+      "note": "SYNTHETIC — v2 revised site count aggregate"
+    },
+    "enrollment_rate_per_site_per_month": {
+      "description": "Distribution of enrollment rate per site per month (aggregate, v2 revised)",
+      "distribution": "gamma",
+      "parameters": {
+        "shape": 2.1,
+        "scale": 1.4
+      },
+      "percentiles": {
+        "p10": 0.5,
+        "p25": 1.0,
+        "p50": 2.4,
+        "p75": 4.8,
+        "p90": 7.5
+      },
+      "unit": "participants_per_site_per_month",
+      "sample_count": 0,
+      "note": "SYNTHETIC — v2 revised enrollment rate aggregate"
+    },
+    "trial_start_delay_days": {
+      "description": "Distribution of delay from registration to trial start in days (aggregate, v2 revised)",
+      "distribution": "exponential",
+      "parameters": {
+        "rate": 0.006
+      },
+      "percentiles": {
+        "p10": 28,
+        "p25": 55,
+        "p50": 130,
+        "p75": 265,
+        "p90": 440
+      },
+      "unit": "days",
+      "sample_count": 0,
+      "note": "SYNTHETIC — v2 revised start delay aggregate"
+    },
+    "screen_failure_rate": {
+      "description": "Distribution of screen failure rate (aggregate, v2 revised)",
+      "distribution": "beta",
+      "parameters": {
+        "alpha": 5.2,
+        "beta": 14.8
+      },
+      "percentiles": {
+        "p10": 0.1,
+        "p25": 0.17,
+        "p50": 0.24,
+        "p75": 0.34,
+        "p90": 0.44
+      },
+      "unit": "proportion",
+      "sample_count": 0,
+      "note": "SYNTHETIC — v2 revised screen failure rate aggregate"
+    }
+  },
+  "manifest": {
+    "pack_hash": "b5b2488492996f57bbfce8bd07968c97d6cac41e8ef3708a8bba9c1567da26aa",
+    "owner_signature": "[OWNER-FILL: owner signs the pack hash with the rotating signing key]",
+    "signed_at": "[OWNER-FILL]",
+    "signed_by": "[OWNER-FILL: owner identity]"
+  }
+}
