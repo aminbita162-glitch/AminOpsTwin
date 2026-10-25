@@ -737,6 +737,43 @@ gates:
     source_command: "pytest tests/p13/test_cosignature.py -v"
     raw_output_path: "test_home/P13/G13.5_cosignature.txt"
 
+  # === P14 Gates ===
+  - id: "G14.1"
+    phase: "P14"
+    description: "sample Shadow Pilot report exists and is reproducible"
+    metric: "shadow_pilot_report_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p14/test_shadow_pilot.py -v"
+    raw_output_path: "test_home/P14/G14.1_shadow_pilot.txt"
+
+  - id: "G14.2"
+    phase: "P14"
+    description: "all claim-ids in README resolve via verify CLI"
+    metric: "claims_resolve_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p14/test_claims_resolve.py -v"
+    raw_output_path: "test_home/P14/G14.2_claims_resolve.txt"
+
+  - id: "G14.3"
+    phase: "P14"
+    description: "tags P11-verified through P14-verified exist"
+    metric: "verified_tags_exist"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p14/test_verified_tags.py -v"
+    raw_output_path: "test_home/P14/G14.3_tags.txt"
+
+  - id: "G14.4"
+    phase: "P14"
+    description: "full P1-P14 regression passes"
+    metric: "full_p1_p14_regression_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/p14/test_regression.py -v"
+    raw_output_path: "test_home/P14/G14.4_regression.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
