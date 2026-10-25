@@ -8,6 +8,10 @@ Last code commit (tag `P24-code`):
 - Full hash: `25cfb8269e50db05180d0ae12508d18a20a1f163`
 - Short hash: `25cfb82`
 
+Hard-Stop commit (tag `P24-hardstop`):
+- Full hash: `838c695d5bbc2943c61c0611bf791c112fa5f637`
+- Short hash: `838c695`
+
 ## 2. DONE
 
 ### Deliverables
