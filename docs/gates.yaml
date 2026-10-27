@@ -1216,6 +1216,79 @@ gates:
     source_command: "pytest tests/p24/test_no_skeleton.py -v"
     raw_output_path: "test_home/P24/G24.4_no_skeleton.txt"
 
+  # === P25 Gates ===
+  - id: "G25.1"
+    phase: "P25"
+    description: "Directive governance re-baseline: retired directive tests gone, new format test passes"
+    metric: "governance_tests_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/governance -q"
+    raw_output_path: "reports/P25/evidence/G25.1.txt"
+
+  - id: "G25.2"
+    phase: "P25"
+    description: "deptry: declared dependencies equal used dependencies, 0 findings"
+    metric: "deptry_findings"
+    operator: "=="
+    threshold: 0
+    source_command: "uv run deptry src"
+    raw_output_path: "reports/P25/evidence/G25.2.txt"
+
+  - id: "G25.3"
+    phase: "P25"
+    description: "mypy --strict: 0 errors (pyproject package list, all packages)"
+    metric: "mypy_errors"
+    operator: "=="
+    threshold: 0
+    source_command: "uv run mypy"
+    raw_output_path: "reports/P25/evidence/G25.3.txt"
+
+  - id: "G25.4"
+    phase: "P25"
+    description: "check_skips.py: 0 unregistered skips or xfails"
+    metric: "unregistered_skips"
+    operator: "=="
+    threshold: 0
+    source_command: "python scripts/check_skips.py"
+    raw_output_path: "reports/P25/evidence/G25.4.txt"
+
+  - id: "G25.5"
+    phase: "P25"
+    description: "Claim guard test passes: every mapped module and test exists"
+    metric: "claim_guard_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/governance/test_claim_guard.py -q"
+    raw_output_path: "reports/P25/evidence/G25.5.txt"
+
+  - id: "G25.6"
+    phase: "P25"
+    description: "CI matrix 3.12 and 3.13 on x86_64 and arm64, all green"
+    metric: "ci_matrix_green"
+    operator: "=="
+    threshold: 1
+    source_command: "grep -q '3.13' .github/workflows/ci.yml && grep -q '3.12' .github/workflows/ci.yml"
+    raw_output_path: "reports/P25/evidence/G25.6.txt"
+
+  - id: "G25.7"
+    phase: "P25"
+    description: "Documentation tests pass, reported separately"
+    metric: "docs_tests_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/docs -q"
+    raw_output_path: "reports/P25/evidence/G25.7.txt"
+
+  - id: "G25.8"
+    phase: "P25"
+    description: "Commit discipline check on this branch: 0 violations"
+    metric: "commit_violations"
+    operator: "=="
+    threshold: 0
+    source_command: "python scripts/check_commits.py P25"
+    raw_output_path: "reports/P25/evidence/G25.8.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
