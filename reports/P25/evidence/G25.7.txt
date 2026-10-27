@@ -1,0 +1,2 @@
+G25.7: pytest tests/docs -q
+PASS — 42 tests passed

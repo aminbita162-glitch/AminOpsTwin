@@ -1,0 +1,2 @@
+G25.5: pytest tests/governance/test_claim_guard.py -q
+PASS — 8 tests passed
