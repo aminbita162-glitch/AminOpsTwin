@@ -1,7 +1,7 @@
-"""Signed Assurance Pack — signed Evidence Pack generator (P18, G18.4).
+"""Signed Assurance Pack — integrity-tagged Evidence Pack generator (P18, G18.4).
 
-Produces a directory of pack files plus a signed ``manifest.json`` whose
-signature is an HMAC-SHA256 over the Merkle root using a provided
+Produces a directory of pack files plus a ``manifest.json`` whose
+integrity tag is an HMAC-SHA256 over the Merkle root using a provided
 signing key.  The pack aggregates:
 
 1. Gate status (gate_id -> PASS/FAIL/NOT_RUN with measurements)
@@ -9,10 +9,14 @@ signing key.  The pack aggregates:
 3. Drift metrics (state-hash stability, denial rate)
 4. Assurance report (from AssuranceReport)
 5. A Merkle root over every pack file (excluding the manifest itself)
-6. An HMAC-SHA256 signature over the Merkle root
+6. An HMAC-SHA256 integrity tag over the Merkle root
+
+The integrity tag is a symmetric HMAC, not an asymmetric signature.
+Asymmetric signatures arrive in P32.  The field name ``signature``
+is retained for backward compatibility of the on-disk manifest format.
 
 Verification re-hashes every pack file, rebuilds the Merkle root, and
-checks the signature.  Tampering with any file (or the manifest) causes
+checks the integrity tag.  Tampering with any file (or the manifest) causes
 :func:`verify_signed_pack` to return ``False``.
 """
 
@@ -180,7 +184,7 @@ class SignedAssurancePack:
     * ``claim_summary.json`` — claim graph counts
     * ``drift_metrics.json`` — drift metrics
     * ``assurance_report.json`` — serialised AssuranceReport
-    * ``manifest.json`` — file hashes, Merkle root, signature
+    * ``manifest.json`` — file hashes, Merkle root, integrity tag (HMAC)
     """
 
     GATE_STATUS_FILE = "gate_status.json"
@@ -362,7 +366,7 @@ def verify_signed_pack(pack_dir: Path, signing_key: str) -> bool:
     """Verify a signed Evidence Pack (G18.4).
 
     Re-hashes every pack file listed in the manifest, rebuilds the
-    Merkle root, checks the HMAC signature, and confirms each file's
+    Merkle root, checks the HMAC integrity tag, and confirms each file's
     recorded hash matches its on-disk content.  Returns ``True`` only
     when every check passes.
     """
@@ -419,7 +423,7 @@ def verify_signed_pack(pack_dir: Path, signing_key: str) -> bool:
     if computed_tree.root_hash != expected_root:
         return False
 
-    # 3. Verify the HMAC signature over the Merkle root.
+    # 3. Verify the HMAC integrity tag over the Merkle root.
     return _hmac_verify(signing_key, expected_root, expected_sig)
 
 

@@ -1,9 +1,10 @@
-"""Signed export bundles with owner-side signing (§38 operational rule 7).
+"""Export bundles with owner-side integrity tag (§38 operational rule 7).
 
 Export preparation produces UNSIGNED bundles; the signing key is never
-held by the agent. The owner provides a 64-char hex signature hash to
-produce a SIGNED bundle. No cryptographic signing library is imported —
-signing is simulated by the owner supplying a hash (§38 rule 7).
+held by the agent. The owner provides a 64-char hex integrity tag hash
+to produce a SIGNED bundle. No cryptographic signing library is imported —
+the integrity tag is simulated by the owner supplying a hash (§38 rule 7).
+Asymmetric signatures arrive in P32.
 """
 
 from __future__ import annotations
