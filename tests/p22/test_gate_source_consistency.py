@@ -1,8 +1,10 @@
-"""P22 gate source consistency test (G22.3).
+"""P22 gate source consistency test (G22.3, updated for P25).
 
 Verifies that gates.yaml is the single source of truth for gate
-identifiers. The check_commits.py GATE_IDS set must exactly match
-the gate IDs defined in gates.yaml — no drift, no extras, no missing.
+identifiers. After P25, check_commits.py loads gate IDs from
+gates.yaml dynamically. This test verifies that the dynamic loading
+produces the same set as the gates.yaml file, and that the commit
+regex supports all phases up to P99.
 """
 
 from __future__ import annotations
@@ -25,15 +27,34 @@ class TestGateSourceConsistency:
         assert CHECK_COMMITS.exists(), "scripts/check_commits.py must exist"
 
     def test_gate_ids_match(self) -> None:
-        """check_commits.py GATE_IDS exactly matches gates.yaml gate IDs."""
+        """check_commits.py loads the same gate IDs as gates.yaml."""
         yaml_text = GATES_YAML.read_text()
-        yaml_ids = set(re.findall(r"G\d+\.\d+", yaml_text))
-        yaml_ids |= {"C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"}
+        yaml_ids: set[str] = set()
+        for m in re.finditer(
+            r'^\s+-\s+id:\s*"?(G\d+\.\d+)"?', yaml_text, re.MULTILINE
+        ):
+            yaml_ids.add(m.group(1))
+        for m in re.finditer(
+            r'^\s+-\s+id:\s*"?(C\d+)"?', yaml_text, re.MULTILINE
+        ):
+            yaml_ids.add(m.group(1))
 
+        # check_commits.py should load gate IDs from gates.yaml
         cc_text = CHECK_COMMITS.read_text()
-        m = re.search(r"GATE_IDS\s*=\s*\{([^}]+)\}", cc_text)
-        assert m is not None, "GATE_IDS set not found in check_commits.py"
-        code_ids = set(re.findall(r'"([^"]+)"', m.group(1)))
+        assert "_load_gate_ids_from_yaml" in cc_text, (
+            "check_commits.py must load gate IDs from gates.yaml"
+        )
+        # Import the module and check the loaded set
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "check_commits", CHECK_COMMITS
+        )
+        if spec is None or spec.loader is None:
+            raise AssertionError("Cannot load check_commits.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        code_ids = mod.GATE_IDS
 
         assert yaml_ids == code_ids, (
             f"Gate ID mismatch:\n"
@@ -44,29 +65,39 @@ class TestGateSourceConsistency:
         )
 
     def test_phase_gates_match_yaml(self) -> None:
-        """PHASE_GATES in check_commits.py only references gates in GATE_IDS."""
-        cc_text = CHECK_COMMITS.read_text()
-        m_ids = re.search(r"GATE_IDS\s*=\s*\{([^}]+)\}", cc_text)
-        assert m_ids is not None
-        gate_ids = set(re.findall(r'"([^"]+)"', m_ids.group(1)))
+        """PHASE_GATES in check_commits.py references only gates in GATE_IDS."""
+        import importlib.util
 
-        m_phase = re.search(r"PHASE_GATES\s*=\s*\{(.+?)\n\}", cc_text, re.DOTALL)
-        assert m_phase is not None, "PHASE_GATES dict not found"
-        phase_gate_text = m_phase.group(1)
-        referenced_ids = set(re.findall(r'"(G\d+\.\d+)"', phase_gate_text))
-
-        unknown = referenced_ids - gate_ids
-        assert not unknown, (
-            f"PHASE_GATES references gate IDs not in GATE_IDS: {sorted(unknown)}"
+        spec = importlib.util.spec_from_file_location(
+            "check_commits_cc", CHECK_COMMITS
         )
+        if spec is None or spec.loader is None:
+            raise AssertionError("Cannot load check_commits.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
 
-    def test_commit_regex_supports_p22(self) -> None:
-        """COMMIT_REGEX supports P22 phase numbers and G22 gate refs."""
-        cc_text = CHECK_COMMITS.read_text()
-        m = re.search(r"COMMIT_REGEX\s*=\s*re\.compile\((.+?)\)", cc_text, re.DOTALL)
-        assert m is not None, "COMMIT_REGEX not found"
-        regex_str = m.group(1)
-        # Must support P22 (phase number 22)
-        assert "2[0-9]" in regex_str, (
-            "COMMIT_REGEX must support phase numbers P20-P29"
+        for _phase, gates in mod.PHASE_GATES.items():
+            unknown = gates - mod.GATE_IDS
+            assert not unknown, (
+                f"PHASE_GATES[{_phase}] references gate IDs not in GATE_IDS: "
+                f"{sorted(unknown)}"
+            )
+
+    def test_commit_regex_supports_p99(self) -> None:
+        """COMMIT_REGEX supports phase numbers P1 through P99."""
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "check_commits_cr", CHECK_COMMITS
         )
+        if spec is None or spec.loader is None:
+            raise AssertionError("Cannot load check_commits.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+
+        # Test that P1 through P99 are all valid
+        for i in range(1, 100):
+            test_msg = f"P{i}: summary message here (INFRA)"
+            assert mod.COMMIT_REGEX.match(test_msg), (
+                f"COMMIT_REGEX must support phase P{i}"
+            )
