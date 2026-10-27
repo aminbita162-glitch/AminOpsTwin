@@ -123,7 +123,7 @@ def check_claims_freshness() -> list[str]:
 
 
 def check_readme_stage4() -> list[str]:
-    """Check that README reflects Stage 4 completion."""
+    """Check that README reflects Stage 4 governance level."""
     failures: list[str] = []
     readme_path = REPO_ROOT / "README.md"
     if not readme_path.exists():
@@ -132,9 +132,9 @@ def check_readme_stage4() -> list[str]:
     content = readme_path.read_text(encoding="utf-8")
     if "P24" not in content:
         failures.append("README does not mention P24")
-    if "COMPLETE (CANDIDATE)" not in content:
+    if "GOVERNANCE" not in content:
         failures.append(
-            "README does not contain 'COMPLETE (CANDIDATE)'"
+            "README does not contain 'GOVERNANCE' status level"
         )
     return failures
 

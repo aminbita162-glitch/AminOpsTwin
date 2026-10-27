@@ -52,11 +52,11 @@ class TestReadmeCinematic:
     # (b) Living phase status table with Evidence links
 
     def test_status_table_with_evidence_links(self) -> None:
-        """Status table has Evidence column linking to test_home/P<n>."""
+        """Status table has Phase | Level | Evidence columns linking to evidence."""
         content = README.read_text()
-        # Table must have Phase | Status | Evidence columns
-        assert re.search(r"\|.*Phase.*\|.*Status.*\|.*Evidence.*\|", content), (
-            "Status table must have Phase | Status | Evidence columns"
+        # Table must have Phase | Level | Evidence columns
+        assert re.search(r"\|.*Phase.*\|.*Level.*\|.*Evidence.*\|", content), (
+            "Status table must have Phase | Level | Evidence columns"
         )
         # Must link to test_home evidence
         assert re.search(r"test_home/P\d+", content), (
