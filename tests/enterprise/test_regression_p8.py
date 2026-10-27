@@ -38,7 +38,7 @@ class TestRegression:
                 "-m",
                 "pytest",
                 "tests/",
-                "--ignore=tests/p8",
+                "--ignore=tests/enterprise/test_regression_p8.py",
                 "--tb=short",
                 "-q",
                 "--no-header",

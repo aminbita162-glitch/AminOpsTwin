@@ -10,12 +10,12 @@ claims:
   CLAIM-001:
     readme_text: "synthetic operational data and licensed public research material only"
     module: src/aminopstwin/fixtures_gen/__init__.py
-    test: tests/p19/test_synthetic_generator.py
+    test: tests/api/test_synthetic_generator.py
 
   CLAIM-003:
     readme_text: "synthetic operational data and licensed public research material only"
     module: src/aminopstwin/fixtures_gen/__init__.py
-    test: tests/p19/test_synthetic_generator.py
+    test: tests/api/test_synthetic_generator.py
 
   CLAIM-004:
     readme_text: "Five agents issue typed envelopes that pass through the deny-by-default Policy Gateway"
@@ -63,7 +63,7 @@ invariants:
 
   - row: "Deterministic replay"
     module: src/aminopstwin/twin/replay.py
-    test: tests/p16/test_replay.py
+    test: tests/twin/test_replay.py
 
   - row: "Cross-platform determinism"
     module: src/aminopstwin/twin/cross_process_rng.py
@@ -71,7 +71,7 @@ invariants:
 
   - row: "No floating-point in hashed state"
     module: src/aminopstwin/twin/fixed_point.py
-    test: tests/p16/test_fixed_point.py
+    test: tests/twin/test_fixed_point.py
 
   - row: "Canonical serialization"
     module: src/aminopstwin/contracts/canonical.py
@@ -87,8 +87,8 @@ invariants:
 
   - row: "Quota enforcement"
     module: src/aminopstwin/gateway/quota.py
-    test: tests/p18/test_quota.py
+    test: tests/enterprise/test_quota.py
 
   - row: "Tenant isolation"
     module: src/aminopstwin/enterprise/tenant.py
-    test: tests/p8/test_tenant_isolation.py
+    test: tests/enterprise/test_tenant_isolation.py
