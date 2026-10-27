@@ -1,4 +1,6 @@
-"""Stage Seal — integrity-tagged document with git tree hash and claim-ids (P20, deliverable 6).
+"""Stage Seal — integrity-tagged document with git tree hash and claim-ids (P20).
+
+Deliverable 6 of P20.
 
 The Stage Seal is a document containing:
 

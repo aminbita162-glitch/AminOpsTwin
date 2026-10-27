@@ -8,6 +8,7 @@ trace with a unique correlation_id (G2.1).
 from __future__ import annotations
 
 import datetime as _dt
+import hashlib
 import uuid
 from typing import Any
 
@@ -149,7 +150,7 @@ class BaseAgent:
 
         # State hash: hash of the executor's state history
         state_str = "|".join(s.value for s in executor.history)
-        state_hash = __import__("hashlib").sha256(
+        state_hash = hashlib.sha256(
             state_str.encode("utf-8")
         ).hexdigest()
 

@@ -37,7 +37,7 @@ class TestCommitRegex:
             "P9: add export bundle signing (G6.1, G6.2, §3.5)",
             "P10: final regression and release notes (G6.6, G6.7, DOC)",
             "P24: add stage seal and final verification (G24.1, INFRA)",
-            "P25: register P25 gates in gates.yaml (G25.1, G25.2, G25.3, G25.4, G25.5, G25.6, G25.7, G25.8, INFRA)",
+            "P25: register P25 gates in gates.yaml (G25.1, G25.8, INFRA)",
             "P99: final phase delivery (R01, N01, INFRA)",
             "P5: add experiment designer (G4.7, G4.8, G4.9)",
         ],

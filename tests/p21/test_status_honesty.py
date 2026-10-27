@@ -22,10 +22,13 @@ def _extract_status_table(content: str) -> list[tuple[str, str, str]]:
         line = line.strip()
         if line.startswith("| P") and "|" in line:
             cells = [c.strip() for c in line.strip("|").split("|")]
-            if len(cells) >= 3 and cells[0].startswith("P") and cells[0] != "Phase":
-                # Ensure the first cell is a phase ID like P1, P10, etc.
-                if cells[0][1:].isdigit():
-                    rows.append((cells[0], cells[1], cells[-1]))
+            if (
+                len(cells) >= 3
+                and cells[0].startswith("P")
+                and cells[0] != "Phase"
+                and cells[0][1:].isdigit()
+            ):
+                rows.append((cells[0], cells[1], cells[-1]))
     return rows
 
 

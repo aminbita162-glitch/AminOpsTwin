@@ -67,9 +67,8 @@ class TestDirectiveFormat:
                 if p == phase:
                     continue
                 idx = content.find(f"PHASE {p} ", start + 1)
-                if idx != -1:
-                    if next_phase is None or idx < next_phase:
-                        next_phase = idx
+                if idx != -1 and (next_phase is None or idx < next_phase):
+                    next_phase = idx
             if next_phase is None:
                 # Check for END OF DIRECTIVE
                 end_idx = content.find("END OF DIRECTIVE", start + 1)
