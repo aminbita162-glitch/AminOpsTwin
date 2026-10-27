@@ -103,13 +103,6 @@ no_implicit_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-[[tool.mypy.overrides]]
-module = "simpy.*"
-ignore_missing_imports = true
-# Note: simpy was removed from runtime dependencies in P25.
-# It returns in P29 if needed. This override is kept for safety
-# until the next uv lock clears it.
-
 [tool.importlinter]
 root_packages = ["aminopstwin"]
 include_external_packages = true
