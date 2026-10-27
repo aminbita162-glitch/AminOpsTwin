@@ -183,6 +183,8 @@ additional governance.
 Latest full regression: **3088 tests passed, 7 skipped, 9 failed** (P25 baseline,
 October 2026). The 9 failures are known baseline exceptions from the retired
 Stage 4 directive tests, listed in [reports/P25/PROGRESS.md](reports/P25/PROGRESS.md).
+Documentation tests: **42 passed** (`tests/docs/`). Engineering tests: **3046 passed,
+7 skipped** (excluding documentation tests).
 Every claim-id in this README resolves via the standalone verify CLI
 without running the full system. [CLAIM-016]
 
