@@ -1,10 +1,11 @@
-"""Durable Executor (S2) — owns authoritative persisted workflow state.
+"""Durable Executor (S2) — in-memory state machine with no durability until P27.
 
 References: §3.2, §3.6.
 
 P1 skeleton: state machine definition.
-P2: full durable executor with checkpoints (G2.2), UNKNOWN recovery (G2.3),
+P2: full in-memory executor with checkpoints (G2.2), UNKNOWN recovery (G2.3),
 kill/restart snapshot/restore, and canonical state hashing.
+P27: real PostgreSQL persistence with transactional durability.
 """
 
 from __future__ import annotations

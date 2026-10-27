@@ -2,15 +2,17 @@
 
 Responsive English browser interface for desktop, Mac, Windows and
 large monitors.  No raw database access or private signing keys are
-exposed to the browser.  All actions and reads require server-side
-controls through existing contracts (§35).
+exposed to the browser.
+
+Authentication and authorization are not yet implemented until P33.
+The dashboard does not enforce server-side authorization at this stage.
 
 Browser matrix: Chrome, Firefox, Safari, Edge (current stable) on
 Mac and Windows desktop (§37).  No untested platform is labeled
 verified.
 
 Wallboard mode is read-only; hiding buttons is not authorization.
-The API enforces server-side authorization for every action and read.
+Server-side authorization for every action and read arrives in P33.
 """
 
 from __future__ import annotations
@@ -54,7 +56,7 @@ class DashboardApp:
     """FastAPI dashboard application wrapper (§35, G4.12).
 
     Wraps a :class:`FastAPI` instance with dashboard endpoints.
-    All data is server-side authorized; the browser never touches
+    All data is read from server-side providers; the browser never touches
     raw storage or signing keys.
     """
 
@@ -104,7 +106,7 @@ class DashboardApp:
 
         @app.get("/api/dashboard")
         async def api_dashboard() -> dict[str, Any]:
-            """Return all dashboard view data (server-side authorized)."""
+            """Return all dashboard view data (no auth enforced until P33)."""
             data = self._provider.build()
             return data.to_dict()
 
@@ -200,11 +202,11 @@ class DashboardApp:
         async def api_action(
             action: str = Query(..., description="Action to submit"),
         ) -> JSONResponse:
-            """Submit an action through server-side authorization (§35).
+            """Submit an action (authorization not enforced until P33).
 
             The dashboard never performs direct effects.  All actions
-            pass through the Policy Gateway and Executor (§3.2-3.3).
-            Hiding buttons is not authorization.
+            pass through the Policy Gateway and Executor.  Hiding
+            buttons is not authorization.
             """
             return JSONResponse(
                 status_code=202,
@@ -212,7 +214,7 @@ class DashboardApp:
                     "action": action,
                     "status": "submitted",
                     "message": (
-                        "Action submitted for server-side authorization "
+                        "Action submitted for processing "
                         "through the Policy Gateway and Executor. "
                         "The dashboard does not perform direct effects."
                     ),
