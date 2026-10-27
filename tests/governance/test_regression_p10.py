@@ -77,7 +77,7 @@ class TestFinalRegression:
                 sys.executable,
                 "-m",
                 "pytest",
-                "tests/p9/",
+                "tests/integration/",
                 "--tb=short",
                 "-q",
                 "--no-header",

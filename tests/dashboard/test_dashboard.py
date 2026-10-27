@@ -549,7 +549,7 @@ class TestDashboardAPI:
         assert resp.status_code == 202
         data = resp.json()
         assert data["status"] == "submitted"
-        assert "server-side authorization" in data["message"]
+        assert "processing" in data["message"]
 
     def test_action_does_not_perform_direct_effects(self) -> None:
         """The dashboard does not perform direct effects (§35)."""

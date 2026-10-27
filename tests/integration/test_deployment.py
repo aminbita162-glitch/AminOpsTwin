@@ -148,7 +148,7 @@ class TestSBOM:
         # All declared dependencies are pinned with version ranges
         assert "fastapi" in pyproject
         assert "pydantic" in pyproject
-        assert "sqlalchemy" in pyproject
+        assert "pyyaml" in pyproject
 
 
 # ---------------------------------------------------------------------------
