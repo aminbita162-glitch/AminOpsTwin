@@ -50,31 +50,31 @@ preservation_mapping:
 
 gate_reference_mapping:
   - gate_id: "G4.1"
-    source_command: "pytest tests/p4/test_scope.py"
+    source_command: "pytest tests/governance/test_scope.py"
     status: "added_in_P4"
 
   - gate_id: "G4.2"
-    source_command: "pytest tests/p4/test_source_rights.py"
+    source_command: "pytest tests/governance/test_source_rights.py"
     status: "added_in_P4"
 
   - gate_id: "G4.3"
-    source_command: "pytest tests/p4/test_ingestion.py"
+    source_command: "pytest tests/governance/test_ingestion.py"
     status: "added_in_P4"
 
   - gate_id: "G4.4"
-    source_command: "pytest tests/p4/test_memory.py"
+    source_command: "pytest tests/governance/test_memory.py"
     status: "added_in_P4"
 
   - gate_id: "G4.5"
-    source_command: "pytest tests/p4/test_memory.py -k 'replay or reconstruction or projection'"
+    source_command: "pytest tests/governance/test_memory.py -k 'replay or reconstruction or projection'"
     status: "added_in_P4"
 
   - gate_id: "G4.6"
-    source_command: "pytest tests/p4/test_experience.py"
+    source_command: "pytest tests/governance/test_experience.py"
     status: "added_in_P4"
 
   - gate_id: "G4.13"
-    source_command: "pytest tests/p4/test_transparency.py"
+    source_command: "pytest tests/governance/test_transparency.py"
     status: "added_in_P4"
 
   - gate_id: "G4.14"
@@ -82,11 +82,11 @@ gate_reference_mapping:
     status: "added_in_P4"
 
   - gate_id: "G4.15"
-    source_command: "pytest tests/p4/test_regulatory.py"
+    source_command: "pytest tests/governance/test_regulatory.py"
     status: "added_in_P4"
 
   - gate_id: "G4.16"
-    source_command: "pytest tests/p4/test_preservation.py"
+    source_command: "pytest tests/governance/test_preservation.py"
     status: "added_in_P4"
 
 unresolved_decisions:
@@ -112,13 +112,13 @@ p5_preservation_mapping:
 
 p5_gate_reference_mapping:
   - gate_id: "G4.7"
-    source_command: "pytest tests/p5/test_experiment.py"
+    source_command: "pytest tests/twin/test_experiment.py"
     status: "added_in_P5"
 
   - gate_id: "G4.8"
-    source_command: "pytest tests/p5/test_impact.py"
+    source_command: "pytest tests/twin/test_impact.py"
     status: "added_in_P5"
 
   - gate_id: "G4.9"
-    source_command: "pytest tests/p5/test_selection.py"
+    source_command: "pytest tests/twin/test_selection.py"
     status: "added_in_P5"

@@ -1,0 +1,2 @@
+G25.1: pytest tests/governance -q
+PASS — 43 tests passed (governance + claim_guard + check_commits + directive_format)

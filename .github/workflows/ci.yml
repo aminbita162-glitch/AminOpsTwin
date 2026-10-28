@@ -38,27 +38,7 @@ jobs:
       - name: Install dependencies
         run: uv pip install --python $(which python) -e ".[dev]"
       - name: mypy --strict
-        env:
-          MYPYPATH: src
-        run: |
-          python -m mypy --strict \
-            --package aminopstwin.contracts \
-            --package aminopstwin.gateway \
-            --package aminopstwin.executor \
-            --package aminopstwin.agents \
-            --package aminopstwin.tokens \
-            --package aminopstwin.twin \
-            --package aminopstwin.evidence \
-            --package aminopstwin.assurance \
-            --package aminopstwin.dashboard \
-            --package aminopstwin.enterprise \
-            --package aminopstwin.integration \
-            --package aminopstwin.priors \
-            --package aminopstwin.ingestion \
-            --package aminopstwin.shadow_pilot \
-            --package aminopstwin.fixtures_gen \
-            --package aminopstwin.api \
-            --package aminopstwin.stage4_seal
+        run: uv run mypy
 
   test:
     name: Test (pytest + coverage)
@@ -67,6 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-14]
+        python-version: ["3.12", "3.13"]
         include:
           - os: ubuntu-latest
             arch: x86_64
@@ -74,9 +55,11 @@ jobs:
             arch: arm64
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - name: Install uv
         run: pip install uv
       - name: Install dependencies
@@ -84,13 +67,24 @@ jobs:
       - name: Pytest
         env:
           PYTHONHASHSEED: "0"
+          AMINOPS_REGRESSION_NESTED: "1"
+          AMINOPS_REGRESSION_NESTED_P14: "1"
+          AMINOPS_REGRESSION_NESTED_P15: "1"
+          AMINOPS_REGRESSION_NESTED_P17: "1"
+          AMINOPS_REGRESSION_NESTED_P18: "1"
+          AMINOPS_REGRESSION_NESTED_P19: "1"
+          AMINOPS_REGRESSION_NESTED_P20: "1"
+          AMINOPS_REGRESSION_NESTED_P21: "1"
+          AMINOPS_REGRESSION_NESTED_P22: "1"
+          AMINOPS_REGRESSION_NESTED_P23: "1"
+          AMINOPS_REGRESSION_NESTED_P24: "1"
         run: python -m pytest -q --tb=short --no-header
       - name: Cross-platform oracle hash
         env:
           PYTHONHASHSEED: "0"
         run: python -m pytest tests/twin/test_cross_platform_oracle.py -v --no-cov
       - name: Upload test artifacts
-        uses: actions/upload-artifact@b4b15b6e012bee9c31e16ee8cec67dd97bc265f6  # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
         with:
           name: test-home-${{ matrix.arch }}
           path: test_home/
@@ -98,21 +92,23 @@ jobs:
       - name: P16 cross-platform oracle
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_cross_platform.py -v --no-cov
+        run: python -m pytest tests/twin/test_cross_platform.py -v --no-cov
       - name: P16 canonical differential (10k vectors)
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_canonical_diff.py -v --no-cov
+        run: python -m pytest tests/twin/test_canonical_diff.py -v --no-cov
       - name: P16 advanced testing (Hypothesis + thresholds)
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_advanced_testing.py tests/p16/test_replay.py tests/p16/test_fixed_point.py tests/p16/test_sim_validation.py -v --no-cov
+        run: python -m pytest tests/twin/test_advanced_testing.py tests/twin/test_replay.py tests/twin/test_fixed_point.py tests/twin/test_sim_validation.py -v --no-cov
 
   security:
     name: Security (gitleaks, pip-audit)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         with:
           python-version: "3.12"
@@ -121,11 +117,11 @@ jobs:
       - name: Install dependencies
         run: uv pip install --python $(which python) -e ".[dev]"
       - name: gitleaks
-        uses: gitleaks/gitleaks-action@dcedce43c6f43de0b836d1fe38946645c9c638dc  # v2
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7  # v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: pip-audit
-        run: pip-audit --strict
+        run: pip freeze --exclude-editable > /tmp/requirements.txt && pip-audit --strict -r /tmp/requirements.txt
 
   arch:
     name: Architecture (import-linter)
@@ -144,6 +140,36 @@ jobs:
       - name: import-linter
         run: lint-imports
 
+  deptry:
+    name: Dependency truth (deptry)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
+        with:
+          python-version: "3.12"
+      - name: Install uv
+        run: pip install uv
+      - name: Install dependencies
+        run: uv pip install --python $(which python) -e ".[dev]"
+      - name: deptry
+        run: uv run deptry src
+
+  skips:
+    name: Skip registry (check_skips)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
+        with:
+          python-version: "3.12"
+      - name: Install uv
+        run: pip install uv
+      - name: Install dependencies
+        run: uv pip install --python $(which python) -e ".[dev]"
+      - name: check_skips
+        run: python scripts/check_skips.py
+
   sbom:
     name: SBOM (CycloneDX)
     runs-on: ubuntu-latest
@@ -160,9 +186,9 @@ jobs:
         run: |
           cyclonedx-py environment \
             -o test_home/P16/sbom.json \
-            --format json
+            --of json
       - name: Upload SBOM artifact
-        uses: actions/upload-artifact@b4b15b6e012bee9c31e16ee8cec67dd97bc265f6  # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
         with:
           name: sbom
           path: test_home/P16/sbom.json

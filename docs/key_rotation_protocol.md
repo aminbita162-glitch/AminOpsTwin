@@ -96,6 +96,6 @@ co_signature:
 This is a **protocol skeleton** — the signing keys are placeholders
 (`[OWNER-FILL]`) and the co-signer registry is not yet populated.
 The key rotation log and co-signer registry files will be created
-in P14 or by the owner. The test (`tests/p13/test_cosignature.py`)
+in P14 or by the owner. The test (`tests/evidence/test_cosignature.py`)
 verifies that the co-signature field is optional and does not break
 verification when present.

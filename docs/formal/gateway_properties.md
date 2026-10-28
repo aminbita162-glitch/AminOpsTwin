@@ -90,9 +90,9 @@ are admitted.
 - `AggregateAPI.validate_all_records` (line 351) raises if any
   patient-level field is present in any backing record.
 
-**Test evidence.** `tests/p19/test_data_contract.py` (G19.1) verifies
+**Test evidence.** `tests/api/test_data_contract.py` (G19.1) verifies
 that patient-level fields are rejected.
-`tests/p19/test_api.py` (G19.3) verifies that the API returns 403 for
+`tests/api/test_api.py` (G19.3) verifies that the API returns 403 for
 non-aggregate retrieval attempts.
 
 ## 4. Deterministic replay identity
@@ -137,7 +137,7 @@ Executor submission.  Over-budget requests receive `GW-BUDGET-001`.
   `GW-BUDGET-001` and `Stage.BUDGET` (line 126) without invoking the
   underlying gateway.
 
-**Test evidence.** `tests/p18/test_quota.py` (G18.2) verifies that
+**Test evidence.** `tests/enterprise/test_quota.py` (G18.2) verifies that
 over-budget requests are denied at the Gateway.
 
 ## References

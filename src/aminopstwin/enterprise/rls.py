@@ -1,7 +1,7 @@
 """PostgreSQL Row-Level Security simulation (P18, G18.3).
 
-The project uses SQLite for the offline demo, so PostgreSQL RLS is
-simulated in-memory.  The simulation models the behaviour of
+Row-level security is an in-memory simulation until P27.  The
+simulation models the behaviour of
 ``CREATE POLICY ... USING (tenant_id = current_setting('app.tenant_id'))``
 on executor tables (``workflow_records``, ``checkpoints``) keyed on
 ``tenant_id``.

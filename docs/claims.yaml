@@ -23,7 +23,7 @@ claims:
   - claim_id: "CLAIM-001"
     text: "AminOpsTwin is a non-medical operational cognitive digital twin for clinical research operations."
     evidence_path: "README.md"
-    hash: "a936bfeab5825f24f4fde97d072f5be39bedcfd15c9257d92ea6b88597626fd0"
+    hash: "78c2bc560186624955237859ff6a192da1050f53867b914d88757bd118b3d146"
     category: "capability"
 
   - claim_id: "CLAIM-002"
@@ -35,7 +35,7 @@ claims:
   - claim_id: "CLAIM-003"
     text: "The system uses synthetic operational data and licensed public research material only."
     evidence_path: "fixtures/"
-    hash: "469980f8b5bcb00e1b28605aef028396b3a864f2f3f37559e1035199878e8ec7"
+    hash: "8e2f0bfa62421f3ca3042d552d48d0eb606ec76842d9170f65d937f4b6257091"
     category: "capability"
 
   - claim_id: "CLAIM-004"
@@ -72,13 +72,13 @@ claims:
   - claim_id: "CLAIM-009"
     text: "The system is not clinically validated and not production-ready."
     evidence_path: "README.md"
-    hash: "a936bfeab5825f24f4fde97d072f5be39bedcfd15c9257d92ea6b88597626fd0"
+    hash: "78c2bc560186624955237859ff6a192da1050f53867b914d88757bd118b3d146"
     category: "boundary"
 
   - claim_id: "CLAIM-010"
     text: "The system is not synchronized with a real organization."
     evidence_path: "README.md"
-    hash: "a936bfeab5825f24f4fde97d072f5be39bedcfd15c9257d92ea6b88597626fd0"
+    hash: "78c2bc560186624955237859ff6a192da1050f53867b914d88757bd118b3d146"
     category: "boundary"
 
   # === Determinism claims ===
@@ -118,13 +118,13 @@ claims:
   - claim_id: "CLAIM-015"
     text: "Stage 2 (P11-P14) is complete with spec consolidation, determinism hardening, evidence infrastructure, and shadow pilot readiness."
     evidence_path: "README.md"
-    hash: "a936bfeab5825f24f4fde97d072f5be39bedcfd15c9257d92ea6b88597626fd0"
+    hash: "78c2bc560186624955237859ff6a192da1050f53867b914d88757bd118b3d146"
     category: "capability"
 
   - claim_id: "CLAIM-016"
     text: "All claim-ids in README resolve via the standalone verify CLI without running the full system."
     evidence_path: "scripts/aminopstwin-verify"
-    hash: "79e3bad5fdc556d8e8eccab831287f3bcd4b69ce87cbec581de12b0fc43f53d9"
+    hash: "9032530f113e46b7cf8178126ffaeae67564d8203cbed622df4bf2f5b9a8d010"
     category: "capability"
 
   - claim_id: "CLAIM-017"

@@ -1,0 +1,598 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  9%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 16%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+........................................................................ [ 23%]
+........................................................................ [ 25%]
+...............................................s........................ [ 27%]
+........................................................................ [ 30%]
+........................................................................ [ 32%]
+........................................................................ [ 34%]
+..................................s..................................... [ 37%]
+......s................................................................. [ 39%]
+........................................................................ [ 41%]
+...s.................................................................... [ 44%]
+.........s.............................................................. [ 46%]
+..........................................................s............. [ 48%]
+.....................................s.................................. [ 51%]
+.........................F.......FFF..F.........FF............F......... [ 53%]
+................F....................................................... [ 55%]
+........................................................................ [ 57%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+........................................................................ [ 69%]
+........................................................................ [ 71%]
+........................................................................ [ 74%]
+........................................................................ [ 76%]
+........................................................................ [ 78%]
+........................................................................ [ 81%]
+........................................................................ [ 83%]
+........................................................................ [ 85%]
+........................................................................ [ 88%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+........................................................................ [ 99%]
+........                                                                 [100%]
+=================================== FAILURES ===================================
+________________ TestFullRegression.test_full_regression_passes ________________
+
+self = <tests.p21.test_regression.TestFullRegression object at 0x109e7ed80>
+
+    def test_full_regression_passes(self) -> None:
+        """Run the full test suite (excluding this file) and verify 0 failures."""
+        if os.environ.get(NESTED_GUARD):
+            pytest.skip("nested regression guard — P21")
+    
+        env = {
+            **os.environ,
+            "PYTHONHASHSEED": "0",
+            NESTED_GUARD: "1",
+            "AMINOPS_REGRESSION_NESTED": "1",
+            "AMINOPS_REGRESSION_NESTED_P14": "1",
+            "AMINOPS_REGRESSION_NESTED_P15": "1",
+            "AMINOPS_REGRESSION_NESTED_P17": "1",
+            "AMINOPS_REGRESSION_NESTED_P18": "1",
+            "AMINOPS_REGRESSION_NESTED_P19": "1",
+            "AMINOPS_REGRESSION_NESTED_P20": "1",
+            "AMINOPS_REGRESSION_NESTED_P22": "1",
+            "AMINOPS_REGRESSION_NESTED_P23": "1",
+            "AMINOPS_REGRESSION_NESTED_P24": "1",
+        }
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                str(REPO_ROOT / "tests"),
+                "-q",
+                "--tb=short",
+                "--no-header",
+                "-p",
+                "no:cacheprovider",
+                "--no-cov",
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p21" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p20" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p19" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p18" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p17" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p14" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p23" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p24" / "test_regression.py"),
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=1800,
+            cwd=str(REPO_ROOT),
+        )
+    
+        lines = result.stdout.strip().split("\n")
+        summary_line = ""
+        for line in lines:
+            if "passed" in line or "failed" in line or "error" in line:
+                summary_line = line
+                break
+    
+>       assert result.returncode == 0, (
+            f"full regression failed (exit {result.returncode})\n"
+            f"Summary: {summary_line}\n"
+            f"stdout:\n{result.stdout[-2000:]}\n"
+            f"stderr:\n{result.stderr[-1000:]}"
+        )
+E       AssertionError: full regression failed (exit 1)
+E         Summary: E   AssertionError: Consistency check failed:
+E         stdout:
+E         resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             from jsonschema.exceptions import RefResolutionError
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+E             class InliningResolver(jsonschema.RefResolver):
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
+E         
+E         -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+E         =========================== short test summary info ============================
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes
+E         FAILED tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases
+E         5 failed, 3086 passed, 1 skipped, 5 warnings in 26.52s
+E         
+E         stderr:
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/hermesdev/AminOpsTwin/.venv/bin/python', '-m', 'pytest', '/Users/hermesdev/AminOpsTwin/...nated::test_directive_has_all_four_stage4_phases\n5 failed, 3086 passed, 1 skipped, 5 warnings in 26.52s\n', stderr='').returncode
+
+tests/p21/test_regression.py:98: AssertionError
+__________ TestDirectiveConsistency.test_single_active_phase_sequence __________
+
+self = <tests.p22.test_directive_consistency.TestDirectiveConsistency object at 0x109e7f6e0>
+
+    def test_single_active_phase_sequence(self) -> None:
+        """directive.txt declares exactly one active phase sequence."""
+        content = DIRECTIVE.read_text()
+>       assert "P21 THROUGH P24" in content, (
+            "Active phase sequence must be P21 THROUGH P24"
+        )
+E       AssertionError: Active phase sequence must be P21 THROUGH P24
+E       assert 'P21 THROUGH P24' in '+============================================================================+\n| [DEV-AGENT]  DEVELOPER AGENT - EXEC...========\nEND OF DIRECTIVE - BATCH 1\n==============================================================================\n'
+
+tests/p22/test_directive_consistency.py:27: AssertionError
+____________ TestDirectiveConsistency.test_p1_through_p20_complete _____________
+
+self = <tests.p22.test_directive_consistency.TestDirectiveConsistency object at 0x109e7f860>
+
+    def test_p1_through_p20_complete(self) -> None:
+        """directive.txt states P1 through P20 are COMPLETE (CANDIDATE)."""
+        content = DIRECTIVE.read_text()
+>       assert "P1 through P20 are COMPLETE (CANDIDATE)" in content, (
+            "P1 through P20 must be marked COMPLETE (CANDIDATE)"
+        )
+E       AssertionError: P1 through P20 must be marked COMPLETE (CANDIDATE)
+E       assert 'P1 through P20 are COMPLETE (CANDIDATE)' in '+============================================================================+\n| [DEV-AGENT]  DEVELOPER AGENT - EXEC...========\nEND OF DIRECTIVE - BATCH 1\n==============================================================================\n'
+
+tests/p22/test_directive_consistency.py:42: AssertionError
+_______________ TestDirectiveConsistency.test_status_vocabulary ________________
+
+self = <tests.p22.test_directive_consistency.TestDirectiveConsistency object at 0x109e7f9e0>
+
+    def test_status_vocabulary(self) -> None:
+        """directive.txt uses a single consistent status vocabulary."""
+        content = DIRECTIVE.read_text()
+        status_match = re.search(r"^STATUS:\s*(.+)$", content, re.MULTILINE)
+>       assert status_match is not None, "STATUS: line must exist"
+E       AssertionError: STATUS: line must exist
+E       assert None is not None
+
+tests/p22/test_directive_consistency.py:50: AssertionError
+___________ TestDirectiveConsistency.test_consistency_script_passes ____________
+
+self = <tests.p22.test_directive_consistency.TestDirectiveConsistency object at 0x109e7fe60>
+
+    def test_consistency_script_passes(self) -> None:
+        """The consistency check script passes."""
+        import subprocess
+        import sys
+    
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(REPO_ROOT / "scripts" / "check_directive_consistency.py"),
+            ],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+>       assert result.returncode == 0, (
+            f"Consistency check failed:\n{result.stdout}\n{result.stderr}"
+        )
+E       AssertionError: Consistency check failed:
+E         === DIRECTIVE CONSISTENCY CHECK: FAIL ===
+E           - Active phase sequence 'P21 THROUGH P24' not found
+E           - No STATUS: line found in directive.txt
+E         
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/hermesdev/AminOpsTwin/.venv/bin/python', '/Users/hermesdev/AminOpsTwin/scripts/check_di...L ===\n  - Active phase sequence 'P21 THROUGH P24' not found\n  - No STATUS: line found in directive.txt\n", stderr='').returncode
+
+tests/p22/test_directive_consistency.py:102: AssertionError
+______ TestOwnerFillEliminated.test_directive_has_all_four_stage4_phases _______
+
+self = <tests.p22.test_owner_fill_eliminated.TestOwnerFillEliminated object at 0x109eb4d70>
+
+    def test_directive_has_all_four_stage4_phases(self) -> None:
+        """directive.txt defines all four Stage 4 phases (P21–P24)."""
+        content = DIRECTIVE.read_text()
+        for phase in ("P21", "P22", "P23", "P24"):
+>           assert phase in content, (
+                f"directive.txt must define phase {phase}"
+            )
+E           AssertionError: directive.txt must define phase P21
+E           assert 'P21' in '+============================================================================+\n| [DEV-AGENT]  DEVELOPER AGENT - EXEC...========\nEND OF DIRECTIVE - BATCH 1\n==============================================================================\n'
+
+tests/p22/test_owner_fill_eliminated.py:101: AssertionError
+________________ TestFullRegression.test_full_regression_passes ________________
+
+self = <tests.p22.test_regression.TestFullRegression object at 0x109eb51f0>
+
+    def test_full_regression_passes(self) -> None:
+        """Run the full test suite (excluding this file) and verify 0 failures."""
+        if os.environ.get(NESTED_GUARD):
+            pytest.skip("nested regression guard — P22")
+    
+        env = {
+            **os.environ,
+            "PYTHONHASHSEED": "0",
+            NESTED_GUARD: "1",
+            "AMINOPS_REGRESSION_NESTED": "1",
+            "AMINOPS_REGRESSION_NESTED_P14": "1",
+            "AMINOPS_REGRESSION_NESTED_P15": "1",
+            "AMINOPS_REGRESSION_NESTED_P17": "1",
+            "AMINOPS_REGRESSION_NESTED_P18": "1",
+            "AMINOPS_REGRESSION_NESTED_P19": "1",
+            "AMINOPS_REGRESSION_NESTED_P20": "1",
+            "AMINOPS_REGRESSION_NESTED_P21": "1",
+            "AMINOPS_REGRESSION_NESTED_P23": "1",
+            "AMINOPS_REGRESSION_NESTED_P24": "1",
+        }
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                str(REPO_ROOT / "tests"),
+                "-q",
+                "--tb=short",
+                "--no-header",
+                "-p",
+                "no:cacheprovider",
+                "--no-cov",
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p23" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p24" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p21" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p20" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p19" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p18" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p17" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p14" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=1800,
+            cwd=str(REPO_ROOT),
+        )
+    
+        lines = result.stdout.strip().split("\n")
+        summary_line = ""
+        for line in lines:
+            if "passed" in line or "failed" in line or "error" in line:
+                summary_line = line
+                break
+    
+>       assert result.returncode == 0, (
+            f"full regression failed (exit {result.returncode})\n"
+            f"Summary: {summary_line}\n"
+            f"stdout:\n{result.stdout[-2000:]}\n"
+            f"stderr:\n{result.stderr[-1000:]}"
+        )
+E       AssertionError: full regression failed (exit 1)
+E         Summary: E   AssertionError: Consistency check failed:
+E         stdout:
+E         resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             from jsonschema.exceptions import RefResolutionError
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+E             class InliningResolver(jsonschema.RefResolver):
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
+E         
+E         -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+E         =========================== short test summary info ============================
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes
+E         FAILED tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases
+E         5 failed, 3086 passed, 1 skipped, 5 warnings in 26.97s
+E         
+E         stderr:
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/hermesdev/AminOpsTwin/.venv/bin/python', '-m', 'pytest', '/Users/hermesdev/AminOpsTwin/...nated::test_directive_has_all_four_stage4_phases\n5 failed, 3086 passed, 1 skipped, 5 warnings in 26.97s\n', stderr='').returncode
+
+tests/p22/test_regression.py:98: AssertionError
+________________ TestFullRegression.test_full_regression_passes ________________
+
+self = <tests.p23.test_regression.TestFullRegression object at 0x109eb6db0>
+
+    def test_full_regression_passes(self) -> None:
+        """Run the full test suite (excluding this file) and verify 0 failures."""
+        if os.environ.get(NESTED_GUARD):
+            pytest.skip("nested regression guard — P23")
+    
+        env = {
+            **os.environ,
+            "PYTHONHASHSEED": "0",
+            NESTED_GUARD: "1",
+            "AMINOPS_REGRESSION_NESTED": "1",
+            "AMINOPS_REGRESSION_NESTED_P14": "1",
+            "AMINOPS_REGRESSION_NESTED_P15": "1",
+            "AMINOPS_REGRESSION_NESTED_P17": "1",
+            "AMINOPS_REGRESSION_NESTED_P18": "1",
+            "AMINOPS_REGRESSION_NESTED_P19": "1",
+            "AMINOPS_REGRESSION_NESTED_P20": "1",
+            "AMINOPS_REGRESSION_NESTED_P21": "1",
+            "AMINOPS_REGRESSION_NESTED_P22": "1",
+            "AMINOPS_REGRESSION_NESTED_P24": "1",
+        }
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                str(REPO_ROOT / "tests"),
+                "-q",
+                "--tb=short",
+                "--no-header",
+                "-p",
+                "no:cacheprovider",
+                "--no-cov",
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p23" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p24" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p21" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p20" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p19" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p18" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p17" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p14" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=1800,
+            cwd=str(REPO_ROOT),
+        )
+    
+        lines = result.stdout.strip().split("\n")
+        summary_line = ""
+        for line in lines:
+            if "passed" in line or "failed" in line or "error" in line:
+                summary_line = line
+                break
+    
+>       assert result.returncode == 0, (
+            f"full regression failed (exit {result.returncode})\n"
+            f"Summary: {summary_line}\n"
+            f"stdout:\n{result.stdout[-2000:]}\n"
+            f"stderr:\n{result.stderr[-1000:]}"
+        )
+E       AssertionError: full regression failed (exit 1)
+E         Summary: E   AssertionError: Consistency check failed:
+E         stdout:
+E         resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             from jsonschema.exceptions import RefResolutionError
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+E             class InliningResolver(jsonschema.RefResolver):
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
+E         
+E         -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+E         =========================== short test summary info ============================
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes
+E         FAILED tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases
+E         5 failed, 3086 passed, 1 skipped, 5 warnings in 26.85s
+E         
+E         stderr:
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/hermesdev/AminOpsTwin/.venv/bin/python', '-m', 'pytest', '/Users/hermesdev/AminOpsTwin/...nated::test_directive_has_all_four_stage4_phases\n5 failed, 3086 passed, 1 skipped, 5 warnings in 26.85s\n', stderr='').returncode
+
+tests/p23/test_regression.py:98: AssertionError
+________________ TestFullRegression.test_full_regression_passes ________________
+
+self = <tests.p24.test_regression.TestFullRegression object at 0x109eecce0>
+
+    def test_full_regression_passes(self) -> None:
+        """Run the full test suite (excluding this file) and verify 0 failures."""
+        if os.environ.get(NESTED_GUARD):
+            pytest.skip("nested regression guard — P24")
+    
+        env = {
+            **os.environ,
+            "PYTHONHASHSEED": "0",
+            NESTED_GUARD: "1",
+            "AMINOPS_REGRESSION_NESTED": "1",
+            "AMINOPS_REGRESSION_NESTED_P14": "1",
+            "AMINOPS_REGRESSION_NESTED_P15": "1",
+            "AMINOPS_REGRESSION_NESTED_P17": "1",
+            "AMINOPS_REGRESSION_NESTED_P18": "1",
+            "AMINOPS_REGRESSION_NESTED_P19": "1",
+            "AMINOPS_REGRESSION_NESTED_P20": "1",
+            "AMINOPS_REGRESSION_NESTED_P21": "1",
+            "AMINOPS_REGRESSION_NESTED_P22": "1",
+            "AMINOPS_REGRESSION_NESTED_P23": "1",
+        }
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                str(REPO_ROOT / "tests"),
+                "-q",
+                "--tb=short",
+                "--no-header",
+                "-p",
+                "no:cacheprovider",
+                "--no-cov",
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p24" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p23" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p22" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p21" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p20" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p19" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p18" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p17" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p14" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p15" / "test_regression.py"),
+                "--ignore",
+                str(REPO_ROOT / "tests" / "p10" / "test_regression.py"),
+            ],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=1800,
+            cwd=str(REPO_ROOT),
+        )
+    
+        lines = result.stdout.strip().split("\n")
+        summary_line = ""
+        for line in lines:
+            if "passed" in line or "failed" in line or "error" in line:
+                summary_line = line
+                break
+    
+>       assert result.returncode == 0, (
+            f"full regression failed (exit {result.returncode})\n"
+            f"Summary: {summary_line}\n"
+            f"stdout:\n{result.stdout[-2000:]}\n"
+            f"stderr:\n{result.stderr[-1000:]}"
+        )
+E       AssertionError: full regression failed (exit 1)
+E         Summary: E   AssertionError: Consistency check failed:
+E         stdout:
+E         resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             from jsonschema.exceptions import RefResolutionError
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+E             class InliningResolver(jsonschema.RefResolver):
+E         
+E         .venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89
+E           /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+E             SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
+E         
+E         -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+E         =========================== short test summary info ============================
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary
+E         FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes
+E         FAILED tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases
+E         5 failed, 3086 passed, 1 skipped, 5 warnings in 26.67s
+E         
+E         stderr:
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/hermesdev/AminOpsTwin/.venv/bin/python', '-m', 'pytest', '/Users/hermesdev/AminOpsTwin/...nated::test_directive_has_all_four_stage4_phases\n5 failed, 3086 passed, 1 skipped, 5 warnings in 26.67s\n', stderr='').returncode
+
+tests/p24/test_regression.py:98: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/generation/coverage.py:305: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    ref_error: type[Exception] = jsonschema.RefResolutionError,
+
+.venv/lib/python3.12/site-packages/starlette/testclient.py:37
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:11
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:11: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    from jsonschema.exceptions import RefResolutionError
+
+.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/references.py:51: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+    class InliningResolver(jsonschema.RefResolver):
+
+.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89
+  /Users/hermesdev/AminOpsTwin/.venv/lib/python3.12/site-packages/schemathesis/specs/openapi/schemas.py:89: DeprecationWarning: jsonschema.exceptions.RefResolutionError is deprecated as of version 4.18.0. If you wish to catch potential reference resolution errors, directly catch referencing.exceptions.Unresolvable.
+    SCHEMA_PARSING_ERRORS = (KeyError, AttributeError, jsonschema.exceptions.RefResolutionError)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/p21/test_regression.py::TestFullRegression::test_full_regression_passes
+FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_single_active_phase_sequence
+FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_p1_through_p20_complete
+FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_status_vocabulary
+FAILED tests/p22/test_directive_consistency.py::TestDirectiveConsistency::test_consistency_script_passes
+FAILED tests/p22/test_owner_fill_eliminated.py::TestOwnerFillEliminated::test_directive_has_all_four_stage4_phases
+FAILED tests/p22/test_regression.py::TestFullRegression::test_full_regression_passes
+FAILED tests/p23/test_regression.py::TestFullRegression::test_full_regression_passes
+FAILED tests/p24/test_regression.py::TestFullRegression::test_full_regression_passes
+9 failed, 3088 passed, 7 skipped, 5 warnings in 144.54s (0:02:24)
+EXIT:1

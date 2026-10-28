@@ -1,8 +1,9 @@
 """Discrete-event/queueing simulation with replay oracle (P3, §3.1).
 
-The simulation engine uses SimPy for discrete-event queueing
-simulation. It is deterministic: given the same seed, arrival stream,
-capacities and service times, the final state hash is identical.
+The simulation engine is a purpose-built discrete-event queueing
+simulation implemented with Python's ``random.Random`` (seeded). It is
+deterministic: given the same seed, arrival stream, capacities and
+service times, the final state hash is identical.
 
 The replay oracle verifies that re-running the simulation from the
 same seed produces identical state hashes at every step (G3.1,

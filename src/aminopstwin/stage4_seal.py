@@ -1,11 +1,15 @@
-"""Stage 4 Seal — signed document with git tree hash and claim-ids (P24).
+"""Stage 4 Seal — integrity-tagged document with git tree hash and claim-ids (P24).
 
-The Stage 4 Seal is a signed document containing:
+The Stage 4 Seal is a document containing:
 
 1. The git tree hash of HEAD at the Stage 4 close.
 2. The list of active claim-ids from ``docs/claims.yaml``.
-3. An HMAC-SHA256 signature over the (tree_hash, claim_ids) pair
+3. An HMAC-SHA256 integrity tag over the (tree_hash, claim_ids) pair
    using a provided signing key.
+
+The integrity tag is a symmetric HMAC, not an asymmetric signature.
+Asymmetric signatures arrive in P32.  The field name ``signature``
+is retained for backward compatibility of the on-disk format.
 
 The seal is written to ``docs/stage4_seal.json`` and can be verified
 by :func:`verify_stage4_seal`.

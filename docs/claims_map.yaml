@@ -1,0 +1,94 @@
+version: "1.0"
+
+# claims_map.yaml — maps every README claim-id and invariant row to
+# an existing module path and an existing test id.
+# The claim guard (tests/governance/test_claim_guard.py) verifies
+# that every mapped module and test exists, and that the README
+# contains no claim-id or invariant row that has no mapping here.
+
+claims:
+  CLAIM-001:
+    readme_text: "synthetic operational data and licensed public research material only"
+    module: src/aminopstwin/fixtures_gen/__init__.py
+    test: tests/api/test_synthetic_generator.py
+
+  CLAIM-003:
+    readme_text: "synthetic operational data and licensed public research material only"
+    module: src/aminopstwin/fixtures_gen/__init__.py
+    test: tests/api/test_synthetic_generator.py
+
+  CLAIM-004:
+    readme_text: "Five agents issue typed envelopes that pass through the deny-by-default Policy Gateway"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_gateway_purity.py
+
+  CLAIM-005:
+    readme_text: "No agent holds a direct handle to the database or the Executor store"
+    module: src/aminopstwin/agents/base.py
+    test: tests/agents/test_agents.py
+
+  CLAIM-006:
+    readme_text: "not a medical device, does not perform diagnosis, prognosis, treatment"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_deny_default.py
+
+  CLAIM-008:
+    readme_text: "uses no real patient or participant data"
+    module: src/aminopstwin/tokens/prefilter.py
+    test: tests/unit/test_prefilter.py
+
+  CLAIM-009:
+    readme_text: "not clinically validated and not production-ready"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_deny_default.py
+
+  CLAIM-010:
+    readme_text: "not synchronized with a real organization"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_deny_default.py
+
+  CLAIM-016:
+    readme_text: "Every claim-id in this README resolves via the standalone verify CLI"
+    module: src/aminopstwin/evidence/registry.py
+    test: tests/evidence/test_registry.py
+
+invariants:
+  - row: "Deny-by-default"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_deny_default.py
+
+  - row: "Gateway purity"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_gateway_purity.py
+
+  - row: "Deterministic replay"
+    module: src/aminopstwin/twin/replay.py
+    test: tests/twin/test_replay.py
+
+  - row: "Cross-platform determinism"
+    module: src/aminopstwin/twin/cross_process_rng.py
+    test: tests/twin/test_cross_platform_oracle.py
+
+  - row: "No floating-point in hashed state"
+    module: src/aminopstwin/twin/fixed_point.py
+    test: tests/twin/test_fixed_point.py
+
+  - row: "Canonical serialization"
+    module: src/aminopstwin/contracts/canonical.py
+    test: tests/test_canonical_vectors.py
+
+  - row: "No real patient data"
+    module: src/aminopstwin/tokens/prefilter.py
+    test: tests/unit/test_prefilter.py
+
+  - row: "Non-medical boundary"
+    module: src/aminopstwin/gateway/gateway.py
+    test: tests/gateway/test_deny_default.py
+
+  - row: "Quota enforcement"
+    module: src/aminopstwin/gateway/quota.py
+    test: tests/enterprise/test_quota.py
+
+  - row: "Tenant isolation"
+    module: src/aminopstwin/enterprise/tenant.py
+    test: tests/enterprise/test_tenant_isolation.py

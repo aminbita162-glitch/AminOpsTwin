@@ -144,13 +144,13 @@ reflects the actual implementation state after testing.
 | ruff check | All checks passed | `ruff check src/ tests/` |
 | import-linter | Gateway purity KEPT, 1/1 contracts | `lint-imports` |
 | Adversarial corpus | >= 200 cases (G5.1) | `fixtures/adversarial_corpus.json` |
-| Tenant isolation | 40 attempts, 0 successes (G5.2) | `tests/p8/` |
-| Export verification | 100% files hash-verified (G5.3) | `tests/p9/test_exports.py` |
-| API fuzz | >= 500 cases, 0 5xx, 0 violations (G5.8) | `tests/p8/test_api_fuzz.py` |
-| Load smoke | 50 concurrent, 0 corruption (G5.6) | `tests/p8/test_load_smoke.py` |
+| Tenant isolation | 40 attempts, 0 successes (G5.2) | `tests/enterprise/` |
+| Export verification | 100% files hash-verified (G5.3) | `tests/integration/test_exports.py` |
+| API fuzz | >= 500 cases, 0 5xx, 0 violations (G5.8) | `tests/enterprise/test_api_fuzz.py` |
+| Load smoke | 50 concurrent, 0 corruption (G5.6) | `tests/enterprise/test_load_smoke.py` |
 | Clean-room install | 11 steps (G6.1) | `test_home/P9/` |
 | Backup/restore drill | Hash match (G6.3) | `test_home/P9/` |
-| Full regression | P1-P9 all pass (G6.6) | `tests/p10/test_regression.py` |
+| Full regression | P1-P9 all pass (G6.6) | `tests/governance/test_regression_p10.py` |
 
 ## Limitations
 

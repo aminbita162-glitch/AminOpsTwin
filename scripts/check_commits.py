@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""check_commits.py — commit-discipline checker (§21.5).
+"""check_commits.py — commit-discipline checker (§21.5, P25 generalised).
 
 Usage:
     python3 scripts/check_commits.py <PHASE> [--bisect]
@@ -10,6 +10,12 @@ Checks:
     C4: every gate and capability due in the phase is referenced at least once
     C7: zero merge commits, linear history
     C8: bisectability sample — checks out each sampled commit and runs pytest -m smoke
+
+P25 generalisation:
+    - Accept any phase number P1 to P99.
+    - Load valid gate IDs from docs/gates.yaml (single source of truth).
+    - Load capability IDs from docs/capability_catalog.yaml.
+    - PHASE_GATES is derived from gates.yaml (the 'phase' field of each gate).
 """
 
 from __future__ import annotations
@@ -20,80 +26,70 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-# Commit message regex (§21.3)
-# Phase component: P(?:[1-9]|10)
-# REF: R01-R30, N01-N30, G1.1-G6.9, §section, INFRA, DOC
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+_GATES_YAML = _REPO_ROOT / "docs" / "gates.yaml"
+_CAPABILITY_CATALOG = _REPO_ROOT / "docs" / "capability_catalog.yaml"
+
+# Commit message regex (§21.3, generalised for P1–P99).
+# Phase component: P(?:[1-9]|[1-9]\d)  → P1 through P99
+# REF: R01-R30, N01-N30, G<phase>.<k>, §section, INFRA, DOC
 COMMIT_REGEX = re.compile(
-    r"^P(?:[1-9]|1[0-9]|2[0-9]): .{8,100} \("
-    r"(?:[RN](?:0[1-9]|[12][0-9]|30)|G[1-6]\.[1-9][0-9]?|G1[0-9]\.[1-9][0-9]?|G2[0-9]\.[1-9][0-9]?|§[0-9]+(?:\.[0-9]+)*|INFRA|DOC)"
-    r"(?:, (?:[RN](?:0[1-9]|[12][0-9]|30)|G[1-6]\.[1-9][0-9]?|G1[0-9]\.[1-9][0-9]?|G2[0-9]\.[1-9][0-9]?|§[0-9]+(?:\.[0-9]+)*|INFRA|DOC))*\)$"
+    r"^P(?:[1-9]|[1-9]\d): .{8,100} \("
+    r"(?:[RN](?:0[1-9]|[12]\d|30)|G\d+\.\d+|§\d+(?:\.\d+)*|INFRA|DOC)"
+    r"(?:, (?:[RN](?:0[1-9]|[12]\d|30)|G\d+\.\d+|§\d+(?:\.\d+)*|INFRA|DOC))*\)$"
 )
 
-# Valid gate IDs from gates.yaml
-GATE_IDS = {
-    "G1.1", "G1.2", "G1.3", "G1.4", "G1.5", "G1.6", "G1.7", "G1.8", "G1.9",
-    "G1.10", "G1.11", "G1.12",
-    "G2.1", "G2.2", "G2.3", "G2.4", "G2.5", "G2.6", "G2.7", "G2.8", "G2.9", "G2.10",
-    "G3.1", "G3.2", "G3.3", "G3.4", "G3.5", "G3.6", "G3.7", "G3.8", "G3.9", "G3.10",
-    "G4.1", "G4.2", "G4.3", "G4.4", "G4.5", "G4.6",
-    "G4.13", "G4.14", "G4.15", "G4.16",
-    "G4.7", "G4.8", "G4.9",
-    "G4.10", "G4.11",
-    "G4.12",
-    "G5.1", "G5.2", "G5.3", "G5.4", "G5.5", "G5.6", "G5.7", "G5.8",
-    "G6.1", "G6.2", "G6.3", "G6.4", "G6.5", "G6.6", "G6.7", "G6.8", "G6.9",
-    "G11.1", "G11.2", "G11.3", "G11.4", "G11.5",
-    "G12.1", "G12.2", "G12.3", "G12.4", "G12.5",
-    "G13.1", "G13.2", "G13.3", "G13.4", "G13.5",
-    "G14.1", "G14.2", "G14.3", "G14.4",
-    "G15.1", "G15.2", "G15.3", "G15.4", "G15.5", "G15.6",
-    "G16.1", "G16.2", "G16.3", "G16.4", "G16.5", "G16.6",
-    "G17.1", "G17.2", "G17.3", "G17.4", "G17.5",
-    "G18.1", "G18.2", "G18.3", "G18.4", "G18.5",
-    "G19.1", "G19.2", "G19.3", "G19.4", "G19.5",
-    "G20.1", "G20.2", "G20.3", "G20.4", "G20.5",
-    "G21.1", "G21.2", "G21.3",
-    "G22.1", "G22.2", "G22.3", "G22.4",
-    "G23.1", "G23.2", "G23.3", "G23.4", "G23.5",
-    "G24.1", "G24.2", "G24.3", "G24.4",
-    "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9",
-}
 
-# Valid capability IDs (R01-R30, N01-N30)
-CAPABILITY_IDS = set()
-for i in range(1, 31):
-    CAPABILITY_IDS.add(f"R{i:02d}")
-    CAPABILITY_IDS.add(f"N{i:02d}")
+def _load_gate_ids_from_yaml() -> set[str]:
+    """Load all gate IDs from docs/gates.yaml as the single source of truth."""
+    if not _GATES_YAML.exists():
+        return set()
+    text = _GATES_YAML.read_text()
+    ids: set[str] = set()
+    for m in re.finditer(r'^\s+-\s+id:\s*"?(G\d+\.\d+)"?', text, re.MULTILINE):
+        ids.add(m.group(1))
+    # Common gates C1–C9 are also valid refs
+    for m in re.finditer(r'^\s+-\s+id:\s+"?(C\d+)"?', text, re.MULTILINE):
+        ids.add(m.group(1))
+    return ids
 
+
+def _load_phase_gates_from_yaml() -> dict[str, set[str]]:
+    """Derive PHASE_GATES from gates.yaml: phase → set of gate ids."""
+    if not _GATES_YAML.exists():
+        return {}
+    text = _GATES_YAML.read_text()
+    phase_gates: dict[str, set[str]] = defaultdict(set)
+    # Match lines like:  - id: "G25.1" followed by  phase: "P25"
+    entries = re.finditer(
+        r'-\s+id:\s*"?(G\d+\.\d+)"?\s*\n\s*phase:\s*"?(P\d+)"?',
+        text,
+    )
+    for m in entries:
+        gate_id = m.group(1)
+        phase = m.group(2)
+        phase_gates[phase].add(gate_id)
+    return dict(phase_gates)
+
+
+def _load_capability_ids_from_yaml() -> set[str]:
+    """Load capability IDs from docs/capability_catalog.yaml."""
+    if not _CAPABILITY_CATALOG.exists():
+        return set()
+    text = _CAPABILITY_CATALOG.read_text()
+    ids: set[str] = set()
+    for m in re.finditer(r"^\s*-\s+id:\s*(R\d+)", text, re.MULTILINE):
+        ids.add(m.group(1))
+    for m in re.finditer(r"^\s*-\s+id:\s*(N\d+)", text, re.MULTILINE):
+        ids.add(m.group(1))
+    return ids
+
+
+# Load from the single source of truth at import time.
+GATE_IDS = _load_gate_ids_from_yaml()
+CAPABILITY_IDS = _load_capability_ids_from_yaml()
 ALL_VALID_REFS = GATE_IDS | CAPABILITY_IDS | {"INFRA", "DOC"}
-
-# Gates due in each phase
-PHASE_GATES = {
-    "P1": {"G1.1", "G1.2", "G1.3", "G1.4", "G1.5", "G1.6", "G1.7", "G1.8", "G1.9", "G1.10", "G1.11", "G1.12"},
-    "P2": {"G2.1", "G2.2", "G2.3", "G2.4", "G2.5", "G2.6", "G2.7", "G2.8", "G2.9", "G2.10"},
-    "P3": {"G3.1", "G3.2", "G3.3", "G3.4", "G3.5", "G3.6", "G3.7", "G3.8", "G3.9", "G3.10"},
-    "P4": {"G4.1", "G4.2", "G4.3", "G4.4", "G4.5", "G4.6", "G4.13", "G4.14", "G4.15", "G4.16"},
-    "P5": {"G4.7", "G4.8", "G4.9"},
-    "P8": {"G5.1", "G5.2", "G5.3", "G5.4", "G5.5", "G5.6", "G5.7", "G5.8"},
-    "P6": {"G4.10", "G4.11"},
-    "P7": {"G4.12"},
-    "P9": {"G6.1", "G6.2", "G6.3", "G6.4", "G6.5", "G6.8", "G6.9"},
-    "P10": {"G6.6", "G6.7"},
-    "P11": {"G11.1", "G11.2", "G11.3", "G11.4", "G11.5"},
-    "P12": {"G12.1", "G12.2", "G12.3", "G12.4", "G12.5"},
-    "P13": {"G13.1", "G13.2", "G13.3", "G13.4", "G13.5"},
-    "P14": {"G14.1", "G14.2", "G14.3", "G14.4"},
-    "P15": {"G15.1", "G15.2", "G15.3", "G15.4", "G15.5", "G15.6"},
-    "P16": {"G16.1", "G16.2", "G16.3", "G16.4", "G16.5", "G16.6"},
-    "P17": {"G17.1", "G17.2", "G17.3", "G17.4", "G17.5"},
-    "P18": {"G18.1", "G18.2", "G18.3", "G18.4", "G18.5"},
-    "P19": {"G19.1", "G19.2", "G19.3", "G19.4", "G19.5"},
-    "P20": {"G20.1", "G20.2", "G20.3", "G20.4", "G20.5"},
-    "P21": {"G21.1", "G21.2", "G21.3"},
-    "P22": {"G22.1", "G22.2", "G22.3", "G22.4"},
-    "P23": {"G23.1", "G23.2", "G23.3", "G23.4", "G23.5"},
-    "P24": {"G24.1", "G24.2", "G24.3", "G24.4"},
-}
+PHASE_GATES = _load_phase_gates_from_yaml()
 
 
 def get_phase_commits(phase: str) -> list[tuple[str, str]]:
@@ -104,7 +100,7 @@ def get_phase_commits(phase: str) -> list[tuple[str, str]]:
         text=True,
         check=True,
     )
-    commits = []
+    commits: list[tuple[str, str]] = []
     for line in result.stdout.strip().split("\n"):
         if not line:
             continue
@@ -138,7 +134,7 @@ def check_phase(phase: str, bisect: bool = False) -> int:
     failures: list[str] = []
 
     # C2: regex match
-    regex_failures = []
+    regex_failures: list[tuple[str, str]] = []
     for h, msg in commits:
         if not COMMIT_REGEX.match(msg):
             regex_failures.append((h, msg))
@@ -150,7 +146,7 @@ def check_phase(phase: str, bisect: bool = False) -> int:
         print(f"  C2 regex: PASS ({len(commits)} commits)")
 
     # C3: every referenced ID exists
-    ref_failures = []
+    ref_failures: list[tuple[str, str, str]] = []
     for h, msg in commits:
         refs = extract_refs(msg)
         for r in refs:
@@ -163,12 +159,12 @@ def check_phase(phase: str, bisect: bool = False) -> int:
         for h, r, msg in ref_failures:
             failures.append(f"  {h}: invalid ref {r!r} in {msg!r}")
     else:
-        print(f"  C3 refs: PASS")
+        print("  C3 refs: PASS")
 
     # C4: every gate due in phase is referenced at least once
     due_gates = PHASE_GATES.get(phase, set())
     referenced_gates: set[str] = set()
-    for h, msg in commits:
+    for _h, msg in commits:
         refs = extract_refs(msg)
         for r in refs:
             if r in GATE_IDS:
@@ -187,7 +183,9 @@ def check_phase(phase: str, bisect: bool = False) -> int:
         check=True,
     )
     if merge_result.stdout.strip():
-        failures.append(f"C7: {len(merge_result.stdout.strip().splitlines())} merge commits found")
+        failures.append(
+            f"C7: {len(merge_result.stdout.strip().splitlines())} merge commits found"
+        )
     else:
         print("  C7 linear history: PASS")
 
@@ -196,21 +194,15 @@ def check_phase(phase: str, bisect: bool = False) -> int:
         total = len(commits)
         sample_size = min(total, max(5, (total * 10 + 99) // 100))
         print(f"  C8 bisect: sampling {sample_size} of {total} commits...")
-        # Deterministically sample every Nth commit
         step = max(1, total // sample_size)
         sampled = [commits[i] for i in range(0, total, step)][:sample_size]
-        bisect_failures = []
+        bisect_failures: list[tuple[str, str, str]] = []
         for h, msg in sampled:
-            # Checkout and run smoke tests
-            checkout_result = subprocess.run(
-                ["git", "stash"],
-                capture_output=True,
-                text=True,
+            subprocess.run(
+                ["git", "stash"], capture_output=True, text=True
             )
             checkout_result = subprocess.run(
-                ["git", "checkout", h],
-                capture_output=True,
-                text=True,
+                ["git", "checkout", h], capture_output=True, text=True
             )
             if checkout_result.returncode != 0:
                 bisect_failures.append((h, msg, "checkout failed"))
@@ -223,9 +215,12 @@ def check_phase(phase: str, bisect: bool = False) -> int:
             )
             if test_result.returncode != 0:
                 bisect_failures.append((h, msg, "smoke tests failed"))
-            # Restore
-            subprocess.run(["git", "checkout", "-"], capture_output=True, text=True)
-            subprocess.run(["git", "stash", "pop"], capture_output=True, text=True)
+            subprocess.run(
+                ["git", "checkout", "-"], capture_output=True, text=True
+            )
+            subprocess.run(
+                ["git", "stash", "pop"], capture_output=True, text=True
+            )
 
         if bisect_failures:
             failures.append(f"C8: {len(bisect_failures)} sampled commits fail smoke:")
@@ -234,7 +229,6 @@ def check_phase(phase: str, bisect: bool = False) -> int:
         else:
             print(f"  C8 bisect: PASS ({sample_size} sampled)")
 
-    # Final report
     if failures:
         print("\n=== FAILURES ===")
         for f in failures:

@@ -76,9 +76,12 @@ def compute_file_hash(path: Path) -> str:
     hasher = hashlib.sha256()
     if path.is_dir():
         # Hash all files in the directory, sorted for determinism.
+        # Use relative paths (relative to the directory) so the hash
+        # is independent of the absolute repo location.
         for fpath in sorted(path.rglob("*")):
             if fpath.is_file():
-                hasher.update(fpath.as_posix().encode("utf-8"))
+                rel = fpath.relative_to(path)
+                hasher.update(rel.as_posix().encode("utf-8"))
                 hasher.update(b"\0")
                 hasher.update(fpath.read_bytes())
     elif path.is_file():
@@ -197,7 +200,8 @@ def _verify_graph(claims_path: Path, repo_root: Path) -> int:
         if ev_path.is_dir():
             for fp in sorted(ev_path.rglob("*")):
                 if fp.is_file():
-                    hasher.update(fp.as_posix().encode("utf-8"))
+                    rel = fp.relative_to(ev_path)
+                    hasher.update(rel.as_posix().encode("utf-8"))
                     hasher.update(b"\0")
                     hasher.update(fp.read_bytes())
         else:

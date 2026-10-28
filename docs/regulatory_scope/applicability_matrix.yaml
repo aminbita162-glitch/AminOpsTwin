@@ -73,7 +73,7 @@ entries:
     external_interfaces: ["source_allowlist.yaml"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_source_rights.py"
+    boundary_tests: "tests/governance/test_source_rights.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"
 
@@ -89,7 +89,7 @@ entries:
     external_interfaces: ["MemoryStore"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_memory.py"
+    boundary_tests: "tests/governance/test_memory.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"
 
@@ -105,7 +105,7 @@ entries:
     external_interfaces: ["ExperienceStore"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_experience.py"
+    boundary_tests: "tests/governance/test_experience.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"
 
@@ -121,7 +121,7 @@ entries:
     external_interfaces: ["assurance/"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_transparency.py"
+    boundary_tests: "tests/governance/test_transparency.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -137,7 +137,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_scope.py"
+    boundary_tests: "tests/governance/test_scope.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -153,7 +153,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_scope.py"
+    boundary_tests: "tests/governance/test_scope.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -169,7 +169,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_scope.py"
+    boundary_tests: "tests/governance/test_scope.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -185,7 +185,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_scope.py"
+    boundary_tests: "tests/governance/test_scope.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -201,7 +201,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_transparency.py"
+    boundary_tests: "tests/governance/test_transparency.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -217,7 +217,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_transparency.py"
+    boundary_tests: "tests/governance/test_transparency.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -233,7 +233,7 @@ entries:
     external_interfaces: ["dashboard API"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p4/test_experience.py"
+    boundary_tests: "tests/governance/test_experience.py"
     reviewer: "[OWNER-FILL]"
     status: "SPECIFIED"
 
@@ -256,7 +256,7 @@ p5_capabilities:
     external_interfaces: ["ExperimentDesigner"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p5/test_experiment.py"
+    boundary_tests: "tests/twin/test_experiment.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"
 
@@ -272,7 +272,7 @@ p5_capabilities:
     external_interfaces: ["ImpactTracker", "DependencyGraph"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p5/test_impact.py"
+    boundary_tests: "tests/twin/test_impact.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"
 
@@ -288,6 +288,6 @@ p5_capabilities:
     external_interfaces: ["ExperimentSelector"]
     medical_device_interaction: "none"
     marketing_claims: "none"
-    boundary_tests: "tests/p5/test_selection.py"
+    boundary_tests: "tests/twin/test_selection.py"
     reviewer: "[OWNER-FILL]"
     status: "IMPLEMENTED_UNVERIFIED"

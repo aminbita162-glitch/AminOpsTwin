@@ -28,7 +28,7 @@ from pathlib import Path
 from typing import Any
 
 try:
-    import yaml  # type: ignore[import-untyped]
+    import yaml
 except ImportError:  # pragma: no cover
     yaml = None  # type: ignore[assignment, unused-ignore]
 
@@ -52,7 +52,8 @@ def compute_file_hash(path: Path) -> str:
     if path.is_dir():
         for fpath in sorted(path.rglob("*")):
             if fpath.is_file():
-                hasher.update(fpath.as_posix().encode("utf-8"))
+                rel = fpath.relative_to(path)
+                hasher.update(rel.as_posix().encode("utf-8"))
                 hasher.update(b"\0")
                 hasher.update(fpath.read_bytes())
     elif path.is_file():
