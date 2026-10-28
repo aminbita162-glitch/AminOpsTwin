@@ -24,15 +24,8 @@ _app_wrapper = DashboardApp(
 _app: FastAPI = _app_wrapper.app
 
 #: Create the schemathesis test harness from the ASGI app.
-#: ``schema_path`` is the URL path where the OpenAPI JSON is served
-#: by FastAPI (``/openapi.json`` by default).  ``force_schema_version``
-#: downgrades the 3.1.0 schema to 3.0.x for schemathesis compatibility.
-schema = schemathesis.openapi.from_asgi(
-    schema_path="/openapi.json",
-    app=_app,
-    base_url="http://localhost",
-    force_schema_version="30",
-)
+#: schemathesis 4.x uses positional path argument.
+schema = schemathesis.openapi.from_asgi("/openapi.json", _app)
 
 
 class TestAPIFuzz:
