@@ -1353,6 +1353,79 @@ gates:
     source_command: "pytest tests/contracts/test_tenant_context.py -q"
     raw_output_path: "reports/P26/evidence/G26.7.txt"
 
+  # === P27 Gates ===
+  - id: "G27.1"
+    phase: "P27"
+    description: "kill -9 at every executor boundary, then restart -> 0 duplicate, 0 lost effects"
+    metric: "fault_injection_no_dup_no_lost"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_fault_injection.py -q"
+    raw_output_path: "reports/P27/evidence/G27.1.txt"
+
+  - id: "G27.2"
+    phase: "P27"
+    description: "100 concurrent same-key requests on PostgreSQL -> 1 effect"
+    metric: "postgres_concurrent_idempotency"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_postgres_idempotency.py -q"
+    raw_output_path: "reports/P27/evidence/G27.2.txt"
+
+  - id: "G27.3"
+    phase: "P27"
+    description: "cross-tenant SELECT as the application role, raw SQL included -> 0 rows"
+    metric: "rls_cross_tenant_zero_rows"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/enterprise/test_rls_postgres.py -q"
+    raw_output_path: "reports/P27/evidence/G27.3.txt"
+
+  - id: "G27.4"
+    phase: "P27"
+    description: "UPDATE or DELETE on audit_events -> permission denied"
+    metric: "audit_no_update_delete"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/evidence/test_audit_storage.py -q"
+    raw_output_path: "reports/P27/evidence/G27.4.txt"
+
+  - id: "G27.5"
+    phase: "P27"
+    description: "TLC model check -> no violation"
+    metric: "tlc_model_check_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/formal/test_executor_tla.py -q"
+    raw_output_path: "reports/P27/evidence/G27.5.txt"
+
+  - id: "G27.6"
+    phase: "P27"
+    description: "fault harness, 1000 seeds -> 0 failures"
+    metric: "fault_harness_1000_seeds"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_seeded_fault_harness.py -q"
+    raw_output_path: "reports/P27/evidence/G27.6.txt"
+
+  - id: "G27.7"
+    phase: "P27"
+    description: "migration upgrade, downgrade and upgrade cycle -> pass"
+    metric: "migration_cycle_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_migrations.py -q"
+    raw_output_path: "reports/P27/evidence/G27.7.txt"
+
+  - id: "G27.8"
+    phase: "P27"
+    description: "grep for the in-memory RLS simulation -> removed"
+    metric: "rls_simulation_removed"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/enterprise/test_rls_removed.py -q"
+    raw_output_path: "reports/P27/evidence/G27.8.txt"
+
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
     phase: "P1"
