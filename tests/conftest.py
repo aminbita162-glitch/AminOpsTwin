@@ -117,7 +117,7 @@ def make_envelope(
         envelope_type: str = "scenario",
         payload: dict | None = None,
         policy_epoch: int = 0,
-        tenant_id: str = "tenant-default",
+        tenant_id: str = "tenant-test",
         correlation_id: uuid.UUID | None = None,
         idempotency_key: str = "test-idempotency-key-001",
     ) -> Envelope:

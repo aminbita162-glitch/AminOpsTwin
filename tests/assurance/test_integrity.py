@@ -45,7 +45,7 @@ def _config(
         timezone="UTC",
         suite_version="assure-1.0",
         deployment_id="deploy-test",
-        tenant_scope="tenant-default",
+        tenant_scope="tenant-test",
         missed_run_policy=missed_run_policy,
     )
 

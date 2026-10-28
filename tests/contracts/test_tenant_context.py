@@ -6,8 +6,11 @@ The tenant comes from an explicit RequestContext.
 
 from __future__ import annotations
 
+import subprocess
 import uuid
+from pathlib import Path
 
+import pytest
 from aminopstwin.contracts.request_context import RequestContext
 
 
@@ -32,32 +35,46 @@ class TestRequestContext:
 
     def test_frozen(self) -> None:
         ctx = RequestContext(tenant_id="t1")
-        try:
-            ctx.tenant_id = "t2"
-        except Exception:
-            pass
-        else:
-            raise AssertionError("RequestContext must be frozen")
+        with pytest.raises(Exception):  # noqa: B017
+            ctx.tenant_id = "t2"  # type: ignore[misc]
 
     def test_extra_forbidden(self) -> None:
-        try:
+        with pytest.raises(Exception):  # noqa: B017
             RequestContext(  # type: ignore[call-arg]
                 tenant_id="t1",
                 extra_field="bad",
             )
-        except Exception:
-            pass
-        else:
-            raise AssertionError("RequestContext must reject extra fields")
+
+    def test_missing_tenant_rejected(self) -> None:
+        """RequestContext without tenant_id must be rejected."""
+        with pytest.raises(Exception):  # noqa: B017
+            RequestContext()  # type: ignore[call-arg]
 
 
 class TestNoHardCodedTenant:
-    """G26.7: no hard-coded tenant id in src/aminopstwin/ agents or gateway.
+    """G26.7: no hard-coded tenant id in src/aminopstwin/.
 
-    The 'tenant-default' default parameter remains for backward
-    compatibility, but the RequestContext path is the P26 way.
-    The agent base accepts a RequestContext and uses its tenant_id.
+    The literal string "tenant-default" must not appear anywhere
+    in src/. The tenant must come from an explicit RequestContext.
     """
+
+    @staticmethod
+    def _src_root() -> Path:
+        return Path(__file__).resolve().parent.parent.parent / "src"
+
+    def test_no_tenant_default_in_src(self) -> None:
+        """Grep src/ for 'tenant-default' and fail if any match is found."""
+        src = self._src_root()
+        result = subprocess.run(
+            ["git", "grep", "-n", "tenant-default", "--", "src/"],
+            cwd=src.parent,
+            capture_output=True,
+            text=True,
+        )
+        # git grep exits 0 if matches found, 1 if no matches
+        assert result.returncode == 1, (
+            f"Found 'tenant-default' in src/:\n{result.stdout}"
+        )
 
     def test_request_context_provides_tenant(self) -> None:
         """The RequestContext is the explicit source of the tenant."""

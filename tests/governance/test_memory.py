@@ -19,7 +19,7 @@ from aminopstwin.executor.memory import (
 
 
 def _make_store(
-    tenant: str = "tenant-default",
+    tenant: str = "tenant-test",
     epoch: int = 0,
 ) -> MemoryStore:
     store = MemoryStore()
@@ -65,7 +65,7 @@ class TestMemoryIsolation:
         store = _make_store()
         store.revoke("rec-0000")
         record = store.read(
-            "rec-0000", tenant_id="tenant-default", current_epoch=0
+            "rec-0000", tenant_id="tenant-test", current_epoch=0
         )
         assert record is None
 
@@ -171,11 +171,11 @@ class TestMemoryReconstruction:
     def test_projection_reproducible(self) -> None:
         store = _make_store()
         ids_v1 = store.project(
-            MemoryClass.M1_TASK_CONTEXT, "tenant-default", projection_version=1
+            MemoryClass.M1_TASK_CONTEXT, "tenant-test", projection_version=1
         )
         # Same projection should be reproducible
         ids_v1_again = store.project(
-            MemoryClass.M1_TASK_CONTEXT, "tenant-default", projection_version=1
+            MemoryClass.M1_TASK_CONTEXT, "tenant-test", projection_version=1
         )
         assert ids_v1 == ids_v1_again
         assert len(ids_v1) == 2  # rec-0000, rec-0001
@@ -226,7 +226,7 @@ class TestMemoryReconstruction:
     def test_read_class_sorted_deterministically(self) -> None:
         store = _make_store()
         records = store.read_class(
-            MemoryClass.M2_EXECUTION_HISTORY, "tenant-default", 0
+            MemoryClass.M2_EXECUTION_HISTORY, "tenant-test", 0
         )
         # Must be sorted by (sequence_no, record_id)
         seqs = [r.sequence_no for r in records]
@@ -253,7 +253,7 @@ class TestRetentionClasses:
         store.write(
             record_id="rec-ret",
             memory_class=MemoryClass.M1_TASK_CONTEXT,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             correlation_id="corr-ret",
             schema_id="schema.test@1",
             payload_hash=hashlib.sha256(b"x").hexdigest(),
@@ -261,7 +261,7 @@ class TestRetentionClasses:
             retention_class=RetentionClass.MEDIUM_60,
         )
         record = store.read(
-            "rec-ret", "tenant-default", 0
+            "rec-ret", "tenant-test", 0
         )
         assert record is not None
         assert record.retention_class is RetentionClass.MEDIUM_60

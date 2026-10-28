@@ -103,7 +103,7 @@ class IntegrationHarness:
             envelope_type="test",
             correlation_id=uuid.uuid4(),
             causation_id=None,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             idempotency_key="integration-gw-exec-key-00001",
             payload=payload,
@@ -121,7 +121,7 @@ class IntegrationHarness:
         executor = DurableExecutor(clock=clock)
         workflow = executor.start(
             correlation_id=envelope.correlation_id,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
         )
         if workflow.state is not ExecutorState.PENDING:
@@ -145,7 +145,7 @@ class IntegrationHarness:
         written = store.write(
             record_id=record_id,
             memory_class=MemoryClass.M1_TASK_CONTEXT,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             correlation_id="corr-integration-mem-001",
             schema_id="memory.integration@1",
             payload_hash=payload_hash,
@@ -158,7 +158,7 @@ class IntegrationHarness:
                 status="FAIL",
                 detail=f"Write returned wrong id: {written.record_id}",
             )
-        read_back = store.read(record_id, "tenant-default", 0)
+        read_back = store.read(record_id, "tenant-test", 0)
         if read_back is None:
             return IntegrationTestResult(
                 component="executor_to_memory",

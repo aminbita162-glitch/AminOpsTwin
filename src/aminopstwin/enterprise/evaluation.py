@@ -102,7 +102,7 @@ class EvaluationHarness:
             envelope_type="test",
             correlation_id=uuid.uuid4(),
             causation_id=None,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             idempotency_key="eval-schema-validation-key-001",
             payload=payload,
@@ -139,7 +139,7 @@ class EvaluationHarness:
             envelope_type="test",
             correlation_id=uuid.uuid4(),
             causation_id=None,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             idempotency_key="eval-gateway-allow-key-000001",
             payload=payload,
@@ -221,13 +221,13 @@ class EvaluationHarness:
         store.write(
             record_id="eval-rec-001",
             memory_class=MemoryClass.M1_TASK_CONTEXT,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             correlation_id="corr-eval-001",
             schema_id="schema.eval@1",
             payload_hash=hashlib.sha256(b"eval").hexdigest(),
             recorded_at="2026-10-23T00:00:00Z",
         )
-        record = store.read("eval-rec-001", "tenant-default", 0)
+        record = store.read("eval-rec-001", "tenant-test", 0)
         ok = record is not None
         return CapabilityResult(
             capability_id="R19",

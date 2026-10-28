@@ -44,7 +44,7 @@ class ScheduleRequest:
     request_id: str
     priority: int
     budget_cost: int
-    tenant_id: str = "tenant-default"
+    tenant_id: str
 
 
 @dataclass(frozen=True)

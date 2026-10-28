@@ -17,7 +17,7 @@ class TestUnknownEscalation:
 
     def test_unknown_to_escalated(self) -> None:
         executor = DurableExecutor(clock=SeededClock())
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         executor.transition(wf.workflow_id, ExecutorState.COMMIT_INTENT)
@@ -27,7 +27,7 @@ class TestUnknownEscalation:
 
     def test_escalated_is_terminal(self) -> None:
         executor = DurableExecutor(clock=SeededClock())
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         executor.transition(wf.workflow_id, ExecutorState.COMMIT_INTENT)
@@ -38,7 +38,7 @@ class TestUnknownEscalation:
 
     def test_escalate_requires_unknown(self) -> None:
         executor = DurableExecutor(clock=SeededClock())
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         with pytest.raises(ValueError, match="escalate requires UNKNOWN"):
             executor.escalate(wf.workflow_id)
@@ -46,7 +46,7 @@ class TestUnknownEscalation:
     def test_unknown_can_reconcile_or_escalate(self) -> None:
         """UNKNOWN can go to RECONCILING or ESCALATED."""
         executor = DurableExecutor(clock=SeededClock())
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         executor.transition(wf.workflow_id, ExecutorState.COMMIT_INTENT)

@@ -37,7 +37,7 @@ class TestEvidenceRegistryPutGet:
         entry = reg.put(
             key=key,
             value=value,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-001",
@@ -48,12 +48,12 @@ class TestEvidenceRegistryPutGet:
         assert entry.claim_span == "span-1"
         assert entry.policy_epoch == 0
         assert entry.retrieval_window == "2026-W01"
-        assert entry.tenant_id == "tenant-default"
+        assert entry.tenant_id == "tenant-test"
         assert entry.schema_version == "1.0"
         assert entry.snapshot_id == "snap-001"
         assert entry.value == value
 
-        retrieved = reg.get(key, "tenant-default", 0)
+        retrieved = reg.get(key, "tenant-test", 0)
         assert retrieved is not None
         assert retrieved.source_hash == entry.source_hash
         assert retrieved.claim_span == entry.claim_span
@@ -98,14 +98,14 @@ class TestEvidenceRegistryEpochMismatch:
         reg.put(
             key=key,
             value={"x": 1},
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-004",
             created_at=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC),
         )
         # Request with epoch 1 while entry was stored at epoch 0
-        result = reg.get(key, "tenant-default", 1)
+        result = reg.get(key, "tenant-test", 1)
         assert result is None
 
 
@@ -123,7 +123,7 @@ class TestEvidenceRegistryTenantMismatch:
         reg.put(
             key=key,
             value={"x": 2},
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-005",
@@ -151,7 +151,7 @@ class TestEvidenceRegistryTamperDetection:
         reg.put(
             key=key,
             value={"result": 100},
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-006",
@@ -171,7 +171,7 @@ class TestEvidenceRegistryTamperDetection:
         # the store lookup misses. Additionally, even if we directly
         # query the stored entry's outer key with the tampered key,
         # the cache binding check catches the mismatch.
-        assert reg.get(tampered, "tenant-default", 0) is None
+        assert reg.get(tampered, "tenant-test", 0) is None
 
     def test_tampered_claim_span_rejected(self) -> None:
         reg, key = self._make_registry_with_entry()
@@ -181,7 +181,7 @@ class TestEvidenceRegistryTamperDetection:
             policy_epoch=key.policy_epoch,
             retrieval_window=key.retrieval_window,
         )
-        assert reg.get(tampered, "tenant-default", 0) is None
+        assert reg.get(tampered, "tenant-test", 0) is None
 
     def test_tampered_policy_epoch_rejected(self) -> None:
         reg, key = self._make_registry_with_entry()
@@ -191,7 +191,7 @@ class TestEvidenceRegistryTamperDetection:
             policy_epoch=99,
             retrieval_window=key.retrieval_window,
         )
-        assert reg.get(tampered, "tenant-default", 0) is None
+        assert reg.get(tampered, "tenant-test", 0) is None
 
     def test_tampered_retrieval_window_rejected(self) -> None:
         reg, key = self._make_registry_with_entry()
@@ -201,7 +201,7 @@ class TestEvidenceRegistryTamperDetection:
             policy_epoch=key.policy_epoch,
             retrieval_window="2026-TAMPER",
         )
-        assert reg.get(tampered, "tenant-default", 0) is None
+        assert reg.get(tampered, "tenant-test", 0) is None
 
     def test_direct_field_tamper_detected(self) -> None:
         """Simulate direct tampering of a stored entry's fields.
@@ -221,7 +221,7 @@ class TestEvidenceRegistryTamperDetection:
         reg.put(
             key=key,
             value={"v": 1},
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-007",
@@ -229,7 +229,7 @@ class TestEvidenceRegistryTamperDetection:
         )
 
         # Get the original entry back
-        original = reg.get(key, "tenant-default", 0)
+        original = reg.get(key, "tenant-test", 0)
         assert original is not None
 
         # Simulate direct tampering: replace the stored entry with one
@@ -247,7 +247,7 @@ class TestEvidenceRegistryTamperDetection:
             claim_span=key.claim_span,
             policy_epoch=0,
             retrieval_window=key.retrieval_window,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-007",
@@ -260,7 +260,7 @@ class TestEvidenceRegistryTamperDetection:
 
         # Now get() with the original key should detect the mismatch
         # because entry.source_hash != key.source_hash
-        result = reg.get(key, "tenant-default", 0)
+        result = reg.get(key, "tenant-test", 0)
         assert result is None
 
     def test_value_hash_matches_canonical(self) -> None:
@@ -276,7 +276,7 @@ class TestEvidenceRegistryTamperDetection:
         entry = reg.put(
             key=key,
             value=value,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             pack_hash=None,
             schema_version="1.0",
             snapshot_id="snap-008",
@@ -327,7 +327,7 @@ def test_evidence_entry_frozen() -> None:
         claim_span="span-10",
         policy_epoch=0,
         retrieval_window="2026-W10",
-        tenant_id="tenant-default",
+        tenant_id="tenant-test",
         pack_hash=None,
         schema_version="1.0",
         snapshot_id="snap-010",

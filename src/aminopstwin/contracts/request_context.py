@@ -4,10 +4,8 @@ Every agent and every Gateway call receives a RequestContext that
 carries the tenant_id and the causation_id. The tenant is never
 hard-coded; it comes from the caller's context.
 
-This replaces the previous hard-coded ``"tenant-default"`` default
-(ADR-008, ADR-007). The single-tenant sentinel ``TENANT_DEFAULT`` in
-clock.py remains as a constant, but it is no longer the implicit default
-for agent and gateway calls — the caller must supply it explicitly.
+The previous hard-coded tenant default was removed (P26).
+The caller must supply the tenant_id explicitly via RequestContext.
 """
 
 from __future__ import annotations

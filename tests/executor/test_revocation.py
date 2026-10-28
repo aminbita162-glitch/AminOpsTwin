@@ -18,7 +18,7 @@ class TestRevocation:
     def test_revoke_from_checkpointed(self) -> None:
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         result = executor.revoke(wf.workflow_id)
@@ -28,7 +28,7 @@ class TestRevocation:
         """G26.5: revocation between CHECKPOINTED and COMMIT_INTENT -> 0 commits."""
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         executor.revoke(wf.workflow_id)
@@ -44,7 +44,7 @@ class TestRevocation:
         """Re-authorisation hook: if revoked, workflow goes to REVOKED."""
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         result = executor.re_authorise(wf.workflow_id, is_revoked=True)
@@ -54,7 +54,7 @@ class TestRevocation:
         """Re-authorisation hook: if not revoked, proceeds to COMMIT_INTENT."""
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         result = executor.re_authorise(wf.workflow_id, is_revoked=False)
@@ -63,7 +63,7 @@ class TestRevocation:
     def test_revoke_requires_checkpointed(self) -> None:
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         with pytest.raises(ValueError, match="revoke requires CHECKPOINTED"):
             executor.revoke(wf.workflow_id)
@@ -71,7 +71,7 @@ class TestRevocation:
     def test_revoked_is_terminal(self) -> None:
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        wf = executor.start(uuid.uuid4())
+        wf = executor.start(uuid.uuid4(), tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
         executor.revoke(wf.workflow_id)

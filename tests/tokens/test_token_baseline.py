@@ -24,6 +24,7 @@ from aminopstwin.agents.a3 import AgentA3
 from aminopstwin.agents.a4 import AgentA4
 from aminopstwin.agents.a5 import AgentA5
 from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.contracts.request_context import RequestContext
 from aminopstwin.executor import ExecutorStateMachine
 from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
 
@@ -118,6 +119,7 @@ class TestTokenBaseline:
                 id_factory=id_factory,
                 gateway=full_gateway,
                 executor=executor,
+                context=RequestContext(tenant_id="tenant-test"),
             )
             assert trace.capability == cap
             results[cap] = {

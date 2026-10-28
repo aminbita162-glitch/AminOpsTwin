@@ -150,7 +150,7 @@ class WorkflowRecord(BaseModel):
 
     workflow_id: uuid.UUID
     correlation_id: uuid.UUID
-    tenant_id: str = "tenant-default"
+    tenant_id: str
     policy_epoch: int = Field(default=0, ge=0)
     state: ExecutorState
     checkpoints: list[Checkpoint] = Field(default_factory=list)
@@ -343,7 +343,7 @@ class DurableExecutor:
     def start(
         self,
         correlation_id: uuid.UUID,
-        tenant_id: str = "tenant-default",
+        tenant_id: str,
         policy_epoch: int = 0,
     ) -> WorkflowRecord:
         """Start a new workflow in the PENDING state."""

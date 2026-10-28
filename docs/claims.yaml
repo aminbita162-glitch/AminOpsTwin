@@ -47,7 +47,7 @@ claims:
   - claim_id: "CLAIM-005"
     text: "Five agents (A1-A5) each produce independent traces with correlation_id."
     evidence_path: "tests/agents/test_agents.py"
-    hash: "6eb16a45212682fb9bb650a7f7ef400a00f4b415c8124af33e97bd354650685b"
+    hash: "4b8a1307e034f9c3f29ba17e9adf922d122b1db2636e2d0f662864322b268a37"
     category: "architecture"
 
   # === Boundary / safety claims ===

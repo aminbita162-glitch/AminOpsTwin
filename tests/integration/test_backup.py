@@ -29,7 +29,10 @@ class TestBackupDrill:
         """Create an executor with a workflow and checkpoint."""
         clock = SeededClock()
         executor = DurableExecutor(clock=clock)
-        executor.start(uuid.UUID("00000000-0000-4000-8000-000000000001"))
+        executor.start(
+            uuid.UUID("00000000-0000-4000-8000-000000000001"),
+            tenant_id="tenant-test",
+        )
         return executor
 
     def _make_memory_with_state(self) -> MemoryStore:
@@ -38,7 +41,7 @@ class TestBackupDrill:
         store.write(
             record_id="backup-rec-001",
             memory_class=MemoryClass.M1_TASK_CONTEXT,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             correlation_id="corr-backup-001",
             schema_id="schema.backup@1",
             payload_hash=hashlib.sha256(b"backup").hexdigest(),

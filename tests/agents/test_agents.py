@@ -19,6 +19,7 @@ from aminopstwin.agents.a4 import AgentA4
 from aminopstwin.agents.a5 import AgentA5
 from aminopstwin.agents.base import AgentTrace
 from aminopstwin.contracts.clock import SeededClock, SeededIdFactory
+from aminopstwin.contracts.request_context import RequestContext
 from aminopstwin.executor import ExecutorStateMachine
 from aminopstwin.gateway.gateway import PolicyGateway, PolicyMatrix, PolicyMatrixEntry
 
@@ -102,6 +103,7 @@ class TestFiveAgents:
                 id_factory=id_factory,
                 gateway=full_gateway,
                 executor=executor,
+                context=RequestContext(tenant_id="tenant-test"),
             )
             traces.append(trace)
 
@@ -136,6 +138,7 @@ class TestFiveAgents:
                 id_factory=id_factory,
                 gateway=full_gateway,
                 executor=executor,
+                context=RequestContext(tenant_id="tenant-test"),
             )
             corr_ids.append(trace.correlation_id)
 
@@ -173,6 +176,7 @@ class TestFiveAgents:
                 id_factory=id_factory,
                 gateway=full_gateway,
                 executor=executor,
+                context=RequestContext(tenant_id="tenant-test"),
             )
             assert trace.agent_id == eid
             assert trace.capability == ecap
@@ -224,6 +228,7 @@ class TestFiveAgents:
             id_factory=id_factory,
             gateway=full_gateway,
             executor=executor,
+            context=RequestContext(tenant_id="tenant-test"),
         )
         assert len(trace.state_hash) == 64
         int(trace.state_hash, 16)  # valid hex
@@ -257,6 +262,7 @@ class TestFiveAgents:
             id_factory=id_factory,
             gateway=denied_gateway,
             executor=executor,
+            context=RequestContext(tenant_id="tenant-test"),
         )
         assert trace.tokens_used == 0
         assert trace.evidence_keys == []

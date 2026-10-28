@@ -80,8 +80,8 @@ class BaseAgent:
         payload: dict[str, Any],
         clock: Clock,
         id_factory: IdFactory,
+        tenant_id: str,
         policy_epoch: int = 0,
-        tenant_id: str = "tenant-default",
         causation_id: uuid.UUID | None = None,
     ) -> Envelope:
         """Create a valid Envelope for this agent's schema."""
@@ -120,17 +120,19 @@ class BaseAgent:
         4. Return the trace with correlation_id.
 
         If *context* is provided, the tenant_id and causation_id are
-        taken from it (P26, ADR-008). Otherwise, the legacy defaults
-        are used for backward compatibility.
+        taken from it (P26, ADR-008). Otherwise, the caller must
+        supply a tenant_id explicitly (no hard-coded default).
         """
         started_at = clock.now()
 
-        tenant_id = "tenant-default"
-        causation_id: uuid.UUID | None = None
-        if context is not None:
-            tenant_id = context.tenant_id
-            causation_id = context.causation_id
-            policy_epoch = context.policy_epoch
+        if context is None:
+            raise ValueError(
+                "context (RequestContext) is required; "
+                "tenant_id must come from an explicit RequestContext"
+            )
+        tenant_id = context.tenant_id
+        causation_id: uuid.UUID | None = context.causation_id
+        policy_epoch = context.policy_epoch
 
         envelope = self._make_envelope(
             correlation_id=correlation_id,
