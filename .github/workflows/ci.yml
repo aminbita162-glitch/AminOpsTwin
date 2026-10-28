@@ -65,6 +65,17 @@ jobs:
       - name: Pytest
         env:
           PYTHONHASHSEED: "0"
+          AMINOPS_REGRESSION_NESTED: "1"
+          AMINOPS_REGRESSION_NESTED_P14: "1"
+          AMINOPS_REGRESSION_NESTED_P15: "1"
+          AMINOPS_REGRESSION_NESTED_P17: "1"
+          AMINOPS_REGRESSION_NESTED_P18: "1"
+          AMINOPS_REGRESSION_NESTED_P19: "1"
+          AMINOPS_REGRESSION_NESTED_P20: "1"
+          AMINOPS_REGRESSION_NESTED_P21: "1"
+          AMINOPS_REGRESSION_NESTED_P22: "1"
+          AMINOPS_REGRESSION_NESTED_P23: "1"
+          AMINOPS_REGRESSION_NESTED_P24: "1"
         run: python -m pytest -q --tb=short --no-header --no-cov
       - name: Cross-platform oracle hash
         env:
