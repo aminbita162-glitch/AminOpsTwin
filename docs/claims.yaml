@@ -98,7 +98,7 @@ claims:
   - claim_id: "CLAIM-013"
     text: "The Prior Pack contains only aggregate statistics derived from public ClinicalTrials.gov/AACT data."
     evidence_path: "src/aminopstwin/priors/public_prior_pack_v1.json"
-    hash: "485e2503ce55fd6c6d8b3d5482658071c984a874f0d2acd2a3ab2ae2aeba3331"
+    hash: "20cc7d9f0dee9fee8994873d3837e0ed2915c7eda0c439d07ec3823552193b2a"
     category: "capability"
 
   - claim_id: "CLAIM-014"

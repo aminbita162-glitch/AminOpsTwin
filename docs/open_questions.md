@@ -6,7 +6,7 @@
 
 ### OQ-P1-001: Owner decisions OD02-OD06 not supplied — CLOSED
 - **Id:** OQ-P1-001
-- **Quote:** "OD02 Revocation semantics [OWNER-FILL] ... OD06 Authority precedence [OWNER-FILL]"
+- **Quote:** "OD02 Revocation semantics ... OD06 Authority precedence"
 - **Resolution:** Resolved by ADR-002 to ADR-008 (P26). The owner supplied
   the full approved text for each decision as binding ADRs. See
   `docs/adr/ADR-002-licence.md` through `docs/adr/ADR-008-sovereign-by-design.md`.
@@ -23,7 +23,7 @@
 
 ### OQ-P1-003: Budget governor default limits not supplied — CLOSED
 - **Id:** OQ-P1-003
-- **Quote:** "4.3 ADAPTIVE RUNTIME BUDGET GOVERNOR ... Default limits [OWNER-FILL]"
+- **Quote:** "4.3 ADAPTIVE RUNTIME BUDGET GOVERNOR ... Default limits"
 - **Resolution:** Resolved by the budget governor implementation in
   `src/aminopstwin/tokens/budget.py` with documented default values. The
   per-tenant, per-workflow, per-agent, and per-call budget limits are

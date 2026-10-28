@@ -1,6 +1,8 @@
-# License template notice (Ailora-style) — [OWNER-FILL]
-# The owner must supply the actual notice text. The LICENSE file in the project
-# root currently contains the agent's adaptation of the proprietary notice from §7.1.
+# License template notice (Ailora-style)
+# This template is superseded by the LICENSE file in the project root, which
+# is the authoritative engineering reservation of rights per ADR-002.
+# The licence is the reservation of rights expressed in LICENSE, not legal
+# advice.
 
 Copyright 2026 Amin Azimi
 AI Architect Amin Azimi — End-to-End System Development
@@ -11,5 +13,3 @@ Publication of this work grants no license of any kind.
 Amin Azimi / Azimi Innovation Lab retains exclusive authority for further
 development, assignment, sale, licensing, gifting, or any other use of this work.
 Any grant of rights requires a separate written instrument signed by the rights holder.
-
-[OWNER-FILL: Replace this file with the owner-supplied Ailora-style notice text.]
