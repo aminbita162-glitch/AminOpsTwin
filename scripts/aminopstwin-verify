@@ -200,7 +200,8 @@ def _verify_graph(claims_path: Path, repo_root: Path) -> int:
         if ev_path.is_dir():
             for fp in sorted(ev_path.rglob("*")):
                 if fp.is_file():
-                    hasher.update(fp.as_posix().encode("utf-8"))
+                    rel = fp.relative_to(ev_path)
+                    hasher.update(rel.as_posix().encode("utf-8"))
                     hasher.update(b"\0")
                     hasher.update(fp.read_bytes())
         else:
