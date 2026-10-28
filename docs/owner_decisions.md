@@ -1,25 +1,21 @@
-# owner_decisions.md (§10)
-# OD01-OD07: full approved text required from owner.
-# [OWNER-FILL] — This file contains summaries from directive.txt §10.
-# The owner must supply the full approved text for OD02-OD06.
+# Owner Decisions — ADR Index
 
-# OD01: Initial single-tenant; architecture extensible; N26 remains in P5.
-# Status: SUMMARY from directive.txt. Architecture is single-tenant default
-# ("tenant-default") until P5. Multi-tenant extensibility (N26) remains in P5.
+This file is an index of the approved Architecture Decision Records
+(ADRs) in `docs/adr/`. Each ADR records a binding owner decision with
+its context, decision, consequences, and proof tests.
 
-# OD02: Revocation semantics
-# [OWNER-FILL] — The owner must supply the full approved text.
+| ADR | Title | Status | File |
+|-----|-------|--------|------|
+| ADR-001 | Hash-locked lockfile (uv.lock) | Accepted | `docs/adr/ADR-001-lockfile.md` |
+| ADR-002 | Licence — comprehensive reservation of rights | Accepted | `docs/adr/ADR-002-licence.md` |
+| ADR-003 | Revocation — epoch-based, fail-closed at the commit boundary | Accepted | `docs/adr/ADR-003-revocation.md` |
+| ADR-004 | Idempotency — caller-supplied key plus payload fingerprint | Accepted | `docs/adr/ADR-004-idempotency.md` |
+| ADR-005 | Audit anchoring — Merkle batches, signatures, qualified timestamps | Accepted | `docs/adr/ADR-005-audit-anchoring.md` |
+| ADR-006 | UNKNOWN outcomes — explicit state, reconciliation, escalation | Accepted | `docs/adr/ADR-006-unknown-outcomes.md` |
+| ADR-007 | Authority precedence — fixed hierarchy, deny-overrides | Accepted | `docs/adr/ADR-007-authority-precedence.md` |
+| ADR-008 | Sovereign-by-design — jurisdiction as configuration | Accepted | `docs/adr/ADR-008-sovereign-by-design.md` |
 
-# OD03: Idempotency (must be consistent with §3.5.5)
-# [OWNER-FILL] — The owner must supply the full approved text.
+## Superseded decisions
 
-# OD04: Audit anchoring
-# [OWNER-FILL] — The owner must supply the full approved text.
-
-# OD05: UNKNOWN handling (must be consistent with §3.6; no timeout-only success)
-# [OWNER-FILL] — The owner must supply the full approved text.
-
-# OD06: Authority precedence
-# [OWNER-FILL] — The owner must supply the full approved text.
-
-# OD07: Stack selection: SUPERSEDED by §6.2 (Stack Lock); the agent never selects technology.
+- **OD07 Stack selection**: superseded by the Stack Lock (§6.2). The
+  agent never selects technology.

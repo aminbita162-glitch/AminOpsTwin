@@ -66,7 +66,7 @@ claims:
   - claim_id: "CLAIM-008"
     text: "The system does not use real patient or participant data."
     evidence_path: "docs/source_allowlist.yaml"
-    hash: "3da4aa5a9ffc0ebe091860731cfa7d5ad337a9fc4cb1a5dbf33ccb6ec5094688"
+    hash: "40bd759a142e841992d3c39768258e330259b9201cf5183b0771a648a157d231"
     category: "boundary"
 
   - claim_id: "CLAIM-009"
@@ -136,5 +136,5 @@ claims:
   - claim_id: "CLAIM-018"
     text: "Release notes for v0.2.0-candidate list every capability with its real status."
     evidence_path: "docs/release_notes_v0.2.0-candidate.md"
-    hash: "d6e3faaf0b414c1e5f31e75e930a92afa9ecf3bc35c9db8994819b8b46ae5f9e"
+    hash: "a58933df48c4f675290bafd9a4a9a30f8d191a7426abfd589b5065fa33e4d32c"
     category: "capability"
