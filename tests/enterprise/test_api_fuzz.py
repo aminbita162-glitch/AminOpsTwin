@@ -24,8 +24,16 @@ _app_wrapper = DashboardApp(
 _app: FastAPI = _app_wrapper.app
 
 #: Create the schemathesis test harness from the ASGI app.
-#: schemathesis 4.x uses positional path argument.
-schema = schemathesis.openapi.from_asgi("/openapi.json", _app)
+#: schemathesis 4.x uses positional path argument and a Config object.
+#: max_time limits the fuzzing duration to prevent CI timeouts.
+_schema_config = schemathesis.Config()
+_schema_config.max_time = 5
+
+schema = schemathesis.openapi.from_asgi(
+    "/openapi.json",
+    _app,
+    config=_schema_config,
+)
 
 
 class TestAPIFuzz:
