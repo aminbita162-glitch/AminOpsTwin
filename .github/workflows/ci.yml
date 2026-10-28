@@ -108,7 +108,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: pip-audit
-        run: pip-audit --skip-editable --ignore-vuln PYSEC-2026-87 --ignore-vuln PYSEC-2026-1845 --ignore-vuln PYSEC-2026-1941 --ignore-vuln PYSEC-2026-1942 --ignore-vuln PYSEC-2026-161 --ignore-vuln PYSEC-2026-2281 --ignore-vuln PYSEC-2026-2280 --ignore-vuln PYSEC-2026-249 --ignore-vuln PYSEC-2026-248
+        run: pip freeze --exclude-editable > /tmp/requirements.txt && pip-audit --strict -r /tmp/requirements.txt
 
   arch:
     name: Architecture (import-linter)
