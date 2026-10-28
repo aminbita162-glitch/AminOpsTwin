@@ -49,17 +49,17 @@ class TestStateMachineValid:
     def test_start_creates_pending(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         assert wf.state is ExecutorState.PENDING
         assert wf.correlation_id == cid
-        assert wf.tenant_id == "tenant-default"
+        assert wf.tenant_id == "tenant-test"
         assert wf.policy_epoch == 0
         assert wf.history == [ExecutorState.PENDING]
 
     def test_pending_to_running(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wf = executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         assert wf.state is ExecutorState.RUNNING
         assert wf.history == [ExecutorState.PENDING, ExecutorState.RUNNING]
@@ -67,7 +67,7 @@ class TestStateMachineValid:
     def test_full_happy_path(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
 
         wf = executor.transition(wid, ExecutorState.RUNNING)
@@ -89,14 +89,14 @@ class TestStateMachineValid:
     def test_deny_from_pending(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wf = executor.deny(wf.workflow_id)
         assert wf.state is ExecutorState.DENIED
 
     def test_fail_from_running(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wf = executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         wf = executor.fail(wf.workflow_id)
         assert wf.state is ExecutorState.FAILED
@@ -113,14 +113,14 @@ class TestStateMachineInvalid:
     def test_pending_to_committed_invalid(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         with pytest.raises(ValueError, match="invalid transition"):
             executor.transition(wf.workflow_id, ExecutorState.COMMITTED)
 
     def test_running_to_completed_invalid(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         with pytest.raises(ValueError, match="invalid transition"):
             executor.transition(wf.workflow_id, ExecutorState.COMPLETED)
@@ -128,7 +128,7 @@ class TestStateMachineInvalid:
     def test_completed_to_pending_invalid(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -141,14 +141,14 @@ class TestStateMachineInvalid:
     def test_commit_requires_commit_intent(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         with pytest.raises(ValueError, match="commit requires"):
             executor.commit(wf.workflow_id)
 
     def test_complete_requires_committed(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         with pytest.raises(ValueError, match="complete requires"):
             executor.complete(wf.workflow_id)
 
@@ -171,7 +171,7 @@ class TestTerminalStates:
         cid: uuid.UUID,
         terminal_fn: str,
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         method = getattr(executor, terminal_fn)
         method(wf.workflow_id)  # reach terminal
         with pytest.raises(ValueError, match="invalid transition"):
@@ -180,7 +180,7 @@ class TestTerminalStates:
     def test_completed_blocks_transition(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -193,7 +193,7 @@ class TestTerminalStates:
     def test_failed_blocks_transition(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         executor.fail(wf.workflow_id)
         with pytest.raises(ValueError, match="invalid transition"):
             executor.transition(
@@ -212,7 +212,7 @@ class TestCheckpoint:
     def test_checkpoint_returns_checkpoint(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         cp = executor.checkpoint(wf.workflow_id, {"step": 1})
         assert isinstance(cp, Checkpoint)
         assert cp.sequence_no == 0
@@ -223,7 +223,7 @@ class TestCheckpoint:
     def test_checkpoint_state_hash_is_payload_hash(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         cp = executor.checkpoint(wf.workflow_id, {"a": 1})
         assert cp.state_hash == cp.payload_hash
         assert len(cp.state_hash) == 64
@@ -231,7 +231,7 @@ class TestCheckpoint:
     def test_checkpoint_sequence_increments(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         cp0 = executor.checkpoint(wf.workflow_id, {"n": 0})
         cp1 = executor.checkpoint(wf.workflow_id, {"n": 1})
         cp2 = executor.checkpoint(wf.workflow_id, {"n": 2})
@@ -242,7 +242,7 @@ class TestCheckpoint:
     def test_checkpoint_id_unique(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         cp0 = executor.checkpoint(wf.workflow_id, {"x": 1})
         cp1 = executor.checkpoint(wf.workflow_id, {"x": 2})
         assert cp0.checkpoint_id != cp1.checkpoint_id
@@ -250,7 +250,7 @@ class TestCheckpoint:
     def test_get_state_hash_deterministic(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         executor.transition(wf.workflow_id, ExecutorState.RUNNING)
         executor.checkpoint(wf.workflow_id, {"v": 1})
         h1 = executor.get_state_hash(wf.workflow_id)
@@ -266,7 +266,7 @@ class TestCheckpoint:
     def test_get_workflow_returns_record(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         record = executor.get_workflow(wf.workflow_id)
         assert record is not None
         assert isinstance(record, WorkflowRecord)
@@ -285,7 +285,7 @@ class TestKillRestart:
     def test_save_restore_identical_state_hash(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.checkpoint(wid, {"step": 1})
@@ -306,7 +306,7 @@ class TestKillRestart:
     def test_snapshot_is_bytes(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        executor.start(cid)
+        executor.start(cid, tenant_id="tenant-test")
         snap = executor.save_snapshot()
         assert isinstance(snap, bytes)
         assert len(snap) > 0
@@ -314,7 +314,7 @@ class TestKillRestart:
     def test_snapshot_deterministic(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        executor.start(cid)
+        executor.start(cid, tenant_id="tenant-test")
         s1 = executor.save_snapshot()
         s2 = executor.save_snapshot()
         assert s1 == s2
@@ -322,8 +322,8 @@ class TestKillRestart:
     def test_restore_multiple_workflows(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf1 = executor.start(cid)
-        wf2 = executor.start(cid)
+        wf1 = executor.start(cid, tenant_id="tenant-test")
+        wf2 = executor.start(cid, tenant_id="tenant-test")
         executor.transition(wf1.workflow_id, ExecutorState.RUNNING)
         executor.checkpoint(wf2.workflow_id, {"k": 1})
 
@@ -350,7 +350,7 @@ class TestFiveCheckpointsRestart:
     def test_five_checkpoints_same_state_hash_after_restart(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
 
         payloads: list[dict[str, int | str]] = [
@@ -392,7 +392,7 @@ class TestUnknownRecovery:
     def test_mark_unknown_from_commit_intent(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -403,7 +403,7 @@ class TestUnknownRecovery:
     def test_reconcile_to_committed(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -417,7 +417,7 @@ class TestUnknownRecovery:
     def test_reconcile_to_failed(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -429,14 +429,14 @@ class TestUnknownRecovery:
     def test_reconcile_requires_unknown(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         with pytest.raises(ValueError, match="reconcile requires"):
             executor.reconcile(wf.workflow_id, committed=True)
 
     def test_reconcile_then_complete(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         wid = wf.workflow_id
         executor.transition(wid, ExecutorState.RUNNING)
         executor.transition(wid, ExecutorState.CHECKPOINTED)
@@ -449,7 +449,7 @@ class TestUnknownRecovery:
     def test_mark_unknown_requires_commit_intent(
         self, executor: DurableExecutor, cid: uuid.UUID
     ) -> None:
-        wf = executor.start(cid)
+        wf = executor.start(cid, tenant_id="tenant-test")
         with pytest.raises(ValueError, match="mark_unknown requires"):
             executor.mark_unknown(wf.workflow_id)
 
@@ -507,7 +507,7 @@ class TestPydanticModels:
         wf = WorkflowRecord(
             workflow_id=uuid.uuid4(),
             correlation_id=uuid.uuid4(),
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             state=ExecutorState.PENDING,
             checkpoints=[],
@@ -523,7 +523,7 @@ class TestPydanticModels:
             WorkflowRecord(
                 workflow_id=uuid.uuid4(),
                 correlation_id=uuid.uuid4(),
-                tenant_id="tenant-default",
+                tenant_id="tenant-test",
                 policy_epoch=0,
                 state=ExecutorState.PENDING,
                 checkpoints=[],
@@ -533,13 +533,13 @@ class TestPydanticModels:
                 extra="bad",  # type: ignore[call-arg]
             )
 
-    def test_workflow_record_default_tenant(self) -> None:
-        wf = WorkflowRecord(
-            workflow_id=uuid.uuid4(),
-            correlation_id=uuid.uuid4(),
-            policy_epoch=0,
-            state=ExecutorState.PENDING,
-            created_at=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC),
-            updated_at=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC),
-        )
-        assert wf.tenant_id == "tenant-default"
+    def test_workflow_record_missing_tenant_rejected(self) -> None:
+        with pytest.raises(ValidationError):
+            WorkflowRecord(
+                workflow_id=uuid.uuid4(),
+                correlation_id=uuid.uuid4(),
+                policy_epoch=0,
+                state=ExecutorState.PENDING,
+                created_at=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC),
+                updated_at=_dt.datetime(2026, 1, 1, tzinfo=_dt.UTC),
+            )

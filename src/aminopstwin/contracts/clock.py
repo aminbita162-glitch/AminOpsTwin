@@ -17,7 +17,6 @@ from __future__ import annotations
 import datetime as _dt
 import random
 import uuid
-from typing import Final
 
 __all__ = [
     "Clock",
@@ -121,5 +120,4 @@ def format_rfc3339_z(dt: _dt.datetime) -> str:
     return dt_utc.strftime("%Y-%m-%dT%H:%M:%S.%f") + "Z"
 
 
-# Sentinel: single-tenant default tenant id (until P5/OD01).
-TENANT_DEFAULT: Final[str] = "tenant-default"
+

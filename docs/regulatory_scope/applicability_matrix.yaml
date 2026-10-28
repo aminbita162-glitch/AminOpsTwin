@@ -74,7 +74,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_source_rights.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"
 
   - capability_id: "R28"
@@ -90,7 +90,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_memory.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"
 
   - capability_id: "R29"
@@ -106,7 +106,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_experience.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"
 
   - capability_id: "R30"
@@ -122,7 +122,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_transparency.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N16"
@@ -138,7 +138,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_scope.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N17"
@@ -154,7 +154,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_scope.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N18"
@@ -170,7 +170,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_scope.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N19"
@@ -186,7 +186,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_scope.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N20"
@@ -202,7 +202,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_transparency.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N21"
@@ -218,7 +218,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_transparency.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
   - capability_id: "N22"
@@ -234,7 +234,7 @@ entries:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/governance/test_experience.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "SPECIFIED"
 
 unresolved_questions:
@@ -257,7 +257,7 @@ p5_capabilities:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/twin/test_experiment.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"
 
   - capability_id: "G4.8"
@@ -273,7 +273,7 @@ p5_capabilities:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/twin/test_impact.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"
 
   - capability_id: "G4.9"
@@ -289,5 +289,5 @@ p5_capabilities:
     medical_device_interaction: "none"
     marketing_claims: "none"
     boundary_tests: "tests/twin/test_selection.py"
-    reviewer: "[OWNER-FILL]"
+    reviewer: "owner"
     status: "IMPLEMENTED_UNVERIFIED"

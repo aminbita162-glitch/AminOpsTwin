@@ -71,7 +71,7 @@ class EvidenceEntry(BaseModel):
     claim_span: str
     policy_epoch: int = Field(ge=0)
     retrieval_window: str
-    tenant_id: str = "tenant-default"
+    tenant_id: str
     pack_hash: str | None = None
     schema_version: str
     snapshot_id: str

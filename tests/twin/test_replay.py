@@ -58,7 +58,7 @@ def _run_steps(
 ) -> str:
     """Run n steps and return the final state hash."""
     corr_id = uuid.uuid4()
-    wf = executor.start(correlation_id=corr_id)
+    wf = executor.start(correlation_id=corr_id, tenant_id="tenant-test")
     executor.transition(wf.workflow_id, ExecutorState.RUNNING)
     executor.checkpoint(wf.workflow_id, {"step": "running"})
     executor.transition(wf.workflow_id, ExecutorState.CHECKPOINTED)
@@ -179,7 +179,7 @@ class TestSaveAndResume:
         """Resuming restores the executor's workflow store."""
         exec1, twin1 = _build_executor_and_twin()
         corr_id = uuid.uuid4()
-        wf = exec1.start(correlation_id=corr_id)
+        wf = exec1.start(correlation_id=corr_id, tenant_id="tenant-test")
         exec1.transition(wf.workflow_id, ExecutorState.RUNNING)
         exec1.checkpoint(wf.workflow_id, {"step": 1})
 

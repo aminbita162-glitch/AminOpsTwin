@@ -151,7 +151,7 @@ class TestGatewayStateFacts:
             envelope_type="scenario",
             correlation_id=uuid.uuid4(),
             causation_id=None,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             idempotency_key="test-idempotency-key-001",
             payload=payload,
@@ -169,7 +169,7 @@ class TestGatewayStateFacts:
             idempotency_seen=False,
             budget_remaining=100,
             budget_limit=200,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             policy_hash="ph-001",
         )
@@ -191,7 +191,7 @@ class TestGatewayStateFacts:
             idempotency_seen=False,
             budget_remaining=100,
             budget_limit=200,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             policy_hash="ph-001",
         )
@@ -222,7 +222,7 @@ class TestGatewayStateFacts:
             idempotency_seen=False,
             budget_remaining=100,
             budget_limit=200,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             policy_hash="ph-001",
         )
@@ -248,7 +248,7 @@ class TestGatewayStateFacts:
             idempotency_seen=False,
             budget_remaining=100,
             budget_limit=200,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             policy_hash="ph-001",
         )
@@ -256,7 +256,7 @@ class TestGatewayStateFacts:
             idempotency_seen=True,
             budget_remaining=50,
             budget_limit=200,
-            tenant_id="tenant-default",
+            tenant_id="tenant-test",
             policy_epoch=0,
             policy_hash="ph-002",
         )

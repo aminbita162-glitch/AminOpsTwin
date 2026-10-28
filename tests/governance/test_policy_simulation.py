@@ -26,7 +26,7 @@ from aminopstwin.policy_simulation import (
 def _make_envelope(
     schema_id: str = "test_schema@1",
     envelope_type: str = "test_type",
-    tenant_id: str = "tenant-default",
+    tenant_id: str = "tenant-test",
     policy_epoch: int = 0,
 ) -> Envelope:
     """Create a test envelope with a valid payload_hash."""

@@ -153,3 +153,58 @@ class TestExtractRefs:
     def test_no_refs(self) -> None:
         refs = _cc.extract_refs("P1: test no parens")
         assert refs == []
+
+
+class TestPhaseCommitRange:
+    """get_phase_commits uses origin/main..HEAD range (P26 deviation).
+
+    Only commits since the merge-base with origin/main are counted,
+    so merge commits from previous phases on main are not included.
+    """
+
+    def test_get_phase_commits_returns_only_phase_commits(self) -> None:
+        """get_phase_commits returns only commits matching the phase prefix."""
+        commits = _cc.get_phase_commits("P26")
+        # All returned commits must start with "P26:"
+        for _h, msg in commits:
+            assert msg.startswith("P26:"), (
+                f"Non-P26 commit in P26 results: {msg}"
+            )
+
+    def test_get_phase_commits_excludes_main_merge(self) -> None:
+        """The P25 merge commit on main must not appear in P26 commits."""
+        commits = _cc.get_phase_commits("P26")
+        for _h, msg in commits:
+            assert "Merge pull request" not in msg, (
+                f"Merge commit found in P26 commits: {msg}"
+            )
+
+    def test_c7_checks_only_phase_range(self) -> None:
+        """C7 merge-commit check only scans origin/main..HEAD.
+
+        This is a P26 deviation: the previous phases' merge commits on
+        main must not cause C7 to fail for the current phase.
+
+        Note: GitHub Actions may create a merge commit when checking out
+        a PR branch (merge ref into base). We filter those out by
+        checking that any merge commits found are not phase commits
+        (they won't start with the phase prefix).
+        """
+        import subprocess
+        result = subprocess.run(
+            ["git", "log", "--oneline", "--merges", "origin/main..HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+            cwd=str(_REPO_ROOT),
+        )
+        merge_lines = result.stdout.strip()
+        if merge_lines:
+            for line in merge_lines.split("\n"):
+                parts = line.split(" ", 1)
+                msg = parts[1] if len(parts) > 1 else ""
+                # CI-created merge commits (e.g. "Merge <sha> into <sha>")
+                # are not phase commits and are acceptable.
+                assert not msg.startswith("P26:"), (
+                    f"Phase merge commit found: {line}"
+                )

@@ -22,6 +22,14 @@ from aminopstwin.contracts.data_contract import (
     validate_record_v1,
     validate_record_v2,
 )
+from aminopstwin.contracts.idempotency import (
+    IdempotencyError,
+    IdempotencyResult,
+    IdempotencyStatus,
+    IdempotencyStore,
+    InMemoryIdempotencyStore,
+)
+from aminopstwin.contracts.request_context import RequestContext
 
 __all__ = [
     "DataContractError",
@@ -40,4 +48,10 @@ __all__ = [
     "is_backward_compatible",
     "DataReaderV1",
     "DataReaderV2",
+    "IdempotencyError",
+    "IdempotencyResult",
+    "IdempotencyStatus",
+    "IdempotencyStore",
+    "InMemoryIdempotencyStore",
+    "RequestContext",
 ]

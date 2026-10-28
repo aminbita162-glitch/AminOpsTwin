@@ -24,7 +24,7 @@ def _make_env(payload: dict) -> Envelope:
         envelope_type="scenario",
         correlation_id=idf.new_id(),
         causation_id=None,
-        tenant_id="tenant-default",
+        tenant_id="tenant-test",
         policy_epoch=0,
         idempotency_key="test-idempotency-key-001",
         payload=payload,

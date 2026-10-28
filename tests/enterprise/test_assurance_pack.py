@@ -61,7 +61,7 @@ def _make_assurance_report() -> AssuranceReport:
         run_id="run-p18-test-0001",
         occurrence_id="occ-p18-2026-10-25",
         suite_version="p18-v1",
-        tenant_scope="tenant-default",
+        tenant_scope="tenant-test",
         started_at=ts,
         ended_at=ts,
         input_manifest_hash="0" * 64,

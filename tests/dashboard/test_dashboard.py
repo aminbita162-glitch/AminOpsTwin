@@ -268,7 +268,7 @@ class TestAssuranceView:
         )
         config = ScheduleConfig(
             deployment_id="dep-test",
-            tenant_scope="tenant-default",
+            tenant_scope="tenant-test",
             suite_version="1.0.0",
             day_of_week=0,
             hour=9,

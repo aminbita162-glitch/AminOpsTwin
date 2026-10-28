@@ -115,6 +115,48 @@ _SEED_REGISTRY: Final[
         "idempotency_key reused with a different payload_hash",
         CodeStatus.ACTIVE,
     ),
+    "GW-IDEMP-001": (
+        "IDEM",
+        "missing idempotency key on an effectful operation (ADR-004)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-IDEMP-002": (
+        "IDEM",
+        "idempotency key reused with a different payload fingerprint "
+        "(ADR-004, HTTP 409)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-REVOKE-001": (
+        "EPOCH",
+        "envelope denied due to revoked principal, key, capability "
+        "or tenant (ADR-003)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-UNK-001": (
+        "DEFAULT",
+        "UNKNOWN outcome: timeout (ADR-006)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-UNK-002": (
+        "DEFAULT",
+        "UNKNOWN outcome: lost acknowledgement (ADR-006)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-UNK-003": (
+        "DEFAULT",
+        "UNKNOWN outcome: crash after intent (ADR-006)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-UNK-004": (
+        "DEFAULT",
+        "UNKNOWN outcome: partition (ADR-006)",
+        CodeStatus.ACTIVE,
+    ),
+    "GW-UNK-005": (
+        "DEFAULT",
+        "UNKNOWN outcome: unknown cause (ADR-006)",
+        CodeStatus.ACTIVE,
+    ),
     "GW-CLIN-001": (
         "CLIN",
         "request or output touches a forbidden clinical "

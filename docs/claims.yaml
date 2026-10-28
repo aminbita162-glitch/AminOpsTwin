@@ -47,7 +47,7 @@ claims:
   - claim_id: "CLAIM-005"
     text: "Five agents (A1-A5) each produce independent traces with correlation_id."
     evidence_path: "tests/agents/test_agents.py"
-    hash: "6eb16a45212682fb9bb650a7f7ef400a00f4b415c8124af33e97bd354650685b"
+    hash: "4b8a1307e034f9c3f29ba17e9adf922d122b1db2636e2d0f662864322b268a37"
     category: "architecture"
 
   # === Boundary / safety claims ===
@@ -66,7 +66,7 @@ claims:
   - claim_id: "CLAIM-008"
     text: "The system does not use real patient or participant data."
     evidence_path: "docs/source_allowlist.yaml"
-    hash: "3da4aa5a9ffc0ebe091860731cfa7d5ad337a9fc4cb1a5dbf33ccb6ec5094688"
+    hash: "40bd759a142e841992d3c39768258e330259b9201cf5183b0771a648a157d231"
     category: "boundary"
 
   - claim_id: "CLAIM-009"
@@ -98,7 +98,7 @@ claims:
   - claim_id: "CLAIM-013"
     text: "The Prior Pack contains only aggregate statistics derived from public ClinicalTrials.gov/AACT data."
     evidence_path: "src/aminopstwin/priors/public_prior_pack_v1.json"
-    hash: "485e2503ce55fd6c6d8b3d5482658071c984a874f0d2acd2a3ab2ae2aeba3331"
+    hash: "20cc7d9f0dee9fee8994873d3837e0ed2915c7eda0c439d07ec3823552193b2a"
     category: "capability"
 
   - claim_id: "CLAIM-014"
@@ -136,5 +136,5 @@ claims:
   - claim_id: "CLAIM-018"
     text: "Release notes for v0.2.0-candidate list every capability with its real status."
     evidence_path: "docs/release_notes_v0.2.0-candidate.md"
-    hash: "d6e3faaf0b414c1e5f31e75e930a92afa9ecf3bc35c9db8994819b8b46ae5f9e"
+    hash: "a58933df48c4f675290bafd9a4a9a30f8d191a7426abfd589b5065fa33e4d32c"
     category: "capability"

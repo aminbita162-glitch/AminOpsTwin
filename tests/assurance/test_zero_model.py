@@ -48,7 +48,7 @@ def _config(
         timezone="UTC",
         suite_version="assure-1.0",
         deployment_id="deploy-test",
-        tenant_scope="tenant-default",
+        tenant_scope="tenant-test",
         missed_run_policy=missed_run_policy,
     )
 
@@ -186,7 +186,7 @@ class TestInjectedModelCallFails:
         report = build_report(
             occurrence_id="occ-test",
             suite_version="assure-1.0",
-            tenant_scope="tenant-default",
+            tenant_scope="tenant-test",
             started_at=clock.now(),
             ended_at=clock.now(),
             input_manifest={"test": True},

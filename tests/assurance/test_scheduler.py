@@ -38,7 +38,7 @@ def _config(
         timezone="UTC",
         suite_version="assure-1.0",
         deployment_id="deploy-test",
-        tenant_scope="tenant-default",
+        tenant_scope="tenant-test",
         missed_run_policy=missed_run_policy,
         max_retries=max_retries,
     )
@@ -78,7 +78,7 @@ class TestScheduleConfig:
                 timezone="UTC",
                 suite_version="",
                 deployment_id="deploy-test",
-                tenant_scope="tenant-default",
+                tenant_scope="tenant-test",
             )
 
     def test_empty_deployment_id(self) -> None:
@@ -90,7 +90,7 @@ class TestScheduleConfig:
                 timezone="UTC",
                 suite_version="assure-1.0",
                 deployment_id="",
-                tenant_scope="tenant-default",
+                tenant_scope="tenant-test",
             )
 
     def test_empty_tenant_scope(self) -> None:
@@ -114,7 +114,7 @@ class TestScheduleConfig:
                 timezone="UTC",
                 suite_version="assure-1.0",
                 deployment_id="deploy-test",
-                tenant_scope="tenant-default",
+                tenant_scope="tenant-test",
                 retention_weeks=0,
             )
 

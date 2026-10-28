@@ -31,6 +31,7 @@ from __future__ import annotations
 import datetime as _dt
 from typing import Final
 
+from aminopstwin.contracts.authority import AuthorityLevel
 from aminopstwin.contracts.decision import Decision, DecisionRecord, Stage
 from aminopstwin.contracts.envelope import Envelope
 from aminopstwin.contracts.state_facts import StateFacts, state_facts_hash
@@ -40,6 +41,8 @@ __all__ = [
     "PolicyMatrixEntry",
     "PolicyMatrix",
     "GatewayError",
+    "AuthorityDecision",
+    "combine_authority",
 ]
 
 
@@ -293,3 +296,67 @@ KNOWN_PRINCIPALS: Final[tuple[str, ...]] = (
     "S1",
     "S2",
 )
+
+
+# ---------------------------------------------------------------------------#
+# Authority precedence (ADR-007)
+# ---------------------------------------------------------------------------#
+
+
+class AuthorityDecision:
+    """A single authority-level decision (ADR-007).
+
+    Combines a :class:`~aminopstwin.contracts.authority.AuthorityLevel`
+    with a :class:`~aminopstwin.contracts.decision.Decision` and a
+    rule id.
+    """
+
+    __slots__ = ("level", "decision", "rule_id")
+
+    def __init__(
+        self,
+        level: AuthorityLevel,
+        decision: Decision,
+        rule_id: str,
+    ) -> None:
+        self.level = level
+        self.decision = decision
+        self.rule_id = rule_id
+
+    def __repr__(self) -> str:
+        return (
+            f"AuthorityDecision(level={self.level!r}, "
+            f"decision={self.decision!r}, rule_id={self.rule_id!r})"
+        )
+
+
+def combine_authority(
+    decisions: list[AuthorityDecision],
+) -> tuple[Decision, str]:
+    """Combine multiple authority-level decisions using deny-overrides.
+
+    The highest-precedence (lowest integer) level wins. If the highest
+    level says DENY, the result is DENY. If the highest level says
+    ALLOW but a same-level conflict says DENY, the result is DENY
+    (deny-overrides). The winning rule id is returned with the result.
+
+    Returns (Decision, rule_id).
+    """
+    if not decisions:
+        return Decision.DENY, "deny-no-decisions"
+
+    # Find the highest-precedence level (lowest integer).
+    min_level = min(d.level for d in decisions)
+
+    # Gather all decisions at that level.
+    top_level = [
+        d for d in decisions if d.level == min_level
+    ]
+
+    # Deny-overrides: if any at the top level says DENY, DENY wins.
+    for d in top_level:
+        if d.decision == Decision.DENY:
+            return Decision.DENY, d.rule_id
+
+    # All at the top level say ALLOW.
+    return Decision.ALLOW, top_level[0].rule_id

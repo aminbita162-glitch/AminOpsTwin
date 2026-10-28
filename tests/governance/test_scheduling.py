@@ -19,9 +19,9 @@ class TestDeterministicScheduling:
     def test_identical_inputs_produce_identical_schedules(self) -> None:
         """Same inputs produce same ScheduleOrder hash."""
         requests = [
-            ScheduleRequest("r1", priority=5, budget_cost=10),
-            ScheduleRequest("r2", priority=3, budget_cost=5),
-            ScheduleRequest("r3", priority=7, budget_cost=15),
+            ScheduleRequest("r1", priority=5, budget_cost=10, tenant_id="tenant-test"),
+            ScheduleRequest("r2", priority=3, budget_cost=5, tenant_id="tenant-test"),
+            ScheduleRequest("r3", priority=7, budget_cost=15, tenant_id="tenant-test"),
         ]
         order1 = schedule_requests(requests, total_budget=100)
         order2 = schedule_requests(requests, total_budget=100)
@@ -30,9 +30,11 @@ class TestDeterministicScheduling:
     def test_higher_priority_scheduled_first(self) -> None:
         """Higher priority requests are scheduled first."""
         requests = [
-            ScheduleRequest("low", priority=1, budget_cost=5),
-            ScheduleRequest("high", priority=10, budget_cost=5),
-            ScheduleRequest("med", priority=5, budget_cost=5),
+            ScheduleRequest("low", priority=1, budget_cost=5, tenant_id="tenant-test"),
+            ScheduleRequest(
+                "high", priority=10, budget_cost=5, tenant_id="tenant-test"
+            ),
+            ScheduleRequest("med", priority=5, budget_cost=5, tenant_id="tenant-test"),
         ]
         order = schedule_requests(requests, total_budget=100)
         ids = order.request_ids
@@ -43,8 +45,12 @@ class TestDeterministicScheduling:
     def test_lower_budget_cost_breaks_ties(self) -> None:
         """Lower budget_cost breaks priority ties."""
         requests = [
-            ScheduleRequest("expensive", priority=5, budget_cost=20),
-            ScheduleRequest("cheap", priority=5, budget_cost=5),
+            ScheduleRequest(
+                "expensive", priority=5, budget_cost=20, tenant_id="tenant-test"
+            ),
+            ScheduleRequest(
+                "cheap", priority=5, budget_cost=5, tenant_id="tenant-test"
+            ),
         ]
         order = schedule_requests(requests, total_budget=100)
         ids = order.request_ids
@@ -54,9 +60,9 @@ class TestDeterministicScheduling:
     def test_request_id_is_stable_tiebreaker(self) -> None:
         """request_id is the final stable tiebreaker."""
         requests = [
-            ScheduleRequest("zzz", priority=5, budget_cost=5),
-            ScheduleRequest("aaa", priority=5, budget_cost=5),
-            ScheduleRequest("mmm", priority=5, budget_cost=5),
+            ScheduleRequest("zzz", priority=5, budget_cost=5, tenant_id="tenant-test"),
+            ScheduleRequest("aaa", priority=5, budget_cost=5, tenant_id="tenant-test"),
+            ScheduleRequest("mmm", priority=5, budget_cost=5, tenant_id="tenant-test"),
         ]
         order = schedule_requests(requests, total_budget=100)
         ids = order.request_ids
@@ -65,8 +71,8 @@ class TestDeterministicScheduling:
     def test_schedule_hash_is_deterministic(self) -> None:
         """Schedule hash is deterministic across calls."""
         requests = [
-            ScheduleRequest("r1", priority=5, budget_cost=10),
-            ScheduleRequest("r2", priority=3, budget_cost=5),
+            ScheduleRequest("r1", priority=5, budget_cost=10, tenant_id="tenant-test"),
+            ScheduleRequest("r2", priority=3, budget_cost=5, tenant_id="tenant-test"),
         ]
         order1 = schedule_requests(requests, total_budget=50)
         order2 = schedule_requests(requests, total_budget=50)
@@ -81,7 +87,9 @@ class TestDeterministicScheduling:
     def test_replay_confirms_schedule_identity(self) -> None:
         """Replay test: identical inputs produce identical schedule order."""
         requests = [
-            ScheduleRequest(f"r{i}", priority=i * 2, budget_cost=i * 3)
+            ScheduleRequest(
+                f"r{i}", priority=i * 2, budget_cost=i * 3, tenant_id="tenant-test"
+            )
             for i in range(1, 11)
         ]
         order1 = schedule_requests(requests, total_budget=1000)
@@ -95,8 +103,8 @@ class TestDeterministicScheduling:
     def test_total_budget_zero_admits_nothing_but_orders(self) -> None:
         """Budget=0 still produces a deterministic order."""
         requests = [
-            ScheduleRequest("r1", priority=5, budget_cost=10),
-            ScheduleRequest("r2", priority=3, budget_cost=5),
+            ScheduleRequest("r1", priority=5, budget_cost=10, tenant_id="tenant-test"),
+            ScheduleRequest("r2", priority=3, budget_cost=5, tenant_id="tenant-test"),
         ]
         order = schedule_requests(requests, total_budget=0)
         # All requests are still listed in order
@@ -111,7 +119,7 @@ class TestDeterministicScheduling:
     def test_schedule_order_to_dict(self) -> None:
         """ScheduleOrder.to_dict produces the expected structure."""
         requests = [
-            ScheduleRequest("r1", priority=5, budget_cost=10),
+            ScheduleRequest("r1", priority=5, budget_cost=10, tenant_id="tenant-test"),
         ]
         order = schedule_requests(requests, total_budget=100)
         d = order.to_dict()

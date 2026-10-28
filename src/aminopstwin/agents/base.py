@@ -18,6 +18,7 @@ from aminopstwin.contracts.canonical import canonical_hash
 from aminopstwin.contracts.clock import Clock, IdFactory
 from aminopstwin.contracts.decision import Decision, DecisionRecord
 from aminopstwin.contracts.envelope import Envelope
+from aminopstwin.contracts.request_context import RequestContext
 from aminopstwin.executor import ExecutorState, ExecutorStateMachine
 from aminopstwin.gateway.gateway import PolicyGateway
 
@@ -79,7 +80,9 @@ class BaseAgent:
         payload: dict[str, Any],
         clock: Clock,
         id_factory: IdFactory,
+        tenant_id: str,
         policy_epoch: int = 0,
+        causation_id: uuid.UUID | None = None,
     ) -> Envelope:
         """Create a valid Envelope for this agent's schema."""
         return Envelope(
@@ -87,8 +90,8 @@ class BaseAgent:
             schema_id=self.schema_id,
             envelope_type=self.envelope_type,
             correlation_id=correlation_id,
-            causation_id=None,
-            tenant_id="tenant-default",
+            causation_id=causation_id,
+            tenant_id=tenant_id,
             policy_epoch=policy_epoch,
             idempotency_key=id_factory.new_id().hex[:32].ljust(
                 16, "0"
@@ -107,6 +110,7 @@ class BaseAgent:
         gateway: PolicyGateway,
         executor: ExecutorStateMachine,
         policy_epoch: int = 0,
+        context: RequestContext | None = None,
     ) -> AgentTrace:
         """Process a single request and return an AgentTrace.
 
@@ -114,8 +118,21 @@ class BaseAgent:
         2. Evaluate it through the Gateway.
         3. If allowed, transition the executor state machine.
         4. Return the trace with correlation_id.
+
+        If *context* is provided, the tenant_id and causation_id are
+        taken from it (P26, ADR-008). Otherwise, the caller must
+        supply a tenant_id explicitly (no hard-coded default).
         """
         started_at = clock.now()
+
+        if context is None:
+            raise ValueError(
+                "context (RequestContext) is required; "
+                "tenant_id must come from an explicit RequestContext"
+            )
+        tenant_id = context.tenant_id
+        causation_id: uuid.UUID | None = context.causation_id
+        policy_epoch = context.policy_epoch
 
         envelope = self._make_envelope(
             correlation_id=correlation_id,
@@ -123,6 +140,8 @@ class BaseAgent:
             clock=clock,
             id_factory=id_factory,
             policy_epoch=policy_epoch,
+            tenant_id=tenant_id,
+            causation_id=causation_id,
         )
 
         decision: DecisionRecord = gateway.evaluate(

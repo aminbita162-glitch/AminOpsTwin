@@ -116,8 +116,8 @@
   },
   "manifest": {
     "pack_hash": "8da3fab8c95cc1f8a11a360d4e359d04201341e94781309decfd79860339b998",
-    "owner_signature": "[OWNER-FILL: owner signs the pack hash with the rotating signing key]",
-    "signed_at": "[OWNER-FILL]",
-    "signed_by": "[OWNER-FILL: owner identity]"
+    "owner_signature": "NOT_SIGNED: out of scope until P32; see ADR-005",
+    "signed_at": "NOT_SIGNED: out of scope until P32; see ADR-005",
+    "signed_by": "NOT_SIGNED: out of scope until P32; see ADR-005"
   }
 }
