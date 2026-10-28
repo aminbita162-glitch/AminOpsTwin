@@ -64,6 +64,8 @@ class ExecutorState(StrEnum):
     FAILED = "FAILED"
     UNKNOWN = "UNKNOWN"
     RECONCILING = "RECONCILING"
+    REVOKED = "REVOKED"
+    ESCALATED = "ESCALATED"
 
 
 # Valid transitions (§3.6)
@@ -87,8 +89,10 @@ _VALID_TRANSITIONS: dict[ExecutorState, frozenset[ExecutorState]] = {
             ExecutorState.COMMIT_INTENT,
             ExecutorState.DENIED,
             ExecutorState.FAILED,
+            ExecutorState.REVOKED,
         }
     ),
+    ExecutorState.REVOKED: frozenset(),  # terminal
     ExecutorState.COMMIT_INTENT: frozenset(
         {
             ExecutorState.COMMITTED,
@@ -96,13 +100,19 @@ _VALID_TRANSITIONS: dict[ExecutorState, frozenset[ExecutorState]] = {
             ExecutorState.DENIED,
         }
     ),
-    ExecutorState.UNKNOWN: frozenset({ExecutorState.RECONCILING}),
+    ExecutorState.UNKNOWN: frozenset(
+        {
+            ExecutorState.RECONCILING,
+            ExecutorState.ESCALATED,
+        }
+    ),
     ExecutorState.RECONCILING: frozenset(
         {
             ExecutorState.COMMITTED,
             ExecutorState.FAILED,
         }
     ),
+    ExecutorState.ESCALATED: frozenset(),  # terminal
     ExecutorState.COMMITTED: frozenset({ExecutorState.COMPLETED}),
     ExecutorState.COMPLETED: frozenset(),  # terminal
     ExecutorState.DENIED: frozenset(),  # terminal
@@ -454,6 +464,49 @@ class DurableExecutor:
     def deny(self, workflow_id: uuid.UUID) -> WorkflowRecord:
         """Transition to DENIED (terminal)."""
         return self._do_transition(workflow_id, ExecutorState.DENIED)
+
+    def revoke(self, workflow_id: uuid.UUID) -> WorkflowRecord:
+        """Transition to REVOKED (terminal, ADR-003).
+
+        Revocation is valid from CHECKPOINTED. Once revoked, no effect
+        is committed.
+        """
+        wf = self._require(workflow_id)
+        if wf.state is not ExecutorState.CHECKPOINTED:
+            raise ValueError(
+                f"revoke requires CHECKPOINTED, got {wf.state.value}"
+            )
+        return self._do_transition(workflow_id, ExecutorState.REVOKED)
+
+    def escalate(self, workflow_id: uuid.UUID) -> WorkflowRecord:
+        """Transition UNKNOWN -> ESCALATED (terminal, ADR-006).
+
+        Escalation means the case goes to a human operator after
+        backoff has been exhausted.
+        """
+        wf = self._require(workflow_id)
+        if wf.state is not ExecutorState.UNKNOWN:
+            raise ValueError(
+                f"escalate requires UNKNOWN, got {wf.state.value}"
+            )
+        return self._do_transition(workflow_id, ExecutorState.ESCALATED)
+
+    def re_authorise(
+        self,
+        workflow_id: uuid.UUID,
+        is_revoked: bool,
+    ) -> WorkflowRecord:
+        """Re-authorise immediately before COMMIT_INTENT (ADR-003).
+
+        If *is_revoked* is True, the workflow transitions to REVOKED
+        and no commit is possible. Otherwise, the workflow proceeds to
+        COMMIT_INTENT.
+        """
+        if is_revoked:
+            return self.revoke(workflow_id)
+        return self._do_transition(
+            workflow_id, ExecutorState.COMMIT_INTENT
+        )
 
     def mark_unknown(self, workflow_id: uuid.UUID) -> WorkflowRecord:
         """Transition to UNKNOWN (from COMMIT_INTENT)."""
