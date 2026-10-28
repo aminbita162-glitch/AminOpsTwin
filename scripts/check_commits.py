@@ -93,9 +93,13 @@ PHASE_GATES = _load_phase_gates_from_yaml()
 
 
 def get_phase_commits(phase: str) -> list[tuple[str, str]]:
-    """Get all commits in the given phase (by commit message prefix)."""
+    """Get all commits in the given phase (by commit message prefix).
+
+    Only commits in the range origin/main..HEAD are considered, so that
+    merge commits from previous phases (on main) are not counted.
+    """
     result = subprocess.run(
-        ["git", "log", "--oneline", "--no-decorate"],
+        ["git", "log", "--oneline", "--no-decorate", "origin/main..HEAD"],
         capture_output=True,
         text=True,
         check=True,
@@ -175,9 +179,9 @@ def check_phase(phase: str, bisect: bool = False) -> int:
     else:
         print(f"  C4 due gates: PASS ({len(due_gates)} gates referenced)")
 
-    # C7: zero merge commits
+    # C7: zero merge commits (only in the phase range origin/main..HEAD)
     merge_result = subprocess.run(
-        ["git", "log", "--oneline", "--merges"],
+        ["git", "log", "--oneline", "--merges", "origin/main..HEAD"],
         capture_output=True,
         text=True,
         check=True,

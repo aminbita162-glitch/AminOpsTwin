@@ -153,3 +153,47 @@ class TestExtractRefs:
     def test_no_refs(self) -> None:
         refs = _cc.extract_refs("P1: test no parens")
         assert refs == []
+
+
+class TestPhaseCommitRange:
+    """get_phase_commits uses origin/main..HEAD range (P26 deviation).
+
+    Only commits since the merge-base with origin/main are counted,
+    so merge commits from previous phases on main are not included.
+    """
+
+    def test_get_phase_commits_returns_only_phase_commits(self) -> None:
+        """get_phase_commits returns only commits matching the phase prefix."""
+        commits = _cc.get_phase_commits("P26")
+        # All returned commits must start with "P26:"
+        for _h, msg in commits:
+            assert msg.startswith("P26:"), (
+                f"Non-P26 commit in P26 results: {msg}"
+            )
+
+    def test_get_phase_commits_excludes_main_merge(self) -> None:
+        """The P25 merge commit on main must not appear in P26 commits."""
+        commits = _cc.get_phase_commits("P26")
+        for _h, msg in commits:
+            assert "Merge pull request" not in msg, (
+                f"Merge commit found in P26 commits: {msg}"
+            )
+
+    def test_c7_checks_only_phase_range(self) -> None:
+        """C7 merge-commit check only scans origin/main..HEAD.
+
+        This is a P26 deviation: the previous phases' merge commits on
+        main must not cause C7 to fail for the current phase.
+        """
+        import subprocess
+        result = subprocess.run(
+            ["git", "log", "--oneline", "--merges", "origin/main..HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+            cwd=str(_REPO_ROOT),
+        )
+        # There should be no merge commits in the phase range.
+        assert result.stdout.strip() == "", (
+            f"Merge commits found in origin/main..HEAD: {result.stdout}"
+        )
