@@ -71,7 +71,7 @@ jobs:
           PYTHONHASHSEED: "0"
         run: python -m pytest tests/twin/test_cross_platform_oracle.py -v --no-cov
       - name: Upload test artifacts
-        uses: actions/upload-artifact@b4b15b6e012bee9c31e16ee8cec67dd97bc265f6  # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
         with:
           name: test-home-${{ matrix.arch }}
           path: test_home/
@@ -102,7 +102,7 @@ jobs:
       - name: Install dependencies
         run: uv pip install --python $(which python) -e ".[dev]"
       - name: gitleaks
-        uses: gitleaks/gitleaks-action@dcedce43c6f43de0b836d1fe38946645c9c638dc  # v2
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7  # v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: pip-audit
@@ -173,7 +173,7 @@ jobs:
             -o test_home/P16/sbom.json \
             --format json
       - name: Upload SBOM artifact
-        uses: actions/upload-artifact@b4b15b6e012bee9c31e16ee8cec67dd97bc265f6  # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
         with:
           name: sbom
           path: test_home/P16/sbom.json
