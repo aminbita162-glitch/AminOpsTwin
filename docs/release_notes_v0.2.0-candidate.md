@@ -79,7 +79,7 @@ status table in `README.md` for the full list.
 
 - The Prior Pack is labelled SYNTHETIC. Real aggregate data requires
   owner-approved ingestion from ClinicalTrials.gov/AACT public aggregates.
-- Owner signing keys are `[OWNER-FILL]` placeholders. The key rotation
+- Owner signing keys are not yet provisioned (out of scope until P32; see ADR-005). The key rotation
   protocol is a skeleton awaiting owner key material.
 - No capability is claimed as verified without independent owner review.
 - The system is not a medical device, not clinically validated, not

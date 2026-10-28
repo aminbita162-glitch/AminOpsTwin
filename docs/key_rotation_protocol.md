@@ -93,8 +93,9 @@ co_signature:
 
 ## Implementation status (P13)
 
-This is a **protocol skeleton** — the signing keys are placeholders
-(`[OWNER-FILL]`) and the co-signer registry is not yet populated.
+This is a **protocol skeleton** — the signing keys are not yet
+provisioned (out of scope until P32; see ADR-005) and the co-signer
+registry is not yet populated.
 The key rotation log and co-signer registry files will be created
 in P14 or by the owner. The test (`tests/evidence/test_cosignature.py`)
 verifies that the co-signature field is optional and does not break

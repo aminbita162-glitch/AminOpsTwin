@@ -1108,7 +1108,7 @@ gates:
 
   - id: "G22.2"
     phase: "P22"
-    description: "No remaining OWNER-FILL markers or outdated phase references in directive.txt or governance files"
+    description: "No remaining OWNER-FILL markers or outdated phase references in directive.txt or governance files (G22.2)"
     metric: "owner_fill_eliminated_pass"
     operator: "=="
     threshold: 1
@@ -1288,6 +1288,70 @@ gates:
     threshold: 0
     source_command: "python scripts/check_commits.py P25"
     raw_output_path: "reports/P25/evidence/G25.8.txt"
+
+  # === P26 Gates ===
+  - id: "G26.1"
+    phase: "P26"
+    description: "grep -rn OWNER-FILL . (excluding docs/archive/) -> 0 matches"
+    metric: "owner_fill_matches"
+    operator: "=="
+    threshold: 0
+    source_command: "grep -rn OWNER-FILL . --include=*.py --include=*.yaml --include=*.yml --include=*.md | grep -v docs/archive/ | grep -v test_home/"
+    raw_output_path: "reports/P26/evidence/G26.1.txt"
+
+  - id: "G26.2"
+    phase: "P26"
+    description: "ADR-002 to ADR-008 exist, have status Accepted, and pass a schema lint"
+    metric: "adr_schema_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/governance/test_adr_schema.py -q"
+    raw_output_path: "reports/P26/evidence/G26.2.txt"
+
+  - id: "G26.3"
+    phase: "P26"
+    description: "100 concurrent identical-key requests -> 1 effect"
+    metric: "concurrent_idempotency_single_effect"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/contracts/test_idempotency.py::TestConcurrentIdempotency::test_100_concurrent_same_key_one_effect -q"
+    raw_output_path: "reports/P26/evidence/G26.3.txt"
+
+  - id: "G26.4"
+    phase: "P26"
+    description: "same key with a different payload -> GW-IDEMP-002"
+    metric: "idempotency_conflict_denied"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/contracts/test_idempotency.py::TestConcurrentIdempotency::test_same_key_different_payload_raises_gw_idemp_002 -q"
+    raw_output_path: "reports/P26/evidence/G26.4.txt"
+
+  - id: "G26.5"
+    phase: "P26"
+    description: "revocation between CHECKPOINTED and COMMIT_INTENT -> 0 commits"
+    metric: "revocation_zero_commits"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/executor/test_revocation.py::TestRevocation::test_revoke_prevents_commit -q"
+    raw_output_path: "reports/P26/evidence/G26.5.txt"
+
+  - id: "G26.6"
+    phase: "P26"
+    description: "property test: a lower-level ALLOW never flips a higher-level DENY; an equal-level conflict yields DENY"
+    metric: "authority_precedence_pass"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/gateway/test_authority_precedence.py -q"
+    raw_output_path: "reports/P26/evidence/G26.6.txt"
+
+  - id: "G26.7"
+    phase: "P26"
+    description: "no hard-coded tenant id in src/ (grep plus test)"
+    metric: "no_hardcoded_tenant"
+    operator: "=="
+    threshold: 1
+    source_command: "pytest tests/contracts/test_tenant_context.py -q"
+    raw_output_path: "reports/P26/evidence/G26.7.txt"
 
   # === Common Gates (apply in EVERY phase) ===
   - id: "C1"
