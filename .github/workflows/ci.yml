@@ -65,7 +65,7 @@ jobs:
       - name: Pytest
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest -q --tb=short --no-header
+        run: python -m pytest -q --tb=short --no-header --no-cov
       - name: Cross-platform oracle hash
         env:
           PYTHONHASHSEED: "0"
