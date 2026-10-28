@@ -76,7 +76,7 @@ jobs:
           AMINOPS_REGRESSION_NESTED_P22: "1"
           AMINOPS_REGRESSION_NESTED_P23: "1"
           AMINOPS_REGRESSION_NESTED_P24: "1"
-        run: python -m pytest -q --tb=short --no-header --no-cov
+        run: python -m pytest -q --tb=short --no-header
       - name: Cross-platform oracle hash
         env:
           PYTHONHASHSEED: "0"
