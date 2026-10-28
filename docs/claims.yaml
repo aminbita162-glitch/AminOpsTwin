@@ -35,7 +35,7 @@ claims:
   - claim_id: "CLAIM-003"
     text: "The system uses synthetic operational data and licensed public research material only."
     evidence_path: "fixtures/"
-    hash: "469980f8b5bcb00e1b28605aef028396b3a864f2f3f37559e1035199878e8ec7"
+    hash: "8e2f0bfa62421f3ca3042d552d48d0eb606ec76842d9170f65d937f4b6257091"
     category: "capability"
 
   - claim_id: "CLAIM-004"
@@ -124,7 +124,7 @@ claims:
   - claim_id: "CLAIM-016"
     text: "All claim-ids in README resolve via the standalone verify CLI without running the full system."
     evidence_path: "scripts/aminopstwin-verify"
-    hash: "79e3bad5fdc556d8e8eccab831287f3bcd4b69ce87cbec581de12b0fc43f53d9"
+    hash: "a634b84643daaa5060d04e32a9dcaf685ca87df6985cecc576a28dcb91d98729"
     category: "capability"
 
   - claim_id: "CLAIM-017"
