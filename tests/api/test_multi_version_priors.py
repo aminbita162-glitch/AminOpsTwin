@@ -55,7 +55,7 @@ def _make_claim_graph() -> ClaimGraph:
         ClaimRecord(
             claim_id="CLAIM-P19-001",
             text="P19 multi-version priors pass",
-            evidence_path="tests/p19/test_multi_version_priors.py",
+            evidence_path="tests/api/test_multi_version_priors.py",
             hash="PLACEHOLDER",
             category="P19",
             depends_on=[],
@@ -63,7 +63,7 @@ def _make_claim_graph() -> ClaimGraph:
         ClaimRecord(
             claim_id="CLAIM-P19-002",
             text="P19 version hash recorded in evidence pack",
-            evidence_path="tests/p19/test_multi_version_priors.py",
+            evidence_path="tests/api/test_multi_version_priors.py",
             hash="PLACEHOLDER",
             category="P19",
             depends_on=["CLAIM-P19-001"],

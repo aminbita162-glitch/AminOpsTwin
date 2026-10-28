@@ -1,6 +1,6 @@
 """G6.6 — Full regression: all P1–P8 gates still pass (P9 regression).
 
-Runs the complete test suite excluding tests/p9/ to confirm
+Runs the complete test suite excluding tests/integration/ to confirm
 no P9 changes broke any prior-phase functionality.
 """
 
@@ -19,7 +19,7 @@ class TestRegression:
         """Run the P1–P8 test suite and confirm no failures.
 
         Runs pytest on the test directories for P1–P8 (excluding
-        tests/p9/ and tests/p8/) with PYTHONHASHSEED=0 to confirm
+        tests/integration/ and tests/enterprise/) with PYTHONHASHSEED=0 to confirm
         no P9 changes broke any prior-phase functionality.
 
         An env-var guard (AMINOPS_REGRESSION_NESTED) prevents

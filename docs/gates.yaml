@@ -302,7 +302,7 @@ gates:
     metric: "scope_completeness_pct"
     operator: "=="
     threshold: 100
-    source_command: "pytest tests/p4/test_scope.py -v"
+    source_command: "pytest tests/governance/test_scope.py -v"
     raw_output_path: "test_home/P4/G4.1_scope.txt"
 
   - id: "G4.2"
@@ -311,7 +311,7 @@ gates:
     metric: "source_rights_complete_pct"
     operator: "=="
     threshold: 100
-    source_command: "pytest tests/p4/test_source_rights.py -v"
+    source_command: "pytest tests/governance/test_source_rights.py -v"
     raw_output_path: "test_home/P4/G4.2_source_rights.txt"
 
   - id: "G4.3"
@@ -320,7 +320,7 @@ gates:
     metric: "ingestion_security_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_ingestion.py -v"
+    source_command: "pytest tests/governance/test_ingestion.py -v"
     raw_output_path: "test_home/P4/G4.3_ingestion.txt"
 
   - id: "G4.4"
@@ -329,7 +329,7 @@ gates:
     metric: "memory_isolation_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_memory.py -v"
+    source_command: "pytest tests/governance/test_memory.py -v"
     raw_output_path: "test_home/P4/G4.4_memory.txt"
 
   - id: "G4.5"
@@ -338,7 +338,7 @@ gates:
     metric: "memory_reconstruction_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_memory.py -k 'replay or reconstruction or projection' -v"
+    source_command: "pytest tests/governance/test_memory.py -k 'replay or reconstruction or projection' -v"
     raw_output_path: "test_home/P4/G4.5_reconstruction.txt"
 
   - id: "G4.6"
@@ -347,7 +347,7 @@ gates:
     metric: "experience_promotion_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_experience.py -v"
+    source_command: "pytest tests/governance/test_experience.py -v"
     raw_output_path: "test_home/P4/G4.6_experience.txt"
 
   - id: "G4.13"
@@ -356,7 +356,7 @@ gates:
     metric: "transparency_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_transparency.py -v"
+    source_command: "pytest tests/governance/test_transparency.py -v"
     raw_output_path: "test_home/P4/G4.13_transparency.txt"
 
   - id: "G4.14"
@@ -374,7 +374,7 @@ gates:
     metric: "regulatory_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_regulatory.py -v"
+    source_command: "pytest tests/governance/test_regulatory.py -v"
     raw_output_path: "test_home/P4/G4.15_regulatory.txt"
 
   - id: "G4.16"
@@ -383,7 +383,7 @@ gates:
     metric: "preservation_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p4/test_preservation.py -v"
+    source_command: "pytest tests/governance/test_preservation.py -v"
     raw_output_path: "test_home/P4/G4.16_preservation.txt"
 
   # === P5 Gates ===
@@ -393,7 +393,7 @@ gates:
     metric: "experiment_designer_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p5/test_experiment.py -v"
+    source_command: "pytest tests/twin/test_experiment.py -v"
     raw_output_path: "test_home/P5/G4.7_experiment.txt"
 
   - id: "G4.8"
@@ -402,7 +402,7 @@ gates:
     metric: "evidence_impact_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p5/test_impact.py -v"
+    source_command: "pytest tests/twin/test_impact.py -v"
     raw_output_path: "test_home/P5/G4.8_impact.txt"
 
   - id: "G4.9"
@@ -411,7 +411,7 @@ gates:
     metric: "next_experiment_selection_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p5/test_selection.py -v"
+    source_command: "pytest tests/twin/test_selection.py -v"
     raw_output_path: "test_home/P5/G4.9_selection.txt"
 
   # === P6 Gates ===
@@ -421,7 +421,7 @@ gates:
     metric: "zero_model_assurance_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p6/test_zero_model.py -v"
+    source_command: "pytest tests/assurance/test_zero_model.py -v"
     raw_output_path: "test_home/P6/G4.10_zero_model.txt"
 
   - id: "G4.11"
@@ -430,7 +430,7 @@ gates:
     metric: "assurance_integrity_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p6/test_integrity.py tests/p6/test_scheduler.py -v"
+    source_command: "pytest tests/assurance/test_integrity.py tests/assurance/test_scheduler.py -v"
     raw_output_path: "test_home/P6/G4.11_integrity.txt"
 
   # === P7 Gates ===
@@ -440,7 +440,7 @@ gates:
     metric: "dashboard_correctness_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p7/test_dashboard.py -v"
+    source_command: "pytest tests/dashboard/test_dashboard.py -v"
     raw_output_path: "test_home/P7/G4.12_dashboard.txt"
 
   # === P8 Gates ===
@@ -450,7 +450,7 @@ gates:
     metric: "corpus_cases_denied_exact"
     operator: ">="
     threshold: 200
-    source_command: "pytest tests/p8/test_corpus_expanded.py -v"
+    source_command: "pytest tests/enterprise/test_corpus_expanded.py -v"
     raw_output_path: "test_home/P8/G5.1_corpus.txt"
 
   - id: "G5.2"
@@ -459,7 +459,7 @@ gates:
     metric: "cross_tenant_successes"
     operator: "=="
     threshold: 0
-    source_command: "pytest tests/p8/test_tenant_isolation.py -v"
+    source_command: "pytest tests/enterprise/test_tenant_isolation.py -v"
     raw_output_path: "test_home/P8/G5.2_tenant.txt"
 
   - id: "G5.3"
@@ -468,7 +468,7 @@ gates:
     metric: "manifest_files_verified_pct"
     operator: "=="
     threshold: 100
-    source_command: "pytest tests/p8/test_manifest.py -v"
+    source_command: "pytest tests/enterprise/test_manifest.py -v"
     raw_output_path: "test_home/P8/G5.3_manifest.txt"
 
   - id: "G5.4"
@@ -477,7 +477,7 @@ gates:
     metric: "evaluation_harness_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p8/test_evaluation.py -v"
+    source_command: "pytest tests/enterprise/test_evaluation.py -v"
     raw_output_path: "test_home/P8/G5.4_evaluation.txt"
 
   - id: "G5.5"
@@ -486,7 +486,7 @@ gates:
     metric: "transparency_fields_pct"
     operator: "=="
     threshold: 100
-    source_command: "pytest tests/p8/test_transparency.py -v"
+    source_command: "pytest tests/enterprise/test_transparency.py -v"
     raw_output_path: "test_home/P8/G5.5_transparency.txt"
 
   - id: "G5.6"
@@ -495,7 +495,7 @@ gates:
     metric: "load_smoke_state_corruptions"
     operator: "=="
     threshold: 0
-    source_command: "pytest tests/p8/test_load_smoke.py -v"
+    source_command: "pytest tests/enterprise/test_load_smoke.py -v"
     raw_output_path: "test_home/P8/G5.6_load_smoke.txt"
 
   - id: "G5.7"
@@ -504,7 +504,7 @@ gates:
     metric: "p1_p7_regression"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p8/test_regression.py -v"
+    source_command: "pytest tests/enterprise/test_regression_p8.py -v"
     raw_output_path: "test_home/P8/G5.7_regression.txt"
 
   - id: "G5.8"
@@ -513,7 +513,7 @@ gates:
     metric: "api_fuzz_violations"
     operator: "=="
     threshold: 0
-    source_command: "pytest tests/p8/test_api_fuzz.py -v"
+    source_command: "pytest tests/enterprise/test_api_fuzz.py -v"
     raw_output_path: "test_home/P8/G5.8_api_fuzz.txt"
 
   # === P9 Gates ===
@@ -523,7 +523,7 @@ gates:
     metric: "clean_room_steps"
     operator: "=="
     threshold: 11
-    source_command: "pytest tests/p9/test_deployment.py -k clean_room -v"
+    source_command: "pytest tests/integration/test_deployment.py -k clean_room -v"
     raw_output_path: "test_home/P9/G6.1_clean_room.txt"
 
   - id: "G6.2"
@@ -532,7 +532,7 @@ gates:
     metric: "offline_demo_outbound_calls"
     operator: "=="
     threshold: 0
-    source_command: "pytest tests/p9/test_deployment.py -k offline -v"
+    source_command: "pytest tests/integration/test_deployment.py -k offline -v"
     raw_output_path: "test_home/P9/G6.2_offline.txt"
 
   - id: "G6.3"
@@ -541,7 +541,7 @@ gates:
     metric: "backup_restore_match"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p9/test_backup.py -v"
+    source_command: "pytest tests/integration/test_backup.py -v"
     raw_output_path: "test_home/P9/G6.3_backup.txt"
 
   - id: "G6.4"
@@ -550,7 +550,7 @@ gates:
     metric: "sbom_license_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p9/test_deployment.py -k sbom -v"
+    source_command: "pytest tests/integration/test_deployment.py -k sbom -v"
     raw_output_path: "test_home/P9/G6.4_sbom.txt"
 
   - id: "G6.5"
@@ -559,7 +559,7 @@ gates:
     metric: "license_present"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p9/test_deployment.py -k license -v"
+    source_command: "pytest tests/integration/test_deployment.py -k license -v"
     raw_output_path: "test_home/P9/G6.5_license.txt"
 
   - id: "G6.8"
@@ -568,7 +568,7 @@ gates:
     metric: "runbook_drill_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p9/test_deployment.py -k runbook -v"
+    source_command: "pytest tests/integration/test_deployment.py -k runbook -v"
     raw_output_path: "test_home/P9/G6.8_runbook.txt"
 
   - id: "G6.9"
@@ -577,7 +577,7 @@ gates:
     metric: "readiness_rubric_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p9/test_deployment.py -k readiness -v"
+    source_command: "pytest tests/integration/test_deployment.py -k readiness -v"
     raw_output_path: "test_home/P9/G6.9_readiness.txt"
 
   # === P10 Gates ===
@@ -587,7 +587,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p10/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p10.py -v"
     raw_output_path: "test_home/P10/G6.6_regression.txt"
 
   - id: "G6.7"
@@ -596,7 +596,7 @@ gates:
     metric: "release_notes_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p10/test_release_notes.py -v"
+    source_command: "pytest tests/governance/test_release_notes.py -v"
     raw_output_path: "test_home/P10/G6.7_release_notes.txt"
 
   # === P11 Gates ===
@@ -698,7 +698,7 @@ gates:
     metric: "claims_coverage_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p13/test_claims_registry.py -v"
+    source_command: "pytest tests/evidence/test_claims_registry.py -v"
     raw_output_path: "test_home/P13/G13.1_claims.txt"
 
   - id: "G13.2"
@@ -707,7 +707,7 @@ gates:
     metric: "verify_cli_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p13/test_verify_cli.py -v"
+    source_command: "pytest tests/evidence/test_verify_cli.py -v"
     raw_output_path: "test_home/P13/G13.2_verify_cli.txt"
 
   - id: "G13.3"
@@ -716,7 +716,7 @@ gates:
     metric: "prior_pack_hash_match"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p13/test_prior_pack.py -v"
+    source_command: "pytest tests/evidence/test_prior_pack.py -v"
     raw_output_path: "test_home/P13/G13.3_prior_pack.txt"
 
   - id: "G13.4"
@@ -725,7 +725,7 @@ gates:
     metric: "shadow_ingestion_rejection_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p13/test_shadow_gateway.py -v"
+    source_command: "pytest tests/evidence/test_shadow_gateway.py -v"
     raw_output_path: "test_home/P13/G13.4_shadow_gateway.txt"
 
   - id: "G13.5"
@@ -734,7 +734,7 @@ gates:
     metric: "cosignature_optional_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p13/test_cosignature.py -v"
+    source_command: "pytest tests/evidence/test_cosignature.py -v"
     raw_output_path: "test_home/P13/G13.5_cosignature.txt"
 
   # === P14 Gates ===
@@ -744,7 +744,7 @@ gates:
     metric: "shadow_pilot_report_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p14/test_shadow_pilot.py -v"
+    source_command: "pytest tests/evidence/test_shadow_pilot.py -v"
     raw_output_path: "test_home/P14/G14.1_shadow_pilot.txt"
 
   - id: "G14.2"
@@ -753,7 +753,7 @@ gates:
     metric: "claims_resolve_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p14/test_claims_resolve.py -v"
+    source_command: "pytest tests/evidence/test_claims_resolve.py -v"
     raw_output_path: "test_home/P14/G14.2_claims_resolve.txt"
 
   - id: "G14.3"
@@ -762,7 +762,7 @@ gates:
     metric: "verified_tags_exist"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p14/test_verified_tags.py -v"
+    source_command: "pytest tests/evidence/test_verified_tags.py -v"
     raw_output_path: "test_home/P14/G14.3_tags.txt"
 
   - id: "G14.4"
@@ -771,7 +771,7 @@ gates:
     metric: "full_p1_p14_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p14/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p14.py -v"
     raw_output_path: "test_home/P14/G14.4_regression.txt"
 
   # === P15 Gates ===
@@ -781,7 +781,7 @@ gates:
     metric: "config_integrity_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p15/test_config_integrity.py -v"
+    source_command: "pytest tests/governance/test_config_integrity.py -v"
     raw_output_path: "test_home/P15/G15.1_config_integrity.txt"
 
   - id: "G15.2"
@@ -808,7 +808,7 @@ gates:
     metric: "readme_professional"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p15/test_readme.py -v"
+    source_command: "pytest tests/docs/test_readme.py -v"
     raw_output_path: "test_home/P15/G15.4_readme.txt"
 
   - id: "G15.5"
@@ -826,7 +826,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p15/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p15.py -v"
     raw_output_path: "test_home/P15/G15.6_regression.txt"
 
   # === P16 Gates ===
@@ -836,7 +836,7 @@ gates:
     metric: "checkpoint_resume_hash_match"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p16/test_replay.py -v"
+    source_command: "pytest tests/twin/test_replay.py -v"
     raw_output_path: "test_home/P16/G16.1_replay.txt"
 
   - id: "G16.2"
@@ -845,7 +845,7 @@ gates:
     metric: "cross_platform_oracle_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p16/test_cross_platform.py -v"
+    source_command: "pytest tests/twin/test_cross_platform.py -v"
     raw_output_path: "test_home/P16/G16.2_cross_platform.txt"
 
   - id: "G16.3"
@@ -854,7 +854,7 @@ gates:
     metric: "mutation_property_thresholds_met"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p16/test_advanced_testing.py -v"
+    source_command: "pytest tests/twin/test_advanced_testing.py -v"
     raw_output_path: "test_home/P16/G16.3_advanced_testing.txt"
 
   - id: "G16.4"
@@ -863,7 +863,7 @@ gates:
     metric: "fixed_point_paths_clean"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p16/test_fixed_point.py -v"
+    source_command: "pytest tests/twin/test_fixed_point.py -v"
     raw_output_path: "test_home/P16/G16.4_fixed_point.txt"
 
   - id: "G16.5"
@@ -872,7 +872,7 @@ gates:
     metric: "sim_validation_within_thresholds"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p16/test_sim_validation.py -v"
+    source_command: "pytest tests/twin/test_sim_validation.py -v"
     raw_output_path: "test_home/P16/G16.5_sim_validation.txt"
 
   - id: "G16.6"
@@ -891,7 +891,7 @@ gates:
     metric: "stale_claim_detection_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p17/test_claim_graph.py -v"
+    source_command: "pytest tests/evidence/test_claim_graph.py -v"
     raw_output_path: "test_home/P17/G17.1_stale_claim.txt"
 
   - id: "G17.2"
@@ -900,7 +900,7 @@ gates:
     metric: "merkle_partial_proof_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p17/test_merkle_pack.py -v"
+    source_command: "pytest tests/evidence/test_merkle_pack.py -v"
     raw_output_path: "test_home/P17/G17.2_merkle_proof.txt"
 
   - id: "G17.3"
@@ -909,7 +909,7 @@ gates:
     metric: "audit_chain_tamper_detect_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p17/test_audit_chain.py -v"
+    source_command: "pytest tests/evidence/test_audit_chain.py -v"
     raw_output_path: "test_home/P17/G17.3_audit_chain.txt"
 
   - id: "G17.4"
@@ -918,7 +918,7 @@ gates:
     metric: "offline_kit_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p17/test_offline_kit.py -v"
+    source_command: "pytest tests/evidence/test_offline_kit.py -v"
     raw_output_path: "test_home/P17/G17.4_offline_kit.txt"
 
   - id: "G17.5"
@@ -937,7 +937,7 @@ gates:
     metric: "isolation_suite_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p18/test_isolation.py -v"
+    source_command: "pytest tests/enterprise/test_isolation.py -v"
     raw_output_path: "test_home/P18/G18.1_isolation.txt"
 
   - id: "G18.2"
@@ -946,7 +946,7 @@ gates:
     metric: "quota_enforced_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p18/test_quota.py -v"
+    source_command: "pytest tests/enterprise/test_quota.py -v"
     raw_output_path: "test_home/P18/G18.2_quota.txt"
 
   - id: "G18.3"
@@ -955,7 +955,7 @@ gates:
     metric: "rls_zero_leakage_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p18/test_rls.py -v"
+    source_command: "pytest tests/enterprise/test_rls.py -v"
     raw_output_path: "test_home/P18/G18.3_rls.txt"
 
   - id: "G18.4"
@@ -964,7 +964,7 @@ gates:
     metric: "assurance_pack_valid_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p18/test_assurance_pack.py -v"
+    source_command: "pytest tests/enterprise/test_assurance_pack.py -v"
     raw_output_path: "test_home/P18/G18.4_assurance_pack.txt"
 
   - id: "G18.5"
@@ -973,7 +973,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p18/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p18.py -v"
     raw_output_path: "test_home/P18/G18.5_regression.txt"
 
   # === P19 Gates ===
@@ -983,7 +983,7 @@ gates:
     metric: "contract_compatibility_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p19/test_data_contract.py -v"
+    source_command: "pytest tests/api/test_data_contract.py -v"
     raw_output_path: "test_home/P19/G19.1_data_contract.txt"
 
   - id: "G19.2"
@@ -992,7 +992,7 @@ gates:
     metric: "signed_export_verify_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p19/test_signed_export.py -v"
+    source_command: "pytest tests/api/test_signed_export.py -v"
     raw_output_path: "test_home/P19/G19.2_signed_export.txt"
 
   - id: "G19.3"
@@ -1001,7 +1001,7 @@ gates:
     metric: "api_aggregate_only_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p19/test_api.py -v"
+    source_command: "pytest tests/api/test_api.py -v"
     raw_output_path: "test_home/P19/G19.3_api.txt"
 
   - id: "G19.4"
@@ -1010,7 +1010,7 @@ gates:
     metric: "prior_version_recorded_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p19/test_multi_version_priors.py -v"
+    source_command: "pytest tests/api/test_multi_version_priors.py -v"
     raw_output_path: "test_home/P19/G19.4_multi_version.txt"
 
   - id: "G19.5"
@@ -1019,7 +1019,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p19/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p19.py -v"
     raw_output_path: "test_home/P19/G19.5_regression.txt"
 
   # === P20 Gates ===
@@ -1029,7 +1029,7 @@ gates:
     metric: "formal_sketch_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p20/test_formal_sketch.py -v"
+    source_command: "pytest tests/governance/test_formal_sketch.py -v"
     raw_output_path: "test_home/P20/G20.1_formal_sketch.txt"
 
   - id: "G20.2"
@@ -1038,7 +1038,7 @@ gates:
     metric: "stage_close_script_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p20/test_stage_close.py -v"
+    source_command: "pytest tests/governance/test_stage_close.py -v"
     raw_output_path: "test_home/P20/G20.2_stage_close.txt"
 
   - id: "G20.3"
@@ -1047,7 +1047,7 @@ gates:
     metric: "stage_seal_verifies_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p20/test_stage_seal.py -v"
+    source_command: "pytest tests/governance/test_stage_seal.py -v"
     raw_output_path: "test_home/P20/G20.3_stage_seal.txt"
 
   - id: "G20.4"
@@ -1056,7 +1056,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p20/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p20.py -v"
     raw_output_path: "test_home/P20/G20.4_regression.txt"
 
   - id: "G20.5"
@@ -1065,7 +1065,7 @@ gates:
     metric: "readme_completion_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p20/test_readme.py -v"
+    source_command: "pytest tests/docs/test_readme.py -v"
     raw_output_path: "test_home/P20/G20.5_readme.txt"
 
   # === P21 Gates ===
@@ -1075,7 +1075,7 @@ gates:
     metric: "status_honesty_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p21/test_status_honesty.py -v"
+    source_command: "pytest tests/docs/test_status_honesty.py -v"
     raw_output_path: "test_home/P21/G21.1_status_honesty.txt"
 
   - id: "G21.2"
@@ -1084,7 +1084,7 @@ gates:
     metric: "readme_cinematic_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p21/test_readme_cinematic.py -v"
+    source_command: "pytest tests/docs/test_readme_cinematic.py -v"
     raw_output_path: "test_home/P21/G21.2_readme_cinematic.txt"
 
   - id: "G21.3"
@@ -1093,7 +1093,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p21/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p21.py -v"
     raw_output_path: "test_home/P21/G21.3_regression.txt"
 
   # === P22 Gates ===
@@ -1103,7 +1103,7 @@ gates:
     metric: "directive_consistency_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p22/test_directive_consistency.py -v"
+    source_command: "pytest docs/archive/retired_tests/test_directive_consistency.py -v"
     raw_output_path: "test_home/P22/G22.1_directive_consistency.txt"
 
   - id: "G22.2"
@@ -1112,7 +1112,7 @@ gates:
     metric: "owner_fill_eliminated_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p22/test_owner_fill_eliminated.py -v"
+    source_command: "pytest docs/archive/retired_tests/test_owner_fill_eliminated.py -v"
     raw_output_path: "test_home/P22/G22.2_owner_fill.txt"
 
   - id: "G22.3"
@@ -1121,7 +1121,7 @@ gates:
     metric: "gate_source_consistency_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p22/test_gate_source_consistency.py -v"
+    source_command: "pytest tests/docs/test_gate_source_consistency.py -v"
     raw_output_path: "test_home/P22/G22.3_gate_source.txt"
 
   - id: "G22.4"
@@ -1130,7 +1130,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p22/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p22.py -v"
     raw_output_path: "test_home/P22/G22.4_regression.txt"
 
   # === P23 Gates ===
@@ -1140,7 +1140,7 @@ gates:
     metric: "lockfile_checked_in_ci"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p23/test_lockfile_ci.py -v"
+    source_command: "pytest tests/governance/test_lockfile_ci.py -v"
     raw_output_path: "test_home/P23/G23.1_lockfile_ci.txt"
 
   - id: "G23.2"
@@ -1149,7 +1149,7 @@ gates:
     metric: "ci_jobs_present"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p23/test_ci_workflow.py -v"
+    source_command: "pytest tests/governance/test_ci_workflow.py -v"
     raw_output_path: "test_home/P23/G23.2_ci_workflow.txt"
 
   - id: "G23.3"
@@ -1158,7 +1158,7 @@ gates:
     metric: "security_workflow_present"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p23/test_security_workflow.py -v"
+    source_command: "pytest tests/governance/test_security_workflow.py -v"
     raw_output_path: "test_home/P23/G23.3_security_workflow.txt"
 
   - id: "G23.4"
@@ -1167,7 +1167,7 @@ gates:
     metric: "security_fast_lane_documented"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p23/test_security_fast_lane.py -v"
+    source_command: "pytest tests/governance/test_security_fast_lane.py -v"
     raw_output_path: "test_home/P23/G23.4_security_fast_lane.txt"
 
   - id: "G23.5"
@@ -1176,7 +1176,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p23/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p23.py -v"
     raw_output_path: "test_home/P23/G23.5_regression.txt"
 
   # === P24 Gates ===
@@ -1186,7 +1186,7 @@ gates:
     metric: "full_regression_pass"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p24/test_regression.py -v"
+    source_command: "pytest tests/governance/test_regression_p24.py -v"
     raw_output_path: "test_home/P24/G24.1_regression.txt"
 
   - id: "G24.2"
@@ -1195,7 +1195,7 @@ gates:
     metric: "claims_resynced"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p24/test_claim_resync.py -v"
+    source_command: "pytest tests/governance/test_claim_resync.py -v"
     raw_output_path: "test_home/P24/G24.2_claim_resync.txt"
 
   - id: "G24.3"
@@ -1204,7 +1204,7 @@ gates:
     metric: "stage4_seal_present"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p24/test_stage_seal.py -v"
+    source_command: "pytest tests/governance/test_stage_seal.py -v"
     raw_output_path: "test_home/P24/G24.3_stage_seal.txt"
 
   - id: "G24.4"
@@ -1213,7 +1213,7 @@ gates:
     metric: "no_skeleton_remaining"
     operator: "=="
     threshold: 1
-    source_command: "pytest tests/p24/test_no_skeleton.py -v"
+    source_command: "pytest tests/governance/test_no_skeleton.py -v"
     raw_output_path: "test_home/P24/G24.4_no_skeleton.txt"
 
   # === P25 Gates ===

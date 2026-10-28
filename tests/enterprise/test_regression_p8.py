@@ -19,7 +19,7 @@ class TestRegression:
         """Run the P1–P7 test suite and confirm no failures.
 
         Runs pytest on the test directories for P1–P7 (excluding
-        tests/p8/) with PYTHONHASHSEED=0 to confirm no P8 changes
+        tests/enterprise/) with PYTHONHASHSEED=0 to confirm no P8 changes
         broke any prior-phase functionality.
 
         An env-var guard (AMINOPS_REGRESSION_NESTED) prevents

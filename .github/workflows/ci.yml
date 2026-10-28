@@ -92,15 +92,15 @@ jobs:
       - name: P16 cross-platform oracle
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_cross_platform.py -v --no-cov
+        run: python -m pytest tests/twin/test_cross_platform.py -v --no-cov
       - name: P16 canonical differential (10k vectors)
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_canonical_diff.py -v --no-cov
+        run: python -m pytest tests/twin/test_canonical_diff.py -v --no-cov
       - name: P16 advanced testing (Hypothesis + thresholds)
         env:
           PYTHONHASHSEED: "0"
-        run: python -m pytest tests/p16/test_advanced_testing.py tests/p16/test_replay.py tests/p16/test_fixed_point.py tests/p16/test_sim_validation.py -v --no-cov
+        run: python -m pytest tests/twin/test_advanced_testing.py tests/twin/test_replay.py tests/twin/test_fixed_point.py tests/twin/test_sim_validation.py -v --no-cov
 
   security:
     name: Security (gitleaks, pip-audit)

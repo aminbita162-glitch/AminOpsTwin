@@ -37,7 +37,7 @@ def _make_claim_graph() -> ClaimGraph:
         ClaimRecord(
             claim_id="CLAIM-P18-001",
             text="P18 isolation suite passes",
-            evidence_path="tests/p18/test_isolation.py",
+            evidence_path="tests/enterprise/test_isolation.py",
             hash="PLACEHOLDER",
             category="P18",
             depends_on=[],
@@ -45,7 +45,7 @@ def _make_claim_graph() -> ClaimGraph:
         ClaimRecord(
             claim_id="CLAIM-P18-002",
             text="P18 quota engine enforced",
-            evidence_path="tests/p18/test_quota.py",
+            evidence_path="tests/enterprise/test_quota.py",
             hash="PLACEHOLDER",
             category="P18",
             depends_on=["CLAIM-P18-001"],

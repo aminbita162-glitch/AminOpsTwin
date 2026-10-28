@@ -1,6 +1,7 @@
 """G6.6 — Full regression: all P1–P9 gates re-run and pass (P10 final regression).
 
-Runs the complete test suite (tests/ excluding tests/p10/) to confirm
+Runs the complete test suite (tests/ excluding
+tests/governance/test_regression_p10.py) to confirm
 no P1–P9 functionality is broken at the final project close.
 """
 
@@ -18,7 +19,8 @@ class TestFinalRegression:
     def test_p1_through_p9_suite_passes(self) -> None:
         """Run the P1–P9 test suite and confirm no failures.
 
-        Runs pytest on all test directories (excluding tests/p10/)
+        Runs pytest on all test directories (excluding
+        tests/governance/test_regression_p10.py)
         with PYTHONHASHSEED=0 to confirm no P1–P9 functionality is
         broken at the final project close.
 
