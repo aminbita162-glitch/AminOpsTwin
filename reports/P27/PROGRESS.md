@@ -12,7 +12,7 @@
 | 3 | Real reconciler (ADR-006) | DONE | reconciler.py with 15-min backoff + ESCALATED |
 | 4 | Real RLS: ENABLE + FORCE; delete in-memory sim | DONE | rls_setup.py; enterprise/rls.py gutted to re-export |
 | 5 | Audit storage (ADR-005): append-only, hash chain, Merkle | DONE | pg_audit.py with hash chain + Merkle batching |
-| 6 | formal/executor.tla: TLA+ spec, TLC checks | NOT_STARTED | |
+| 6 | formal/executor.tla: TLA+ spec, TLC checks | DONE | formal/executor.tla + .cfg; TLC CI-only (skipped locally) |
 | 7 | Seeded fault-injection harness | NOT_STARTED | |
 | 8 | Connection security: TLS, env-only credentials | DONE | session.py PGConfig.from_env, sslmode=verify-full |
 | 9 | Alembic migrations; docs/schema.md | NOT_STARTED | |
