@@ -25,7 +25,7 @@ from aminopstwin.enterprise.manifest import (
     build_manifest,
 )
 from aminopstwin.enterprise.rls import (
-    RLSEngine,
+    TENANT_TABLES,
     RLSPolicy,
     generate_executor_rls_policies,
 )
@@ -49,9 +49,9 @@ __all__ = [
     "TenantIsolationSuite",
     "IsolationResult",
     "run_isolation_suite",
-    # RLS (P18, G18.3)
+    # RLS (P27, G27.8 — real PostgreSQL RLS, in-memory simulation removed)
     "RLSPolicy",
-    "RLSEngine",
+    "TENANT_TABLES",
     "generate_executor_rls_policies",
     # evaluation harness
     "CapabilityResult",

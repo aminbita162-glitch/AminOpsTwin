@@ -1,0 +1,41 @@
+# Local PostgreSQL 16 with TLS for development (P27 deliverable 1).
+#
+# Usage:
+#   docker compose -f deploy/local/compose.yaml up -d
+#   docker compose -f deploy/local/compose.yaml down
+#
+# TLS is enabled with a self-signed certificate for local development.
+# In production, use a CA-signed certificate.
+#
+# The application role (appuser) has no BYPASSRLS and no UPDATE/DELETE
+# on audit_events.
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: aminopstwin-pg
+    environment:
+      POSTGRES_DB: aminopstwin
+      POSTGRES_USER: aminopstwin_admin
+      POSTGRES_PASSWORD: ${PGPASSWORD:-local_dev_only_not_for_production}
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+    ports:
+      - "5432:5432"
+    command: >
+      postgres
+      -c ssl=on
+      -c ssl_cert_file=/etc/postgresql/server.crt
+      -c ssl_key_file=/etc/postgresql/server.key
+      -c log_connections=yes
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./certs/server.crt:/etc/postgresql/server.crt:ro
+      - ./certs/server.key:/etc/postgresql/server.key:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aminopstwin_admin -d aminopstwin"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:

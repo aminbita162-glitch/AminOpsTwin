@@ -11,6 +11,8 @@ dependencies = [
     "pydantic>=2.9.0,<3.0.0",
     "pyyaml>=6.0,<7.0",
     "types-PyYAML>=6.0,<7.0",
+    "sqlalchemy>=2,<3",
+    "psycopg[binary]>=3,<4",
 ]
 
 [project.optional-dependencies]
@@ -28,6 +30,8 @@ dev = [
     "httpx>=0.27.0,<1.0.0",
     "deptry>=0.20.0,<1.0.0",
     "lxml>=6.1.0,<7.0.0",
+    "alembic>=1.13.0,<2.0.0",
+    "testcontainers>=4.0.0,<5.0.0",
 ]
 
 [build-system]
@@ -59,7 +63,7 @@ optional_dependencies_dev_groups = ["dev"]
 # starlette is a transitive of fastapi, pinned explicitly for CVE patching.
 # types-PyYAML is a type stub for pyyaml, not imported at runtime.
 [tool.deptry.per_rule_ignores]
-DEP002 = ["starlette", "types-PyYAML"]
+DEP002 = ["starlette", "types-PyYAML", "psycopg"]
 
 [tool.ruff]
 target-version = "py312"
@@ -99,7 +103,7 @@ select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "DTZ", "TID"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.agents", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot", "aminopstwin.fixtures_gen", "aminopstwin.api", "aminopstwin.policy_simulation", "aminopstwin.retention", "aminopstwin.scheduling", "aminopstwin.stage_seal", "aminopstwin.stage4_seal"]
+packages = ["aminopstwin.contracts", "aminopstwin.gateway", "aminopstwin.executor", "aminopstwin.agents", "aminopstwin.tokens", "aminopstwin.twin", "aminopstwin.evidence", "aminopstwin.assurance", "aminopstwin.dashboard", "aminopstwin.enterprise", "aminopstwin.integration", "aminopstwin.priors", "aminopstwin.ingestion", "aminopstwin.shadow_pilot", "aminopstwin.fixtures_gen", "aminopstwin.api", "aminopstwin.policy_simulation", "aminopstwin.retention", "aminopstwin.scheduling", "aminopstwin.stage_seal", "aminopstwin.stage4_seal", "aminopstwin.persistence"]
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
