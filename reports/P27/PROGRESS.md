@@ -7,7 +7,7 @@
 
 | # | Deliverable | Status | Notes |
 |---|------------|--------|-------|
-| 1 | PostgreSQL 16 via SQLAlchemy 2 + psycopg 3; compose.yaml | DONE | compose.yaml, alembic.ini, models, session, base |
+| 1 | PostgreSQL 16 via SQLAlchemy 2 + psycopg 3; compose.yaml | DONE | compose.yaml, migrations/alembic.ini, models, session, base |
 | 2 | PostgreSQL adapters for every P26 port | DONE | pg_executor, pg_idempotency, pg_audit, reconciler, rls_setup |
 | 3 | Real reconciler (ADR-006) | DONE | reconciler.py with 15-min backoff + ESCALATED |
 | 4 | Real RLS: ENABLE + FORCE; delete in-memory sim | DONE | rls_setup.py; enterprise/rls.py gutted to re-export |
