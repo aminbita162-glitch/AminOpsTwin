@@ -3,9 +3,15 @@
 from __future__ import annotations
 
 import datetime as _dt
+import os
+import secrets
+import shutil
+import socket
 import sys
+import time
 import uuid
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -25,6 +31,15 @@ from aminopstwin.gateway.gateway import (
     PolicyMatrix,
     PolicyMatrixEntry,
 )
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
+    from sqlalchemy import Engine
+    from sqlalchemy.orm import Session, sessionmaker
+
+_HAS_DOCKER = shutil.which("docker") is not None
+_IS_LINUX = os.uname().sysname == "Linux"
 
 
 @pytest.fixture
@@ -138,3 +153,131 @@ def make_envelope(
         )
 
     return _make
+
+
+# ---------------------------------------------------------------------------
+# PostgreSQL testcontainers fixtures (P27)
+#
+# These fixtures spin up a real PostgreSQL 16 container for the Postgres
+# gate tests.  They must never be skipped on Linux (where a container
+# runtime is available).  On macOS without a container runtime, they may
+# skip — recorded in DEVIATIONS of the Hard-Stop Report.
+#
+# No default credentials: the container password is randomly generated
+# at runtime.
+# ---------------------------------------------------------------------------
+
+
+def _wait_for_port(host: str, port: int, timeout: float = 30) -> bool:
+    """Return True if a TCP connection to host:port succeeds."""
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            with socket.create_connection((host, port), timeout=2):
+                return True
+        except OSError:
+            time.sleep(0.5)
+    return False
+
+
+@pytest.fixture(scope="module")
+def pg_container() -> Iterator[dict[str, str]]:
+    """Start a PostgreSQL 16 container and yield connection params.
+
+    The password is randomly generated — no default credentials.
+    On Linux without Docker, this is a hard failure (not a skip).
+    On macOS without Docker, it skips (recorded in DEVIATIONS).
+    """
+    if not _HAS_DOCKER:
+        if _IS_LINUX:
+            pytest.fail(
+                "Docker not available on Linux — Postgres gate tests "
+                "must never be skipped on Linux"
+            )
+        pytest.skip(
+            "Docker not available on macOS — Postgres tests skip "
+            "where no container runtime exists"
+        )
+
+    try:
+        from testcontainers.community.postgres import PostgresContainer
+    except ImportError:
+        try:
+            from testcontainers.postgres import PostgresContainer
+        except ImportError:
+            if _IS_LINUX:
+                pytest.fail(
+                    "testcontainers not installed — Postgres gate tests "
+                    "must never be skipped on Linux"
+                )
+            pytest.skip("testcontainers not installed")
+
+    password = secrets.token_urlsafe(16)
+    container = PostgresContainer(
+        image="postgres:16",
+        username="test_admin",
+        password=password,
+        dbname="test_db",
+        driver="psycopg",
+    )
+    container.start()
+
+    host = container.get_container_host_ip()
+    port = int(container.get_exposed_port(5432))
+    if not _wait_for_port(host, port):
+        container.stop()
+        pytest.fail(f"PostgreSQL container did not become ready at {host}:{port}")
+
+    url = container.get_connection_url()
+    if "sslmode" not in url:
+        url = url + ("&" if "?" in url else "?") + "sslmode=prefer"
+
+    yield {
+        "url": url,
+        "host": host,
+        "port": str(port),
+        "database": "test_db",
+        "username": "test_admin",
+        "password": password,
+    }
+
+    container.stop()
+
+
+def _create_tables(engine: Engine) -> None:
+    """Drop and recreate all tables from the SQLAlchemy models.
+
+    Each test gets a clean schema so deterministic ID factories do
+    not collide across tests sharing the same module-scoped container.
+    """
+    from aminopstwin.persistence import models  # noqa: F401
+    from aminopstwin.persistence.base import Base
+
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(engine)
+
+
+@pytest.fixture()
+def pg_session_factory(
+    pg_container: dict[str, str],
+) -> Iterator[sessionmaker[Session]]:
+    """Yield a session factory bound to the testcontainer PostgreSQL."""
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+
+    engine = create_engine(
+        pg_container["url"],
+        future=True,
+        echo=False,
+    )
+    _create_tables(engine)
+
+    factory: sessionmaker[Session] = sessionmaker(
+        bind=engine,
+        future=True,
+        expire_on_commit=False,
+    )
+
+    yield factory
+
+    engine.dispose()
