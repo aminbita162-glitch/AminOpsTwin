@@ -17,8 +17,8 @@ from sqlalchemy import engine_from_config, pool
 # Ensure src is importable
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from aminopstwin.persistence.base import Base  # noqa: E402
 from aminopstwin.persistence import models  # noqa: E402, F401
+from aminopstwin.persistence.base import Base  # noqa: E402
 
 config = context.config
 
@@ -29,14 +29,37 @@ target_metadata = Base.metadata
 
 
 def _get_url() -> str:
-    """Build the SQLAlchemy URL from environment variables."""
-    host = os.environ.get("PGHOST", "localhost")
+    """Build the SQLAlchemy URL from environment variables.
+
+    No default credentials: PGHOST, PGDATABASE, PGUSER, and PGPASSWORD
+    must come from the environment.  PGPORT defaults to 5432 (standard
+    PostgreSQL port, not a credential) and PGSSLMODE defaults to
+    verify-full (the security requirement, not a credential).
+    """
+    host = os.environ.get("PGHOST", "")
+    if not host:
+        raise RuntimeError(
+            "PGHOST must be set — no default credentials in the repository"
+        )
     port = os.environ.get("PGPORT", "5432")
-    database = os.environ.get("PGDATABASE", "aminopstwin")
-    username = os.environ.get("PGUSER", "aminopstwin_admin")
-    sslmode = os.environ.get("PGSSLMODE", "prefer")
+    database = os.environ.get("PGDATABASE", "")
+    if not database:
+        raise RuntimeError(
+            "PGDATABASE must be set — no default credentials in the repository"
+        )
+    username = os.environ.get("PGUSER", "")
+    if not username:
+        raise RuntimeError(
+            "PGUSER must be set — no default credentials in the repository"
+        )
+    password = os.environ.get("PGPASSWORD", "")
+    if not password:
+        raise RuntimeError(
+            "PGPASSWORD must be set — no default credentials in the repository"
+        )
+    sslmode = os.environ.get("PGSSLMODE", "verify-full")
     return (
-        f"postgresql+psycopg://{username}@{host}:{port}/{database}"
+        f"postgresql+psycopg://{username}:{password}@{host}:{port}/{database}"
         f"?sslmode={sslmode}"
     )
 

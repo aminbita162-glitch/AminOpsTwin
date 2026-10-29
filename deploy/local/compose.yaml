@@ -1,12 +1,15 @@
 # Local PostgreSQL 16 with TLS for development (P27 deliverable 1).
 #
 # Usage:
+#   export PGPASSWORD=<your-local-dev-password>
 #   docker compose -f deploy/local/compose.yaml up -d
 #   docker compose -f deploy/local/compose.yaml down
 #
-# TLS is enabled with a self-signed certificate for local development.
+# TLS is enabled with a self-signed certificate generated at runtime
+# inside the container. No private keys are committed to the repository.
 # In production, use a CA-signed certificate.
 #
+# No default credentials: PGPASSWORD must be provided via the environment.
 # The application role (appuser) has no BYPASSRLS and no UPDATE/DELETE
 # on audit_events.
 
@@ -15,27 +18,35 @@ services:
     image: postgres:16
     container_name: aminopstwin-pg
     environment:
-      POSTGRES_DB: aminopstwin
-      POSTGRES_USER: aminopstwin_admin
-      POSTGRES_PASSWORD: ${PGPASSWORD:-local_dev_only_not_for_production}
+      POSTGRES_DB: ${PGDATABASE:-aminopstwin}
+      POSTGRES_USER: ${PGUSER:-aminopstwin_admin}
+      POSTGRES_PASSWORD: ${PGPASSWORD:?PGPASSWORD is required — no default credentials}
       POSTGRES_HOST_AUTH_METHOD: scram-sha-256
     ports:
       - "5432:5432"
-    command: >
-      postgres
-      -c ssl=on
-      -c ssl_cert_file=/etc/postgresql/server.crt
-      -c ssl_key_file=/etc/postgresql/server.key
-      -c log_connections=yes
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./certs/server.crt:/etc/postgresql/server.crt:ro
-      - ./certs/server.key:/etc/postgresql/server.key:ro
+    entrypoint:
+      - sh
+      - -c
+      - |
+        if [ ! -f /etc/postgresql/server.crt ]; then
+          openssl req -new -x509 -nodes \
+            -newkey rsa:2048 \
+            -keyout /etc/postgresql/server.key \
+            -out /etc/postgresql/server.crt \
+            -days 365 \
+            -subj "/CN=localhost" \
+            -addext "subjectAltName=IP:127.0.0.1,DNS:localhost"
+          chmod 600 /etc/postgresql/server.key
+        fi
+        exec docker-entrypoint.sh postgres \
+          -c ssl=on \
+          -c ssl_cert_file=/etc/postgresql/server.crt \
+          -c ssl_key_file=/etc/postgresql/server.key \
+          -c log_connections=yes
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U aminopstwin_admin -d aminopstwin"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 10
-
-volumes:
-  pgdata:
+    tmpfs:
+      - /etc/postgresql
